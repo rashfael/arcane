@@ -1,0 +1,451 @@
+{
+    "mappings": {
+        "1326747763218": {
+            "map": {
+                "title": "Name",
+                "ptBrand": "Hersteller",
+                "price": "Preis",
+                "img_1": "Bewertung"
+            },
+            "validFor": [
+                "nav1326747763178",
+                "nav1326747763179",
+                "nav1326747763181",
+                "nav1326747763180"
+            ],
+            "name": "Default mapping"
+        }
+    },
+    "navigation": {
+        "base": [
+            {
+                "name": "Entry point",
+                "type": "Start",
+                "config": {
+                    "request": {
+                        "url": "http://www.amazon.de/s/ref=nb_sb_noss_1?__mk_de_DE=%C5M%C5Z%D5%D1&url=search-alias%3Daps&field-keywords=Stifte&x=0&y=0"
+                    }
+                },
+                "id": "nav1326747763178",
+                "next": [
+                    "nav1326747763179"
+                ]
+            }
+        ],
+        "nav1326747763179": {
+            "name": "Walk through items",
+            "type": "WalkthroughItems",
+            "config": {
+                "customSelector": "#rightResultsATF .result",
+                "magic": {}
+            },
+            "next": [
+                "nav1326747763180"
+            ],
+            "id": "nav1326747763179",
+            "nodeConfigId": "1326747763178"
+        },
+        "nav1326747763180": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": ""
+            },
+            "next": [
+                "nav1326747763181"
+            ],
+            "id": "nav1326747763180"
+        },
+        "nav1326747763181": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "itemSelector": ""
+            },
+            "next": [],
+            "id": "nav1326747763181"
+        }
+    },
+    "config": {
+        "currentConfigID": 1326747763178,
+        "configs": {
+            "1326747763178": {
+                "_name": "Default config",
+                "_id": 1326747763178,
+                "_listConfig": {
+                    "_inspectedNodes": [
+                        {},
+                        {}
+                    ],
+                    "_exceptions": [],
+                    "_selectors": [
+                        "#rightResultsATF .result"
+                    ]
+                },
+                "_magicConfig": {}
+            }
+        }
+    },
+    "mappingData": [
+        {
+            "id": 1326747763218,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "http://www.amazon.de/",
+                    "selector": "",
+                    "data": []
+                },
+                {
+                    "selector": "#rightResultsATF .result",
+                    "data": [
+                        {
+                            "key": "srNum_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "1."
+                            ]
+                        },
+                        {
+                            "key": "title",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "Idena 512269 - Gelschreiber, 5 verschiedene Sorten, 30 Stück",
+                                "Stabilo 8810 - Fineliner Point 88 10er Etui",
+                                "Crayola 03.8324R - 8 Erste Filzstifte",
+                                "Stabilo 880/10-2 Multitalent-Stift woody 3 in 1 Multitalent-Stift woody 3 in 1, Kartonetui mit 10 Stiften und 1 Spitzer",
+                                "Pelikan 904854 - Faserschreiber Colorella 30 Stück in Plastiketui",
+                                "Staedtler 144NC24 - Farbstifte Noris Club 24er Etui",
+                                "Stabilo Fasermaler in Etui, gefüllt mit 20 Stabilo Pen 68",
+                                "Zauberstifte Magic Pens",
+                                "Pilot Tintenschreiber Frixion 0,4mm schwarz",
+                                "Schwan-Stabilo 8825-1 - Stabilo Point 88 25Stück in Plastiketui",
+                                "Passat - Colour Workshop: Magic Blopens",
+                                "Pilot 2261003F Ersatzmine für den Frixion Ball blau",
+                                "Crayola 03.8328DM - 8 Einfach Auswaschbare Filzstifte",
+                                "Stabilo 6806-1 Fasermaler Pen 68 Etui mit 6 Leuchtfarben",
+                                "Schwan-Stabilo 8806 - Holzfarbstifte Woody 6Stück in Kartonetui",
+                                "Folia 574 - Glitter Glue, 10 Stifte à 9,5ml Inhalt, 10 Farben sortiert"
+                            ]
+                        },
+                        {
+                            "key": "ptBrand",
+                            "dbKey": "Hersteller",
+                            "checked": "checked",
+                            "values": [
+                                "von Idena",
+                                "von Stabilo",
+                                "von Crayola",
+                                "von Pelikan",
+                                "von Staedtler",
+                                "von Carioca",
+                                "von Pilot Pen",
+                                "von PBS Deutschland",
+                                "von Folia"
+                            ]
+                        },
+                        {
+                            "key": "newPrice",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                ":"
+                            ]
+                        },
+                        {
+                            "key": "price",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "EUR 8,82",
+                                "EUR 7,94",
+                                "EUR 5,82",
+                                "EUR 4,89",
+                                "EUR 3,30",
+                                "EUR 4,88",
+                                "EUR 3,69",
+                                "EUR 13,53",
+                                "EUR 11,20",
+                                "EUR 5,83",
+                                "EUR 3,59",
+                                "EUR 4,99",
+                                "EUR 11,65",
+                                "EUR 9,98",
+                                "EUR 7,90",
+                                "EUR 7,40",
+                                "EUR 2,45",
+                                "EUR 1,50",
+                                "EUR 11,73",
+                                "EUR 10,56",
+                                "EUR 9,19",
+                                "EUR 12,45",
+                                "EUR 11,90",
+                                "EUR 4,65",
+                                "EUR 3,85",
+                                "EUR 5,70",
+                                "EUR 1,99",
+                                "EUR 4,47",
+                                "EUR 1,95",
+                                "EUR 6,35",
+                                "EUR 5,09",
+                                "EUR 5,77",
+                                "EUR 4,42"
+                            ]
+                        },
+                        {
+                            "key": "snsPrice",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                ":"
+                            ]
+                        },
+                        {
+                            "key": "subPrice",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "ab"
+                            ]
+                        },
+                        {
+                            "key": "fastTrack",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                ": Bestellen Sie innerhalb der nächsten  per Morning-Express.",
+                                "Auf Lager."
+                            ]
+                        },
+                        {
+                            "key": "getItBy",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Lieferung bis"
+                            ]
+                        },
+                        {
+                            "key": "deliveryDate",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Mittwoch, 18. Januar"
+                            ]
+                        },
+                        {
+                            "key": "timeLeft",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "22 Stunden",
+                                "20 Stunden"
+                            ]
+                        },
+                        {
+                            "key": "reviewsCount",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "()"
+                            ]
+                        },
+                        {
+                            "key": "sssFree",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kostenlose"
+                            ]
+                        },
+                        {
+                            "key": "sssLastLine",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Lieferung möglich."
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Produkt-Information"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": "Bewertung",
+                            "checked": "checked",
+                            "values": [
+                                "3,8 von 5 Sternen",
+                                "4,4 von 5 Sternen",
+                                "4,3 von 5 Sternen",
+                                "4,6 von 5 Sternen",
+                                "5 von 5 Sternen",
+                                "4,7 von 5 Sternen",
+                                "3,9 von 5 Sternen",
+                                "4,9 von 5 Sternen",
+                                "4,2 von 5 Sternen",
+                                "3,5 von 5 Sternen"
+                            ]
+                        },
+                        {
+                            "key": "srNum_1",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "2."
+                            ]
+                        },
+                        {
+                            "key": "bindingAndRelease",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "(17. Juni 2008)",
+                                "(1. Januar 2003)",
+                                "(1. April 2006)",
+                                "(15. Dezember 2011)"
+                            ]
+                        },
+                        {
+                            "key": "srNum_2",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "3."
+                            ]
+                        },
+                        {
+                            "key": "ageRange",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Unsere Altersempfehlung: ab 12 Monate",
+                                "Unsere Altersempfehlung: ab 36 Monate",
+                                "Unsere Altersempfehlung: ab 5 Jahre"
+                            ]
+                        },
+                        {
+                            "key": "srNum_3",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "4."
+                            ]
+                        },
+                        {
+                            "key": "srNum_4",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "5."
+                            ]
+                        },
+                        {
+                            "key": "srNum_5",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "6."
+                            ]
+                        },
+                        {
+                            "key": "srNum_6",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "7."
+                            ]
+                        },
+                        {
+                            "key": "srNum_7",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "8."
+                            ]
+                        },
+                        {
+                            "key": "srNum_8",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "9."
+                            ]
+                        },
+                        {
+                            "key": "srNum_9",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "10."
+                            ]
+                        },
+                        {
+                            "key": "srNum_10",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "11."
+                            ]
+                        },
+                        {
+                            "key": "srNum_11",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "12."
+                            ]
+                        },
+                        {
+                            "key": "srNum_12",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "13."
+                            ]
+                        },
+                        {
+                            "key": "srNum_13",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "14."
+                            ]
+                        },
+                        {
+                            "key": "srNum_14",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "15."
+                            ]
+                        },
+                        {
+                            "key": "srNum_15",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "16."
+                            ]
+                        },
+                        {
+                            "key": "ppu",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "(EUR 6,07/100 ml)"
+                            ]
+                        }
+                    ],
+                    "url": "http://www.amazon.de/s/ref=nb_sb_noss_1?__mk_de_DE=%C5M%C5Z%D5%D1&url=search-alias%3Daps&field-keywords=Stifte&x=0&y=0"
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,5 @@
+content scraperExtension chrome/content/scraperExtension/ xpcnativewrappers=no
+skin    scraperExtension classic/1.0   chrome/skin/classic/
+overlay chrome://firebug/content/firebugOverlay.xul         chrome://scraperExtension/content/main.xul		
+locale  scraperExtension  de-DE       chrome/locale/de-DE/
+locale  scraperExtension  en-US       chrome/locale/en-US/

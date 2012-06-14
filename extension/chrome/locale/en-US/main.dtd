@@ -1,0 +1,65 @@
+<!-- Global -->
+<!ENTITY  main.global.newJob.tooltip        "New Job">
+<!ENTITY  main.global.sendJob.tooltip        "Send current Job to Scraper">
+<!ENTITY  main.global.loadJob.tooltip        "Import Config">
+<!ENTITY  main.global.saveJob.tooltip        "Export Config">
+
+
+<!-- Graph -->
+<!ENTITY  main.tabs.nav.label        "Navigation">
+<!ENTITY  main.tabs.nav.tooltip        "Tab to Manage the Navigation">
+<!ENTITY  main.tabs.nav.capture.tooltip        "Enable/disable capture mode">
+<!ENTITY  main.tabs.nav.undo.tooltip       "Undo">
+<!ENTITY  main.tabs.nav.redo.tooltip        "Redo">
+<!ENTITY  main.tabs.nav.delete.tooltip       "Delete Node">
+<!ENTITY  main.tabs.nav.add.tooltip       "Add navigation node">
+
+<!ENTITY  main.tabs.nav.add.ep.tooltip       "Define an additional starting point for the current scraping job.">
+<!ENTITY  main.tabs.nav.add.wtl.tooltip       "Walk through a collection of links and follow them.">
+<!ENTITY  main.tabs.nav.add.wti.tooltip       "Walk through a collection of items on a page.">
+<!ENTITY  main.tabs.nav.add.wtp.tooltip       "Walk through a pager and follow the links inside it.">
+<!ENTITY  main.tabs.nav.add.fl.tooltip       "Follow a certain link, e.g. to get more details.">
+<!ENTITY  main.tabs.nav.add.ff.tooltip       "Fill a form with certain values and submit the form.">
+<!ENTITY  main.tabs.nav.add.mg.tooltip       "Do some magic to detect content. :)">
+<!ENTITY  main.tabs.nav.add.cd.tooltip       "Collect the content which has been discovered from the predec. node.">
+
+<!ENTITY  main.tabs.nav.add.edge.tooltip       "Add Edge">
+<!ENTITY  main.tabs.nav.delete.edge.tooltip       "Remove Edge">
+
+<!ENTITY  main.tabs.nav.help.tooltip       "Show help for the Navigation tab">
+
+
+
+<!-- Configuration -->
+<!ENTITY  main.tabs.conf.label        "Configuration">
+<!ENTITY  main.tabs.conf.tooltip        "Tab to Configure the Key-Value Detecter">
+<!ENTITY  main.tabs.conf.configuration.label        "Configuration:">
+<!ENTITY  main.tabs.conf.add.tooltip        "Add Configuration">
+<!ENTITY  main.tabs.conf.delete.tooltip        "Delete Configuration">
+<!ENTITY  main.tabs.conf.rename.tooltip        "Rename Configuration">
+<!ENTITY  main.tabs.conf.help.tooltip        "Show help for the Configuration tab">
+
+<!-- Mappings -->
+<!ENTITY  main.tabs.mapp.label        "Mappings">
+<!ENTITY  main.tabs.mapp.tooltip        "Tab to Manage the Mapping">
+
+<!ENTITY  main.tabs.mapp.new.tooltip        "New Mapping">
+<!ENTITY  main.tabs.mapp.rename.tooltip        "Rename Mapping">
+<!ENTITY  main.tabs.mapp.delete.tooltip        "Delete Mapping">
+<!ENTITY  main.tabs.mapp.conf.label        "Source:">
+<!ENTITY  main.tabs.mapp.conf.tooltip        "Search with selected configuration">
+<!ENTITY  main.tabs.mapp.vc.label        "Value Count:">
+<!ENTITY  main.tabs.mapp.vc.tooltip        "The minimal number of unique values for displayed keys">
+<!ENTITY  main.tabs.mapp.help.tooltip        "Show help for the Mapping tab">
+
+<!-- Jobs -->
+<!ENTITY  main.tabs.jobs.label        "Jobs">
+<!ENTITY  main.tabs.jobs.tooltip        "Tab to manage Jobs">
+<!ENTITY  main.tabs.jobs.update.tooltip        "Refresh Jobs">
+<!ENTITY  main.tabs.jobs.project.label        "Project:">
+<!ENTITY  main.tabs.jobs.help.tooltip        "Show help for the Jobs tab">
+
+
+<!-- Debug -->
+<!ENTITY  main.tabs.debug.label        "Debug">
+<!ENTITY  main.tabs.debug.tooltip        "Debug Arcane Wand">

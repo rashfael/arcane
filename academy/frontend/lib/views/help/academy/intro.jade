@@ -1,0 +1,9 @@
+extends ../layoutHelp
+
+block help
+	:markdown
+		# Academy Einführung
+
+		Academy führt als Scraper einen in Wand (Firebug-Extension) modellierten Job aus und speichert die gesammelten Daten in Collections. Aus Benutzersicht ist die Academy Web UI (standardmäßig über *http://<Adresse>:9000* zu erreichen) der zentrale Interaktionspunkt mit dem Scraper. Die Web UI bietet die Möglichkeit, alle laufenden und abgeschlossenen Jobs zu überblicken. Außerdem lassen sich die Projekte und Collections betrachten. Ein Projekt kann ein oder mehrere Jobs und beliebig viele Collections beinhalten. Die eingesammelten Daten eines Jobs können "live" betrachtet werden, auch während der Job noch läuft.
+
+		Üblicherweise wird über eine Web Service-Schnittstelle ein Job an von Wand an Academy geschickt. Allerdings besteht alternativ auch die Möglichkeit über die Funktion *Submit Job* in der Academy Web UI direkt einen modellierten Job - gespeichert als JSON-Datei - zu laden und anschließend zu starten. Damit ist Academy auch ohne Wand verwendbar.

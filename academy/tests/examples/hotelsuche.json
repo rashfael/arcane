@@ -1,0 +1,968 @@
+{
+    "mappings": {
+        "1330454579965": {
+            "map": {
+                "hotels-p": "Beschreibung",
+                "img_0": "Name",
+                "Preis": "Preis",
+                "Adresse": "Adresse"
+            },
+            "validFor": [
+                "nav1330454579939"
+            ],
+            "name": "Default mapping"
+        },
+        "1330455928830": {
+            "map": {
+                "img_0": "Sterne",
+                "img_1": "Name",
+				"Anreise": "Anreise",
+				"Abreise": "Abreise",
+				"Ausstattung": "Ausstattung",
+				"Aktivitäten": "Aktivitäten",
+				"Services": "Services",
+				"Freie Zimmer": "Freie Zimmer"
+            },
+            "validFor": [
+                "nav1330454579941"
+            ],
+            "name": "mapping1"
+        }
+    },
+    "navigation": {
+        "base": [
+            {
+                "name": "Entry point",
+                "type": "Start",
+                "config": {
+                    "request": {
+                        "url": "http://www.hotelsuche.de/"
+                    }
+                },
+                "id": "nav1330454579933",
+                "next": [
+                    "nav1330454579934"
+                ]
+            }
+        ],
+        "nav1330454579934": {
+            "name": "Fill form",
+            "type": "FillForm",
+            "config": {
+                "formSelector": [
+                    "#suche"
+                ],
+                "url": "http://www.hotelsuche.de/suchergebnisse/",
+                "method": "post",
+                "parameters": [
+                    {
+                        "zielort": {
+                            "entry": ["London"]
+                        },
+                        "anreisedatum": {
+                            "entry": ["#{03.06.2012+i}"],
+                            "format": "DD.MM.YYYY"
+                        },
+                        "abreisedatum": {
+                            "entry": ["#{03.06.2012+7+i}"],
+                            "format": "DD.MM.YYYY"
+                        },
+						"_iterator": {
+                            "sequence": [
+                                1,
+                                2,
+                                3,
+                                4
+                            ]
+                        }
+                    }
+                ],
+                "customSelector": [
+                    ""
+                ],
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Preis",
+                                "selector": "div.hotels-price > h2.clear > a:nth-child(2)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Adresse",
+                                "selector": "div.hotels-adress > p:first-child",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1330454579935"
+            ],
+            "id": "nav1330454579934",
+            "nodeConfigId": "1330454579933"
+        },
+        "nav1330454579935": {
+            "name": "Walk through pager",
+            "type": "Pager",
+            "config": {
+                "pagerSelector": [
+                    "h4"
+                ]
+            },
+            "next": [
+                "nav1330454579936"
+            ],
+            "id": "nav1330454579935"
+        },
+        "nav1330454579936": {
+            "name": "Walk through items",
+            "type": "WalkthroughItems",
+            "config": {
+                "customSelector": [
+                    ".fragment-notabs.hotels-notabs"
+                ],
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Preis",
+                                "selector": "div.hotels-price > h2.clear > a:nth-child(2)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Adresse",
+                                "selector": "div.hotels-adress > p:first-child",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1330454579937",
+                "nav1330454579938"
+            ],
+            "id": "nav1330454579936",
+            "nodeConfigId": "1330454579933"
+        },
+        "nav1330454579937": {
+            "name": "Follow link",
+            "type": "FollowLink",
+            "config": {
+                "linkSelector": [
+                    ".hotels-icon-information > a"
+                ]
+            },
+            "next": [
+                "nav1330454579940"
+            ],
+            "id": "nav1330454579937"
+        },
+        "nav1330454579938": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": "",
+				"magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Preis",
+                                "selector": "div.hotels-price > h2.clear > a:nth-child(2)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Adresse",
+                                "selector": "div.hotels-adress > p:first-child",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1330454579939"
+            ],
+            "id": "nav1330454579938"
+        },
+        "nav1330454579939": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "collection": "general"
+            },
+            "next": [],
+            "id": "nav1330454579939"
+        },
+        "nav1330454579940": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": [
+                    ""
+                ],
+                "customSelector": [
+                    "#col1_content"
+                ],
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Anreise",
+                                "selector": "div.fragment > p:nth-child(4)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Abreise",
+                                "selector": "div.fragment > p:nth-child(6)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Ausstattung",
+                                "selector": "div.fragment > ul.content-ul",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Aktivitäten",
+                                "selector": "div.fragment > ul.content-ul",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Services",
+                                "selector": "div.fragment > ul.content-ul",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Freie Zimmer",
+                                "selector": "div.fragment > p:nth-child(8)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1330454579941"
+            ],
+            "id": "nav1330454579940",
+            "nodeConfigId": "1330455936337"
+        },
+        "nav1330454579941": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "collection": "details"
+            },
+            "next": [],
+            "id": "nav1330454579941"
+        }
+    },
+    "config": {
+        "currentConfigID": "1330455936337",
+        "configs": {
+            "1330454579933": {
+                "_name": "Default config",
+                "_id": 1330454579933,
+                "_listConfig": {
+                    "_inspectedNodes": [],
+                    "_exceptions": [],
+                    "_selectors": [],
+                    "_frameSels": []
+                },
+                "_magicConfig": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Preis",
+                                "selector": "div.hotels-price > h2.clear > a:nth-child(2)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Adresse",
+                                "selector": "div.hotels-adress > p:first-child",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                },
+                "_formfillConfig": {
+                    "_fields": [],
+                    "_datasets": []
+                }
+            },
+            "1330455936337": {
+                "_name": "config1",
+                "_id": 1330455936337,
+                "_listConfig": {
+                    "_inspectedNodes": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {}
+                    ],
+                    "_exceptions": [
+                        [
+                            "html > body"
+                        ],
+                        [
+                            "html > body"
+                        ]
+                    ],
+                    "_selectors": [
+                        "html >  > body"
+                    ],
+                    "_frameSels": []
+                },
+                "_magicConfig": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Anreise",
+                                "selector": "body > div:first-child > div:first-child > div:nth-child(3) > div.main-inner > div:nth-child(2) > div.clearfix > div.tabs-main > div.fragment > p:nth-child(4)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Abreise",
+                                "selector": "body > div:first-child > div:first-child > div:nth-child(3) > div.main-inner > div:nth-child(2) > div.clearfix > div.tabs-main > div.fragment > p:nth-child(6)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Ausstattung",
+                                "selector": "body > div:first-child > div:first-child > div:nth-child(3) > div.main-inner > div:nth-child(2) > div.clearfix > div.tabs-main > div.fragment > ul.content-ul",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Aktivitäten",
+                                "selector": "body > div:first-child > div:first-child > div:nth-child(3) > div.main-inner > div:nth-child(2) > div.clearfix > div.tabs-main > div.fragment > ul.content-ul",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Services",
+                                "selector": "body > div:first-child > div:first-child > div:nth-child(3) > div.main-inner > div:nth-child(2) > div.clearfix > div.tabs-main > div.fragment > ul.content-ul",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Freie Zimmer",
+                                "selector": "body > div:first-child > div:first-child > div:nth-child(3) > div.main-inner > div:nth-child(2) > div.clearfix > div.tabs-main > div.fragment > p:nth-child(8)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "",
+                                "selector": "body > div:first-child > div:first-child > div:nth-child(3) > div.main-inner > div:nth-child(2) > div.clearfix > div.tabs-main > div.fragment > table:nth-child(4) tr:nth-child(2)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                },
+                "_formfillConfig": {
+                    "_fields": [],
+                    "_datasets": []
+                }
+            }
+        }
+    },
+    "mappingData": [
+        {
+            "id": 1330454579965,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "about:blank",
+                    "selector": "",
+                    "data": [],
+                    "currentData": []
+                },
+                {
+                    "selector": "#col1_content .fragment-notabs",
+                    "data": [
+                        {
+                            "key": "form-h4",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Straße / Einrichtung",
+                                "Ort"
+                            ]
+                        },
+                        {
+                            "key": "hotels-p",
+                            "dbKey": "Beschreibung",
+                            "checked": "checked",
+                            "values": [
+                                "Can Cera Hotel is a 17th-century palace in the historic centre of Palma de Mallorca with a spa. The airy rooms have antique-style furniture, free minibar and flat-screen satellite TV. All of the air-conditioned rooms have free Wi-Fi, and some have a balcony or terrace. The stylish, modern bathrooms have a...",
+                                "Set in front of Palma?s port, Costa Azul offers a sauna and rooms with satellite TV. The outdoor pool is covered in winter and enjoys stunning views of the marina. A bus leaves from outside Hotel Costa Azul, with a direct route to Palma Airport, 9 km away. There is also a service to the centre of Palma,...",
+                                "Das Hostal Pinar liegt 10 Gehminuten von der Strandpromenade von Palma de Mallorca entfernt und befindet sich direkt neben dem Bellver-Park. Es bietet einen saisonalen Außenpool und einen kostenfreien LAN-Internetzugang in den öffentlichen Bereichen. Die klimatisierten Zimmer im Pinar verfügen alle...",
+                                "Etwa 100 m von der Burg Castillo de Bellver entfernt erwartet Sie das Hostal Bonany. In 10 Fahrminuten erreichen Sie das Zentrum von Palma. Freuen Sie sich auf einen Außenpool und die Zimmer mit Balkon. Das Bonany bietet komfortable und helle Zimmer. Diese verfügen alle über TV und ein eigenes Bad. ...",
+                                "Set on a cliff with incredible sea views, Palia Maria Eugenia is 500 metres from a sheltered beach. Facilities include a tennis court, sauna and Olympic-size pool. Hotel Maria Eugenia is 10 km from Porto Cristo, on Majorca?s east coast. The hotel is set in lush gardens, with palm trees and sunbathing...",
+                                "Das kleine Designhotel Feliz bietet eine Dachterrasse mit Panoramablick, ein Restaurant und einen Whirlpool mit Blick auf die Bucht von Palma. Im Hotel Feliz wohnen Sie im Herzen von Palma de Mallorca gleich neben dem Hafen. Der Strand von Cala Mayor liegt ungefähr 2 km entfernt. Den Wald Bosc de Bellver...",
+                                "Dieses Gebäude aus dem 16. Jahrhundert befindet sich im historischen Zentrum von Palma, nahe der Kathedrale und dem Strand. Sie wohnen in hellen Zimmern in kreativem Design mit kostenfreier Internetverbindung. Das Hotel Palau Sa Font liegt nur einen kurzen Spaziergang von den historischen...",
+                                "Das kleine, familiengeführte Hotel Abelay liegt etwas außerhalb des Zentrums von Palma de Mallorca. Zur Ausstattung gehört kostenfreies WLAN in allen Zimmern und öffentlichen Bereichen. Die Stierkampfarena und die Plaza de España liegen nur 5 Minuten vom Hotel Abelay entfernt. Das öffentliche...",
+                                "Dieses Grand Hotel erwartet Sie mit einem Spa, einem Außenpool und einer Sonnenterrasse mit Blick auf das Meer und die Bucht von Palma. Freuen Sie sich auf klimatisierte Zimmer mit Balkon. Die Zimmer im Melia Palas Atenea verfügen über ein großes Doppelbett mit einer Auswahl an Kissen sowie einen...",
+                                "In einem restaurierten Herrenhaus im Gotischen Viertel von Palma de Mallorca bietet Ihnen das Hotel Dalt Murada eine Dachterrasse mit herrlichem Blick auf den Dom sowie klimatisierte Zimmer mit Sat-TV. Das Hotel besticht durch seine zahlreichen antiken Möbel und Teppiche. Es bietet einen hübschen...",
+                                "Am Strand Cala Major auf Mallorca bietet das Playa Calamayor einen Außenpool der im Winter überdacht und beheizt wird. Jedes der klimatisierten Zimmer verfügt über eine Terrasse, die meisten mit Meerblick. Die Zimmer im Hotel Playa Calamayor sind funktional und klimatisiert. Sie sind mit einem Sat-TV,...",
+                                "In einer ruhigen Gegend mit Geschäften und Restaurants bietet Ihnen das Hotel Santa Ana einen Blick auf Strand von Cala Mayor. Es verfügt über einen Außenpool und die geräumigen Zimmer sind mit einem Balkon und einem Sat-TV ausgestattet. Alle Zimmer des Santa Ana verfügen über geflieste Böden,...",
+                                "Direkt an der Küste, mit Blick auf die Bucht von Palma, bietet das Hotel Azul Playa klimatisierte und schallisolierte Zimmer mit Flachbild-TV, ein Restaurant und eine Terrassenbar. Im gesamten UR Azul Playa Hotel steht kostenloses WLAN zur Verfügung. Nutzen Sie den Ausflugsschalter sowie den Fahrrad-...",
+                                "Dieses Boutique-Hotel liegt 100 Meter von der Plaza de España und dem Bahnhof Soller in Palma de Mallorca entfernt und bietet Zimmer mit kostenfreiem WLAN, Regendusche und Flachbild-TV. Das Hotel UR Mision de San Miguel liegt um einen charmanten Innenhof, in dem im Sommer Speisen und Cocktails serviert...",
+                                "Dieses Hotel genießt eine reizvolle Lage und erwartet Sie mit einem atemberaubenden Meerblick. Mit einen All-Inclusive-Angebot, hübschen Zimmern und vielfältigen Einrichtungen bietet das Haus einen schönen für einen Strandurlaub mit der Familie.   Der Strand ist bequem über Stufen erreichbar und..."
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "Can Cera Hotel",
+                                "Hotel Costa Azul",
+                                "Hostal Bonany",
+                                "Palia Maria Eugenia",
+                                "Hotel Feliz",
+                                "Palau Sa Font",
+                                "Abelay",
+                                "Melia Palas Atenea",
+                                "Dalt Murada",
+                                "Playa Calamayor",
+                                "Santa Ana",
+                                "UR Azul Playa",
+                                "UR Mision de San Miguel",
+                                "Hotasa Samoa"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Hostal Pinar"
+                            ]
+                        },
+                        {
+                            "key": "Preis",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "ab 194 EUR",
+                                "ab 60 EUR",
+                                "ab 34 EUR",
+                                "ab 32 EUR",
+                                "ab 90 EUR",
+                                "ab 65 EUR",
+                                "ab 103 EUR",
+                                "ab 40 EUR",
+                                "ab 85 EUR",
+                                "ab 93 EUR",
+                                "ab 31 EUR",
+                                "ab 63 EUR",
+                                "ab 68 EUR",
+                                "ab 36 EUR"
+                            ]
+                        },
+                        {
+                            "key": "Adresse",
+                            "dbKey": "Adresse",
+                            "checked": "checked",
+                            "values": [
+                                "San Francisco, 807001 Palma De Mallorca, Spanien",
+                                "Avenida Gabriel Roca,  707014 Palma de Mallorca, Spanien",
+                                "Camilo Jose Cela, 607014 Palma De Mallorca, Spanien",
+                                "Almirante Cervera 507014 Palma de Mallorca, Spanien",
+                                "Romaguera, s/n07689 Calas de Mallorca, Spanien",
+                                "Joan Miro, 7407015 Palma De Mallorca, Spanien",
+                                "Apuntadores, 3807012 Palma de Mallorca, Spanien",
+                                "Pablo Iglesias nº4907004 Palma de Mallorca, Spanien",
+                                "Paseo Maritimo, 2907014 Palma de Mallorca, Spanien",
+                                "Almudaina 6 A07001 Palma de Mallorca, Spanien",
+                                "Guillermo Díaz Plaja, 2 - Cala Major07015 Palma de Mallorca, Spanien",
+                                "Gavina, 9 - Cala Major07015 Palma de Mallorca, Spanien",
+                                "Isla De Rodes, 2407007 Palma de Mallorca, Spanien",
+                                "Can Maçanet 1A07003 Palma de Mallorca, Spanien",
+                                "Formentor, s/n07689 Calas De Mallorca, Spanien"
+                            ]
+                        }
+                    ],
+                    "currentData": [
+                        {
+                            "key": "form-h4",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Straße / Einrichtung",
+                                "Ort"
+                            ]
+                        },
+                        {
+                            "key": "hotels-p",
+                            "dbKey": "Beschreibung",
+                            "checked": "checked",
+                            "values": [
+                                "Can Cera Hotel is a 17th-century palace in the historic centre of Palma de Mallorca with a spa. The airy rooms have antique-style furniture, free minibar and flat-screen satellite TV. All of the air-conditioned rooms have free Wi-Fi, and some have a balcony or terrace. The stylish, modern bathrooms have a...",
+                                "Set in front of Palma?s port, Costa Azul offers a sauna and rooms with satellite TV. The outdoor pool is covered in winter and enjoys stunning views of the marina. A bus leaves from outside Hotel Costa Azul, with a direct route to Palma Airport, 9 km away. There is also a service to the centre of Palma,...",
+                                "Das Hostal Pinar liegt 10 Gehminuten von der Strandpromenade von Palma de Mallorca entfernt und befindet sich direkt neben dem Bellver-Park. Es bietet einen saisonalen Außenpool und einen kostenfreien LAN-Internetzugang in den öffentlichen Bereichen. Die klimatisierten Zimmer im Pinar verfügen alle...",
+                                "Etwa 100 m von der Burg Castillo de Bellver entfernt erwartet Sie das Hostal Bonany. In 10 Fahrminuten erreichen Sie das Zentrum von Palma. Freuen Sie sich auf einen Außenpool und die Zimmer mit Balkon. Das Bonany bietet komfortable und helle Zimmer. Diese verfügen alle über TV und ein eigenes Bad. ...",
+                                "Set on a cliff with incredible sea views, Palia Maria Eugenia is 500 metres from a sheltered beach. Facilities include a tennis court, sauna and Olympic-size pool. Hotel Maria Eugenia is 10 km from Porto Cristo, on Majorca?s east coast. The hotel is set in lush gardens, with palm trees and sunbathing...",
+                                "Das kleine Designhotel Feliz bietet eine Dachterrasse mit Panoramablick, ein Restaurant und einen Whirlpool mit Blick auf die Bucht von Palma. Im Hotel Feliz wohnen Sie im Herzen von Palma de Mallorca gleich neben dem Hafen. Der Strand von Cala Mayor liegt ungefähr 2 km entfernt. Den Wald Bosc de Bellver...",
+                                "Dieses Gebäude aus dem 16. Jahrhundert befindet sich im historischen Zentrum von Palma, nahe der Kathedrale und dem Strand. Sie wohnen in hellen Zimmern in kreativem Design mit kostenfreier Internetverbindung. Das Hotel Palau Sa Font liegt nur einen kurzen Spaziergang von den historischen...",
+                                "Das kleine, familiengeführte Hotel Abelay liegt etwas außerhalb des Zentrums von Palma de Mallorca. Zur Ausstattung gehört kostenfreies WLAN in allen Zimmern und öffentlichen Bereichen. Die Stierkampfarena und die Plaza de España liegen nur 5 Minuten vom Hotel Abelay entfernt. Das öffentliche...",
+                                "Dieses Grand Hotel erwartet Sie mit einem Spa, einem Außenpool und einer Sonnenterrasse mit Blick auf das Meer und die Bucht von Palma. Freuen Sie sich auf klimatisierte Zimmer mit Balkon. Die Zimmer im Melia Palas Atenea verfügen über ein großes Doppelbett mit einer Auswahl an Kissen sowie einen...",
+                                "In einem restaurierten Herrenhaus im Gotischen Viertel von Palma de Mallorca bietet Ihnen das Hotel Dalt Murada eine Dachterrasse mit herrlichem Blick auf den Dom sowie klimatisierte Zimmer mit Sat-TV. Das Hotel besticht durch seine zahlreichen antiken Möbel und Teppiche. Es bietet einen hübschen...",
+                                "Am Strand Cala Major auf Mallorca bietet das Playa Calamayor einen Außenpool der im Winter überdacht und beheizt wird. Jedes der klimatisierten Zimmer verfügt über eine Terrasse, die meisten mit Meerblick. Die Zimmer im Hotel Playa Calamayor sind funktional und klimatisiert. Sie sind mit einem Sat-TV,...",
+                                "In einer ruhigen Gegend mit Geschäften und Restaurants bietet Ihnen das Hotel Santa Ana einen Blick auf Strand von Cala Mayor. Es verfügt über einen Außenpool und die geräumigen Zimmer sind mit einem Balkon und einem Sat-TV ausgestattet. Alle Zimmer des Santa Ana verfügen über geflieste Böden,...",
+                                "Direkt an der Küste, mit Blick auf die Bucht von Palma, bietet das Hotel Azul Playa klimatisierte und schallisolierte Zimmer mit Flachbild-TV, ein Restaurant und eine Terrassenbar. Im gesamten UR Azul Playa Hotel steht kostenloses WLAN zur Verfügung. Nutzen Sie den Ausflugsschalter sowie den Fahrrad-...",
+                                "Dieses Boutique-Hotel liegt 100 Meter von der Plaza de España und dem Bahnhof Soller in Palma de Mallorca entfernt und bietet Zimmer mit kostenfreiem WLAN, Regendusche und Flachbild-TV. Das Hotel UR Mision de San Miguel liegt um einen charmanten Innenhof, in dem im Sommer Speisen und Cocktails serviert...",
+                                "Dieses Hotel genießt eine reizvolle Lage und erwartet Sie mit einem atemberaubenden Meerblick. Mit einen All-Inclusive-Angebot, hübschen Zimmern und vielfältigen Einrichtungen bietet das Haus einen schönen für einen Strandurlaub mit der Familie.   Der Strand ist bequem über Stufen erreichbar und..."
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "Can Cera Hotel",
+                                "Hotel Costa Azul",
+                                "Hostal Bonany",
+                                "Palia Maria Eugenia",
+                                "Hotel Feliz",
+                                "Palau Sa Font",
+                                "Abelay",
+                                "Melia Palas Atenea",
+                                "Dalt Murada",
+                                "Playa Calamayor",
+                                "Santa Ana",
+                                "UR Azul Playa",
+                                "UR Mision de San Miguel",
+                                "Hotasa Samoa"
+                            ]
+                        },
+                        {
+                            "key": "Preis",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "ab 194 EUR",
+                                "ab 60 EUR",
+                                "ab 34 EUR",
+                                "ab 32 EUR",
+                                "ab 90 EUR",
+                                "ab 65 EUR",
+                                "ab 103 EUR",
+                                "ab 40 EUR",
+                                "ab 85 EUR",
+                                "ab 93 EUR",
+                                "ab 31 EUR",
+                                "ab 63 EUR",
+                                "ab 68 EUR",
+                                "ab 36 EUR"
+                            ]
+                        },
+                        {
+                            "key": "Adresse",
+                            "dbKey": "Adresse",
+                            "checked": "checked",
+                            "values": [
+                                "San Francisco, 807001 Palma De Mallorca, Spanien",
+                                "Avenida Gabriel Roca,  707014 Palma de Mallorca, Spanien",
+                                "Camilo Jose Cela, 607014 Palma De Mallorca, Spanien",
+                                "Almirante Cervera 507014 Palma de Mallorca, Spanien",
+                                "Romaguera, s/n07689 Calas de Mallorca, Spanien",
+                                "Joan Miro, 7407015 Palma De Mallorca, Spanien",
+                                "Apuntadores, 3807012 Palma de Mallorca, Spanien",
+                                "Pablo Iglesias nº4907004 Palma de Mallorca, Spanien",
+                                "Paseo Maritimo, 2907014 Palma de Mallorca, Spanien",
+                                "Almudaina 6 A07001 Palma de Mallorca, Spanien",
+                                "Guillermo Díaz Plaja, 2 - Cala Major07015 Palma de Mallorca, Spanien",
+                                "Gavina, 9 - Cala Major07015 Palma de Mallorca, Spanien",
+                                "Isla De Rodes, 2407007 Palma de Mallorca, Spanien",
+                                "Can Maçanet 1A07003 Palma de Mallorca, Spanien",
+                                "Formentor, s/n07689 Calas De Mallorca, Spanien"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Hostal Pinar"
+                            ]
+                        }
+                    ],
+                    "url": "http://www.hotelsuche.de/suchergebnisse/"
+                },
+                {
+                    "selector": "",
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.hotelsuche.de/hotel/300499/spanien/palma-de-mallorca/can-cera-hotel/"
+                }
+            ]
+        },
+        {
+            "id": 1330454579980,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "about:blank",
+                    "selector": "",
+                    "data": [],
+                    "currentData": []
+                }
+            ]
+        },
+        {
+            "id": 1330455928830,
+            "name": "mapping1",
+            "page": [
+                {
+                    "url": "http://www.hotelsuche.de/hotel/300499/spanien/palma-de-mallorca/can-cera-hotel/",
+                    "data": [
+                        {
+                            "key": "clear",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "form-h4",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Reisezeitraum"
+                            ]
+                        },
+                        {
+                            "key": "bold",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Zimmertyp",
+                                "max. Personenzahl",
+                                "Preis *"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": "Sterne",
+                            "checked": "checked",
+                            "values": [
+                                "4 Sterne"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_2",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_3",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_4",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_5",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_6",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_7",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_8",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_9",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_10",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_11",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_12",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_13",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_14",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "Zimmertyp",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "max. Personenzahl"
+                            ]
+                        },
+                        {
+                            "key": "Doppel",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "2"
+                            ]
+                        },
+                        {
+                            "key": "Suite",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "2"
+                            ]
+                        }
+                    ],
+                    "selector": "#col1_content",
+                    "currentData": [
+                        {
+                            "key": "clear",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "form-h4",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Reisezeitraum"
+                            ]
+                        },
+                        {
+                            "key": "bold",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Zimmertyp",
+                                "max. Personenzahl",
+                                "Preis *"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": "Sterne",
+                            "checked": "checked",
+                            "values": [
+                                "4 Sterne"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_2",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_3",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_4",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_5",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_6",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_7",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_8",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_9",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_10",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_11",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_12",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_13",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "img_14",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Can Cera Hotel"
+                            ]
+                        },
+                        {
+                            "key": "Zimmertyp",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "max. Personenzahl"
+                            ]
+                        },
+                        {
+                            "key": "Doppel",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "2"
+                            ]
+                        },
+                        {
+                            "key": "Suite",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "2"
+                            ]
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

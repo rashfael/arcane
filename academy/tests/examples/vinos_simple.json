@@ -1,0 +1,899 @@
+{
+    "mappings": {
+        "1335961284536": {
+            "map": {
+                "productov-desc": "DO",
+                "brown": "Name",
+                "productdetail-desc": "Beschreibung",
+                "productdetail-descleft": false,
+                "productdetail-descright": false,
+                "price-ov": "Preis",
+                "img_0": false,
+                "Preis/Liter": ""
+            },
+            "validFor": [
+                "nav1335961284495"
+            ],
+            "name": "Default mapping"
+        }
+    },
+    "navigation": {
+        "base": [
+            {
+                "name": "Entry point",
+                "type": "Start",
+                "config": {
+                    "request": {
+                        "url": "http://www.vinos.de/main10.php?func=10"
+                    }
+                },
+                "id": "nav1335961284490",
+                "next": [
+                    "nav1335961284491"
+                ],
+                "encoding": "Windows-1252"
+            }
+        ],
+        "nav1335961284491": {
+            "name": "Fill form",
+            "type": "FillForm",
+            "config": {
+                "formSelector": "div.search > form:first-child",
+                "url": "http://www.vinos.de/main10.php?func=10xa",
+                "method": "get",
+                "parameters": [
+                    {
+                        "svJahrgang": {
+                            "entry": [
+                                "#{2006+i}"
+                            ]
+                        },
+                        "svAnbaugebiet": {
+                            "entry": [
+                                "D.O. Alicante"
+                            ]
+                        },
+                        "_iterator": {
+                            "interval": [
+                                0,
+                                4,
+                                1
+                            ]
+                        }
+                    },
+                    {
+                        "svJahrgang": {
+                            "entry": [
+                                "#{2004+i}"
+                            ]
+                        },
+                        "svAnbaugebiet": {
+                            "entry": [
+                                "D.O. Navarra"
+                            ]
+                        },
+                        "_iterator": {
+                            "interval": [
+                                0,
+                                4,
+                                1
+                            ]
+                        }
+                    }
+                ],
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Preis/Liter",
+                                "selector": "div:nth-child(4) > span:nth-child(12)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1335961284492"
+            ],
+            "id": "nav1335961284491",
+            "nodeConfigId": "1335961284490"
+        },
+        "nav1335961284492": {
+            "name": "Walk through pager",
+            "type": "Pager",
+            "config": {
+                "pagerSelector": "div.content-rahmen > div:nth-child(4)"
+            },
+            "next": [
+                "nav1335961284493"
+            ],
+            "id": "nav1335961284492"
+        },
+        "nav1335961284493": {
+            "name": "Walk through items",
+            "type": "WalkthroughItems",
+            "config": {
+                "itemSelector": "",
+                "customSelector": "div.content-rahmen .productov-box-big",
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Preis/Liter",
+                                "selector": "div:nth-child(4) > span:nth-child(12)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1335961284494"
+            ],
+            "id": "nav1335961284493",
+            "nodeConfigId": "1335961284490"
+        },
+        "nav1335961284494": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": "",
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Preis/Liter",
+                                "selector": "div:nth-child(4) > span:nth-child(12)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1335961284495"
+            ],
+            "id": "nav1335961284494",
+            "nodeConfigId": "1335961284490"
+        },
+        "nav1335961284495": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "collection": "vinos"
+            },
+            "next": [],
+            "id": "nav1335961284495"
+        }
+    },
+    "config": {
+        "currentConfigID": 1335961284490,
+        "configs": {
+            "1335961284490": {
+                "_name": "Default config",
+                "_id": 1335961284490,
+                "_listConfig": {
+                    "_DOMnodes": [],
+                    "_contexts": [],
+                    "_excludes": [],
+                    "_listSelectorArr": [
+                        "div.content-rahmen .productov-box-big"
+                    ],
+                    "_marks": [],
+                    "selectorString": "div.content-rahmen .productov-box-big"
+                },
+                "_magicConfig": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Preis/Liter",
+                                "selector": "div:nth-child(4) > span:nth-child(12)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                },
+                "_formfillConfig": {
+                    "_fields": [
+                        {
+                            "fieldname": "Jahrgang",
+                            "type": "TextField",
+                            "data": {
+                                "selector": "input#such-jahrg",
+                                "name": "svJahrgang",
+                                "value": ""
+                            },
+                            "name": "svJahrgang"
+                        },
+                        {
+                            "fieldname": "Anbaugebeit",
+                            "type": "ComboBox",
+                            "data": {
+                                "selector": "select#such-abg",
+                                "name": "svAnbaugebiet",
+                                "value": [
+                                    {
+                                        "text": "Alle Gebiete",
+                                        "value": ""
+                                    },
+                                    {
+                                        "text": "Chacoli de Bizcaia",
+                                        "value": "Chacoli de Bizcaia"
+                                    },
+                                    {
+                                        "text": "D.O. Abona",
+                                        "value": "D.O. Abona"
+                                    },
+                                    {
+                                        "text": "D.O. Alella",
+                                        "value": "D.O. Alella"
+                                    },
+                                    {
+                                        "text": "D.O. Alicante",
+                                        "value": "D.O. Alicante"
+                                    },
+                                    {
+                                        "text": "D.O. Almansa",
+                                        "value": "D.O. Almansa"
+                                    },
+                                    {
+                                        "text": "D.O. Arlanza",
+                                        "value": "D.O. Arlanza"
+                                    },
+                                    {
+                                        "text": "D.O. Arribes",
+                                        "value": "D.O. Arribes"
+                                    },
+                                    {
+                                        "text": "D.O. Bierzo",
+                                        "value": "D.O. Bierzo"
+                                    },
+                                    {
+                                        "text": "D.O. Bizkaiko Txakolina",
+                                        "value": "D.O. Bizkaiko Txakolina"
+                                    },
+                                    {
+                                        "text": "D.O. Bullas",
+                                        "value": "D.O. Bullas"
+                                    },
+                                    {
+                                        "text": "D.O. Ca. Priorat",
+                                        "value": "D.O. Ca. Priorat"
+                                    },
+                                    {
+                                        "text": "D.O. Ca. Rioja",
+                                        "value": "D.O. Ca. Rioja"
+                                    },
+                                    {
+                                        "text": "D.O. Calatayud",
+                                        "value": "D.O. Calatayud"
+                                    },
+                                    {
+                                        "text": "D.O. Campo de Borja",
+                                        "value": "D.O. Campo de Borja"
+                                    },
+                                    {
+                                        "text": "D.O. Cariñena",
+                                        "value": "D.O. Cariñena"
+                                    },
+                                    {
+                                        "text": "D.O. Catalunya",
+                                        "value": "D.O. Catalunya"
+                                    },
+                                    {
+                                        "text": "D.O. Cava",
+                                        "value": "D.O. Cava"
+                                    },
+                                    {
+                                        "text": "D.O. Cigales",
+                                        "value": "D.O. Cigales"
+                                    },
+                                    {
+                                        "text": "D.O. Conca de Barberà",
+                                        "value": "D.O. Conca de Barberà"
+                                    },
+                                    {
+                                        "text": "D.O. Condado de Huelva",
+                                        "value": "D.O. Condado de Huelva"
+                                    },
+                                    {
+                                        "text": "D.O. Costers del Segre",
+                                        "value": "D.O. Costers del Segre"
+                                    },
+                                    {
+                                        "text": "D.O. El Hierro",
+                                        "value": "D.O. El Hierro"
+                                    },
+                                    {
+                                        "text": "D.O. Empordà",
+                                        "value": "D.O. Empordà"
+                                    },
+                                    {
+                                        "text": "D.O. Getariako-Txakolina",
+                                        "value": "D.O. Getariako-Txakolina"
+                                    },
+                                    {
+                                        "text": "D.O. Gran Canaria",
+                                        "value": "D.O. Gran Canaria"
+                                    },
+                                    {
+                                        "text": "D.O. Jerez-Xérès-Sherry - Manzanilla de Sanlúcar d",
+                                        "value": "D.O. Jerez-Xérès-Sherry - Manzanilla de Sanlúcar d"
+                                    },
+                                    {
+                                        "text": "D.O. Jumilla",
+                                        "value": "D.O. Jumilla"
+                                    },
+                                    {
+                                        "text": "D.O. La Mancha",
+                                        "value": "D.O. La Mancha"
+                                    },
+                                    {
+                                        "text": "D.O. La Palma",
+                                        "value": "D.O. La Palma"
+                                    },
+                                    {
+                                        "text": "D.O. Lanzarote",
+                                        "value": "D.O. Lanzarote"
+                                    },
+                                    {
+                                        "text": "D.O. Málaga - Sierras de Málaga",
+                                        "value": "D.O. Málaga - Sierras de Málaga"
+                                    },
+                                    {
+                                        "text": "D.O. Manchuela",
+                                        "value": "D.O. Manchuela"
+                                    },
+                                    {
+                                        "text": "D.O. Méntrida",
+                                        "value": "D.O. Méntrida"
+                                    },
+                                    {
+                                        "text": "D.O. Mondéjar",
+                                        "value": "D.O. Mondéjar"
+                                    },
+                                    {
+                                        "text": "D.O. Monte de Lentiscal",
+                                        "value": "D.O. Monte de Lentiscal"
+                                    },
+                                    {
+                                        "text": "D.O. Monterrei",
+                                        "value": "D.O. Monterrei"
+                                    },
+                                    {
+                                        "text": "D.O. Montilla-Moriles",
+                                        "value": "D.O. Montilla-Moriles"
+                                    },
+                                    {
+                                        "text": "D.O. Montsant",
+                                        "value": "D.O. Montsant"
+                                    },
+                                    {
+                                        "text": "D.O. Navarra",
+                                        "value": "D.O. Navarra"
+                                    },
+                                    {
+                                        "text": "D.O. Penedès",
+                                        "value": "D.O. Penedès"
+                                    },
+                                    {
+                                        "text": "D.O. Pla de Bages",
+                                        "value": "D.O. Pla de Bages"
+                                    },
+                                    {
+                                        "text": "D.O. Rías Baixas",
+                                        "value": "D.O. Rías Baixas"
+                                    },
+                                    {
+                                        "text": "D.O. Ribeira Sacra",
+                                        "value": "D.O. Ribeira Sacra"
+                                    },
+                                    {
+                                        "text": "D.O. Ribeiro",
+                                        "value": "D.O. Ribeiro"
+                                    },
+                                    {
+                                        "text": "D.O. Ribera del Duero",
+                                        "value": "D.O. Ribera del Duero"
+                                    },
+                                    {
+                                        "text": "D.O. Ribera del Guadiana",
+                                        "value": "D.O. Ribera del Guadiana"
+                                    },
+                                    {
+                                        "text": "D.O. Ribera del Queiles",
+                                        "value": "D.O. Ribera del Queiles"
+                                    },
+                                    {
+                                        "text": "D.O. Rueda",
+                                        "value": "D.O. Rueda"
+                                    },
+                                    {
+                                        "text": "D.O. Somontano",
+                                        "value": "D.O. Somontano"
+                                    },
+                                    {
+                                        "text": "D.O. Tacoronte-Acentejo",
+                                        "value": "D.O. Tacoronte-Acentejo"
+                                    },
+                                    {
+                                        "text": "D.O. Tarragona",
+                                        "value": "D.O. Tarragona"
+                                    },
+                                    {
+                                        "text": "D.O. Terra Alta",
+                                        "value": "D.O. Terra Alta"
+                                    },
+                                    {
+                                        "text": "D.O. Tierra de León",
+                                        "value": "D.O. Tierra de León"
+                                    },
+                                    {
+                                        "text": "D.O. Tierra del Vino de Zamora",
+                                        "value": "D.O. Tierra del Vino de Zamora"
+                                    },
+                                    {
+                                        "text": "D.O. Toro",
+                                        "value": "D.O. Toro"
+                                    },
+                                    {
+                                        "text": "D.O. Uclés",
+                                        "value": "D.O. Uclés"
+                                    },
+                                    {
+                                        "text": "D.O. Utiel-Requena",
+                                        "value": "D.O. Utiel-Requena"
+                                    },
+                                    {
+                                        "text": "D.O. Valdeorras",
+                                        "value": "D.O. Valdeorras"
+                                    },
+                                    {
+                                        "text": "D.O. Valdepeñas",
+                                        "value": "D.O. Valdepeñas"
+                                    },
+                                    {
+                                        "text": "D.O. Valencia",
+                                        "value": "D.O. Valencia"
+                                    },
+                                    {
+                                        "text": "D.O. Valle de Güimar",
+                                        "value": "D.O. Valle de Güimar"
+                                    },
+                                    {
+                                        "text": "D.O. Valle de la Orotava",
+                                        "value": "D.O. Valle de la Orotava"
+                                    },
+                                    {
+                                        "text": "D.O. Vinos de Madrid",
+                                        "value": "D.O. Vinos de Madrid"
+                                    },
+                                    {
+                                        "text": "D.O. Ycoden-Daute-Isora Tenerife",
+                                        "value": "D.O. Ycoden-Daute-Isora Tenerife"
+                                    },
+                                    {
+                                        "text": "D.O. Yecla",
+                                        "value": "D.O. Yecla"
+                                    },
+                                    {
+                                        "text": "Mallorca - D.O.Binissalem",
+                                        "value": "Mallorca - D.O.Binissalem"
+                                    },
+                                    {
+                                        "text": "Mallorca - D.O.Pla i Llevant",
+                                        "value": "Mallorca - D.O.Pla i Llevant"
+                                    },
+                                    {
+                                        "text": "Mallorca - Vi de la terra Mallorca",
+                                        "value": "Mallorca - Vi de la terra Mallorca"
+                                    },
+                                    {
+                                        "text": "Mallorca - Vi de la Terra »Serra de Tramuntana-Cos",
+                                        "value": "Mallorca - Vi de la Terra »Serra de Tramuntana-Cos"
+                                    },
+                                    {
+                                        "text": "Mallorca - Vi de Taula",
+                                        "value": "Mallorca - Vi de Taula"
+                                    },
+                                    {
+                                        "text": "Mesa",
+                                        "value": "Mesa"
+                                    },
+                                    {
+                                        "text": "V.C.P.R.D. Valles de Benavente",
+                                        "value": "V.C.P.R.D. Valles de Benavente"
+                                    },
+                                    {
+                                        "text": "V.T. Arribes del Duero",
+                                        "value": "V.T. Arribes del Duero"
+                                    },
+                                    {
+                                        "text": "V.T. Bajo Aragón",
+                                        "value": "V.T. Bajo Aragón"
+                                    },
+                                    {
+                                        "text": "V.T. Cádiz",
+                                        "value": "V.T. Cádiz"
+                                    },
+                                    {
+                                        "text": "V.T. Castilla",
+                                        "value": "V.T. Castilla"
+                                    },
+                                    {
+                                        "text": "V.T. Castilla",
+                                        "value": "V.T. Castilla"
+                                    },
+                                    {
+                                        "text": "V.T. Castilla y León",
+                                        "value": "V.T. Castilla y León"
+                                    },
+                                    {
+                                        "text": "V.T. Contraviesa-Alpujarra",
+                                        "value": "V.T. Contraviesa-Alpujarra"
+                                    },
+                                    {
+                                        "text": "V.T. Eivissa",
+                                        "value": "V.T. Eivissa"
+                                    },
+                                    {
+                                        "text": "V.T. El Terrerazo",
+                                        "value": "V.T. El Terrerazo"
+                                    },
+                                    {
+                                        "text": "V.T. Extremadura",
+                                        "value": "V.T. Extremadura"
+                                    },
+                                    {
+                                        "text": "V.T. Formentera",
+                                        "value": "V.T. Formentera"
+                                    },
+                                    {
+                                        "text": "V.T. Ribera del Arlanza",
+                                        "value": "V.T. Ribera del Arlanza"
+                                    },
+                                    {
+                                        "text": "V.T. Ribera del Queiles",
+                                        "value": "V.T. Ribera del Queiles"
+                                    },
+                                    {
+                                        "text": "V.T. Valles de Sadacia",
+                                        "value": "V.T. Valles de Sadacia"
+                                    },
+                                    {
+                                        "text": "Vino de Mesa/Vi de Taula",
+                                        "value": "Vino de Mesa/Vi de Taula"
+                                    },
+                                    {
+                                        "text": "Vinos de Pago Dehesa del Carrizal",
+                                        "value": "Vinos de Pago Dehesa del Carrizal"
+                                    },
+                                    {
+                                        "text": "Vinos de Pago Dominio de Valdepusa",
+                                        "value": "Vinos de Pago Dominio de Valdepusa"
+                                    },
+                                    {
+                                        "text": "Vinos de Pago El Terrerazo",
+                                        "value": "Vinos de Pago El Terrerazo"
+                                    },
+                                    {
+                                        "text": "Vinos de Pago Finca Élez",
+                                        "value": "Vinos de Pago Finca Élez"
+                                    },
+                                    {
+                                        "text": "Vinos de Pago Señorío de Arínzano",
+                                        "value": "Vinos de Pago Señorío de Arínzano"
+                                    }
+                                ]
+                            },
+                            "name": "svAnbaugebiet"
+                        }
+                    ],
+                    "_datasets": [
+                        {
+                            "Jahrgang": {
+                                "fieldname": "Jahrgang",
+                                "value": "#{2006+i}",
+                                "text": "#{2006+i}"
+                            },
+                            "Anbaugebeit": {
+                                "fieldname": "Anbaugebeit",
+                                "value": "D.O. Alicante"
+                            },
+                            "_iterator": {
+                                "useIndex": true,
+                                "distinct": false,
+                                "indexFromVal": 0,
+                                "indexToVal": 4,
+                                "indexDistVal": [],
+                                "indexStepSize": 1
+                            }
+                        },
+                        {
+                            "Jahrgang": {
+                                "fieldname": "Jahrgang",
+                                "value": "#{2004+i}",
+                                "text": "#{2004+i}"
+                            },
+                            "Anbaugebeit": {
+                                "fieldname": "Anbaugebeit",
+                                "value": "D.O. Navarra"
+                            },
+                            "_iterator": {
+                                "useIndex": true,
+                                "distinct": false,
+                                "indexFromVal": 0,
+                                "indexToVal": 4,
+                                "indexDistVal": [],
+                                "indexStepSize": 1
+                            }
+                        }
+                    ],
+                    "importedJson": {
+                        "name": null,
+                        "file": null,
+                        "fileName": null
+                    }
+                }
+            }
+        }
+    },
+    "mappingData": [
+        {
+            "id": 1335961284536,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "http://www.vinos.de/",
+                    "selector": {
+                        "_DOMnodes": [],
+                        "_contexts": [],
+                        "_excludes": [],
+                        "_listSelectorArr": [],
+                        "_marks": []
+                    },
+                    "data": [],
+                    "currentData": []
+                },
+                {
+                    "selector": "div.content-rahmen .productov-box-big",
+                    "data": [
+                        {
+                            "key": "productov-desc",
+                            "dbKey": "DO",
+                            "checked": "checked",
+                            "values": [
+                                "Bodegas Magaña D.O. Navarra Pro Flasche",
+                                "Bodegas Cirbonera D.O. Navarra Pro Flasche",
+                                "Bodegas Marco Real D.O. Navarra Pro Flasche",
+                                "Bodegas Inurrieta D.O. Navarra Pro Flasche",
+                                "Bodegas Irache D.O. Navarra Pro Flasche",
+                                "Bodegas La Casa de Lúculo D.O. Navarra Pro Flasche",
+                                "Bodegas Julián Chivite D.O. Navarra Pro Flasche",
+                                "Bodegas Vicente Malumbres D.O. Navarra Pro Flasche",
+                                "Bodegas Monastir D.O. Navarra Pro Flasche"
+                            ]
+                        },
+                        {
+                            "key": "brown",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "Calchetas  2006",
+                                "Dominio Lasierpe Crianza 2006",
+                                "Homenaje Crianza 2006",
+                                "Inurrieta Tinto »Altos de Inurrieta« Reserva  2006",
+                                "Irache Tinto »Prado Irache« Vino de Pago  2006",
+                                "Jardín de Lúcolo  2006",
+                                "Julián Chivite »Gran Feudo« Crianza 2006",
+                                "Julián Chivite »Gran Feudo« Reserva 2006",
+                                "Malumbres Reserva 2006",
+                                "Monastir »S.XII Cister«  2006"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-desc",
+                            "dbKey": "Beschreibung",
+                            "checked": "checked",
+                            "values": [
+                                "Ein Prachtstück, das die Bodegas Viña Magaña als Spitzenerzeuger der D.O. Navarra ausweist ...",
+                                "Dominio Lasierpe -  eine kraftvolle, durch Tempranillo und Cabernet Sauvignon geprägte Crianza - ist urspanisch ...",
+                                "Diese herrlich kirschrote Cuvée aus den Franzosen  - Cabernet Sauvignon & Merlot -  und den Spaniern - Garnacha & ...",
+                                "Die Leidenschaft für französische Rebsorten ist eines der Markenzeichen der Bodegas Inurrieta. Kein Wunder also ...",
+                                "Rare Luxus-Cuvée der großartigen Bodegas Irache, die nur in besonders guten Jahrgängen das Licht der Welt erblickt ...",
+                                "Der Jardín de Lúcolo (Gärten des Lucullus) ist eine Hommage an den großen römischen Gourmet Lucius Licinius Lucullus ...",
+                                "Klares, brillantes Kirschrot mit violetten Reflexen. Voll und dicht präsentiert sich die Farbe. In der Nase ...",
+                                "Mit seinem dunklen Bordeaux von klarer und brillanter Intensität zeigt die Chivite Reserva 2006 die klassische und ...",
+                                "Die Malumbres Reserva 2006 ist in dieser Preisklasse ziemlich konkurrenzlos und lehrt französischen, italienischen ...",
+                                "Die Bodegas Monastir gehört zur Vintae-Gruppe, ein innovatives, junges und dynamisches Unternehmen, das mit großem ..."
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descleft",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "The International Wine Review",
+                                "Guía Peñín 2010",
+                                "Stephen Tanzer's International Wine Cellar",
+                                "Guía Repsol 2011",
+                                "Robert Parker - The Wine Advocate",
+                                "Intervinos Guía 2012"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descright",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "94/100",
+                                "91/100",
+                                "90+/100",
+                                "90/100"
+                            ]
+                        },
+                        {
+                            "key": "price-ov",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "34,90 €",
+                                "7,95 €",
+                                "6,95 €",
+                                "14,95 €",
+                                "64,90 €",
+                                "11,90 €",
+                                "9,95 €",
+                                "12,50 €",
+                                "13,95 €"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Abbildung"
+                            ]
+                        },
+                        {
+                            "key": "Preis/Liter",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "(46,53 €/Liter)",
+                                "(10,60 €/Liter)",
+                                "(9,27 €/Liter)",
+                                "(19,93 €/Liter)",
+                                "(86,53 €/Liter)",
+                                "(15,87 €/Liter)",
+                                "(13,27 €/Liter)",
+                                "(16,67 €/Liter)",
+                                "(18,60 €/Liter)"
+                            ]
+                        }
+                    ],
+                    "currentData": [
+                        {
+                            "key": "productov-desc",
+                            "dbKey": "DO",
+                            "checked": "checked",
+                            "values": [
+                                "Bodegas Magaña D.O. Navarra Pro Flasche",
+                                "Bodegas Cirbonera D.O. Navarra Pro Flasche",
+                                "Bodegas Marco Real D.O. Navarra Pro Flasche",
+                                "Bodegas Inurrieta D.O. Navarra Pro Flasche",
+                                "Bodegas Irache D.O. Navarra Pro Flasche",
+                                "Bodegas La Casa de Lúculo D.O. Navarra Pro Flasche",
+                                "Bodegas Julián Chivite D.O. Navarra Pro Flasche",
+                                "Bodegas Vicente Malumbres D.O. Navarra Pro Flasche",
+                                "Bodegas Monastir D.O. Navarra Pro Flasche"
+                            ]
+                        },
+                        {
+                            "key": "brown",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "Calchetas  2006",
+                                "Dominio Lasierpe Crianza 2006",
+                                "Homenaje Crianza 2006",
+                                "Inurrieta Tinto »Altos de Inurrieta« Reserva  2006",
+                                "Irache Tinto »Prado Irache« Vino de Pago  2006",
+                                "Jardín de Lúcolo  2006",
+                                "Julián Chivite »Gran Feudo« Crianza 2006",
+                                "Julián Chivite »Gran Feudo« Reserva 2006",
+                                "Malumbres Reserva 2006",
+                                "Monastir »S.XII Cister«  2006"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-desc",
+                            "dbKey": "Beschreibung",
+                            "checked": "checked",
+                            "values": [
+                                "Ein Prachtstück, das die Bodegas Viña Magaña als Spitzenerzeuger der D.O. Navarra ausweist ...",
+                                "Dominio Lasierpe -  eine kraftvolle, durch Tempranillo und Cabernet Sauvignon geprägte Crianza - ist urspanisch ...",
+                                "Diese herrlich kirschrote Cuvée aus den Franzosen  - Cabernet Sauvignon & Merlot -  und den Spaniern - Garnacha & ...",
+                                "Die Leidenschaft für französische Rebsorten ist eines der Markenzeichen der Bodegas Inurrieta. Kein Wunder also ...",
+                                "Rare Luxus-Cuvée der großartigen Bodegas Irache, die nur in besonders guten Jahrgängen das Licht der Welt erblickt ...",
+                                "Der Jardín de Lúcolo (Gärten des Lucullus) ist eine Hommage an den großen römischen Gourmet Lucius Licinius Lucullus ...",
+                                "Klares, brillantes Kirschrot mit violetten Reflexen. Voll und dicht präsentiert sich die Farbe. In der Nase ...",
+                                "Mit seinem dunklen Bordeaux von klarer und brillanter Intensität zeigt die Chivite Reserva 2006 die klassische und ...",
+                                "Die Malumbres Reserva 2006 ist in dieser Preisklasse ziemlich konkurrenzlos und lehrt französischen, italienischen ...",
+                                "Die Bodegas Monastir gehört zur Vintae-Gruppe, ein innovatives, junges und dynamisches Unternehmen, das mit großem ..."
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descleft",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "The International Wine Review",
+                                "Guía Peñín 2010",
+                                "Stephen Tanzer's International Wine Cellar",
+                                "Guía Repsol 2011",
+                                "Robert Parker - The Wine Advocate",
+                                "Intervinos Guía 2012"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descright",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "94/100",
+                                "91/100",
+                                "90+/100",
+                                "90/100"
+                            ]
+                        },
+                        {
+                            "key": "price-ov",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "34,90 €",
+                                "7,95 €",
+                                "6,95 €",
+                                "14,95 €",
+                                "64,90 €",
+                                "11,90 €",
+                                "9,95 €",
+                                "12,50 €",
+                                "13,95 €"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Abbildung"
+                            ]
+                        },
+                        {
+                            "key": "Preis/Liter",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "(46,53 €/Liter)",
+                                "(10,60 €/Liter)",
+                                "(9,27 €/Liter)",
+                                "(19,93 €/Liter)",
+                                "(86,53 €/Liter)",
+                                "(15,87 €/Liter)",
+                                "(13,27 €/Liter)",
+                                "(16,67 €/Liter)",
+                                "(18,60 €/Liter)"
+                            ]
+                        }
+                    ],
+                    "url": "http://www.vinos.de/main10.php?func=10xa&svWeinname=&svFarbe=&svJahrgang=2006&svPreisspanne=&svAnbaugebiet=D.O.+Navarra&svWeingut=&svQstufe=&suche=Suchen"
+                }
+            ]
+        }
+    ],
+    "project": "vinos"
+}

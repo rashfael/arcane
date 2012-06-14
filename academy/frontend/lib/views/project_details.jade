@@ -1,0 +1,26 @@
+extends layoutSidebar
+
+block sidebar
+	- var collections = project.splitCollections()
+	ul.nav.nav-list
+		li.nav-header Jobs
+		for job in project.jobs
+			li: a(href='/jobs/'+job)= job
+		li.nav-header Raw Collections
+		for col in collections.raw
+			li: a(href='/projects/' + encodeURIComponent(project.id) + '/#{col}')= col
+		li.nav-header Result Collections
+		for col in collections.reference
+			li: a(href='/projects/' + encodeURIComponent(project.id) + '/#{col}')= col
+		li.nav-header Reference Collections
+		for col in collections.result
+			li: a(href='/projects/' + encodeURIComponent(project.id) + '/#{col}')= col
+
+block content
+	h1= 'Project: ' + project.id
+
+	block controls
+
+	.loadContext
+		block context
+			p= ' Please select a job or one of the collections.'

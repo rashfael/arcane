@@ -1,0 +1,217 @@
+{
+    "mappings": {
+        "1326739916270": {
+            "map": {
+                "brown": "Name",
+                "price-ov": "Preis"
+            },
+            "validFor": [
+                "nav1326739916238"
+            ],
+            "name": "Default mapping"
+        }
+    },
+    "navigation": {
+        "base": [
+            {
+                "name": "Entry point",
+                "type": "Start",
+                "config": {
+                    "request": {
+                        "url": "http://www.vinos.de/main10.php?&func=04"
+                    }
+                },
+                "id": "nav1326739916234",
+                "next": [
+                    "nav1326739916235"
+                ]
+            }
+        ],
+        "nav1326739916235": {
+            "name": "Walk through items",
+            "type": "WalkthroughItems",
+            "config": {
+                "customSelector": ".content-rahmen .productov-box-small",
+                "magic": {}
+            },
+            "next": [
+                "nav1326739916237"
+            ],
+            "id": "nav1326739916235",
+            "nodeConfigId": "1326739916234"
+        },
+        "nav1326739916237": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": ""
+            },
+            "next": [
+                "nav1326739916238"
+            ],
+            "id": "nav1326739916237"
+        },
+        "nav1326739916238": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "itemSelector": ""
+            },
+            "next": [],
+            "id": "nav1326739916238"
+        }
+    },
+    "config": {
+        "currentConfigID": 1326739916234,
+        "configs": {
+            "1326739916234": {
+                "_name": "Default config",
+                "_id": 1326739916234,
+                "_listConfig": {
+                    "_inspectedNodes": [
+                        {
+                            "nodeIndex": 5,
+                            "sizcache01935722247036119": 5
+                        },
+                        {
+                            "nodeIndex": 7,
+                            "sizcache01935722247036119": 5
+                        }
+                    ],
+                    "_exceptions": [],
+                    "_selectors": [
+                        ".content-rahmen .productov-box-small"
+                    ]
+                },
+                "_magicConfig": {}
+            }
+        }
+    },
+    "mappingData": [
+        {
+            "id": 1326739916270,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "http://www.vinos.de/",
+                    "selector": "",
+                    "data": []
+                },
+                {
+                    "selector": ".content-rahmen .productov-box-small",
+                    "data": [
+                        {
+                            "key": "productov-desc-small",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Bodegas Wein & Vinos V.T. Castilla Pro Flasche",
+                                "Bodegas Mas Martinet D.O. Ca. Priorat Pro Paket",
+                                "Bodegas Montgó D.O. Cariñena Pro Flasche",
+                                "Bodegas Horzales D.O. Ca. Rioja Pro Flasche",
+                                "Bodegas Mas Martinet D.O. Ca. Priorat Pro Flasche",
+                                "Bodegas Solar de Urbezo D.O. Cariñena Pro Flasche",
+                                "Bodegas Wein & Vinos - Mesa-Projekt Mesa Pro Flasche",
+                                "Bodegas Projekt Krisenbox V.T. Castilla Pro Box",
+                                "Bodegas Ismael Arroyo D.O. Ribera del Duero Pro Flasche",
+                                "Bodegas Projekt Krisenbox D.O. Yecla Pro Box"
+                            ]
+                        },
+                        {
+                            "key": "small-gold",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Großes Berliner Gold!",
+                                "Pures Priorat!",
+                                "Spanien pur!",
+                                "Der Rioja!",
+                                "Der Merlot!",
+                                "Der Wolf im Schafsfell!",
+                                "Stabile Weinmenge zum Festpreis!",
+                                "Der Klassiker!",
+                                "Günstiger Bio-Wein!"
+                            ]
+                        },
+                        {
+                            "key": "brown",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "Cepunto Tinto",
+                                "TemptaCión 2009 - 12 Angebot - Januar 2012",
+                                "Flor del Montgó Garnacha  2010",
+                                "Avior Tinto Joven  2010",
+                                "TemptaCión  2009",
+                                "Altius Merlot  2010",
+                                "Mesa/15",
+                                "Inflationsbox Rot Bag-in-Box - 3,0 L.",
+                                "Mesoneros de Castilla »6 meses en barrica«  2009",
+                                "Krisenbox Rot Bag-in-Box - 3,0 L."
+                            ]
+                        },
+                        {
+                            "key": "gray",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Der Cepunto Tinto ist der perfekte Einstiegswein und ein echter ...",
+                                "TemptaCión 2009 - 12 Angebot - Januar 2012 ...",
+                                "Schon ein Klassiker im Sortiment und sicherlich einer der besten Weine des ...",
+                                "Was für eine wunderbare Erfolgsgeschichte! Als letztes Jahr Avior Reserva ...",
+                                "Der neueste Clou der Meister-Winzerin Sara Pérez, die auch auf Mas Martinet ...",
+                                "Es ist schon ein kleines Wunder! Nur selten herrscht bei unseren Kunden so ...",
+                                "Seit dem schon legendären Mesa/8 – der Jungfernwein des Mesa-Projektes – ...",
+                                "Die Inflationsbox ...",
+                                "Wie sooft im Leben sind die jüngsten Kinder die liebsten. Hat man doch nach ...",
+                                "AB 25,00 BESTELLWERT KEINE VERSANDKOSTEN! ..."
+                            ]
+                        },
+                        {
+                            "key": "gray nowrap",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Mehr Infos"
+                            ]
+                        },
+                        {
+                            "key": "price-ov",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "3,95 €",
+                                "111,11 €",
+                                "5,95 €",
+                                "7,50 €",
+                                "12,95 €",
+                                "7,95 €",
+                                "15,00 €",
+                                "10,00 €",
+                                "9,95 €"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Abbildung"
+                            ]
+                        },
+                        {
+                            "key": "pricecrossed-ov",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "227,40 €",
+                                "18,95 €"
+                            ]
+                        }
+                    ],
+                    "url": "http://www.vinos.de/main10.php?&func=04"
+                }
+            ]
+        }
+    ]
+}

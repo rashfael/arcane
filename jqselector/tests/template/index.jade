@@ -1,0 +1,70 @@
+!!! 5
+html(lang="en")
+	head
+		title magic test page
+		meta(charset='utf-8')
+		script(src='../template/jquery.js')
+		script(src='../../src/selector.js')
+
+		:coffeescript
+			testSelectors = [
+				'h1'
+				'#child-test-1 li.three'
+				'#pseudo-lists > div:nth-child(2)'
+				'#deep > div > div > div > div > div > div > span'
+			]
+			
+			checkIfEqual = (el1, el2) ->
+				return el1 is el2
+			
+			jQuery(document).ready ->
+				console.log 'READY'
+				for exp in testSelectors
+					console.group('Testing ' + exp)
+					element = jQuery(exp)[0]
+					generated = selector.domNodeToSelector(element, document)
+					generatedEl = jQuery(generated)[0]
+					passed = checkIfEqual(element, generatedEl)
+					if not passed
+						console.error(exp + ' did produce wrong results.')
+						console.log('Generated: ' + generated)
+						console.log('Expected: ' + element)
+						console.log('I got: ' + generatedEl)
+					else
+						console.log("Success! (#{generated})")
+					console.groupEnd()
+					
+										
+
+body
+	h1 jqSelector test page
+	p Don't mind the unstyled page. Just look at the console.
+	
+	ul#child-test-1
+		li one
+		li two
+		li.three three
+		li four
+		
+	ul#child-test-2
+		li one
+		li two
+		li.three three
+		li four
+		
+	div#pseudo-lists
+		div Item 1
+			div.price 42€
+			div.desc Cool stuff
+		div Item 2
+			div.price 200€
+			div.desc Not so cheap stuff
+			
+	div#deep
+		div Mordor
+			div Derp
+				div Herp
+					div Still Derpin
+						div We have to go deeper
+							div Still
+								span Here we go!

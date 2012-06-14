@@ -1,0 +1,73 @@
+extends layout
+
+block content
+	if(job.name)
+		h1= 'Job: ' + job.name
+	else
+		h1= 'Job: ' + job.id
+
+	form.well(method='get')
+		.btn-toolbar
+			if !archived
+				.btn-group
+					button.btn(type='send', name='start')
+						i.icon-play
+						=" Start"
+					button.btn(type='send', name='pause')
+						i.icon-pause
+						=" Pause"
+					button.btn.btn-danger(type='send', name='abort')
+						i.icon-stop.icon-white
+						=" Abort"
+			.btn-group
+				button.btn(type='send', name='restart')
+					i.icon-repeat
+					=" Reshedule"
+				button.btn.btn-danger(type='send', name='delete')
+					i.icon-trash.icon-white
+					=" Delete"
+			.btn-group
+				a.btn(href='/jobs/' + job.id + '/edit')
+					i.icon-pencil
+					=" Rename"
+					
+
+	table.table
+		tbody
+			tr
+				td Job UUID
+				td= job.id
+			tr
+				td Project
+				td: a(href='/projects/' + encodeURIComponent(job.project) )= job.project
+			tr
+				td State
+				td= job.state
+			tr
+				td Data
+				td Raw Collections
+					ul
+						- each col in job.collections
+							li: a(href='/projects/' + encodeURIComponent(job.project) + '/#{col}')= col
+			tr
+				td Submitted
+				td= job.submitted
+			tr
+				td Started
+				td= job.started
+			tr
+				td Stopped
+				td= job.stopped
+			tr
+				td Finished
+				td= job.finished
+			tr
+				td RunningWorkers
+				td= job.runningWorkers
+			tr
+				td FinishedWorkers
+				td= job.finishedWorkers
+			tr
+				td Configuration
+				td
+					pre.prettyprint.linenums=	job.configuration

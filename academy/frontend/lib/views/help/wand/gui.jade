@@ -1,0 +1,786 @@
+extends ../layoutHelp
+
+block help
+	:markdown
+		# Grafische Oberfläche
+		Dieses Kapitel beschreibt die grafische Oberfläche von *Wand*. Zunächst wird der grafische Aufbau der Anwendung beschrieben, gefolgt von einem Kapitel, welches global verfügbare grafische Elemente beschreibt. Darauf folgen Kapitel, in welchen jeder der Tabs in seiner Struktur und den in ihm möglichen Konfigurationen beschrieben wird. 	
+
+	div(id='generated-toc')
+
+	:markdown
+		## Aufbau
+		Die folgende Grafik zeigt den grafischen Aufbau der Anwendung und beschreibt ihre Einzelteile dabei in wenigen Worten.
+		![Aufbau](/img/help/wand_overview.png "Aufbau von Wand")
+		
+		1. Arcane Wand Tab: Der Einstiegspunkt der Extension, welcher neben dem Namen einen Button mit einem nach unten zeigenden Pfeil enthält. Über den Button erreicht man den [Einstellungen](#WandOptions "Einstellungen")-Dialog von *Wand*.
+		2. Tabs: Über die jeweiligen Tabs kann zwischen den Hauptbereichen ([Navigation](#Navigation-Tab "Navigation"), [Configuration](#ConfigTab "Configuration"), [Mapping](#MappingTab "Mapping") \& [Jobs](#JobsTab "Jobs")) navigiert werden. In ihnen können wichtige Konfigurationen bezüglich des aktuellen Jobs getätigt werden.
+		3. Bereich für Statusanzeige: In diesem Bereich werden kurze Nachrichten über den Ausgang von Aktionen, welche durch den Benutzer angestoßen werden, angezeigt. Mehr Informationen zu den Statusanzeigen finden Sie [hier](#WandStatus "Statusanzeige").
+		4. Bereich für globale Toolbar: Einträge der [globalen Toolbar](#GlobalToolBar "Globale Toolbar") lassen sich aus jedem Tab verwenden und sind für grundlegende Funktionen (z.B. Speichern, Laden, ...) reserviert.
+		5. Bereich für tabbezogene Toolbar: Einträge der tabbezogenen Toolbar sind nur im zugehörigen Tab sichtbar und damit kontextsensitiv. Die Buttons der Tabs werden in den tabbezogenen Kapiteln genau erläutert.
+		6. Bereich für Hilfe-Button: Der Hilfebutton ermöglicht die Navigation auf das Hilfe-Kapitel des aktuell gewählten Tabs.
+		7. Inhalt des aktuell selektierten Tabs: In diesem Bereich wird die grafische Oberfläche des aktuell gewählten Tabs dargestellt. Diese wird in den Kapiteln der einzelnen Tabs genauestens erläutert.
+
+		## Allgemein
+		Dieses Kapitel beschreibt die global zugänglichen grafischen Elemente wie z.B. Dialoge, Toolbareinträge oder die Statusanzeige. Details zu den Elementen finden sich in den entsprechenden Unterkapiteln.
+		
+	a(name='WandOptions')
+	h3(class='helpChapter') Einstellungen
+
+	:markdown
+		![Connection Optionen](/img/help/wand_options_connection.png "Verbindungseinstellungen")
+		![Display Optionen](/img/help/wand_options_display.png "Darstellungseinstellungen")
+		
+	a(name='WandOptionsConnection')
+	h4(class='helpChapter') Verbindungseinstellungen (Connection)
+
+	:markdown
+		Der Connection Tab beinhaltet alle veränderbaren Einstellungen bezüglich der Verbindung zwischen *Wand* und *Academy*. Diese Verbindungsinformationen werden beispielsweise benötigt um bereits existierende Jobs und Projekte Anzeigen zu können, oder einen neu modellierten Job an *Academy* zu senden. 
+		
+	a(name='WandOptionsIP')
+	h5(class='helpChapter') IP
+
+	:markdown
+		Die hier angegebene IP identifiziert *Academy* im World Wide Web. Hierbei kann es sich auch um eine URL handeln.
+		
+	a(name='WandOptionsPort')
+	h5(class='helpChapter') Port
+
+	:markdown
+		Der hier angegebene Port zeigt auf den in *Academy* für die Verbindung definierten Port. Standardmäßig handelt es sich hierbei um Port 9000. Sollte dieser Port nicht ansprechbar sein, sollte Rücksprache mit dem Systemadministrator gehalten werden.
+		
+	a(name='WandOptionsTO')
+	h5(class='helpChapter') Timeout (ms)
+
+	:markdown
+		Diese Einstellung gibt die Anzahl der Millisekunden an, nach welcher ein abgesendeter Request als abgelaufen betrachtet wird. Die mit dem Request verbundenen nachfolgenden Aktionen werden in diesem Fall nicht ausgeführt. Die Zahl 0 gibt an, dass ein Request niemals abläuft.
+		
+	a(name='WandOptionsDisplay')
+	h4(class='helpChapter') Darstellungseinstellungen (Display)
+
+	:markdown
+		Der Display Tab beinhaltet alle veränderbaren Einstellungen bezüglich der Darstellung von *Wand*. Hier kann der Benutzer beispielsweise die Darstellung der Knoten innerhalb des Navigation-Tabs beeinflussen, oder die Farbe und Opazität von Markierungen ändern. Änderungen an den Darstellungseinstellungen werden nach dem Bestätigen direkt angewandt und benötigen keinen Neustart der Anwendung.
+		
+	a(name='WandOptionsStatusTO')
+	h5(class='helpChapter') Status Timeout (ms)
+
+	:markdown
+		Diese Einstellung gibt die Anzahl der Millisekunden an, nach welcher eine Statusnachricht  ausgeblendet werden soll. Die Zahl 0 gibt an, dass keine Statusmeldungen angezeigt werden sollen; die Zahl -1, dass Meldungen persistent angezeigt werden sollen.
+		
+	a(name='WandOptionsMarkOpac')
+	h5(class='helpChapter') Mark Opacity (%)
+
+	:markdown
+		Die in dieser Einstellung definierte Zahl zwischen 0 und 100 gibt die Opazität der Markierungen, welche nach einem Inspect-Vorgang hinzugefügt werden, an.
+		
+	a(name='WandOptionsMarkColor')
+	h5(class='helpChapter') Mark Color
+
+	:markdown
+		In dieser Einstellung kann die Farbe der Markierungen, welche nach einem Inspect-Vorgang hinzugefügt werden, angegeben werden. Die Farbe wird durch einen Hexcode repräsentiert und kann manuell oder über einen ColorPicker definiert werden.
+		
+	a(name='WandOptionsSpacing')
+	h5(class='helpChapter') Node Spacing
+
+	:markdown
+		Mit Hilfe des Sliders kann der Abstand zwischen den Knoten des Navigation-Tabs angegeben werden. Der minimale Abstand beträgt 10, der maximale Abstand 200 Pixel.
+		
+	a(name='WandOptionsStyle')
+	h5(class='helpChapter') Node Style
+
+	:markdown
+		Über diese Einstellung kann die Darstellung der Knoten des Navigations-Tabs verändert werden. Dabei hat der Benutzer die Wahl zwischen einer Darstellung, in der ein Knoten mit dem Icon des Knotentyps und seinem Namen beschriftet ist, oder einer minimalistischen Darstellung, in welcher lediglich das Icon als Indikator für den Knotentyp dient. Für unerfahrene Benutzer empfiehlt sich die ausführliche Darstellung. Die komprimierte Darstellung empfielt sich für erfahrene Benutzer und/oder bei Jobs mit großen Navigationsgraphen.
+		
+	a(name='WandStatus')
+	h3(class='helpChapter') Statusanzeige
+
+	:markdown
+		Hier werden Fehler- und Erfolgsmeldungen angezeigt.
+		
+		* ![Fehlermeldungen](/img/help/error_10.png "Fehlermeldung") Fehlermeldungen haben ein rotes Symbol.
+		* ![Warnungen](/img/help/warning_10.png "Warnung") Warnungen haben ein gelbes Symbol.
+		* ![Erfolgsmeldungen](/img/help/success_10.png "Erfolgsmeldung") Erfolgsmeldungen haben ein grünes Symbol.
+		* ![Info-Meldungen](/img/help/info_10.png "Info-Meldung") Infomeldungen haben ein weißes Symbol.
+		
+		
+	a(name='GlobalToolBar')
+	h3(class='helpChapter') Globale Toolbar
+
+	:markdown
+		#### Neuer Job
+		Verwirft den aktuellen Stand von *Wand* und setzt alle Tabs auf den Anfangszustand zurück.
+		
+		#### Job absenden
+		Sendet den erstellten Job an *Arcane*. Es erfolgt eine Rückmeldung, ob das Absenden erfolgreich war.
+		
+		#### Speichern
+		Speichert den erstellten Job in eine Datei.
+		
+		#### Laden
+		Lädt einen Job aus einer Datei.
+		
+	a(name='SelectorMarks')
+	h3(class='helpChapter') Markierungen
+
+	:markdown
+		![Markierungen](/img/help/marks.png "Markierungen")
+		
+		Selektierte Elemente werden (standardmäßig) durch halbdurchsichtige rote Kästen markiert. Die Farbe und Transparenz kann in den [Darstellungseinstellungen (Display)](#WandOptionsDisplay) verändert werden.	
+		Bei der Listenerkennung können einzelne Markierungen durch das "X"-Symbol in der linken oberen Ecke wieder entfernt werden. Der Selektor der Listenerkennung wird dann entsprechend angepasst.
+		
+	a(name='InspectBar')
+	h3(class='helpChapter') Inspect Bar
+
+	:markdown
+		![InspectBar](/img/help/wand_inspectBar.png "InspectBar")
+		
+		#### Funktion
+		Die InspectBar wird verwendet, um die Auswahl von Elementen einer Webseite zu erleichtern. Dafür zeigt sie dem Benutzer
+		verschiedene nützliche Informationen zum aktuell fokussierten Element an. Weiterhin ermöglicht Sie es, das gewünschte
+		Element auszuwählen, obwohl dieses nicht direkt selektierbar ist.
+		
+		#### Ablauf
+		Wenn in der Extension der Inspect-Modus aktiviert wird (durch das Betätigen eines Inspect-Buttons: ![Inspect-Button](/img/help/Templarian_inspector_16.png "InspectButton")),
+		erscheint am rechten Bildschirmrand die InspectBar. Zunächst zeigt diese nur ein Menü mit vier Checkboxen und drei Navigations-
+		Buttons an. Fokussiert man ein Element der aktuell angezeigten Webseite (indem man die Maus über das Element bewegt), zeigt
+		sie den Typ des aktuell fokussierten Elements unter dem Punkt "Node Type" an. Will man nun weitere Informationen angezeigt
+		bekommen, kann man dazu die folgenden Checkboxen aktivieren: "Attributes", "Links" und "Selector". Lässt sich das gewünschte
+		Element nicht fokussieren, kann man dazu den Navigations-Modus verwenden. Diese Optionen werden in den folgenden zwei Abschnitten
+		erläutert. Beim Auswählen eines Elements (per Klick der linken Maustaste) wird die InspectBar wieder geschlossen.
+		
+		#### Attributes, Links & Selector
+		Alle drei Optionen bewirken, dass beim Fokussieren eines Elements zusätzliche Informationen angezeigt werden. Wenn "Attributes"
+		aktiviert ist, wird im fokussierten Element per "Magic" nach Key-Value - Paaren gesucht und diese in der InspectBar angezeigt.
+		In diesem Modus lässt sich außerdem das "Include Children"-Attribut konfigurieren (siehe Magic Conf.).
+		Die aktivierte CheckBox "Links" sorgt dafür, dass im fokussierten Element nach Elementen des Typs Link gesucht wird und diese
+		farblich in der Webseite markiert werden. Aktiviert man stattdessen die Selector-CheckBox wird für das fokussierte Element ein CSS-Selektor
+		generiert und angezeigt. Alle Optionen können auch gleichzeitig oder in beliebiger Kombination aktiviert werden.
+		
+		#### Navigation
+		Die Navigations-Option unterscheidet sich von den anderen dreien. Sie bewirkt nicht, dass Informationen angezeigt werden,
+		sondern sorgt dafür, dass nach dem Auswählen eines Elements, zunächst das Navigations-Menü aktiviert wird. Mit diesem kann
+		dann zum nächsten Eltern-Element des fokussierten Elements navigiert werden, indem die "aufwärts" - Navigations-Taste ( ![navigate-up](/img/help/layers-arrange_16.png "navigate-up") ) betätigt wird.
+		Navigiert man zu weit nach oben kann mit der "abwärts" - Navigations-Taste ( ![navigate-up](/img/help/layers-arrange-back_16.png "navigate-up") ) wieder nach unten navigiert werden. Hat man das
+		gewünschte Element erreicht kann mit der OK-Taste bestätigt werden. Auch während der Navigation	werden - wenn entsprechende
+		Checkboxen aktiviert wurden - zusätzliche Informationen zum aktuellen Element angezeigt.
+
+	
+		## Tabs
+
+		Die Anwendung liefert vier Tabs mit: drei zur Modellierung von Jobs, und einen zur Verwaltung der erstellten Jobs. Beim Wechsel zwischen Tabs ändernt sich neben dem Inhalt des Tabs (Aufbau: 7.) auch die kontextsensitive Toolbar (Aufbau: 5.), der Verweis des Hilfe-Buttons (Aufbau: 6.) und die gesetzten [Markierungen](#SelectorMarks "Markierungen") auf der Webseite. Die folgenden Kapitel gehen auf den Inhalt und die kontextsensitive Toolbar je Tab ein. 
+
+	a(name='Navigation-Tab')
+	h3(class='helpChapter') Navigation
+
+	:markdown
+		Der Navigation-Tab ist der Einstiegspunkt in Arcane Wand um einen Scraping-Job zu modellieren. Die zentrale Komponente des Tabs ist der Navigationsgraph: Er visualisiert die einzelnen Schritte in chronologischer Reihenfolge, denen der Scraper bei der Ausführung des Jobs folgen wird.
+
+		![Tab](/img/help/navTab.PNG "Navigations-Tab")
+
+		In den folgenden Abschnitten werden die einzelnen Bestandteile des Tabs erläutert.
+
+	a(name='Kontextsensitive-Toolbar')
+	h4(class='helpChapter') Kontextsensitive Toolbar
+
+	:markdown
+		![Toolbar](/img/help/navTab_toolbar.PNG "Toolbar")
+
+		Die kontextsensitive Toolbar bietet dem Benutzer die Möglichkeit, den Navigationsgraph aufzubauen und zu verändern. Es können Navigationsknoten eingefügt oder entfernt werden; genauso können Kanten eingefügt oder gelöscht werden.
+
+		Der Graph muss stets in einem konsistenten Zustand bleiben. Daher kann bspw. eine Kante nur dann entfernt werden, wenn die beiden betroffenen Knoten jeweils noch mindestens eine Kante zu einem weiteren Knoten besitzen.
+
+	a(name='Undo-Redo')
+	h5(class='helpChapter') Undo/Redo
+
+	:markdown
+		Jeder Bearbeitungsschritt im Navigation-Tab kann über die Undo/Redo-Funktion rückgängig gemacht und wiederhergestellt werden. Dazu bietet die kontextsensitive Toolbar zwei Buttons an:
+
+		![Undo](/img/help/arrow-curve-180-left_16.png "Undo") ![Toolbar](/img/help/arrow-curve_16.png "Toolbar")
+
+		Damit können Fehleingaben oder ein versehentlicher Löschvorgang leicht korrigiert werden.
+
+	a(name='Knotentypen')
+	h5(class='helpChapter') Knotentypen
+
+	:markdown
+		Ein Navigationsgraph besteht aus mehreren Navigationsknoten unterschiedlichen Typs. Ein Beispiel:
+
+		![Nav-Graph](/img/help/navTab_navigationBeispiel.PNG "Nav-Graph")
+
+		Die einzelnen Knotentypen werden im Folgenden kurz vorgestellt.
+
+	a(name='Entry-point')
+	h6(class='helpChapter') Entry point &nbsp; 
+		img(src='/img/help/node-insert_16.png')
+
+	:markdown
+		Jeder Navigationsgraph startet mit einem oder mehreren *Entry point*-Knoten. Ein *Entry point*-Knoten besitzt die folgenden Eigenschaften, die durch den Benutzer konfiguriert werden können:
+
+		* **Mapping:** Das Mapping eines Knotens gibt an, wie die erfassten Daten später in die Collection geschrieben werden. Mappings können im Mapping-Tab verwaltet und konfiguriert werden. Sofern kein Mapping angegeben wird, gilt das Mapping des Vorgängerknotens auch für den aktuellen Knoten (Prinzip der Vererbung).
+
+		* **Configuration:** In einigen Fällen ist es nötig, den Knoten feiner zu konfigurieren (z.B. Listenerkennung, Magic oder Form-Filling). Für einen solchen Fall kann einem Knoten eine Configuration zugeteilt werden. Configurations können im Configuration-Tab verwaltet und editiert werden. Falls einem Knoten eine Configuration zugeteilt wird, kann in einigen Fällen ein Selector nicht mehr explizit angegeben werden. Grund dafür ist, dass in diesem Fall die gewählte Configuration den Selector für den Knoten vorgibt.
+
+		* **URL:** Die URL gibt den initialen Request für die spätere Ausführung des Jobs vor.
+
+		* **Encoding:** Falls die betreffende Website kein oder ein falsches Encoding liefert, kann dieses manuell für einen Knoten angegeben werden.
+
+
+
+	a(name='Walk-through-links')
+	h6(class='helpChapter') Walk through links &nbsp; 
+		img(src='/img/help/ui-label-links_16.png')
+
+	:markdown
+		Ein *Walk through links*-Knoten wird typischerweise dazu verwendet, um die Navigationsstruktur einer Website zu durchlaufen (z.B. alle Produktkategorien). Folgende Eigenschaften können durch den Benutzer konfiguriert werden:
+
+		* **Mapping:** Das Mapping eines Knotens gibt an, wie die erfassten Daten später in die Collection geschrieben werden. Mappings können im Mapping-Tab verwaltet und konfiguriert werden. Sofern kein Mapping angegeben wird, gilt das Mapping des Vorgängerknotens auch für den aktuellen Knoten (Prinzip der Vererbung).
+
+		* **Configuration:** In einigen Fällen ist es nötig, den Knoten feiner zu konfigurieren (z.B. Listenerkennung, Magic oder Form-Filling). Für einen solchen Fall kann einem Knoten eine Configuration zugeteilt werden. Configurations können im Configuration-Tab verwaltet und editiert werden. Falls einem Knoten eine Configuration zugeteilt wird, kann in einigen Fällen ein Selector nicht mehr explizit angegeben werden. Grund dafür ist, dass in diesem Fall die gewählte Configuration den Selector für den Knoten vorgibt.
+
+		* **Area Selector:** Der Area Selector (jQuery Selector) zeigt auf ein übergeordnetes DOM-Element. Während des Scraping-Vorgangs werden alle Kind-DOM-Elemente abgefragt und durchlaufen.
+
+		* **Encoding:** Falls die betreffende Website kein oder ein falsches Encoding liefert, kann dieses manuell für einen Knoten angegeben werden.
+
+
+
+	a(name='Walk-through-items')
+	h6(class='helpChapter') Walk through items &nbsp; 
+		img(src='/img/help/ui-menu-blue_16.png')
+
+	:markdown
+		Ein *Walk through items*-Knoten wird typischerweise dazu verwendet, um eine Liste von Elementen zu durchlaufen (z.B. alle Produkte einer bestimmten Kategorie). Folgende Eigenschaften können durch den Benutzer konfiguriert werden:
+
+		* **Mapping:** Das Mapping eines Knotens gibt an, wie die erfassten Daten später in die Collection geschrieben werden. Mappings können im Mapping-Tab verwaltet und konfiguriert werden. Sofern kein Mapping angegeben wird, gilt das Mapping des Vorgängerknotens auch für den aktuellen Knoten (Prinzip der Vererbung).
+
+		* **Configuration:** In einigen Fällen ist es nötig, den Knoten feiner zu konfigurieren (z.B. Listenerkennung, Magic oder Form-Filling). Für einen solchen Fall kann einem Knoten eine Configuration zugeteilt werden. Configurations können im Configuration-Tab verwaltet und editiert werden. Falls einem Knoten eine Configuration zugeteilt wird, kann in einigen Fällen ein Selector nicht mehr explizit angegeben werden. Grund dafür ist, dass in diesem Fall die gewählte Configuration den Selector für den Knoten vorgibt.
+
+		* **Item Selector:** Der Item Selector (jQuery Selector) zeigt auf ein bestimmtes DOM-Element. Während des Scraping-Vorgangs werden die Geschwister-DOM-Elemente abgefragt und durchlaufen.
+
+		* **Custom Selector:** Der Custom Selector (jQuery Selector) zeigt direkt auf die DOM-Elemente, welche durchlaufen werden sollen. Ein Custom Selector wird in der Regel manuell erstellt oder durch die Listenerkennung generiert.
+
+		* **Encoding:** Falls die betreffende Website kein oder ein falsches Encoding liefert, kann dieses manuell für einen Knoten angegeben werden.
+
+
+
+	a(name='Walk-through-pager')
+	h6(class='helpChapter') Walk through pager &nbsp; 
+		img(src='/img/help/ui-paginator_16.png')
+
+	:markdown
+		Ein *Walk through pager*-Knoten wird typischerweise dazu verwendet, um eine Liste von Elementen zu durchlaufen, welche sich über mehrere Seiten erstreckt (z.B. alle Produkte einer bestimmten Kategorie). Der Nachfolger eines *Walk through pager*-Knotens im Navigationsgraph ist üblicherweise ein *Walk through items*-Knoten. Folgende Eigenschaften können durch den Benutzer konfiguriert werden:
+
+		* **Mapping:** Das Mapping eines Knotens gibt an, wie die erfassten Daten später in die Collection geschrieben werden. Mappings können im Mapping-Tab verwaltet und konfiguriert werden. Sofern kein Mapping angegeben wird, gilt das Mapping des Vorgängerknotens auch für den aktuellen Knoten (Prinzip der Vererbung).
+
+		* **Configuration:** In einigen Fällen ist es nötig, den Knoten feiner zu konfigurieren (z.B. Listenerkennung, Magic oder Form-Filling). Für einen solchen Fall kann einem Knoten eine Configuration zugeteilt werden. Configurations können im Configuration-Tab verwaltet und editiert werden. Falls einem Knoten eine Configuration zugeteilt wird, kann in einigen Fällen ein Selector nicht mehr explizit angegeben werden. Grund dafür ist, dass in diesem Fall die gewählte Configuration den Selector für den Knoten vorgibt.
+
+		* **Pager Selector:** Der Pager Selector (jQuery Selector) zeigt auf das DOM-Element, welches die Links des Pager enthält. Es werden ausgehend von diesem DOM-Element alle Kind-DOM-Elemente abgefragt und die vorhandenen Links durchlaufen.
+
+		* **Encoding:** Falls die betreffende Website kein oder ein falsches Encoding liefert, kann dieses manuell für einen Knoten angegeben werden.
+
+
+
+	a(name='Follow-link')
+	h6(class='helpChapter') Follow link &nbsp; 
+		img(src='/img/help/ui-label-link_16.png')
+
+	:markdown
+		Ein *Follow link*-Knoten wird typischerweise dazu verwendet, um Links auf einer Seite zu folgen (z.B. Details zu Produkten auf separater Seite). Der Vorgänger eines *Follow link*-Knotens im Navigationsgraph ist üblicherweise ein *Walk through items*-Knoten. Folgende Eigenschaften können durch den Benutzer konfiguriert werden:
+
+		* **Mapping:** Das Mapping eines Knotens gibt an, wie die erfassten Daten später in die Collection geschrieben werden. Mappings können im Mapping-Tab verwaltet und konfiguriert werden. Sofern kein Mapping angegeben wird, gilt das Mapping des Vorgängerknotens auch für den aktuellen Knoten (Prinzip der Vererbung).
+
+		* **Configuration:** In einigen Fällen ist es nötig, den Knoten feiner zu konfigurieren (z.B. Listenerkennung, Magic oder Form-Filling). Für einen solchen Fall kann einem Knoten eine Configuration zugeteilt werden. Configurations können im Configuration-Tab verwaltet und editiert werden. Falls einem Knoten eine Configuration zugeteilt wird, kann in einigen Fällen ein Selector nicht mehr explizit angegeben werden. Grund dafür ist, dass in diesem Fall die gewählte Configuration den Selector für den Knoten vorgibt.
+
+		* **Relative Link Selector:** Der Link Selector (jQuery Selector) muss relativ zum Selector des Vorgängerkonten sein und zeigt auf einen Link.
+
+		* **Encoding:** Falls die betreffende Website kein oder ein falsches Encoding liefert, kann dieses manuell für einen Knoten angegeben werden.
+
+
+
+	a(name='Fill-form')
+	h6(class='helpChapter') Fill form &nbsp; 
+		img(src='/img/help/application-form_16.png')
+
+	:markdown
+		Mit Hilfe eines *Fill form*-Knotens kann ein HTML-Formular mit Datensätzen befüllt und abgeschickt (submitted) werden (z.B. Produktsuche). Einem *Fill form*-Knoten muss eine Configuration zugeordnet werden. In dieser wird definiert, mit welchen Datensätzen das Formular befüllt wird. Folgende Eigenschaften können durch den Benutzer konfiguriert werden:
+
+		* **Mapping:** Das Mapping eines Knotens gibt an, wie die erfassten Daten später in die Collection geschrieben werden. Mappings können im Mapping-Tab verwaltet und konfiguriert werden. Sofern kein Mapping angegeben wird, gilt das Mapping des Vorgängerknotens auch für den aktuellen Knoten (Prinzip der Vererbung).
+
+		* **Configuration:** In einigen Fällen ist es nötig, den Knoten feiner zu konfigurieren (z.B. Listenerkennung, Magic oder Form-Filling). Für einen solchen Fall kann einem Knoten eine Configuration zugeteilt werden. Configurations können im Configuration-Tab verwaltet und editiert werden. Falls einem Knoten eine Configuration zugeteilt wird, kann in einigen Fällen ein Selector nicht mehr explizit angegeben werden. Grund dafür ist, dass in diesem Fall die gewählte Configuration den Selector für den Knoten vorgibt.
+
+		* **Form Selector:** Der Form Selector (jQuery Selector) zeigt direkt auf das Form-Element. Falls mit Hilfe des Firebug Inspector ein Kind-DOM-Element des Form-Element selektiert wird, schlägt Wand eine automatische Korrektur des Form Selector vor.
+
+		* **Submit URL:** Die URL, welche für den Form-Submit verwendet wird.
+
+		* **Submit Method:** Die Methode, mit welcher das Form-Submit durchgeführt wird (typischerweise *GET* oder *POST*).
+
+		* **Encoding:** Falls die betreffende Website kein oder ein falsches Encoding liefert, kann dieses manuell für einen Knoten angegeben werden.
+
+
+
+	a(name='Magic')
+	h6(class='helpChapter') Magic &nbsp; 
+		img(src='/img/help/wand_16.png')
+
+	:markdown
+		Ein *Magic*-Knoten wird dazu verwendet, um Inhalte aus den Daten des Vorgängerknotens zu extrahieren. Der Nachfolger eines *Magic*-Knotens im Navigationsgraph ist üblicherweise ein *Collect*-Knoten. Folgende Eigenschaften können durch den Benutzer konfiguriert werden:
+
+		* **Configuration:** In einigen Fällen ist es nötig, den Knoten feiner zu konfigurieren (z.B. Listenerkennung, Magic oder Form-Filling). Für einen solchen Fall kann einem Knoten eine Configuration zugeteilt werden. Configurations können im Configuration-Tab verwaltet und editiert werden. Falls einem Knoten eine Configuration zugeteilt wird, kann in einigen Fällen ein Selector nicht mehr explizit angegeben werden. Grund dafür ist, dass in diesem Fall die gewählte Configuration den Selector für den Knoten vorgibt.
+
+		* **Item Selector:** Der Item Selector (jQuery Selector) zeigt auf ein bestimmtes DOM-Element. Während des Scraping-Vorgangs werden die Geschwister-DOM-Elemente abgefragt und durchlaufen.
+
+		* **Encoding:** Falls die betreffende Website kein oder ein falsches Encoding liefert, kann dieses manuell für einen Knoten angegeben werden.
+
+
+
+	a(name='Collect')
+	h6(class='helpChapter') Collect &nbsp; 
+		img(src='/img/help/property-import_16.png')
+
+	:markdown
+		Ein *Collect*-Knoten wird typischerweise dazu verwendet, um die extrahierten Inhalte einzusammeln und in eine Collection zu schreiben. Der Vorgänger eines *Collect*-Knotens im Navigationsgraph ist üblicherweise ein *Magic*-Knoten. Folgende Eigenschaften können durch den Benutzer konfiguriert werden:
+
+		* **Mapping:** Das Mapping eines Knotens gibt an, wie die erfassten Daten später in die Collection geschrieben werden. Mappings können im Mapping-Tab verwaltet und konfiguriert werden. Sofern kein Mapping angegeben wird, gilt das Mapping des Vorgängerknotens auch für den aktuellen Knoten (Prinzip der Vererbung).
+
+		* **Collection:** Der Name der Collection, in welcher die gesammelten Daten bei der Ausführung des Jobs gespeichert werden sollen.
+
+		* **Encoding:** Falls die betreffende Website kein oder ein falsches Encoding liefert, kann dieses manuell für einen Knoten angegeben werden.
+
+
+
+	a(name='Knoten-entfernen')
+	h5(class='helpChapter') Knoten entfernen
+
+	:markdown
+		Ein Knoten im Navigationsgraph kann einfach entfernt werden. Dazu muss der Knoten zunächst selektiert und anschließend der entspr. Button in der Toolbar betätigt werden. Zu beachten ist dabei, dass beim Entfernen eines Knotens auch alle Nachfolgerknoten entfernt werden, damit der Graph in einem konsistenten Zustand bleibt. Selbstverständlich kann das Entfernen eines Knotens mit Hilfe der Undo-Funktion wieder rückgängig gemacht werden.
+
+
+
+	a(name='Kanten')
+	h5(class='helpChapter') Kanten hinzufügen oder entfernen
+
+	:markdown
+		Eine Kante zwischen zwei Navigationsknoten kann entfernt werden, sofern beide Knoten jeweils noch eine weitere Kante besitzen. Zum Entfernen oder Hinzufügen einer Kante werden die beiden betreffenden Knoten selektiert (*STRG*-Taste gedrückt halten) und anschließend der entspr. Button in der Toolbar betätigt.
+
+
+
+	a(name='Navigationsgraph')
+	h4(class='helpChapter') Navigationsgraph
+
+	:markdown
+		![Nav-Graph](/img/help/navTab_navigationBeispiel.PNG "Nav-Graph")
+
+		Der Navigationsgraph visualisiert als gerichteter Graph die einzelnen Schritte in chronologischer Reihenfolge, denen der Scraper bei der Ausführung des Jobs folgen wird. Startpunkt eines solchen Graphs sind stets ein oder mehrere *Entry point*-Knoten. Der Scraper wird bei diesen Knoten in den Graph einsteigen und anschließend Schritt für Schritt den Graph durchlaufen.
+
+	a(name='Eigenschaften-Bereich')
+	h4(class='helpChapter') Eigenschaften-Bereich
+
+	:markdown
+		![Properties](/img/help/navTab_propertiesPanel.PNG "Properties")
+
+		Im Eigenschaften-Bereich des Navigation-Tab (rechts) können die Eigenschaften des aktuell selektierten Knotens editiert werden. Jede Änderung wird sofort gespeichert und kann mit der Undo/Redo-Funktion rückgängig bzw. wiederhergestellt werden.
+
+		Neben jedem Eingabefeld für einen jQuery Selector (z.B. Item Selector oder Area Selector) findet sich ein Button, mit dem der Firebug Inspector aktiviert werden kann. Dieser kann dazu verwendet, um ein bestimmtes Element auf der aktuell geöffneten Website zu selektieren. Für dieses Element wird dann ein passender jQuery Selector generiert und in das Eingabefeld geschrieben.
+
+		Die Eigenschaften der einzelnen Knotentypen werden im Kapitel *[Knotentypen](#Knotentypen)* erläutert.
+
+
+
+	a(name='ConfigTab')
+	h3(class='helpChapter') Configuration
+
+	:markdown
+		Der Configuration-Tab beinhaltet diverse komplexe Einstellungsmöglichkeiten, die von der Listenerkennungsfunktion über die Konfiguration der Magic-Library, bis hin zur Definition von [Form-Elementen](http://www.w3.org/TR/html401/interact/forms.html "w3schools") und deren Eingabeparametern. Diese Konfigurationen werden in sogenannten *Configurations*, welche innerhalb des Tabs verwaltet werden können, gespeichert. Durch die Kapselung in Configurations ist es möglich, Configurations innerhalb des Navigation-Tabs mehreren Knoten zuzuweisen. Der Knoten, welchem eine Configuration zugewiesen wurde, verwendet die für ihn sinnvollen Einstellungen, die in ihr enthalten sind. Zu beachten ist außerdem, dass immer mindesten eine Configuration angelegt sein muss. Daher ist es nicht möglich, die letzte Configuration zu löschen. Im initialen Zustand von *Wand* ist dementsprechend auch eine 'Default Config' angelegt. 
+		
+	a(name='ConfigTabOverview')
+	h4(class='helpChapter') Aufbau
+
+	:markdown
+		Die folgende Grafik zeigt den grafischen Aufbau des Configuration-Tab und beschreibt ihre Einzelteile dabei in wenigen Worten.
+		
+		![Configuration Layout](/img/help/wand_config_layout.png "Aufbau des Configuration-Tab")
+		
+		1. Accordion-Eintrag: Der Tab gliedert sich in drei Accordion-Einträge, die jeweils selektiert werden können. Bei der Selektion werden der Accordein-Inhalt und der kontextsensitive Accordeinbereich, welche beide zu dem selektierten Eintrag gehören, angezeigt.
+		
+		2. Accordion-Inhalt: Der Inhaltsbereich enthält zentrale Funktionen des selektierten Accordion-Eintrags. 
+		
+		3. Kontextsensitiver Accordion-Bereich: Der kontextsensitive Bereich wird je nach Accordion-Eintrag unterschiedlich unterteilt und beinhaltet weitere Funktionalitäten, die mit dem Eintrag in Verbindung stehen.
+		
+	a(name='ConfigTabToolBar')
+	h4(class='helpChapter') Kontextsensitive Toolbar
+
+	:markdown
+		![configContextBar](/img/help/wand_config_cToolbar.png "Kontextsensitive Toolbar")
+				
+		* Configuration Combobox: Diese Combobox ermöglicht die Auswahl einer Configuration aus der Menge der vorhandenen Configurations. Wenn eine andere Configuration ausgewählt wird, kann man diese innerhalb der Accordion-Einträge betrachten und bearbeiten. Die Änderungen an ihr werden direkt gespeichert. 
+				
+		* ![Add Button](/img/help/wand--plus_16.png "Add-Button") Add-Button: Über diesen Button kann eine neue Configuration angelegt und benannt werden. Der Name muss dabei nicht eindeutig sein, jedoch ist eine eindeutige Namensgebung zur Differenzierung der Configurations sinnvoll.
+		
+		* ![Rename Button](/img/help/wand--pencil_16.png "Rename-Button") Rename-Button: Über diesen Button kann die in der Combobox ausgewählte Configuration umbenannt werden. Der Name muss wie auch schon beim Anlegen nicht zwingend eindeutig sein.
+		
+		* ![Delete Button](/img/help/wand--minus_16.png "Delete-Button") Delete-Button: Über diesen Button kann die in der Combobox ausgewählte Configuration unwiderruflich gelöscht werden.
+		
+	a(name='configTabListConfig')
+	h4.helpChapter Listen-Konfiguration
+	
+	:markdown
+		![Listen-Konfiguration](/img/help/wand_ConfTab_listConfig.png "Listen-Konfiguration")
+		
+		Mit der Listen-Konfiguration kann man Selektoren generieren, die mehr als nur ein Element auf der Webseite auf einmal selektieren. 
+		
+		##### Mehrere Elemente
+		
+		Klickt man auf den Inspect-Button ![Inspect-Button](/img/help/Templarian_inspector_16.png "InspectButton"), kann man (auch mit Hilfe der [InspectBar](#InspectBar "InspectBar")) mehrere Elemente der Webseite selektieren, die dadurch sofort markiert werden. Gleichzeitig wird immer ein passender Selektor generiert, der genau die gewählten Elemente umfasst.
+		
+		##### Dynamische Listenerkennung
+		
+		Nachdem man mehrere Elemente selektiert hat, gibt es die Möglichkeit, einen Listen-Selektor zu finden, der unter den gewählten Elementen gleichartige sucht und dann auch auf dem Rest der Webseite selektiert. Man kann mit dieser Funktion also beispielsweise zwei Elemente einer Produktliste selektieren und durch die Listenerkennung alle restlichen Elemente der Produktliste finden lassen. Nachdem man den Detect-list-Button ![Detect-List-Button](/img/help/wand-hat_16.png "Detect-List-Button") geklickt hat, verändert sich der Selektor und die Markierungen auf der Webseite zeigen die selektierte Liste an.
+		
+		Einzelne Elemente können auch wieder aus der Liste entfernt werden, wenn sie z.B. fälschlicherweise von der Listenerkennung miteinbezogen oder nur versehentlich angeklickt wurden. Hierzu hat jede Markierung auf der Webseite einen X-Button.
+		
+		Der Selektor kann im Textfeld auch von Hand angepasst oder wieder gelöscht werden, wenn die automatische Listenerkennung nicht das gewünschte Ergebnis geliefert hat. Bestätigen Sie Änderungen durch Drücken der Enter-Taste.
+	
+	a(name='configTabMagicOverview')
+	h4(class='helpChapter') Magic-Konfiguration
+
+	:markdown
+		Im Bereich der Magic-Konfiguration kann die Software-Komponente "Magic" konfiguriert werden. Das heißt, hier kann eingestellt werden,
+		wie "Magic" nach Key-Value - Paaren sucht. Dazu bestehen drei Optionen: "Include Children", "Custom Keys" und "Sub Items". Die Funktionalität
+		der drei Optionen wird im Folgenden erklärt.
+
+	a(name='configTabMagicIncludeChildren')
+	h5(class='helpChapter') Include Children
+
+	:markdown
+		![IncludeChildren](/img/help/wand_confTab_magicConf_IncludeChildren.png "IncludeChildren")
+		
+		Im oben gezeigten Textfeld kann ein Ganzzahlwert für die Option "Include Children" gesetzt werden. Dieser legt fest wieviele Ebenen Magic nach
+		Key-Value - Paaren durchsucht. Steht der Wert auf null, sucht Magic nur im gegebenen Element nach Key-Value - Paaren.
+		Stellt man dagegen beispielsweise 5 ein, sucht Magic auch im Kind-Element des übergebenen Elements, sowie in dessen Kind und dessen Kind... Das ganze
+		in diesem Fall fünf mal.
+		
+	a(name='configTabMagicCustomKeysOverview')
+	h5(class='helpChapter') Custom Keys
+
+	:markdown
+		![CustomKeys](/img/help/wand_confTab_magicConf_CustomKeys.png "CustomKeys")
+		
+		Custom Keys ermöglichen es dem Nutzer manuell Key-Value - Paare anzulegen. Dies ist nötig, wenn Magic im durchsuchten
+		Element keinen Key für einen Wert findet, den man gerne Speichern würde. Zum Beispiel könnte das durchsuchte Element einen Preis enthalten,
+		der aber nicht automatisch erkannt wird. In diesem Fall fügt man einen Custom Key hinzu indem man den ![Add](/img/help/plus-button_16.png "Add")-Button betätigt.
+		Wird ein angelegter Custom Key nicht mehr benötigt, kann die entsprechende Zeile in der Tabelle markiert und mit dem
+		![Add](/img/help/minus-button_16.png "Add")-Button gelöscht werden.
+		
+	a(name='configTabMagicCustomKeysKey')
+	h6(class='helpChapter') Key
+
+	:markdown
+		Als Key kann ein beliebiger Name vergeben werden. Hier sollte gleich der Key vergeben werden, der später in der Datenbank verwendet werden soll.
+		Angelegte Custom Keys erscheinen mit dem vergebenen Key beim nächsten Suchlauf mit der entsprechenden Configuration im Mapping-Tab. 
+		Dort kann man die dazu gefundenen Values betrachten und angeben, ob die Custom Keys gespeichert werden sollen.
+		
+	a(name='configTabMagicCustomKeysSelector')
+	h6(class='helpChapter') Selector
+
+	:markdown
+		Der Selector sollte auf das Element zeigen, welches den Value beinhaltet, den man gerne speichern möchte. Er kann generiert werden,
+		indem man mit dem ![Inspect](/img/help/Templarian_inspector_16.png "Inspect")-Button das entsprechende Element auf der Webseite auswählt. Der Selector eines Custom Keys sollte immer
+		auf ein Kind-Element, des mit dem List Selector in der List Configuration selektierten Elements zeigen (d.h. er sollte auf ein
+		Element "innerhalb" des in der List Configuration ausgewählten Elements zeigen).
+		
+	a(name='configTabMagicCustomKeysNumberOfIncludedChildren')
+	h6(class='helpChapter') Include Children
+
+	:markdown
+		Include Children für Custom Keys entspricht der "globalen" Include Children - Option. Hier wird konfiguriert, wieviele Kind-Ebenen ausgehend vom für den CustomKey angegeben Selector
+		durchsucht werden (Die globale Include Children - Option legt fest,
+		wieviele Kind-Ebenen ausgehend vom unter List Config konfigurierten List Selector durchsucht werden).
+		
+		
+	a(name='configTabMagicSubItemsOverview')
+	h5(class='helpChapter') Sub Items
+
+	:markdown
+		![SubItems](/img/help/wand_confTab_magicConf_SubItems.png "SubItems")
+		
+		Sub Items ermöglichen es für jedes zu durchsuchende Element noch einmal eine Menge von
+		Key-Value - Paaren zu speichern (Zum Beispiel eine Liste von Bewertungen pro Produkt). In diesem Fall fügt man mit dem ![Add](/img/help/plus-button_16.png "Add")-Button ein 
+		Sub Item hinzu. Wird ein angelegtes Sub Item nicht mehr benötigt, kann die entsprechende Zeile in der Tabelle markiert und mit dem
+		![Del](/img/help/minus-button_16.png "Del")-Button gelöscht werden.
+		
+	a(name='configTabMagicSubItemsKey')
+	h6(class='helpChapter') Key
+
+	:markdown
+		Als Key kann ein beliebiger Name vergeben werden. Hier sollte gleich der Key vergeben werden, der später in der Datenbank verwendet werden soll.
+	
+	a(name='configTabMagicSubItemsSelector')
+	h6(class='helpChapter') Selector
+
+	:markdown
+		Der Selector sollte auf das Element zeigen, welches den Value beinhaltet, den man gerne speichern möchte. Er kann generiert werden,
+		indem man mit dem ![Inspect](/img/help/Templarian_inspector_16.png "Inspect")-Button das entsprechende Element auf der Webseite auswählt.
+		
+	a(name='ConfigFF')
+	h4(class='helpChapter') Fill Form-Konfiguration
+
+	:markdown
+		Die Fill Form Configuration dient, wie der Name schon sagt, der Konfiguration von [HTML-Formularen](http://www.w3.org/TR/html401/interact/forms.html "w3schools"). Zusammen mit den Einstellungen, welche innerhalb des Navigation-Tabs im ["Fill Form"-Knoten](#Fill-form "Fill Form"), getätigt werden müssen, kann der Benutzer mithilfe der Fill Form Configuration Formulare während seines Scraping-Vorgangs befüllen. Dazu müssen zunächst die Formular-Elemente im Form Elements Bereich und anschließend die Datensätze, welche im Datasets Bereich erstellt werden können, definiert werden.
+		
+	a(name='ConfigFFJsonFile')
+	h5(class='helpChapter') Json File
+
+	:markdown
+		Dieser Bereich bietet die Möglichkeit, [Json](http://www.json.org "JSON in JavaScript")-Dateien zu importieren und innerhalb von Datensätzen zu referenzieren. Es können nicht nur Json-Dateien importiert werden, welche von *Academy* exportiert wurden, sondern jede Json-Datei, die aus einem [Array](http://www.w3schools.com/jsref/jsref_obj_array.asp "w3schools") von Objekten besteht. Die Attribute der Objekte können dabei wie folgt referenziert werden:
+		
+		![JsonReference](/img/help/wand_config_fillform_jsonRef.png "Referenzierung eines Json-Attributs")
+		
+		Nachdem die Datei importiert und intern mit einem Namen (in diesem Beispiel "auto") benannt wurde, können Attribute der in ihr enthaltenen Json-Objekte referenziert werden. In diesem Beispiel enthält die Datei zwei Objekte. Das Erste, bei dem das Attribut "Name" den Wert "Autovermietung Jahnel GmbH" besitzt, das Zweite mit dem Name-Wert "Autovermietung Buchbinder". *Academy* erhält also bei einem Dataset mit der Referenz 'auto.Name' die Anweisung das Formular zwei mal zu befüllen. Einmal mit dem ersten und einmal mit dem zweiten Wert. Möchte man zusätzlich zum Namen der Autovermietung die Adresse in ein anderes Form-Element eintragen, kann man das Attribut wiederum durch 'auto.Adresse' referenzieren. In diesem Fall bekommt *Academy* die Anweisung, das Formular (bestehend aus zwei Form-Elementen) einmal mit den Werten "Autovermietung Jahnel GmbH" und "Provianthofstr. 1, 01099 Dresden" zu befüllen, und ein zweites mal mit den Werten "Autovermietung Buchbinder" und "Reicker Str. 44, 01219 Dresden". Man beachte hierbei, dass keine Permutationen der Werte gebildet werden, d.h. Kombination von Attributen unterschiedlicher Objekte, wie z.B. "Autovermietung Jahnel GmbH" und "Reicker Str. 44, 01219 Dresden" werden nicht gebildet.
+		
+		![JsonFile](/img/help/wand_config_fillform_jsonFile.png "Json File")
+			
+	a(name='ConfigFillFormFormElementsOverview')
+	h5(class='helpChapter') Form Elements
+
+	:markdown
+		Das Form Elements Menü erlaubt es dem Benutzer, die Form-Elemente auf der Webseite zu markieren, in die Daten eingetragen werden sollen.
+		Dies geschieht, indem jedes Element einzeln hinzugefügt wird. Dazu muss zunächst ein passender Name vergeben werden. Außerdem kann
+		mit dem ![Inspect](/img/help/Templarian_inspector_16.png "Inspect")-Button das Element auf der Webseite ausgewählt werden. Zuletzt muss noch der passende Typ gewählt und mit dem ![Add](/img/help/plus-button_16.png "Add")-Button bestätigt werden. Folgende
+		Typen werden angeboten:
+		
+	a(name='ConfigFillFormFormElementsTextField')
+	h6(class='helpChapter') TextField
+
+	:markdown
+		TextField wird für jedes normale Form-Element verwendet.
+	
+	a(name='ConfigFillFormFormElementsDateField')
+	h6(class='helpChapter') DateField
+
+	:markdown
+		Soll ein Datum in das Form-Element eingtragen werden, ist der Typ DateField passend.
+
+	a(name='ConfigFillFormFormElementsDateFieldFormat')
+	h7(class='helpChapter') Format
+
+	:markdown
+		Das Format gibt an in welcher Form das Datum in das Form-Element auf der Webseite eingetragen werden soll. Die Syntax entspricht: [http://momentjs.com/docs/](http://momentjs.com/docs/)
+
+	a(name='ConfigFillFormFormElementsDateFieldPreselection')
+	h7(class='helpChapter') Preselection
+
+	:markdown
+		Typische Datumsformate können mit der Preselection-ComboBox ausgewählt werden.
+
+	a(name='ConfigFillFormFormElementsCheckBox')
+	h6(class='helpChapter') CheckBox
+
+	:markdown
+		Handelt es sich bei dem auszufüllenden Element um eine CheckBox, sollte der Typ entsprechend gewählt werden.
+
+	a(name='ConfigFillFormFormElementsRadioButton')
+	h6(class='helpChapter') RadioButton
+
+	:markdown
+		Handelt es sich bei dem auszufüllenden Element um einen Radio Button, sollte der Typ entsprechend gewählt werden.
+
+	a(name='ConfigFillFormFormElementsComboBox')
+	h6(class='helpChapter') ComboBox
+
+	:markdown
+		Handelt es sich bei dem auszufüllenden Element um eine ComboBox, sollte der Typ entsprechend gewählt werden.
+
+	a(name='ConfigFillFormFormElementsDateGroup')
+	h6(class='helpChapter') DateGroup
+
+	:markdown
+		Existieren auf der Webseite mehrere Form-Elemente, in die ein Datum eingetragen werden soll (zum Beispiel: Jeweils ein Element für Tag, Monat und Jahr), muss DateGroup als Typ verwendet werden.
+
+	a(name='ConfigFillFormFormElementsDateGroupSelector')
+	h7(class='helpChapter') Selector
+
+	:markdown
+		Der hier eingetragene Selektor zeigt auf eines der Form-Elemente, in die das Datum eingtragen werden soll.
+
+	a(name='ConfigFillFormFormElementsDateGroupFormat')
+	h7(class='helpChapter') Format
+
+	:markdown
+		Das Format gibt an in welcher Form das Datum in das Form-Element auf der Webseite eingetragen werden soll. Die Syntax entspricht: [http://momentjs.com/docs/](http://momentjs.com/docs/)
+	
+	a(name='ConfigFillFormFormElementsParameter')
+	h6(class='helpChapter') Parameter
+
+	:markdown
+		Kann ein Form-Element nicht per Inspector ausgewählt werden, kann dies mit einem Parameter umgangen werden.
+		
+	a(name='ConfigFillFormFormElementsParameterValue')
+	h7(class='helpChapter') Value
+
+	:markdown
+		Hier kann ein Wert eingtragen werden, der dann für alle Datasets übernommen wird, sodass nicht überall einzeln Werte eingetragen werden müssen.
+
+		Name und Selektor eines hinzugefügten Elements können nachträglich geändert werden. Mit dem ![Del](/img/help/minus-button_16.png "Del")-Button kann ein Element wieder gelöscht werden,
+		mit ![Up](/img/help/Up-Arrow.png "Up")-Button und 
+		![Down](/img/help/Down-Arrow.png "Down")-Button können die Elemente umsortiert werden. Mit dem 
+		![Add](/img/help/plus_16.png "Add")-Button können bei DateField, DateGroup & Parameter die zusätzlichen
+		Einstellungen angezeigt werden.
+	
+	a(name='Datasets')
+	h5(class='helpChapter') Datasets
+
+	:markdown
+		Ein Dataset enthält die Werte, welche von *Academy* in das definierte Formular eingetragen werden sollen. Diese können direkt in die Zellen der Tabelle eingetragen werden. Mehrere Datasets weisen *Academy* dazu an, das definierte Formular mehrfach auszufüllen. Eine Spalte innerhalb der Dataset-Tabelle repräsentiert jeweils ein im Accordion-Inhalt definiertes Form Element. Die Werte der Tabelle können durch Klicks auf die Pfeil-Buttons beliebig sortiert werden. Die Sortierung ist jedoch nur grafischer Natur und wirkt sich nicht auf die Daten im Hintergrund aus.
+		
+		* ![Add Dataset](/img/help/plus-button_16.png "Add Dataset") Add Dataset-Button: Über diesen Button kann ein neues Dataset hinzugefügt werden, sofern mindestens ein Form Element definiert wurde.
+		
+		* ![Remove Dataset](/img/help/minus-button_16.png "Remove Dataset") Remove Dataset-Button: Über diesen Button kann das selektierte Dataset unwiderruflich gelöscht werden.
+
+	a(name='IteratorRowProperties')
+	h5(class='helpChapter') Row Properties
+
+	:markdown
+		Dieser Bereich erscheint sobald ein Dataset in der Dataset-Tabelle selektiert wurde. Die Einstellungen des Bereichs beziehen sich auf das selektierte Dataset. Über die Checkbox mit der Beschriftung "Use *i* as running index with" kann angegeben werden, ob ein Laufindex für das gewählte Dataset verwendet werden soll. Ein Laufindex kann z.B. dann verwendet weren, wenn eine Reihe von Daten (pl. Datum) durchlaufen werden soll. Die Verwendung wird nach der Beschreibung der Radiobuttons und der dataset-spezifischen Syntax anhand von Beispielen verdeutlicht:
+		
+		* distinct values: der Laufindex *i* nimmt alle definierten numerischen Werte an. Dabei kann es sich sowohl um dezimale als auch um ganze Zahlen handeln, die durch das Zeichen ";" voneinander separiert werden. Beispiel: 0.5;1;1.5
+		
+		* values between: der Laufindex *i* nimmt alle numerischen Werte zwischen dem ersten und dem zweiten angegebenen Wert an, wobei eine Schrittweite vom dritten angegebenen Wert verwendet wird. Mathematisch betrachtet handelt es sich um ein rechtsoffenes Intervall, bei dem x alle Vielfachen des dritten Werts innerhalb des Intervalls durchläuft. Beispiel: 0 and 5 by 1 resultiert in den Werten 0,1,2,3,4
+		
+	a(name='DatasetSyntax')
+	h5(class='helpChapter') Syntax in Datasets
+	p Um variable Daten zu ermöglichen, mit ihnen rechnen und diese Werte von "normalen" Werten unterscheiden zu können, wurde eine einfache Syntax deklariert. Werte, die mit "\#\{" beginnen und mit "\}" enden, werden von Academy interpretiert, d.h. in ihnen können alle vier Grundrechenarten zum Rechnen verwendet werden. Die Syntax ist auch notwendig, um statische Datumsangaben in andere Datumsformate umwandeln zu können.
+	
+	a(name='Iterator')
+	h5(class='helpChapter') Laufindex
+	p Die Verwendung von Laufindices lässt sich am Besten anhand eines Beispiels verdeutlichen: #\{10+i*i\} bedeutet, dass i*i auf den Wert 10 addiert wird. Wenn es sich beim Laufindex um die expliziten Werte 1;2;3 handelt, füllt Academy das Formular drei Mal aus und verwendet dabei jeweils einen der Werte 11,14 und 19.
+			
+	a(name='SyntaxDats')
+	h5(class='helpChapter') Daten
+
+	:markdown
+		Genauso, wie mit gewöhnlichen Zahlen, kann *Academy* auch mit Daten rechnen. Es ist also möglich ein Datum anzugeben und darauf Tage zu addieren oder abzuziehen, et cetera. Ganzzahlen werden dabei als die Anzahl Tage interpreteiert, somit repräsentiert die 1 einen Tag, die 2 zwei Tage und so weiter. Wenn der Benutzer einen Job mittels Batch-Processing beispielsweise jeden Monat ausführen will, und dabei das monatsabhängige Startdatum innerhalb von Datatsets referenzieren möchte, kann er dies über das Schlüsselwort "now" tun.
+		
+		\\Beispiele:
+		
+	ul
+		li #\{now + 15\} // heute in 15 Tagen
+		li #\{now - i\} // heute vor i Tagen
+		li #\{13.12.2001 - i * i\} // i*i Tage vor dem 13.12.2001
+		li #\{now + 10 - 15\} // heute vor 5 Tagen
+		li #\{now - 10 + 10\} // heute vor 20 Tagen
+		
+	a(name='MappingTab')
+	h3(class='helpChapter') Mapping
+
+	:markdown
+		Der Mapping-Tab wird verwendet um gefundenen Key-Value - Paaren einen Datenbank-Key zuzuweisen. Das heißt, dem von Magic
+		gefundenen oder generierten Key wird ein sinnvoller Key zugewiesen, der dann in der Datenbank verwendet wird.
+		
+		#### Kontextsensitive Toolbar
+		
+		![ContextBar](/img/help/wand_mappingTab_contextBar.png "ContextBar")
+		
+		Die kontextsensitive Toolbar beinhaltet drei Bereiche: Mapping, Configuration und Value Count. Die Funktionalität dieser
+		Bereiche wird im Folgenden erläutert.
+				
+		##### Mapping
+		
+		Im Bereich "Mapping" können naheliegenderweise Mappings verwaltet werden. Das heißt es können Mappings angelegt ![ContextBar](/img/help/blue-document--plus_16.png "ContextBar"), umbenannt
+		![ContextBar](/img/help/blue-document--pencil_16.png "ContextBar") und gelöscht ![ContextBar](/img/help/blue-document--minus.png "ContextBar") werden. Mit der ComboBox kann das Mapping ausgewählt werden, welches aktuell bearbeitet
+		werden soll. Ein Mapping beinhaltet eine Liste von Key-Value - Paaren und die pro Key vergebenen Database-Keys (vorausgesetzt es
+		wurden bereits Key-Value - Paare gesucht und Database-Keys vergeben).
+		
+		##### Source
+		
+		Im "Source"-Bereich kann eine Configuration, oder ein direkt angelegter Selektor ausgewählt werden. Wenn eine Configuration ausgewählt wurde, wird mit dem darin definierten List Selector, sowie
+		der Magic-Configuration nach Key-Value - Paaren gesucht. Direkt angelegte Selektoren erhält man, wenn man diese in einem Walk Through Links- oder einem Magic-Knoten angelegt hat. 
+		Nachdem die gewünschte Source ausgewählt wurde, kann mit dem ![ContextBar](/img/help/arrow-circle-double_16.png "ContextBar")-Button die Suche angestoßen werden. Beim Suchen werden neu gefundene Keys und Values den eventuell bereits 
+		vorhandenen	hinzugefügt.
+		
+		##### Value Count
+		
+		Die Option "Value Count" gibt eine Schranke für die Anzahl an gefundenen Values für jeden Key an. Alle Keys, für die weniger Values
+		gefunden wurden, als per "Value Count" gefordert, werden nicht angezeigt. Beispiel: Value Count = 3; Nur Keys mit mindestens
+		drei zugehörigen Values werden angezeigt.
+		
+		#### Value-Tabelle
+		
+		![KeyValueTable](/img/help/wand_mappingTab_keyValueTable.png "KeyValueTable")
+		
+		In der Key - Tabelle wird das Ergebnis der Suche nach Key-Value - Paaren angezeigt. Auf der linken Seite der Tabelle werden in 
+		der Spalte "Key" alle gefundenen Keys angezeigt. Zu jedem Key kann in der Spalte "DatabaseKey" der Key definiert werden, der in
+		Datenbank verwendet werden soll. Werden keine DatabaseKeys eingetragen, wird der Key aus der "Key"-Spalte verwendet. Mit der
+		CheckBox am rechten Rand der Tabelle kann für jede Reihe festgelegt werden, ob dieser Key in der Datenbank gespeichert werden
+		soll, oder nicht. Selektiert man eine Zeile der Tabelle werden die zu dem Key gefundenen Values in der Value - Tabelle
+		in der einzigen Spalte "Values" angezeigt.
+
+	a(name='JobsTab')
+	h3(class='helpChapter') Jobs
+
+	:markdown
+		Der Jobs-Tab gibt dem Benutzer die Möglichkeit sich einen Überblick über die angelegten Jobs auf *Academy*  zu verschaffen und sie zu verwalten. Außerdem kann er Jobs, welche in *Academy* verfügbar sind, direkt in die Firebug-Extension laden und erneut bearbeiten. Um das Kommunikationskonzept zwischen *Wand* und *Academy* so einfach wie möglich zu halten, werden die angezeigten Daten nur beim expliziten Klick auf den Update-Button erneut angefragt und die grafische Oberfläche neu gezeichnet. Ausgenommen davon sind Verwaltungsoperationen (Rename, Start, Pause, ...), welche im Erfolgsfall die mit ihnen verbundenen grafischen Elemente auf den neusten Stand bringen. 
+	
+	a(name='JobsToolBar')
+	h4(class='helpChapter') Kontextsensitive Toolbar
+
+	:markdown
+		![jobsContextBar](/img/help/wand_jobs_cSensitive.png "Kontextsensitive Toolbar")
+		
+		Die kontextsensitive Toolbar des Jobs-Tabs umfasst zwei Einträge: 
+		
+		* ![Update Button](/img/help/arrow-circle-double_16.png "Update Button") Update Button: Beim Klick auf diesen Button werden alle Jobs des gewählten Projekts von *Academy* abgefragt und die grafische Oberfläche des Jobs-Tabs neu gezeichnet.
+		
+		* Projekt Combobox: Diese Combobox ermöglicht das Filtern der vorhandenen Jobs nach Projekten. Sollen alle Jobs unabhängig vom Projekt angezeigt werden, kann dies über den Eintrag 'All Projects' erreicht werden.
+		
+		#### Tabellenheader
+		
+		![Jobs Table Header](/img/help/wand_jobs_header.png "Tabellenheader")
+		
+		* Name: Der Name des Jobs. Sofern kein Name für den Job angegeben wurde, wird an dieser Stelle die eindeutige ID angezeigt
+		
+		* State: Der Zustand des Jobs. Details zu den möglichen Zuständen finden Sie [hier](/help/academy/jobMgmt#JobControl)
+		
+		* Project: Der Name des Projekts, zu welchem der Job gehört. 
+		
+	a(name='JobItem')
+	h4(class='helpChapter') Jobitem
+
+	:markdown
+		![Job Overview](/img/help/wand_jobs_jobitem_overview.png "Übersicht")
+		
+	a(name='JobItemButtons')
+	h5(class='helpChapter') Buttons
+
+	:markdown
+		* ![Rename Button](/img/help/pencil_16.png "Rename-Button") Rename-Button: Über diesen Button kann der zugehörige Job umbenannt werden.
+		
+		* ![Start Button](/img/help/play_16.png "Start-Button") Start-Button: Startet den Job auf *Academy*. Der Zustand wechselt im Erfolgsfall auf 'running'. Andernfalls erscheint eine Fehlermeldung in der Statusanzeige.
+		
+		* ![Pause Button](/img/help/pause_16.png "Pause-Button") Pause-Button: Pausiert den Job auf *Academy*. Der Zustand wechselt im Erfolgsfall auf 'paused'. Andernfalls erscheint eine Fehlermeldung in der Statusanzeige.
+		
+		* ![Stop Button](/img/help/arrow-circle-double_16.png "Stop-Button") Stop-Button: Stoppt den Job auf *Academy*. Der Zustand wechselt im Erfolgsfall auf 'stopped'. Andernfalls erscheint eine Fehlermeldung in der Statusanzeige.
+		
+		* ![Reinitialize Button](/img/help/restart_16.png "Reinitialize-Button") Reinitialize-Button: Reinitialisiert den Job auf *Academy*. Das bedeutet, dass ein neuer Job (mit neuer ID) angelegt wird, welcher die selbe Configuration enthält. Im Erfolgsfall erscheint ein neuer Job in der Ansicht. Andernfalls erscheint eine Fehlermeldung in der Statusanzeige.
+		
+		* ![Download Button](/img/help/drive-download_16.png "Download-Button") Download-Button: Läd den Job von *Academy* herunter und öffnet ihn in *Wand*. Im Fehlerfall erscheint eine Fehlermeldung in der Statusanzeige.
+		
+		* ![Delete Button](/img/help/cross-button_16.png "Delete-Button") Delete-Button: Löscht den Job auf *Academy*. Im Erfolgsfall wird der Job aus der Ansicht entfernt. Andernfalls erscheint eine Fehlermeldung in der Statusanzeige.
+		
+		* ![Details Button](/img/help/plus_16.png "Details-Button") Details-Button: Öffnet den Detailbereich des Job in der Ansicht.
+		
+		
+	a(name='JobItemDetails')
+	h5(class='helpChapter') Details
+
+	:markdown
+		![Job Details](/img/help/wand_jobs_jobitem_details.png "Details")
+		
+		* Submitted: Das Datum, an welchem der Job an *Academy* übertragen wurde.
+		
+		* Started: Das Datum, an welchem der Job auf *Academy* gestartet wurde. Ein '-' kennzeichnet, dass der Job noch nicht gestartet wurde.
+		
+		* Stopped: Das Datum, an welchem der Job auf *Academy* gestoppt wurde. Ein '-' kennzeichnet, dass der Job bislang nicht gestoppt wurde.
+		
+		* Finished: Das Datum, an welchem der Job auf *Academy* erfolgreich beendet wurde. Ein '-' kennzeichnet, dass der Job bislang nicht beendet wurde.
+		
+		* Finished Workers : Die Anzahl abgearbeiteter Worker.
+		
+		* Running Workers: Die Anzahl laufender Worker. 

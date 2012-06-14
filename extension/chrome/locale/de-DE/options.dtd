@@ -1,0 +1,35 @@
+<!-- Connection -->
+<!ENTITY  options.connection.label        "Verbindung">
+<!ENTITY  options.connection.server.label        "Server">
+<!ENTITY  options.connection.ip.label        "IP:">
+<!ENTITY  options.connection.port.label        "Port:">
+<!ENTITY  options.connection.timeout.label        "Timeout(ms):">
+<!ENTITY  options.connection.ip.help.tooltip        "Definiert die IP-Adresse/URL von Academy">
+<!ENTITY  options.connection.port.help.tooltip        "Definiert den PORT von Academy">
+<!ENTITY  options.connection.timeout.help.tooltip        "Definiert, nach welcher Zeit der ein Request veraltet">
+
+<!--ENTITY  The commented-out entityies are none-used properties inside the options dialog.-->
+<!--ENTITY  optionss.connection.auth.label        "Authentifizierung"-->
+<!--ENTITY  options.connection.usr.label        "Benutzername:"-->
+<!--ENTITY  options.connection.pw.label        "Passwort:"-->
+<!--ENTITY  options.connection.showpw.label        "Passwort anzeigen"-->
+
+<!-- Display -->
+
+<!ENTITY  options.display.label        "Darstellung">
+<!ENTITY  options.display.general.label        "Allgemein">
+<!ENTITY  options.display.stimeout.label        "Status Timeout(ms):">
+<!ENTITY  options.display.stimeout.tooltip        "Definiert, wie lange eine Statusnachricht angezeigt wird">
+<!ENTITY  options.display.colors.label        "Farben">
+<!ENTITY  options.display.opac.label        "Opazität von Markierungen (&#37;):">
+<!ENTITY  options.display.color.label        "Farbe von Markierungen:">
+<!ENTITY  options.display.opac.help.tooltip        "Definiert die Opazität von Markierungen, welche nach/während dem Inspect-Vorgang hinzugefügt werden">
+<!ENTITY  options.display.color.help.tooltip        "Definiert die Farbe von Markierungen, welche nach/während dem Inspect-Vorgang hinzugefügt werden">
+
+<!ENTITY  options.display.navigation.label        "Navigation">
+<!ENTITY  options.display.spacing.label        "Knotenabstand:">
+<!ENTITY  options.display.spacing.help.tooltip        "Definiert den Abstand zwischen Navigationsknoten">
+<!ENTITY  options.display.style.label        "Knotendarstellung:">
+<!ENTITY  options.display.iat.label        "Bild und Text">
+<!ENTITY  options.display.i.label        "Bild">
+<!ENTITY  options.display.style.help.tooltip        "Definiert die Darstellung von Navigationsknoten">

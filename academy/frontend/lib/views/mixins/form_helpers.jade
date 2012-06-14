@@ -1,0 +1,17 @@
+mixin textfield(name, value, label, disabled)
+	.control-group
+		label.control-label(for=name)= label
+		.controls
+			if(disabled)
+				input.xlarge.idisabled(type='text', name=name, value=value, disabled)
+			else
+				input.xlarge(type='text', name=name, value=value)
+
+mixin select(name, values, label)
+	.clearfix
+		label(for=name)= label
+		.input
+			select.xlarge(name=name)
+				- each value in values
+					-for (key in value) break;
+					option(value=key)= value[key]

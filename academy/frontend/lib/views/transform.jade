@@ -1,0 +1,118 @@
+extends layout
+
+block content
+	h1= 'Transform: ' + collection + ' (' + project + ')'
+
+	p Transform documents inside the collection. One document is represented by one row in the collection table. The given modifier function will be applied for each row separately. Please note that you define the body of the modifier function only! The function body must contain plain JavaScript code only. It is not allowed to use external libraries such as jQuery.
+
+	style(type='text/css')
+		.CodeMirror { border: 1px solid #eee; margin-bottom: 10px; width: 444px; }
+		.CodeMirror-scroll { height: 100%; }
+
+	label(for='presets')
+		strong Presets
+	.input
+		select#presets(name='presets')
+
+	.row
+		.span6
+			form(method='post', enctype='multipart/form-data')
+				fieldset
+					.clearfix
+						label(for='transform[modifier]')
+							strong Modifier Function Body
+						.input
+							textarea.xxlarge#modifier(type='textarea', rows='7', cols='200', name='transform[modifier]')
+					.clearfix
+						.actions
+							a.btn(data-toggle='modal', data-target='#jsLintOutput', href='#jsLintOutput', onclick='runJsLint();') Lint
+							!= " "
+							button.btn.primary(type="send", value="Send") Send
+							!= " &nbsp; "
+							a(href="/projects/#{project}/#{collection}") Cancel
+
+		.span6
+			div(style="font-weight: bold; margin-bottom: 4px;") Preview
+			#preview.collection-table-wrap ...
+
+	div.modal.hide.fade#jsLintOutput
+		.modal-header
+			a(class='close', data-dismiss='modal') ×
+			h2 JSLint says
+		.modal-body#jsLintContent ...
+
+	!= js('transformPresets')
+	!= js('filterEmulator')
+
+	script(type='text/javascript')
+		var rawKeys = [];
+		var rawData = [];
+
+		var updatePreview = function() {
+			$.get('/projects/#{project}/#{collection}', function(data) {
+				var keys = [];
+
+				$.each(data, function() {
+					$.each(this, function(key, val) {
+						if (key !== '_id') {
+							keys.push($.trim(key));
+						}
+					});
+				});
+
+				rawKeys = $.unique($.unique(keys)).sort();
+
+				rawData = transformationEmulator.transform(data, modifierEditor.getFuncDef(false));
+
+				$('#preview').text('');
+				$.getScript('/js/collection.js');
+			}, 'json');
+		};
+
+		var jsonToHtml = function(json) {
+			var html = "";
+
+			$.each(json, function() {
+				html += "<p>";
+
+				$.each(this, function(key, value) {
+					if (typeof key !== 'undefined' && typeof value !== 'undefined') {
+						html += "<strong>" + key + ":</strong> " + value + "<br />";	
+					}
+				});
+
+				html += "</p><hr />";
+			});
+
+			return html;
+		}
+
+		var runJsLint = function() {
+			var output = "";
+
+			if (!JSLINT(modifierEditor.getFuncDef(true))) {
+				output += "<h4>Modifier Function Body</h4><hr />"
+				output += jsonToHtml(JSLINT.errors);
+			}
+
+			if (output === "") {
+				$('#jsLintContent').html('Congrats, your code seems to be fine! :)');
+			} else {
+				$('#jsLintContent').html(output);
+			}
+		}
+
+	script(type='text/javascript')
+		var modifierEditor = CodeMirror.fromTextArea(document.getElementById('modifier'), {
+			lineNumbers: true,
+			onChange: updatePreview
+		});
+		modifierEditor.getFuncDef = function(includeFuncName) {
+			var prefix = "";
+
+			if (includeFuncName) {
+				prefix = "var modifier = ";
+			}
+
+			return prefix + "function (object) {" + modifierEditor.getValue() + "}";
+		};

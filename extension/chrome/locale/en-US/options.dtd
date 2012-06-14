@@ -1,0 +1,34 @@
+<!-- Connection -->
+<!ENTITY  options.connection.label        "Connection">
+<!ENTITY  options.connection.server.label        "Server">
+<!ENTITY  options.connection.ip.label        "IP:">
+<!ENTITY  options.connection.port.label        "Port:">
+<!ENTITY  options.connection.timeout.label        "Timeout(ms):">
+<!ENTITY  options.connection.ip.help.tooltip        "Defines the IP Address of Academy">
+<!ENTITY  options.connection.port.help.tooltip        "Defines the Port of Academy">
+<!ENTITY  options.connection.timeout.help.tooltip        "Defines the period of time after which a Timeout Event will be thrown.">
+
+<!--ENTITY  The commented-out entityies are none-used properties inside the options dialog.-->
+<!--ENTITY  optionss.connection.auth.label        "Authentification"-->
+<!--ENTITY  options.connection.usr.label        "Username:"-->
+<!--ENTITY  options.connection.pw.label        "Password:"-->
+<!--ENTITY  options.connection.showpw.label        "Show Password"-->
+
+<!-- Display -->
+<!ENTITY  options.display.label        "Display">
+<!ENTITY  options.display.general.label        "General">
+<!ENTITY  options.display.stimeout.label        "Status Timeout(ms):">
+<!ENTITY  options.display.stimeout.tooltip        "Defines the period of time a Status Message will be shown.">
+<!ENTITY  options.display.colors.label        "Colors">
+<!ENTITY  options.display.opac.label        "Mark Opacity (&#37;):">
+<!ENTITY  options.display.color.label        "Mark Color:">
+<!ENTITY  options.display.opac.help.tooltip        "Defines the Opacity of the Inspection Marks.">
+<!ENTITY  options.display.color.help.tooltip        "Defines the color of the Inspection Marks.">
+
+<!ENTITY  options.display.navigation.label        "Navigation">
+<!ENTITY  options.display.spacing.label        "Node Spacing:">
+<!ENTITY  options.display.spacing.help.tooltip        "Defines the spacing between the Nodes of the Navigation Tab.">
+<!ENTITY  options.display.style.label        "Node Style:">
+<!ENTITY  options.display.iat.label        "Image and Text">
+<!ENTITY  options.display.i.label        "Image">
+<!ENTITY  options.display.style.help.tooltip        "Defines the appearance of the Nodes.">

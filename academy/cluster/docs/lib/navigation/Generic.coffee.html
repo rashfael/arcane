@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head><title>Generic.coffee</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><link rel="stylesheet" media="all" href="../../docco.css"></head><body><div id="container"><div id="background"></div><div id="jump_to">Jump To &hellip;<div id="jump_wrapper"><div id="jump_page"><a href="../../index.html" class="source"><span class="file_name">README</span></a><a href="../../lib/cluster.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">cluster.coffee</span></a><a href="../../lib/encoder.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">encoder.coffee</span></a><a href="../../lib/navigation.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">navigation.coffee</span></a><a href="../../lib/navigation/Collect.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Collect.coffee</span></a><a href="../../lib/navigation/FillForm.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">FillForm.coffee</span></a><a href="../../lib/navigation/FollowLink.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">FollowLink.coffee</span></a><a href="../../lib/navigation/Generic.coffee.html" class="source selected"><span class="base_path">lib / navigation / </span><span class="file_name">Generic.coffee</span></a><a href="../../lib/navigation/Magic.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Magic.coffee</span></a><a href="../../lib/navigation/Pager.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Pager.coffee</span></a><a href="../../lib/navigation/Start.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Start.coffee</span></a><a href="../../lib/navigation/WalkthroughItems.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">WalkthroughItems.coffee</span></a><a href="../../lib/navigation/WalkthroughLinks.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">WalkthroughLinks.coffee</span></a><a href="../../lib/navigation/helpers.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">helpers.coffee</span></a><a href="../../lib/parser.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">parser.coffee</span></a><a href="../../lib/worker.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">worker.coffee</span></a></div></div></div><table cellpadding="0" cellspacing="0"><thead><tr><th class="docs"><h1>Generic.coffee</h1><div class="filepath">lib/navigation/</div></th><th class="code"></th></tr></thead><tbody><tr id="section-1"><td class="docs"><div class="pilwrap"><a href="#section-1" class="pilcrow">&#182;</a></div>
+</td><td class="code"><div class="highlight"><pre><span class="nv">log4js = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;log4js&#39;</span><span class="p">)</span>
+<span class="nv">logger = </span><span class="nx">log4js</span><span class="p">.</span><span class="nx">getLogger</span> <span class="s">&#39;nav:generic&#39;</span>
+<span class="nx">logger</span><span class="p">.</span><span class="nx">setLevel</span> <span class="s">&#39;DEBUG&#39;</span>
+
+<span class="nv">util = </span><span class="nx">require</span> <span class="s">&#39;util&#39;</span>
+<span class="nv">jquery = </span><span class="nx">require</span> <span class="s">&#39;jquery&#39;</span>
+<span class="nv">assert = </span><span class="nx">require</span> <span class="s">&#39;assert&#39;</span>
+<span class="nv">jsdom = </span><span class="nx">require</span> <span class="s">&#39;jsdom&#39;</span>
+
+<span class="nx">require</span><span class="p">(</span><span class="s">&#39;jsdom&#39;</span><span class="p">).</span><span class="nv">defaultDocumentFeatures = </span><span class="p">{</span>
+  <span class="nv">FetchExternalResources : </span><span class="p">[]</span>
+  <span class="nv">ProcessExternalResources : </span><span class="kc">false</span>
+  <span class="nv">MutationEvents : </span><span class="kc">false</span>
+  <span class="nv">QuerySelector : </span><span class="kc">false</span>
+<span class="p">}</span></pre></div></td></tr><tr id="section-2"><td class="docs"><div class="pilwrap"><a href="#section-2" class="pilcrow">&#182;</a></div><h3>Generic</h3>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>html</strong>: source of the page</li>
+<li><strong>config</strong>: magic configuration of this nav element</li>
+<li><strong>request</strong>: the request object which produced the html</li>
+</ul>
+</td><td class="code"><div class="highlight"><pre><span class="nv">module.exports = </span><span class="k">class</span> <span class="nx">Generic</span>
+
+  <span class="nv">constructor: </span><span class="nf">(@html, @config, @request, @input) -&gt;</span>
+    <span class="k">throw</span> <span class="nb">Error</span> <span class="s">&#39;GenericElement is missing args!&#39;</span> <span class="k">if</span> <span class="o">not</span> <span class="nx">config</span>
+    <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="s">&#39;++ GenericElement (navigation)&#39;</span>
+    <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="s">&#39; + Request&#39;</span><span class="p">,</span> <span class="nx">@request</span>
+    <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="s">&#39; + Config&#39;</span><span class="p">,</span> <span class="nx">@config</span>
+  </pre></div></td></tr><tr id="section-3"><td class="docs"><div class="pilwrap"><a href="#section-3" class="pilcrow">&#182;</a></div><h3>getWindow</h3>
+
+<p>shortcut to execute js in a DOM created from the given HTML</p>
+
+<p>cb(errors, window)</p>
+
+<p>Window is populated with jQuery</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="nv">getWindow: </span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nv">reqUrl = </span><span class="nx">@request</span><span class="p">.</span><span class="nx">url</span>
+    <span class="nx">assert</span><span class="p">.</span><span class="nx">ok</span> <span class="nx">@html</span><span class="p">,</span> <span class="s">&#39;HTML exists and this is right.&#39;</span>
+    <span class="nx">jsdom</span><span class="p">.</span><span class="nx">env</span> <span class="nx">@html</span><span class="p">,</span> <span class="p">[],</span> <span class="nf">(err, window) -&gt;</span>
+      <span class="k">if</span> <span class="nx">err</span>
+        <span class="nx">logger</span><span class="p">.</span><span class="nx">fatal</span> <span class="s">&quot;Window creation failed wit </span><span class="si">#{</span><span class="nx">err</span><span class="si">}</span><span class="s"> HTML: &quot;</span> <span class="o">+</span> <span class="nx">@html</span>
+        <span class="nx">cb</span> <span class="nx">err</span><span class="p">,</span> <span class="kc">null</span> <span class="c1"># fast exit if window creation fails hard</span>
+        <span class="k">return</span> <span class="kc">null</span></pre></div></td></tr><tr id="section-4"><td class="docs"><div class="pilwrap"><a href="#section-4" class="pilcrow">&#182;</a></div><p>set url of document from request to allow resolving of relative hyperlinks</p>
+</td><td class="code"><div class="highlight"><pre>      <span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nv">_URL = </span><span class="nx">reqUrl</span></pre></div></td></tr><tr id="section-5"><td class="docs"><div class="pilwrap"><a href="#section-5" class="pilcrow">&#182;</a></div><p>attach jQuery to the window</p>
+</td><td class="code"><div class="highlight"><pre>      <span class="nx">jquery</span><span class="p">.</span><span class="nx">create</span> <span class="nb">window</span>
+      <span class="nx">assert</span><span class="p">.</span><span class="nx">ok</span> <span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span><span class="p">,</span> <span class="s">&#39;Window has loaded jQuery&#39;</span>
+      <span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span> <span class="s">&quot;JSDOM: Created Window with jQuery </span><span class="si">#{</span><span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">jquery</span><span class="si">}</span><span class="s">!&quot;</span>
+      <span class="nx">cb</span> <span class="nx">err</span><span class="p">,</span> <span class="nb">window</span>
+
+  <span class="nv">process: </span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span> <span class="s">&#39;&#39;&#39;============================</span>
+<span class="s">            Element Configuration:</span>
+<span class="s">            ============================&#39;&#39;&#39;</span>
+    <span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span> <span class="s">&#39;CONFIG:&#39;</span><span class="p">,</span> <span class="nx">@config</span><span class="p">,</span> <span class="s">&#39;REQ:&#39;</span><span class="p">,</span> <span class="nx">@request</span>
+    <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span> <span class="s">&quot;processing this element is not implemented yet: &quot;</span> <span class="o">+</span> <span class="nx">util</span><span class="p">.</span><span class="nx">inspect</span> <span class="nx">@config</span><span class="p">,</span> <span class="kc">false</span><span class="p">,</span> <span class="mi">4</span>
+
+</pre></div></td></tr></tbody></table><div id="generated">generated Sun Apr 22 2012 13:41:42 GMT+0200 (CEST)  </div><div id="projectname"><a href="../../index.html">Arcane Academy Cluster</a></div></div></body></html>

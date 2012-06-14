@@ -1,0 +1,253 @@
+{
+    "mappings": {
+        "1326748014627": {
+            "map": {
+                "img_1": "Name",
+                "price": "Preis"
+            },
+            "validFor": [
+                "nav1326748014592",
+                "nav1326748014595",
+                "nav1326748014594"
+            ],
+            "name": "Default mapping"
+        }
+    },
+    "navigation": {
+        "base": [
+            {
+                "name": "Entry point",
+                "type": "Start",
+                "config": {
+                    "request": {
+                        "url": "http://www.led-fashion.com/index.php/cat/c1_LED-T-Shirts.html/XTCsid/gjpngirlfo2n9pp6k7qm8em74i9v8ifc"
+                    }
+                },
+                "id": "nav1326748014592",
+                "next": [
+                    "nav1326748014593"
+                ]
+            }
+        ],
+        "nav1326748014593": {
+            "name": "Walk through links",
+            "type": "WalkthroughLinks",
+            "config": {
+                "areaSelector": ".main>table tr>td>table tr>td"
+            },
+            "next": [
+                "nav1326748014594"
+            ],
+            "id": "nav1326748014593"
+        },
+        "nav1326748014594": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": "",
+                "customSelector": "#cart_quantity > table:first-child tr:first-child > td:first-child > table:first-child tr:first-child > td:nth-child(2),#cart_quantity > table:first-child tr:first-child > td:first-child > table:first-child tr:first-child > td:first-child > table:first-child tr:first-child > td:first-child",
+                "magic": {}
+            },
+            "next": [
+                "nav1326748014595"
+            ],
+            "id": "nav1326748014594",
+            "nodeConfigId": "1326748165861"
+        },
+        "nav1326748014595": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "itemSelector": ""
+            },
+            "next": [],
+            "id": "nav1326748014595"
+        }
+    },
+    "config": {
+        "currentConfigID": "1326748014592",
+        "configs": {
+            "1326748014592": {
+                "_name": "Default config",
+                "_id": 1326748014592,
+                "_listConfig": {
+                    "_inspectedNodes": [
+                        {
+                            "nodeIndex": 1
+                        },
+                        {
+                            "nodeIndex": 6
+                        },
+                        {
+                            "nodeIndex": 10
+                        },
+                        {
+                            "nodeIndex": 13
+                        },
+                        {
+                            "nodeIndex": 1
+                        }
+                    ],
+                    "_exceptions": [],
+                    "_selectors": [
+                        "html > body > table:nth-child(2) tr:first-child > td:first-child > table:first-child tr:nth-child(2) > td:first-child > table:first-child tr:first-child > td:nth-child(2) > table:first-child tr:first-child > td:first-child > table:first-child tr:first-child > td:first-child > table:nth-child(2) tr:first-child > td:first-child > table:first-child > tbody:first-child .undefined",
+                        "html > body > table:nth-child(2) tr:first-child > td:first-child > table:first-child tr:nth-child(2) > td:first-child > table:first-child tr:first-child > td:nth-child(2) > table:first-child tr:first-child > td:first-child > table:first-child tr:first-child > td:first-child > table:nth-child(2) tr:first-child > td:first-child > table:first-child tr > td"
+                    ]
+                },
+                "_magicConfig": {}
+            },
+            "1326748165861": {
+                "_name": "Magic",
+                "_id": 1326748165861,
+                "_listConfig": {
+                    "_inspectedNodes": [
+                        {
+                            "nodeIndex": 2,
+                            "sizcache048399971994522106": 3363,
+                            "sizset": 8
+                        },
+                        {
+                            "nodeIndex": 1
+                        }
+                    ],
+                    "_exceptions": []
+                },
+                "_magicConfig": {}
+            }
+        }
+    },
+    "mappingData": [
+        {
+            "id": 1326748014627,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "http://www.led-fashion.com/",
+                    "selector": "",
+                    "data": []
+                },
+                {
+                    "selector": "",
+                    "data": [],
+                    "url": "http://www.led-fashion.com/index.php/cat/c1_LED-T-Shirts.html/XTCsid/gjpngirlfo2n9pp6k7qm8em74i9v8ifc"
+                },
+                {
+                    "selector": "#cart_quantity > table:first-child tr:first-child > td:first-child > table:first-child tr:first-child > td:nth-child(2),#cart_quantity > table:first-child tr:first-child > td:first-child > table:first-child tr:first-child > td:first-child > table:first-child tr:first-child > td:first-child",
+                    "data": [
+                        {
+                            "key": "MagicZoomHeader",
+                            "dbKey": "Name",
+                            "values": [
+                                "Speed T-Shirt"
+                            ]
+                        },
+                        {
+                            "key": "MagicZoomLoading",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Loading zoom..."
+                            ]
+                        },
+                        {
+                            "key": "MagicZoomPlusHint",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Zoom"
+                            ]
+                        },
+                        {
+                            "key": "main",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Artikeldatenblatt drucken",
+                                "Art.Nr.: lf-00036    Lieferzeit: 2-3 Tage innerhalb Deutschland",
+                                "Anzahl"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "spacer"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "Speed T-Shirt"
+                            ]
+                        },
+                        {
+                            "key": "img_2",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Speed T-Shirt"
+                            ]
+                        },
+                        {
+                            "key": "price",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "Nur    29,90 EUR"
+                            ]
+                        },
+                        {
+                            "key": "productOldPrice",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Statt  34,90 EUR"
+                            ]
+                        },
+                        {
+                            "key": "\n            \n            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n            S\n            "
+                            ]
+                        },
+                        {
+                            "key": "\n            Körperlänge\n            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n            69 cm\n            "
+                            ]
+                        },
+                        {
+                            "key": "\n            Brustweite\n            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n            50 cm\n            "
+                            ]
+                        },
+                        {
+                            "key": "T-Shirt Größe: ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n\t\n    s  \n  m  \n  l  \n  xl  \n  xxl  \n\n"
+                            ]
+                        }
+                    ],
+                    "url": "http://www.led-fashion.com/product_info.php/info/p346_Speed-T-Shirt.html"
+                },
+                {
+                    "selector": "html > body > table:nth-child(2) tr:first-child > td:first-child > table:first-child tr:nth-child(2) > td:first-child > table:first-child tr:first-child > td:nth-child(2) > table:first-child tr:first-child > td:first-child > table:first-child tr:first-child > td:first-child > form#cart_quantity > table:first-child tr:first-child > td:first-child > table:first-child tr:first-child > td:nth-child(2),html > body > table:nth-child(2) tr:first-child > td:first-child > table:first-child tr:nth-child(2) > td:first-child > table:first-child tr:first-child > td:nth-child(2) > table:first-child tr:first-child > td:first-child > table:first-child tr:first-child > td:first-child > form#cart_quantity > table:first-child tr:first-child > td:first-child > table:first-child tr:first-child > td:first-child > table:first-child tr:first-child > td:first-child",
+                    "data": [],
+                    "url": "http://www.led-fashion.com/index.php/cat/c1_LED-T-Shirts.html"
+                }
+            ]
+        }
+    ]
+}

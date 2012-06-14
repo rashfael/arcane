@@ -1,0 +1,65 @@
+<!-- Global -->
+<!ENTITY  main.global.newJob.tooltip        "Neuer Job">
+<!ENTITY  main.global.sendJob.tooltip        "Sende aktuellen Job an Arcane">
+<!ENTITY  main.global.loadJob.tooltip        "Job laden">
+<!ENTITY  main.global.saveJob.tooltip        "Job speichern">
+
+
+<!-- Graph -->
+<!ENTITY  main.tabs.nav.label        "Navigation">
+<!ENTITY  main.tabs.nav.tooltip        "Tab für die Moddelierung des Navigationspfades">
+<!ENTITY  main.tabs.nav.capture.tooltip        "Aktiviere/deaktiviere Beobachtungsmodus">
+<!ENTITY  main.tabs.nav.undo.tooltip       "Rückgängig">
+<!ENTITY  main.tabs.nav.redo.tooltip        "Wiederherstellen">
+<!ENTITY  main.tabs.nav.delete.tooltip       "Navigationsknoten löschen">
+<!ENTITY  main.tabs.nav.add.tooltip       "Navigationsknoten hinzufügen">
+
+<!ENTITY  main.tabs.nav.add.ep.tooltip       "Zusätzlicher Einstiegspunkt für den aktuellen Job">
+<!ENTITY  main.tabs.nav.add.wtl.tooltip       "Läuft durch eine Liste von Links innerhalb eines HTML-Elements">
+<!ENTITY  main.tabs.nav.add.wti.tooltip       "Läuft durch eine Liste von HTML-Elementen innerhalb eines HTML-Elements">
+<!ENTITY  main.tabs.nav.add.wtp.tooltip       "Läuft durch alle Links eines Pagers">
+<!ENTITY  main.tabs.nav.add.fl.tooltip       "Folgt einem Link, z.B. um Detailseiten zu scrapen.">
+<!ENTITY  main.tabs.nav.add.ff.tooltip       "Füllt ein Formular aus und überträgt Eingaben">
+<!ENTITY  main.tabs.nav.add.mg.tooltip       "Erkennt Schlüssel-Wert-Paare (SWP) innerhalb eines HTML-Elements">
+<!ENTITY  main.tabs.nav.add.cd.tooltip       "Sammelt erkannte SWP des Vorgängerknotens ein und bildet sie auf Collection-Splaten ab">
+
+<!ENTITY  main.tabs.nav.add.edge.tooltip       "Navigationskante hinzufügen">
+<!ENTITY  main.tabs.nav.delete.edge.tooltip       "Navigationskante löschen">
+
+<!ENTITY  main.tabs.nav.help.tooltip       "Hilfekapitel des Navigations-Tabs in neuem Fenster öffnen">
+
+
+
+<!-- Configuration -->
+<!ENTITY  main.tabs.conf.label        "Configuration">
+<!ENTITY  main.tabs.conf.tooltip        "Tab für die Verwaltung von Configurations">
+<!ENTITY  main.tabs.conf.configuration.label        "Configuration:">
+<!ENTITY  main.tabs.conf.add.tooltip        "Configuration hinzufügen">
+<!ENTITY  main.tabs.conf.delete.tooltip        "Configuration löschen">
+<!ENTITY  main.tabs.conf.rename.tooltip        "Configuration umbenennen">
+<!ENTITY  main.tabs.conf.help.tooltip        "Hilfekapitel des Configuration-Tabs in neuem Fenster öffnen">
+
+<!-- Mappings -->
+<!ENTITY  main.tabs.mapp.label        "Mappings">
+<!ENTITY  main.tabs.mapp.tooltip        "Tab für die Verwaltung von Mappings">
+
+<!ENTITY  main.tabs.mapp.new.tooltip        "Mapping hinzufügen">
+<!ENTITY  main.tabs.mapp.rename.tooltip        "Mapping umbenennen">
+<!ENTITY  main.tabs.mapp.delete.tooltip        "Mapping löschen">
+<!ENTITY  main.tabs.mapp.conf.label        "Quelle:">
+<!ENTITY  main.tabs.mapp.conf.tooltip        "Aktualisiere Ansicht mit dem Selektor aus der Quelle">
+<!ENTITY  main.tabs.mapp.vc.label        "Min. Vorkommen:">
+<!ENTITY  main.tabs.mapp.vc.tooltip        "Definiert das minimale Vorkommen eines eindeutigen Wertes">
+<!ENTITY  main.tabs.mapp.help.tooltip        "Hilfekapitel des Mapping-Tabs in neuem Fenster öffnen">
+
+<!-- Jobs -->
+<!ENTITY  main.tabs.jobs.label        "Jobs">
+<!ENTITY  main.tabs.jobs.tooltip        "Tab für die Verwaltung von Jobs">
+<!ENTITY  main.tabs.jobs.update.tooltip        "Anzeige aktualisieren">
+<!ENTITY  main.tabs.jobs.project.label        "Projektfilter:">
+<!ENTITY  main.tabs.jobs.help.tooltip        "Hilfekapitel des Jobs-Tabs in neuem Fenster öffnen">
+
+
+<!-- Debug -->
+<!ENTITY  main.tabs.debug.label        "Debug">
+<!ENTITY  main.tabs.debug.tooltip        "Debug Arcane Wand">

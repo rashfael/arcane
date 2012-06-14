@@ -1,0 +1,282 @@
+<!DOCTYPE html><html><head><title>projects.coffee</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><link rel="stylesheet" media="all" href="../../docco.css"></head><body><div id="container"><div id="background"></div><div id="jump_to">Jump To &hellip;<div id="jump_wrapper"><div id="jump_page"><a href="../../index.html" class="source"><span class="file_name">README</span></a><a href="../../lib/cluster.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">cluster.coffee</span></a><a href="../../lib/job.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">job.coffee</span></a><a href="../../lib/public/js/collection.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">collection.coffee</span></a><a href="../../lib/public/js/extract.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">extract.coffee</span></a><a href="../../lib/public/js/filterEmulator.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">filterEmulator.coffee</span></a><a href="../../lib/public/js/mergePresets.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">mergePresets.coffee</span></a><a href="../../lib/public/js/script.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">script.coffee</span></a><a href="../../lib/public/js/transformPresets.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">transformPresets.coffee</span></a><a href="../../lib/resultTreeNode.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">resultTreeNode.coffee</span></a><a href="../../lib/routers/api.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">api.coffee</span></a><a href="../../lib/routers/help.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">help.coffee</span></a><a href="../../lib/routers/jobs.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">jobs.coffee</span></a><a href="../../lib/routers/monitor.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">monitor.coffee</span></a><a href="../../lib/routers/projects.coffee.html" class="source selected"><span class="base_path">lib / routers / </span><span class="file_name">projects.coffee</span></a><a href="../../lib/routers/submit.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">submit.coffee</span></a><a href="../../lib/schemas/job.coffee.html" class="source "><span class="base_path">lib / schemas / </span><span class="file_name">job.coffee</span></a><a href="../../lib/schemas/project.coffee.html" class="source "><span class="base_path">lib / schemas / </span><span class="file_name">project.coffee</span></a><a href="../../lib/server.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">server.coffee</span></a><a href="../../lib/spawner.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">spawner.coffee</span></a><a href="../../lib/supervisor.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">supervisor.coffee</span></a><a href="../../lib/task.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">task.coffee</span></a><a href="../../lib/transform.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">transform.coffee</span></a><a href="../../lib/worker.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">worker.coffee</span></a></div></div></div><table cellpadding="0" cellspacing="0"><thead><tr><th class="docs"><h1>projects.coffee</h1><div class="filepath">lib/routers/</div></th><th class="code"></th></tr></thead><tbody><tr id="section-1"><td class="docs"><div class="pilwrap"><a href="#section-1" class="pilcrow">&#182;</a></div>
+</td><td class="code"><div class="highlight"><pre><span class="nv">mongolian = </span><span class="nx">global</span><span class="p">.</span><span class="nx">mongolian</span>
+<span class="nv">_ = </span><span class="nx">require</span> <span class="s">&#39;underscore&#39;</span>
+<span class="nv">transform = </span><span class="nx">require</span> <span class="s">&#39;../transform&#39;</span>
+
+<span class="nv">Project = </span><span class="nx">global</span><span class="p">.</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span> <span class="s">&#39;Project&#39;</span>
+
+<span class="nv">module.exports.list = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nx">Project</span><span class="p">.</span><span class="nx">find</span> <span class="p">{},</span> <span class="nf">(err, projects) -&gt;</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span> <span class="s">&#39;projects&#39;</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nv">title: </span><span class="s">&#39;Projects | Arcane Academy&#39;</span>
+      <span class="nv">projects: </span><span class="nx">projects</span>
+    <span class="p">}</span>
+
+<span class="nv">module.exports.details = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nx">Project</span><span class="p">.</span><span class="nx">findById</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nf">(err, project) -&gt;</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span> <span class="s">&#39;project_details&#39;</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nv">title: </span><span class="s">&#39;Project Details | Arcane Academy&#39;</span>
+      <span class="nv">project: </span><span class="nx">project</span>
+    <span class="p">}</span>
+
+<span class="nv">module.exports.collection = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nx">Project</span><span class="p">.</span><span class="nx">findById</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nf">(err, project) -&gt;</span>
+    <span class="nv">col = </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">col</span>
+    
+    <span class="nv">colMeta = </span><span class="nx">project</span><span class="p">.</span><span class="nx">collections</span><span class="p">[</span><span class="nx">col</span><span class="p">]</span>
+
+    <span class="nv">structure = </span><span class="nx">colMeta</span><span class="p">.</span><span class="nx">structure</span>
+    <span class="nv">collection = </span><span class="nx">mongolian</span><span class="p">.</span><span class="nx">db</span><span class="p">(</span><span class="nx">project</span><span class="p">.</span><span class="nx">database</span><span class="p">).</span><span class="nx">collection</span><span class="p">(</span><span class="nx">col</span><span class="p">)</span>
+
+    <span class="k">if</span> <span class="nx">req</span><span class="p">.</span><span class="nx">accepts</span> <span class="s">&#39;html&#39;</span>
+      <span class="nx">collection</span><span class="p">.</span><span class="nx">find</span><span class="p">().</span><span class="nx">limit</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">pagination</span><span class="p">.</span><span class="nx">pagerLimit</span><span class="p">).</span><span class="nx">skip</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">pagination</span><span class="p">.</span><span class="nx">page</span><span class="o">*</span><span class="nx">res</span><span class="p">.</span><span class="nx">pagination</span><span class="p">.</span><span class="nx">pagerLimit</span><span class="p">).</span><span class="nx">toArray</span> <span class="nf">(err, data) -&gt;</span>
+        <span class="nx">collection</span><span class="p">.</span><span class="nx">count</span> <span class="nf">(err, count) -&gt;</span>
+          <span class="nx">res</span><span class="p">.</span><span class="nx">pagination</span><span class="p">.</span><span class="nx">generate</span> <span class="nx">count</span>
+          <span class="k">if</span> <span class="nx">req</span><span class="p">.</span><span class="nx">method</span> <span class="o">is</span> <span class="s">&#39;POST&#39;</span>
+            <span class="nv">template = </span><span class="s">&#39;collection_table&#39;</span>
+          <span class="k">else</span>
+            <span class="nv">template = </span><span class="s">&#39;collection&#39;</span>
+          <span class="nx">res</span><span class="p">.</span><span class="nx">render</span> <span class="nx">template</span><span class="p">,</span>
+            <span class="nv">title: </span><span class="s">&#39;Project Details | Arcane Academy&#39;</span>
+            <span class="nv">data: </span><span class="nx">data</span>
+            <span class="nv">project: </span><span class="nx">project</span>
+            <span class="nv">col: </span><span class="nx">col</span>
+            <span class="nv">structure: </span><span class="nx">structure</span>
+            <span class="nv">empty: </span><span class="nx">count</span> <span class="o">is</span> <span class="mi">0</span>
+
+    <span class="k">else</span> <span class="k">if</span> <span class="nx">req</span><span class="p">.</span><span class="nx">accepts</span> <span class="s">&#39;application/json&#39;</span>
+      <span class="nx">collection</span><span class="p">.</span><span class="nx">find</span><span class="p">().</span><span class="nx">limit</span><span class="p">(</span><span class="mi">10</span><span class="p">).</span><span class="nx">skip</span><span class="p">(</span><span class="nx">res</span><span class="p">.</span><span class="nx">pagination</span><span class="p">.</span><span class="nx">page</span><span class="o">*</span><span class="nx">res</span><span class="p">.</span><span class="nx">pagination</span><span class="p">.</span><span class="nx">pagerLimit</span><span class="p">).</span><span class="nx">toArray</span> <span class="nf">(err, data) -&gt;</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="nx">data</span>
+
+<span class="nv">module.exports.structure = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nx">Project</span><span class="p">.</span><span class="nx">findById</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nf">(err, project) -&gt;</span>
+    <span class="nv">col = </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">col</span>
+
+    <span class="nv">map = </span><span class="o">-&gt;</span>
+      <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">val</span> <span class="k">of</span> <span class="k">this</span>
+        <span class="k">if</span> <span class="nx">key</span> <span class="o">is</span> <span class="s">&#39;_id&#39;</span>
+          <span class="k">continue</span>
+        <span class="nx">emit</span> <span class="nx">key</span><span class="p">,</span> <span class="p">{</span><span class="nv">count: </span><span class="mi">1</span><span class="p">}</span>
+    
+    <span class="nv">reduce = </span><span class="nf">(key, values) -&gt;</span>
+      <span class="nv">count = </span><span class="mi">0</span>
+      <span class="k">for</span> <span class="nx">value</span> <span class="k">in</span> <span class="nx">values</span>
+        <span class="nx">count</span> <span class="o">+=</span> <span class="nx">value</span><span class="p">.</span><span class="nx">count</span>
+      <span class="k">return</span> <span class="p">{</span><span class="nv">count: </span><span class="nx">count</span><span class="p">}</span>
+
+    <span class="nv">collection = </span><span class="nx">mongolian</span><span class="p">.</span><span class="nx">db</span><span class="p">(</span><span class="nx">project</span><span class="p">.</span><span class="nx">database</span><span class="p">).</span><span class="nx">collection</span><span class="p">(</span><span class="nx">col</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">collection</span>
+    <span class="nx">collection</span><span class="p">.</span><span class="nx">mapReduce</span> <span class="nx">map</span><span class="p">,</span> <span class="nx">reduce</span><span class="p">,</span> <span class="p">{</span><span class="nv">out: </span><span class="p">{</span><span class="nx">inline</span><span class="o">:</span><span class="mi">1</span><span class="p">}},</span> <span class="nf">(err, dbRes) -&gt;</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">err</span> <span class="k">if</span> <span class="nx">err</span><span class="o">?</span>
+      <span class="nx">collection</span><span class="p">.</span><span class="nx">count</span> <span class="nf">(err, count) -&gt;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">err</span> <span class="k">if</span> <span class="nx">err</span><span class="o">?</span>
+        <span class="nv">structure = </span><span class="nx">project</span><span class="p">.</span><span class="nx">collections</span><span class="p">[</span><span class="nx">col</span><span class="p">].</span><span class="nx">structure</span> <span class="o">or</span> <span class="p">{}</span>
+        
+        <span class="k">for</span> <span class="nx">result</span> <span class="k">in</span> <span class="nx">dbRes</span><span class="p">.</span><span class="nx">results</span>
+          <span class="nx">structure</span><span class="p">[</span><span class="nx">result</span><span class="p">.</span><span class="nx">_id</span><span class="p">]</span> <span class="o">=</span>
+            <span class="nv">count: </span><span class="nx">result</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">count</span>
+            <span class="nv">ratio: </span><span class="nx">result</span><span class="p">.</span><span class="nx">value</span><span class="p">.</span><span class="nx">count</span><span class="o">/</span><span class="nx">count</span>
+            <span class="nv">show: </span><span class="k">if</span> <span class="nx">structure</span><span class="p">[</span><span class="nx">result</span><span class="p">.</span><span class="nx">_id</span><span class="p">]</span><span class="o">?</span> <span class="k">then</span> <span class="nx">structure</span><span class="p">[</span><span class="nx">result</span><span class="p">.</span><span class="nx">_id</span><span class="p">].</span><span class="nx">show</span> <span class="k">else</span> <span class="kc">true</span>
+            <span class="nv">config: </span><span class="k">if</span> <span class="nx">structure</span><span class="p">[</span><span class="nx">result</span><span class="p">.</span><span class="nx">_id</span><span class="p">]</span><span class="o">?</span> <span class="k">then</span> <span class="nx">structure</span><span class="p">[</span><span class="nx">result</span><span class="p">.</span><span class="nx">_id</span><span class="p">].</span><span class="nx">config</span></pre></div></td></tr><tr id="section-2"><td class="docs"><div class="pilwrap"><a href="#section-2" class="pilcrow">&#182;</a></div><p>new: not structure[result._id]?</p>
+</td><td class="code"><div class="highlight"><pre>        <span class="nx">project</span><span class="p">.</span><span class="nx">collections</span><span class="p">[</span><span class="nx">col</span><span class="p">].</span><span class="nv">structure = </span><span class="nx">structure</span>
+        <span class="nx">project</span><span class="p">.</span><span class="nx">saveCollections</span><span class="p">()</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">render</span> <span class="s">&#39;structure&#39;</span><span class="p">,</span> <span class="p">{</span>
+          <span class="nv">title: </span><span class="s">&#39;Analyse Structure | Arcane Academy&#39;</span>
+          <span class="nv">project: </span><span class="nx">project</span>
+          <span class="nv">structure: </span><span class="nx">structure</span>
+        <span class="p">}</span>
+
+<span class="nv">module.exports.changeStructure = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nx">Project</span><span class="p">.</span><span class="nx">findById</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nf">(err, project) -&gt;</span>
+    <span class="nv">col = </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">col</span>
+    <span class="nv">newStructure = </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span>
+    <span class="nv">structure = </span><span class="nx">project</span><span class="p">.</span><span class="nx">collections</span><span class="p">[</span><span class="nx">col</span><span class="p">].</span><span class="nx">structure</span>
+
+    <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">val</span> <span class="k">of</span> <span class="nx">structure</span>
+      <span class="k">if</span> <span class="nx">newStructure</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span><span class="o">?</span>
+        <span class="nv">val.show = </span><span class="kc">true</span>
+      <span class="k">else</span>
+        <span class="nv">val.show = </span><span class="kc">false</span>
+
+    <span class="nx">project</span><span class="p">.</span><span class="nx">saveCollections</span><span class="p">()</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">render</span> <span class="s">&#39;structure&#39;</span><span class="p">,</span> <span class="p">{</span>
+      <span class="nv">title: </span><span class="s">&#39;Analyse Structure | Arcane Academy&#39;</span>
+      <span class="nv">project: </span><span class="nx">project</span>
+      <span class="nv">structure: </span><span class="nx">structure</span>
+    <span class="p">}</span>
+
+<span class="nv">module.exports.extract = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nx">Project</span><span class="p">.</span><span class="nx">findById</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nf">(err, project) -&gt;</span>
+    <span class="nv">col = </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">col</span>
+    
+    <span class="nv">structure = </span><span class="nx">project</span><span class="p">.</span><span class="nx">collections</span><span class="p">[</span><span class="nx">col</span><span class="p">].</span><span class="nx">structure</span>
+    <span class="k">if</span> <span class="nx">req</span><span class="p">.</span><span class="nx">method</span> <span class="o">is</span> <span class="s">&#39;GET&#39;</span>
+      <span class="nv">rawColumns = </span><span class="p">[]</span>
+      <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">val</span> <span class="k">of</span> <span class="nx">structure</span>
+        <span class="nx">rawColumns</span><span class="p">.</span><span class="nx">push</span> <span class="p">{</span><span class="nv">name: </span><span class="nx">key</span><span class="p">}</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">render</span> <span class="s">&#39;extract&#39;</span><span class="p">,</span> <span class="p">{</span>
+        <span class="nv">title: </span><span class="s">&#39;Extract | Arcane Academy&#39;</span>
+        <span class="nv">col: </span><span class="nx">col</span>
+        <span class="nv">project: </span><span class="nx">project</span>
+        <span class="nv">structure: </span><span class="nx">structure</span>
+        <span class="nv">rawColumns: </span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span> <span class="nx">rawColumns</span>
+      <span class="p">}</span>
+      <span class="k">return</span>
+    <span class="nv">db = </span><span class="nx">mongolian</span><span class="p">.</span><span class="nx">db</span><span class="p">(</span><span class="nx">project</span><span class="p">.</span><span class="nx">database</span><span class="p">)</span>
+    <span class="nv">exConfig = </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span>
+    <span class="nv">rawCollection = </span><span class="nx">db</span><span class="p">.</span><span class="nx">collection</span> <span class="nx">col</span>
+    <span class="nv">resultCollection = </span><span class="nx">db</span><span class="p">.</span><span class="nx">collection</span> <span class="nx">exConfig</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">name</span>
+    <span class="nv">referenceCollection = </span><span class="nx">db</span><span class="p">.</span><span class="nx">collection</span> <span class="nx">exConfig</span><span class="p">.</span><span class="nx">reference</span><span class="p">.</span><span class="nx">name</span>
+    <span class="nv">transformationId = </span><span class="k">new</span> <span class="nx">ObjectId</span><span class="p">()</span>
+    <span class="nv">transformation =</span>
+      <span class="nv">type: </span><span class="s">&#39;extract&#39;</span>
+      <span class="nv">started: </span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+      <span class="nv">collection: </span><span class="nx">collectionName</span>
+      <span class="nv">maxActions: </span><span class="mi">0</span>
+      <span class="nv">actions:</span>
+        <span class="nv">total: </span><span class="mi">0</span>
+        <span class="nv">noop: </span><span class="mi">0</span>
+        <span class="nv">changed: </span><span class="mi">0</span>
+        <span class="nv">deleted: </span><span class="mi">0</span>
+
+    <span class="nx">project</span><span class="p">.</span><span class="nx">transformations</span><span class="p">[</span><span class="nx">transformationId</span><span class="p">]</span> <span class="o">=</span> <span class="nx">transformation</span>
+    <span class="nx">project</span><span class="p">.</span><span class="nx">markModified</span> <span class="s">&#39;transformations&#39;</span>
+    <span class="nx">project</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span></pre></div></td></tr><tr id="section-3"><td class="docs"><div class="pilwrap"><a href="#section-3" class="pilcrow">&#182;</a></div><p>set collection metadata</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="nv">refMeta = </span><span class="p">{</span><span class="nv">structure: </span><span class="p">{},</span> <span class="nv">type: </span><span class="s">&#39;reference&#39;</span><span class="p">}</span>
+    <span class="k">for</span> <span class="nx">key</span><span class="p">,</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">exConfig</span><span class="p">.</span><span class="nx">reference</span><span class="p">.</span><span class="nx">attributes</span>
+      <span class="k">if</span> <span class="nx">i</span> <span class="o">is</span> <span class="mi">0</span>
+        <span class="nv">refMeta.structure._id = </span><span class="p">{}</span>
+      <span class="k">else</span>
+        <span class="nx">refMeta</span><span class="p">.</span><span class="nx">structure</span><span class="p">[</span><span class="nx">key</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="nx">project</span><span class="p">.</span><span class="nx">collections</span><span class="p">[</span><span class="nx">exConfig</span><span class="p">.</span><span class="nx">reference</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">refMeta</span>
+    
+    <span class="nv">resMeta = </span><span class="p">{</span><span class="nv">structure: </span><span class="p">{},</span> <span class="nv">type: </span><span class="s">&#39;result&#39;</span><span class="p">}</span>
+    <span class="k">for</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">exConfig</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">attributes</span>
+      <span class="nx">resMeta</span><span class="p">.</span><span class="nx">structure</span><span class="p">[</span><span class="nx">key</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="nx">project</span><span class="p">.</span><span class="nx">collections</span><span class="p">[</span><span class="nx">exConfig</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">resMeta</span>
+    <span class="nx">project</span><span class="p">.</span><span class="nx">markModified</span> <span class="s">&#39;collections&#39;</span>
+    <span class="nx">project</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span></pre></div></td></tr><tr id="section-4"><td class="docs"><div class="pilwrap"><a href="#section-4" class="pilcrow">&#182;</a></div><p>iterate all the raws!</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="nx">rawCollection</span><span class="p">.</span><span class="nx">find</span><span class="p">().</span><span class="nx">forEach</span> <span class="nf">(raw) -&gt;</span></pre></div></td></tr><tr id="section-5"><td class="docs"><div class="pilwrap"><a href="#section-5" class="pilcrow">&#182;</a></div><p>extract reference
+TODO possible autogenerate _id
+TODO find differences</p>
+</td><td class="code"><div class="highlight"><pre>      <span class="nx">referenceCollection</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="nv">_id: </span><span class="nx">raw</span><span class="p">[</span><span class="nx">exConfig</span><span class="p">.</span><span class="nx">reference</span><span class="p">.</span><span class="nx">attributes</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">name</span><span class="p">]}).</span><span class="nx">count</span> <span class="nf">(err, count) -&gt;</span>
+        <span class="k">if</span> <span class="nx">count</span> <span class="o">is</span> <span class="mi">0</span>
+          <span class="nv">reference = </span><span class="p">{}</span>
+          <span class="k">for</span> <span class="nx">key</span><span class="p">,</span><span class="nx">i</span> <span class="k">in</span> <span class="nx">exConfig</span><span class="p">.</span><span class="nx">reference</span><span class="p">.</span><span class="nx">attributes</span>
+            <span class="k">if</span> <span class="nx">i</span> <span class="o">is</span> <span class="mi">0</span>
+              <span class="nv">reference._id = </span><span class="nx">raw</span><span class="p">[</span><span class="nx">key</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span>
+            <span class="k">else</span>
+              <span class="nx">reference</span><span class="p">[</span><span class="nx">key</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">raw</span><span class="p">[</span><span class="nx">key</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span>
+          <span class="nx">referenceCollection</span><span class="p">.</span><span class="nx">insert</span> <span class="nx">reference</span></pre></div></td></tr><tr id="section-6"><td class="docs"><div class="pilwrap"><a href="#section-6" class="pilcrow">&#182;</a></div><p>save result</p>
+</td><td class="code"><div class="highlight"><pre>        <span class="nv">result = </span><span class="p">{}</span>
+        <span class="k">for</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">exConfig</span><span class="p">.</span><span class="nx">result</span><span class="p">.</span><span class="nx">attributes</span>
+          <span class="k">if</span> <span class="nx">key</span><span class="p">.</span><span class="nx">referenceKey</span>
+            <span class="nx">result</span><span class="p">[</span><span class="nx">key</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">reference</span><span class="p">.</span><span class="nx">_id</span>
+          <span class="k">else</span>
+            <span class="nx">result</span><span class="p">[</span><span class="nx">key</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span> <span class="o">=</span> <span class="nx">raw</span><span class="p">[</span><span class="nx">key</span><span class="p">.</span><span class="nx">name</span><span class="p">]</span>
+        <span class="nx">resultCollection</span><span class="p">.</span><span class="nx">insert</span> <span class="nx">result</span>
+    <span class="p">,</span> <span class="nf">(err, res) -&gt;</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">err</span> <span class="k">if</span> <span class="nx">err</span><span class="o">?</span>
+      <span class="nv">transformation.finished = </span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+      <span class="nx">project</span><span class="p">.</span><span class="nx">saveTransformations</span><span class="p">()</span>
+    <span class="nx">req</span><span class="p">.</span><span class="nx">send</span> <span class="s">&#39;extract accepted&#39;</span>
+
+<span class="nv">module.exports.export = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nx">Project</span><span class="p">.</span><span class="nx">findById</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nf">(err, project) -&gt;</span>
+    <span class="nv">col = </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">col</span>
+    <span class="nv">exType = </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">exType</span>
+
+    
+    <span class="nv">colMeta = </span><span class="nx">project</span><span class="p">.</span><span class="nx">collections</span><span class="p">[</span><span class="nx">col</span><span class="p">]</span>
+
+    <span class="nv">structure = </span><span class="nx">colMeta</span><span class="p">.</span><span class="nx">structure</span>
+    
+    <span class="nv">keys = </span><span class="p">[]</span>
+    <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">val</span> <span class="k">of</span> <span class="nx">structure</span>
+      <span class="nx">keys</span><span class="p">.</span><span class="nx">push</span> <span class="nx">key</span>
+
+    <span class="nv">collection = </span><span class="nx">mongolian</span><span class="p">.</span><span class="nx">db</span><span class="p">(</span><span class="nx">project</span><span class="p">.</span><span class="nx">database</span><span class="p">).</span><span class="nx">collection</span><span class="p">(</span><span class="nx">col</span><span class="p">)</span>
+    <span class="k">if</span> <span class="nx">exType</span> <span class="o">is</span> <span class="s">&#39;json&#39;</span>
+      <span class="nv">json = </span><span class="p">[]</span>
+      <span class="nx">collection</span><span class="p">.</span><span class="nx">find</span><span class="p">().</span><span class="nx">forEach</span> <span class="nf">(row) -&gt;</span>
+        <span class="nv">row._id = </span><span class="nx">row</span><span class="p">.</span><span class="nx">_id</span><span class="p">.</span><span class="nx">toString</span><span class="p">()</span>
+        <span class="nx">json</span><span class="p">.</span><span class="nx">push</span> <span class="nx">row</span>
+      <span class="p">,</span> <span class="nf">(err, val) -&gt;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">err</span> <span class="k">if</span> <span class="nx">err</span><span class="o">?</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="nx">json</span>
+      <span class="k">return</span>
+
+    <span class="nv">mapHead = </span><span class="p">[]</span>
+    
+    <span class="k">for</span> <span class="nx">m</span> <span class="k">in</span> <span class="nx">keys</span>
+      <span class="nx">mapHead</span><span class="p">.</span><span class="nx">push</span> <span class="p">(</span><span class="s">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="nx">m</span> <span class="o">+</span> <span class="s">&#39;&quot;&#39;</span><span class="p">)</span>
+    <span class="nv">csv = </span><span class="p">(</span><span class="nx">mapHead</span><span class="p">.</span><span class="nx">join</span> <span class="s">&#39;,&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;\n&#39;</span>
+
+    <span class="nx">collection</span><span class="p">.</span><span class="nx">find</span><span class="p">().</span><span class="nx">forEach</span> <span class="nf">(row) -&gt;</span>
+      <span class="nv">vals = </span><span class="p">[]</span>
+      <span class="k">for</span> <span class="nx">m</span> <span class="k">in</span> <span class="nx">keys</span>
+        <span class="k">if</span> <span class="nx">row</span><span class="p">[</span><span class="nx">m</span><span class="p">]</span><span class="o">?</span>
+          <span class="nx">vals</span><span class="p">.</span><span class="nx">push</span> <span class="s">&#39;&quot;&#39;</span> <span class="o">+</span> <span class="nx">row</span><span class="p">[</span><span class="nx">m</span><span class="p">]</span> <span class="o">+</span> <span class="s">&#39;&quot;&#39;</span>
+        <span class="k">else</span>
+          <span class="nx">vals</span><span class="p">.</span><span class="nx">push</span> <span class="s">&#39;&quot;&quot;&#39;</span>
+      <span class="nx">csv</span> <span class="o">+=</span> <span class="p">(</span><span class="nx">vals</span><span class="p">.</span><span class="nx">join</span> <span class="s">&#39;,&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="s">&#39;\n&#39;</span>
+    <span class="p">,</span> <span class="nf">(err, val) -&gt;</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">err</span> <span class="k">if</span> <span class="nx">err</span><span class="o">?</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">send</span> <span class="nx">csv</span><span class="p">,</span> <span class="p">{</span>
+        <span class="s">&#39;Content-Type&#39;</span><span class="o">:</span> <span class="s">&#39;text/csv&#39;</span>
+      <span class="p">}</span></pre></div></td></tr><tr id="section-7"><td class="docs"><div class="pilwrap"><a href="#section-7" class="pilcrow">&#182;</a></div><h1>#</h1>
+
+<p>Render the merge view.</p>
+
+<h1>#</h1>
+</td><td class="code"><div class="highlight"><pre><span class="nv">module.exports.merge = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span> <span class="s">&#39;merge&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nv">title: </span><span class="s">&#39;Merge Documents in Collection | Arcane Academy&#39;</span>
+    <span class="nv">project: </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span>
+    <span class="nv">collection: </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">col</span>
+  <span class="p">}</span></pre></div></td></tr><tr id="section-8"><td class="docs"><div class="pilwrap"><a href="#section-8" class="pilcrow">&#182;</a></div><h1>#</h1>
+
+<p>Perform a merge operation.</p>
+
+<h1>#</h1>
+</td><td class="code"><div class="highlight"><pre><span class="nv">module.exports.performMerge = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nx">Project</span><span class="p">.</span><span class="nx">findById</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nf">(err, project) -&gt;</span>
+    <span class="nv">col = </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">col</span>
+
+    <span class="nv">map = </span><span class="s">&#39;function(object) {&#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">merge</span><span class="p">.</span><span class="nx">map</span> <span class="o">+</span> <span class="s">&#39;}&#39;</span>
+
+    <span class="k">if</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">merge</span><span class="p">.</span><span class="nx">reduce</span> <span class="o">isnt</span> <span class="s">&quot;&quot;</span>
+      <span class="nv">reduce = </span><span class="s">&#39;function(key, values) {&#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">merge</span><span class="p">.</span><span class="nx">reduce</span> <span class="o">+</span> <span class="s">&#39;}&#39;</span>
+
+    <span class="k">if</span> <span class="nx">reduce</span><span class="o">?</span>
+      <span class="nx">transform</span><span class="p">.</span><span class="nx">merge</span> <span class="nx">project</span><span class="p">,</span> <span class="nx">col</span><span class="p">,</span> <span class="nx">map</span><span class="p">,</span>
+        <span class="nv">reduce: </span><span class="nx">reduce</span>
+    <span class="k">else</span>
+      <span class="nx">transform</span><span class="p">.</span><span class="nx">merge</span> <span class="nx">project</span><span class="p">,</span> <span class="nx">col</span><span class="p">,</span> <span class="nx">map</span>
+
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span> <span class="s">&#39;/projects/&#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span> <span class="o">+</span> <span class="s">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">col</span></pre></div></td></tr><tr id="section-9"><td class="docs"><div class="pilwrap"><a href="#section-9" class="pilcrow">&#182;</a></div><h1>#</h1>
+
+<p>Render the transform view.</p>
+
+<h1>#</h1>
+</td><td class="code"><div class="highlight"><pre><span class="nv">module.exports.transform = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nx">res</span><span class="p">.</span><span class="nx">render</span> <span class="s">&#39;transform&#39;</span><span class="p">,</span> <span class="p">{</span>
+    <span class="nv">title: </span><span class="s">&#39;Transform Documents in Collection | Arcane Academy&#39;</span>
+    <span class="nv">project: </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span>
+    <span class="nv">collection: </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">col</span>
+  <span class="p">}</span></pre></div></td></tr><tr id="section-10"><td class="docs"><div class="pilwrap"><a href="#section-10" class="pilcrow">&#182;</a></div><h1>#</h1>
+
+<p>Perform a transform operation.</p>
+
+<h1>#</h1>
+</td><td class="code"><div class="highlight"><pre><span class="nv">module.exports.performTransform = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nx">Project</span><span class="p">.</span><span class="nx">findById</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">,</span> <span class="nf">(err, project) -&gt;</span>
+    <span class="nv">col = </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">col</span>
+
+    <span class="nv">modifier = </span><span class="s">&#39;function(object) {&#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">transform</span><span class="p">.</span><span class="nx">modifier</span> <span class="o">+</span> <span class="s">&#39;}&#39;</span>
+
+    <span class="nx">transform</span><span class="p">.</span><span class="nx">transform</span> <span class="nx">project</span><span class="p">,</span> <span class="nx">col</span><span class="p">,</span> <span class="nx">modifier</span>
+
+    <span class="nx">res</span><span class="p">.</span><span class="nx">redirect</span> <span class="s">&#39;/projects/&#39;</span> <span class="o">+</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span> <span class="o">+</span> <span class="s">&#39;/&#39;</span> <span class="o">+</span> <span class="nx">col</span>
+
+</pre></div></td></tr></tbody></table><div id="generated">generated Sun Apr 22 2012 13:44:51 GMT+0200 (CEST)  </div><div id="projectname"><a href="../../index.html">Arcane Academy Frontend</a></div></div></body></html>

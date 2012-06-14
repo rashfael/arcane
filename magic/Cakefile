@@ -1,0 +1,67 @@
+fs = require 'fs'
+{exec} = require 'child_process'
+util = require 'util'
+growl = require 'growl'
+
+appFiles	= [
+	'src/magic.coffee',
+	#'src/notAsImportantButNeedsToGoBeforeTheRest.coffee'
+]
+
+task 'clean', 'Clean all generated files', ->
+	exec 'rm -r ./docs ./out ./tests/html', (err, stdout, stderr) ->
+		notify 'Cleaned all!'
+
+task 'docs', 'Build documentation with cocco', ->
+	exec 'docco src/*.coffee src/lib/*.coffee', (err, stdout, stderr) ->
+		notify stdout, err
+
+task 'magic:files', 'Get files to compile', ->
+	traverseFileSystem = (currentPath) ->
+		files = fs.readdirSync currentPath
+		for file in files
+			do (file) ->
+				currentFile = currentPath + '/' + file
+				stats = fs.statSync(currentFile)
+				if stats.isFile() and currentFile.indexOf('.coffee') > 1 and appFiles.join('=').indexOf("#{currentFile}=") < 0
+					if currentFile not in appFiles
+						appFiles.push currentFile
+				else if stats.isDirectory()
+					traverseFileSystem currentFile
+
+	traverseFileSystem 'src'
+	util.log "#{appFiles.length} coffee files found: " + appFiles
+	return appFiles
+
+task 'magic:watch', 'Watch source files and build on change', ->
+	notify "Watching for changes in src"
+	invoke 'magic:build'
+	files = invoke 'magic:files'
+	for file in files then do (file) ->
+		fs.watchFile file, (curr, prev) ->
+			if +curr.mtime isnt +prev.mtime
+				util.log "Saw change in #{file}"
+				invoke 'magic:build'
+
+task 'magic:build', 'Build single file for browser usage', ->
+
+	exec 'browserify src/magic.coffee -o out/magic.js', (err, stdout, stderr) ->
+		if err
+			notify 'Failed browserfying magic!' + stdout, err
+		else
+			notify 'Successfully compiled magic!'
+
+task 'tests:build', 'Build the magic test page for the browser', ->
+	invoke 'magic:build'
+	exec 'jade tests/template --out tests/html', (err, stdout, stderr) ->
+		if err
+			notify 'Failed building test suite!', err
+		else
+			notify 'Built test suite.'
+
+notify = (message = '', err) -> 
+	if err
+		util.log 'ERROR: ' + message + '\n'
+		console.log err.message
+	else
+		util.log message

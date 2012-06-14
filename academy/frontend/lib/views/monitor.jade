@@ -1,0 +1,46 @@
+extends layout
+
+block content
+	h1 Monitor
+	table.table.table-striped.table-bordered
+		thead
+			tr
+				th #
+				th Project
+				th Collection
+				th Type
+				th Started
+				th Finished
+				th Statistics
+				th Error
+		tbody
+			each transform in runningTransforms
+				tr.runningTransform
+					td= transform.id
+					td: a(href='/projects/' + encodeURIComponent(transform.project.id))= transform.project.id
+					td: a(href='/projects/' + encodeURIComponent(transform.project.id)+ '/#{transform.collection}')= transform.collection
+					td= transform.type
+					td= transform.started
+					td= transform.finished
+					td #{transform.actions.total}/#{transform.maxActions}
+					td
+			each transform in errorTransforms
+				tr.errorTransform
+					td= transform.id
+					td: a(href='/projects/' + encodeURIComponent(transform.project.id))= transform.project.id
+					td: a(href='/projects/' + encodeURIComponent(transform.project.id)+ '/#{transform.collection}')= transform.collection
+					td= transform.type
+					td= transform.started
+					td= transform.finished
+					td #{transform.actions.total}/#{transform.maxActions}
+					td= transform.error
+			each transform in finishedTransforms
+				tr.finishedTransform
+					td= transform.id
+					td: a(href='/projects/' + encodeURIComponent(transform.project.id))= transform.project.id
+					td: a(href='/projects/' + encodeURIComponent(transform.project.id)+ '/#{transform.collection}')= transform.collection
+					td= transform.type
+					td= transform.started
+					td= transform.finished
+					td #{transform.actions.total}/#{transform.maxActions}
+					td

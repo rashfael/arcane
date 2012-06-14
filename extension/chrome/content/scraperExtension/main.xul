@@ -1,0 +1,291 @@
+﻿<?xml version="1.0"?> 
+
+<!DOCTYPE overlay SYSTEM "chrome://scraperExtension/locale/main.dtd">
+
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<overlay xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" onload="setContext()"> 
+
+	<!-- Libraries -->
+	
+	<!-- external -->
+	<script src="chrome://scraperExtension/content/lib/external/jquery.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/external/jquery-ui-1.8.16.custom.min.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/external/jquery.tablesorter.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/external/patcher.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/external/moment.min.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/external/moment.de.min.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/external/encoder.js" type="application/x-javascript"/>
+	
+	<!-- internal -->
+	<script src="chrome://scraperExtension/content/lib/internal/magic.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/internal/selector.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/internal/inspectbar.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/internal/wedexTable.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/internal/wedexImageButton.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/internal/parser.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/internal/wedexHelpButton.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/internal/validators.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/internal/status.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/internal/helpers.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/internal/idGenerator.js" type="application/x-javascript"/>
+	
+	<!-- Main File -->
+	<script src="chrome://scraperExtension/content/main.js" type="application/x-javascript"/>
+	
+	<!-- Communication -->
+	<script src="chrome://scraperExtension/content/comm/communication.js" type="application/x-javascript"/>
+	
+	<!-- Input/Output -->
+	<script src="chrome://scraperExtension/content/io/io.js" type="application/x-javascript"/>
+	
+	<!-- Debug tab -->
+	<script src="chrome://scraperExtension/content/tabs/debug/debug.js" type="application/x-javascript"/>
+	
+	<!-- Mapping tab -->
+	<script src="chrome://scraperExtension/content/tabs/mapping/mapping.js" type="application/x-javascript"/>
+
+	<!-- Graph tab -->
+	<script src="chrome://scraperExtension/content/tabs/graph/graph.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/tabs/graph/graph.propspanel.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/tabs/graph/graph.view.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/tabs/graph/pergament.js" type="application/x-javascript"/>
+
+	<!-- Jobs tab -->
+	<script src="chrome://scraperExtension/content/tabs/jobs/jobs.view.js" type="application/x-javascript"/>
+	
+	<!-- Configuration tab -->
+	<script src="chrome://scraperExtension/content/tabs/configuration/configuration.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/tabs/configuration/formFillConfig.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/tabs/configuration/magicConfig.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/tabs/configuration/datasetFormatter.js" type="application/x-javascript"/>
+		
+	<script src="chrome://scraperExtension/content/tabs/configuration/view/configuration.content.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/tabs/configuration/view/configuration.view.js" type="application/x-javascript"/>
+	
+	<script src="chrome://scraperExtension/content/tabs/configuration/view/magic/magicPanel.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/tabs/configuration/view/magic/customKeyContextPanel.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/tabs/configuration/view/magic/customKeyTablePanel.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/tabs/configuration/view/magic/subItemsContextPanel.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/tabs/configuration/view/magic/subItemsTablePanel.js" type="application/x-javascript"/>
+	
+	<script src="chrome://scraperExtension/content/tabs/configuration/view/fillform/formPanel.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/tabs/configuration/view/fillform/contextPanel.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/tabs/configuration/view/fillform/datasetPanel.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/tabs/configuration/view/fillform/indexPanel.js" type="application/x-javascript"/>
+
+    <stringbundleset id="stringbundleset">
+        <stringbundle id="strings_main" src="chrome://scraperExtension/locale/main.properties"/>
+        <stringbundle id="strings_options" src="chrome://scraperExtension/locale/options.properties"/>
+    </stringbundleset>
+	
+	<commandset id="mainCommandSet">
+		<!-- 'Show tab X' actions -->
+		<command id="cmd_showGraph" oncommand="Firebug.ScraperExtensionModel.onShowGraph()"/>
+		<command id="cmd_showMapping" oncommand="Firebug.ScraperExtensionModel.onShowMapping()"/>
+		<command id="cmd_showConfiguration" oncommand="Firebug.ScraperExtensionModel.onShowConfiguration()"/>
+		<command id="cmd_showJobs" oncommand="Firebug.ScraperExtensionModel.onShowJobs()"/>
+		<command id="cmd_showDebug" oncommand="Firebug.ScraperExtensionModel.onShowDebug()"/>
+
+		<!-- Global actions -->
+		<command id="cmd_resetExtension" oncommand="Firebug.ScraperExtensionModel.onResetExtension()"/>
+		<command id="cmd_exportConfig" oncommand="io.exportConfig()"/>
+		<command id="cmd_importConfig" oncommand="io.importConfig()"/>
+		<command id="cmd_startScraping" oncommand="Firebug.ScraperExtensionModel.onSendJob()"/>
+
+		<!-- Mapping actions -->
+		<command id="cmd_renameMapping" oncommand="mappingActions.onRenameMapping()"/>
+		<command id="cmd_newMapping" oncommand="mappingActions.onNewMapping()"/>
+		<command id="cmd_deleteMapping" oncommand="mappingActions.onDeleteMapping()"/>
+		<command id="cmd_chooseMapping" oncommand="mappingActions.onChooseMapping()"/>
+		<command id="cmd_search" oncommand="mappingActions.onInspect()"/>
+		<command id="cmd_mappingHelp" oncommand="Firebug.ScraperExtensionModel.onShowHelp(2)"/>
+		
+		<!-- Graph actions -->
+		<command id="cmd_graphUndo" oncommand="graphActions.undo()"/>
+		<command id="cmd_graphRedo" oncommand="graphActions.redo()"/>
+		<command id="cmd_graphStart" oncommand="graphActions.addNode('Start')"/>
+		<command id="cmd_graphWalkthroughItems" oncommand="graphActions.addNode('WalkthroughItems')"/>
+		<command id="cmd_graphWalkthroughLinks" oncommand="graphActions.addNode('WalkthroughLinks')"/>
+		<command id="cmd_graphPager" oncommand="graphActions.addNode('Pager')"/>		
+		<command id="cmd_graphFollowLink" oncommand="graphActions.addNode('FollowLink')"/>
+		<command id="cmd_graphFillForm" oncommand="graphActions.addNode('FillForm')"/>
+		<command id="cmd_graphMagic" oncommand="graphActions.addNode('Magic')"/>
+		<command id="cmd_graphCollect" oncommand="graphActions.addNode('Collect')"/>
+		<command id="cmd_graphRemoveNode" oncommand="graphActions.removeNode()"/>
+		<command id="cmd_graphAddEdge" oncommand="graphActions.addEdge()"/>
+		<command id="cmd_graphRemoveEdge" oncommand="graphActions.removeEdge()"/>
+		<command id="cmd_graphHelp" oncommand="Firebug.ScraperExtensionModel.onShowHelp(0)"/>
+
+		<!-- Jobs actions -->
+		<command id="cmd_refreshJobs" oncommand="jobsView.update()"/>
+		<command id="cmd_filterJobs" oncommand="jobsView.filterChanged()"/>
+		<command id="cmd_jobsHelp" oncommand="Firebug.ScraperExtensionModel.onShowHelp(3)"/>		
+		
+		<!-- Configuration actions -->
+		<command id="cmd_newConfig" oncommand="configurationActions.newConfig()"/>
+		<command id="cmd_renameConfig" oncommand="configurationActions.renameConfig()"/>
+		<command id="cmd_deleteConfig" oncommand="configurationActions.deleteConfig()"/>
+		<command id="cmd_configHelp" oncommand="Firebug.ScraperExtensionModel.onShowHelp(1)"/>
+		
+	</commandset>
+    <toolbar id="fbToolbar" align="center">
+        <hbox id="fbToolbarInner" insertbefore="fbDetachButton" flex="1" align="center">
+            <vbox id="fbScraperExtensionButtons" insertafter="fbNetButtons" flex="1">
+	            <hbox flex="1">
+	            	<!-- 'Show tab X' toggle buttons -->
+	                <toolbarbutton id="showGraphBttn"
+	                    label="&main.tabs.nav.label;" class="toolbar-text-button"
+	                    tooltiptext="&main.tabs.nav.tooltip;" command="cmd_showGraph" type="radio" group="tabButtonGroup" checked="true"/>
+					<toolbarbutton id="showConfigBttn"
+	                    label="&main.tabs.conf.label;" class="toolbar-text-button"
+	                    tooltiptext="&main.tabs.conf.tooltip;" command="cmd_showConfiguration" type="radio" group="tabButtonGroup" checked="false"/>
+					<toolbarbutton id="showMappingBttn"
+	                    label="&main.tabs.mapp.label;" class="toolbar-text-button"
+	                    tooltiptext="&main.tabs.mapp.tooltip;" command="cmd_showMapping" type="radio" group="tabButtonGroup" checked="false"/>
+	            	<toolbarbutton id="showJobsBttn"
+	                    label="&main.tabs.jobs.label;" class="toolbar-text-button"
+	                    tooltiptext="&main.tabs.mapp.tooltip;" command="cmd_showJobs" type="radio" group="tabButtonGroup" checked="false"/>
+					<!--toolbarbutton id="showDebugBttn"
+	                    label="&main.tabs.debug.label;" class="toolbar-text-button"
+	                    tooltiptext="&main.tabs.debug.tooltip;" command="cmd_showDebug" type="radio" group="tabButtonGroup" checked="false"/-->
+					<spacer flex="1"/>
+					
+					<!-- Status messages -->
+					<vbox>
+						<spacer flex="3"/>
+						<image id="statusImage" height="10" align="center"/>
+						<spacer flex="2"/>
+					</vbox>
+					<vbox>
+						<spacer flex="3"/>
+						<label id="statusLabel"/>
+						<spacer flex="2"/>
+					</vbox>
+	            </hbox>
+	            <hbox height="30">
+					<!-- Global toolbar -->
+					<toolbarbutton id="resetBttn"
+						image="chrome://scraperExtension/skin/images/document-medium_16.png" class="toolbar-text-button"
+						tooltiptext="&main.global.newJob.tooltip;" command="cmd_resetExtension" style="margin-right:5px"/>
+					<toolbarbutton id="scrapeBttn"
+						image="chrome://scraperExtension/skin/images/mail-send_16.png" class="toolbar-text-button"
+						tooltiptext="&main.global.sendJob.tooltip;" command="cmd_startScraping" style="margin-right:5px"/>
+					<toolbarbutton id="exportConfigBttn"
+						image="chrome://scraperExtension/skin/images/save_16.png" class="toolbar-text-button"
+						tooltiptext="&main.global.saveJob.tooltip;" command="cmd_exportConfig"/>	
+					<toolbarbutton id="importConfigBttn"
+						image="chrome://scraperExtension/skin/images/load_16.png" class="toolbar-text-button"
+						tooltiptext="&main.global.loadJob.tooltip;" command="cmd_importConfig"/>
+					<toolbarseparator/>
+					
+					<!-- Graph toolbar -->
+					<hbox id="graphBox" flex="1">
+						<!--toolbarbutton id="actionItem_graphToggleCapture"
+							image="chrome://scraperExtension/skin/images/eye-close_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.nav.capture.tooltip;" command="cmd_graphToggleCapture" type="checkbox"/-->
+						<toolbarbutton id="actionItem_graphUndo"
+							image="chrome://scraperExtension/skin/images/arrow-curve-180-left_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.nav.undo.tooltip;" command="cmd_graphUndo"/>	
+						<toolbarbutton id="actionItem_graphRedo" image="chrome://scraperExtension/skin/images/arrow-curve_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.nav.redo.tooltip;" command="cmd_graphRedo"/>
+						<toolbarbutton id="actionItem_graphRemoveNode"
+							image="chrome://scraperExtension/skin/images/node-delete_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.nav.delete.tooltip;" command="cmd_graphRemoveNode"/>
+						<toolbarbutton id="actionItem_graphAddNode"
+							image="chrome://scraperExtension/skin/images/node_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.nav.add.tooltip;" type="menu">
+							<menupopup onpopupshown="graphView.update()">
+							  <menuitem image="chrome://scraperExtension/skin/images/node-insert_16.png" id="actionItem_graphStart" command="cmd_graphStart" class="menuitem-iconic" tooltiptext="&main.tabs.nav.add.ep.tooltip;"/>
+							  <menuitem image="chrome://scraperExtension/skin/images/ui-label-links_16.png" id="actionItem_graphWalkthroughLinks" command="cmd_graphWalkthroughLinks" class="menuitem-iconic" tooltiptext="&main.tabs.nav.add.wtl.tooltip;"/>
+							  <menuitem image="chrome://scraperExtension/skin/images/ui-menu-blue_16.png" id="actionItem_graphWalkthroughItems" command="cmd_graphWalkthroughItems" class="menuitem-iconic" tooltiptext="&main.tabs.nav.add.wti.tooltip;"/>
+							  <menuitem image="chrome://scraperExtension/skin/images/ui-paginator_16.png" id="actionItem_graphPager" command="cmd_graphPager" class="menuitem-iconic" tooltiptext="&main.tabs.nav.add.wtp.tooltip;"/>
+							  <menuitem image="chrome://scraperExtension/skin/images/ui-label-link_16.png" id="actionItem_graphFollowLink" command="cmd_graphFollowLink" class="menuitem-iconic" tooltiptext="&main.tabs.nav.add.fl.tooltip;"/>
+							  <menuitem image="chrome://scraperExtension/skin/images/application-form_16.png" id="actionItem_graphFillForm" command="cmd_graphFillForm" class="menuitem-iconic" tooltiptext="&main.tabs.nav.add.ff.tooltip;"/>
+							  <menuitem image="chrome://scraperExtension/skin/images/wand_16.png" id="actionItem_graphMagic" command="cmd_graphMagic" class="menuitem-iconic" tooltiptext="&main.tabs.nav.add.mg.tooltip;"/>
+							  <menuitem image="chrome://scraperExtension/skin/images/property-import_16.png" id="actionItem_graphCollect" command="cmd_graphCollect" class="menuitem-iconic" tooltiptext="&main.tabs.nav.add.cd.tooltip;"/>
+							</menupopup>
+						</toolbarbutton>
+						<toolbarbutton id="actionItem_graphAddEdge"
+							image="chrome://scraperExtension/skin/images/edge-add_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.nav.add.edge.tooltip;" command="cmd_graphAddEdge"/>
+						<toolbarbutton id="actionItem_graphRemoveEdge"
+							image="chrome://scraperExtension/skin/images/edge-remove_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.nav.delete.edge.tooltip;" command="cmd_graphRemoveEdge"/>
+						<spacer flex="1"/>	
+						<toolbarbutton id="actionItem_graphHelp"
+							image="chrome://scraperExtension/skin/images/question-white_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.nav.help.tooltip;" command="cmd_graphHelp"/>
+					</hbox>
+					
+					<!-- Mappings toolbar -->
+					<hbox id="mappingBox" flex="1">
+						<label value="Mapping:"/>
+						<menulist width="175" id="mappingMenuList" command="cmd_chooseMapping">
+							<menupopup>
+								<menuitem label="Default mapping" value="0" class="loadedMapping" id="loadedMapping"/>
+							</menupopup>
+						</menulist>
+						<toolbarbutton id="newMappingBttn"
+							image="chrome://scraperExtension/skin/images/blue-document--plus_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.mapp.new.tooltip;" command="cmd_newMapping"/>	
+						<toolbarbutton id="renameMappingBttn"
+							image="chrome://scraperExtension/skin/images/blue-document--pencil_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.mapp.rename.tooltip;" command="cmd_renameMapping"/>
+						<toolbarbutton id="deleteMappingBttn"
+							image="chrome://scraperExtension/skin/images/blue-document--minus.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.mapp.delete.tooltip;" command="cmd_deleteMapping"/>
+						<toolbarseparator/>
+						<label value="&main.tabs.mapp.conf.label;"/>						
+						<menulist id="configMenuList" width="175" command="cmd_chooseConfig">
+							<menupopup>
+							</menupopup>
+						</menulist>
+						<toolbarbutton id="search"
+							image="chrome://scraperExtension/skin/images/arrow-circle-double_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.mapp.conf.tooltip;" command="cmd_search"/>
+						<toolbarseparator/>
+						<label value="&main.tabs.mapp.vc.label;"/><textbox id="minValues" tooltiptext="&main.tabs.mapp.vc.tooltip;" onchange="mappingView.setMinValues()" type="number" value="1" width="35"/>
+						<spacer flex="1"/>	
+						<toolbarbutton id="actionItem_graphHelp"
+							image="chrome://scraperExtension/skin/images/question-white_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.mapp.help.tooltip;" command="cmd_mappingHelp"/>
+					</hbox>
+					
+					<!-- Jobs toolbar -->
+					<hbox id="jobsBox" flex="1">				
+						<toolbarbutton id="jobRefreshBttn"
+							image="chrome://scraperExtension/skin/images/arrow-circle-double_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.jobs.update.tooltip;" command="cmd_filterJobs"/>
+						<label value="&main.tabs.jobs.project.label;"/>						
+						<menulist id="projectMenuList" width="175" command="cmd_filterJobs"/>
+						<spacer flex="1"/>	
+						<toolbarbutton id="actionItem_graphHelp"
+							image="chrome://scraperExtension/skin/images/question-white_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.jobs.help.tooltip;" command="cmd_jobsHelp"/>
+					</hbox>
+
+					
+					<!-- Configuration toolbar -->
+					<hbox id="configBox" flex="1">						
+						<label value="&main.tabs.conf.configuration.label;"/>
+						<menulist id="configCmbbx" width="175" oncommand="configurationActions.configSelected(event.target)"/>
+						<toolbarbutton id="addMagicConfBttn"
+							image="chrome://scraperExtension/skin/images/wand--plus_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.conf.add.tooltip;" command="cmd_newConfig"/>
+						<toolbarbutton id="renameMagicConfBttn"
+							image="chrome://scraperExtension/skin/images/wand--pencil_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.conf.rename.tooltip;" command="cmd_renameConfig"/>
+						<toolbarbutton id="deleteMagicConfBttn"
+							image="chrome://scraperExtension/skin/images/wand--minus_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.conf.delete.tooltip;" command="cmd_deleteConfig"/>
+						<spacer flex="1"/>	
+						<toolbarbutton id="actionItem_graphHelp"
+							image="chrome://scraperExtension/skin/images/question-white_16.png" class="toolbar-text-button"
+							tooltiptext="&main.tabs.conf.help.tooltip;" command="cmd_configHelp"/>
+					</hbox>
+	            </hbox>
+            </vbox>
+        </hbox>
+    </toolbar>
+</overlay>
+

@@ -1,0 +1,237 @@
+{
+    "mappings": {
+        "1328720647281": {
+            "map": {
+                "plz": "PLZ"
+            },
+            "validFor": [
+				"nav1330443466326",
+				"nav1328720647169"
+            ],
+            "name": "Default mapping"
+        },
+		"1330443466367": {
+            "map": {
+                "hit_detail": false,
+                "Details ansehen": false,
+                "hit_title": "Name",
+                "hit_left": false,
+                "hit_address": "Adresse",
+                "eintrag_0": false,
+                "hit_right": false,
+                "hit_phone_no": "Telefonnummer",
+                "hit_fax_no": false,
+                "hit_text": false,
+                "Karte anzeigen": false,
+                "Eintrag merken": false,
+                "likeh1": false,
+                "innerspan": false,
+                "newwindow": false,
+                "Teilen auf Facebook": false,
+                "img_0": false,
+                "eintrag_1": false,
+                "E-Mail versenden": false,
+                "eintrag_2": false,
+                "hit_extra_content": false,
+                "eintrag_3": false,
+                "eintrag_4": false,
+                "eintrag_5": false,
+                "eintrag_6": false,
+                "eintrag_7": false,
+                "eintrag_8": false,
+                "eintrag_9": false,
+                "eintrag_10": false,
+                "eintrag_11": false,
+                "hit_phone_0180": false,
+                "startext": false,
+                "eintrag_12": false,
+                "eintrag_13": false,
+                "eintrag_14": false
+            },
+            "validFor": [
+                "nav1330443466330"
+            ],
+            "name": "Default mapping"
+        },
+        "1330443466384": {
+            "map": {},
+            "validFor": [],
+            "name": "Default mapping"
+        }
+    },
+    "navigation": {
+        "base": [
+            {
+                "name": "Entry point",
+                "type": "Start",
+                "config": {
+                    "request": {
+                        "url": "http://www.plz-postleitzahl.de/kreis.baden-w%C3%BCrttemberg/stadtkreis/index.html"
+                    }
+                },
+                "id": "nav1328720647164",
+                "next": [
+                    "nav1328720647167"
+                ]
+            }
+        ],
+        "nav1328720647165": {
+            "name": "Walk through links",
+            "type": "WalkthroughLinks",
+            "config": {
+                "areaSelector": [
+                    "html > body > table:first-child tr:nth-child(3) > td:first-child > table:first-child tr:first-child > td:first-child > table:nth-child(3) tr:nth-child(2) > td:nth-child(2) > ul:nth-child(2)"
+                ]
+            },
+            "next": [
+                "nav1328720647166"
+            ],
+            "id": "nav1328720647165"
+        },
+        "nav1328720647166": {
+            "name": "Walk through links",
+            "type": "WalkthroughLinks",
+            "config": {
+                "areaSelector": [
+                    "html > body > table:first-child tr:nth-child(3) > td:first-child > table:first-child tr:first-child > td:nth-child(2) > table:nth-child(3) tr:nth-child(2) > td:nth-child(2) > table:nth-child(3)"
+                ]
+            },
+            "next": [
+                "nav1328720647167"
+            ],
+            "id": "nav1328720647166"
+        },
+        "nav1328720647167": {
+            "name": "Walk through links",
+            "type": "WalkthroughLinks",
+            "config": {
+                "areaSelector": [
+                    "html > body > table:first-child tr:nth-child(3) > td:first-child > table:first-child tr:first-child > td:nth-child(2) > table:first-child tr:nth-child(2) > td:nth-child(2) > table:nth-child(2)"
+                ]
+            },
+            "next": [
+                "nav1328720647168"
+            ],
+            "id": "nav1328720647167"
+        },
+        "nav1328720647168": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": [
+                    "html > body > table:first-child tr:nth-child(3) > td:first-child > table:first-child tr:first-child > td:nth-child(2) > table:first-child tr:nth-child(2) > td:nth-child(2) > table:nth-child(2) tr:nth-child(2) > td:nth-child(2)"
+                ],
+                "customSelector": [
+                    "html > body > table:first-child tr:nth-child(3) > td:first-child > table:first-child tr:first-child > td:nth-child(2) > table:first-child tr:nth-child(2) > td:nth-child(2) > table:nth-child(2)"
+                ],
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "plz",
+                                "selector": "tr:nth-child(2) > td:nth-child(2)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+				"nav1330443466326",
+				"nav1328720647169"
+            ],
+            "id": "nav1328720647168",
+            "nodeConfigId": "1328720647164"
+        },
+        "nav1328720647169": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "collection": "plz"
+            },
+            "next": [],
+            "id": "nav1328720647169"
+        },
+		"nav1330443466326": {
+            "name": "Fill form",
+            "type": "FillForm",
+            "config": {
+                "formSelector": [
+                    "#startpageForm"
+                ],
+				"url": "http://www.gelbeseiten.de/yp/search.yp",
+                "method": "get",
+                "parameters": [
+                    {
+						"execute": {
+                            "entry": ["Suchen"]
+                        },
+                        "subject": {
+                            "entry": ["Autovermietung"]
+                        },
+                        "location": {
+                            "entry": ["#{PLZ}"]
+                        }
+                    }
+                ],
+                "customSelector": [
+                    " .search_hit:parent"
+                ],
+                "magic": {}
+            },
+            "next": [
+                "nav1330443466327"
+            ],
+            "id": "nav1330443466326",
+            "nodeConfigId": "1330443466325"
+        },
+        "nav1330443466327": {
+            "name": "Walk through pager",
+            "type": "Pager",
+            "config": {
+                "pagerSelector": [
+                    "div#maincontent > div:nth-child(2) > div:nth-child(12) > div:nth-child(2) > ul:first-child"
+                ]
+            },
+            "next": [
+                "nav1330443466328"
+            ],
+            "id": "nav1330443466327"
+        },
+        "nav1330443466328": {
+            "name": "Walk through items",
+            "type": "WalkthroughItems",
+            "config": {
+                "customSelector": [
+                    " .search_hit:parent"
+                ],
+                "magic": {}
+            },
+            "next": [
+                "nav1330443466329"
+            ],
+            "id": "nav1330443466328",
+            "nodeConfigId": "1330443466325"
+        },
+        "nav1330443466329": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": ""
+            },
+            "next": [
+                "nav1330443466330"
+            ],
+            "id": "nav1330443466329"
+        },
+        "nav1330443466330": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "collection": "Autovermietung"
+            },
+            "next": [],
+            "id": "nav1330443466330"
+        }
+    }
+}

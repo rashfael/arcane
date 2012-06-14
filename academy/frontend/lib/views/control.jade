@@ -1,0 +1,48 @@
+extends layout
+
+block content
+	h1 Job Control
+
+	table.table.table-striped.table-bordered
+		thead
+			tr
+				th #
+				th Project
+				th Archived
+				th State
+				th Start Date
+				th End Date
+				th Running Workers
+				th Finished Workers
+		tbody
+			- each job in jobs
+				tr
+					td
+						if(job.name)
+							a(href='/jobs/'+job.id)= job.name
+						else
+							a(href='/jobs/'+job.id)= job.id
+					td
+						a(href='projects/' + encodeURIComponent(job.project))= job.project
+					td= 'no'
+					td= job.state
+					td= job.started
+					td= job.finished
+					td= job.runningWorkers
+					td= job.finishedWorkers
+			- each job in dbJobs
+				tr.archived
+					td
+						if(job.name)
+							a(href='/jobs/'+job._id)= job.name
+						else
+							a(href='/jobs/'+job._id)= job._id
+					td
+						a(href='projects/' + encodeURIComponent(job.project))= job.project
+					td= 'yes'
+					td= job.state
+					td= job.started
+					td= job.finished
+					td= job.runningWorkers
+					td= job.finishedWorkers
+

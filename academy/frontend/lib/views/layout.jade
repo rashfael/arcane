@@ -1,0 +1,45 @@
+include mixins/form_helpers
+
+!!!
+html
+	head
+		block head
+			title= title
+			!= css('bootstrap.min')
+			!= css('style')
+			!= css('ui-lightness/jquery-ui-1.8.17.custom')
+			!= js('jquery-1.7.1.min')
+			!= js('jquery-ui-1.8.17.custom.min')
+			!= js('bootstrap')
+			!= js('underscore-min')
+			!= js('backbone-min')
+			!= js('script')
+			!= js('jslint')
+			!= js('codemirror/codemirror')
+			!= js('codemirror/mode/javascript')
+			!= css('codemirror/codemirror')
+			script(src='/js/templates.js')
+	body
+		.navbar.navbar-fixed-top
+			.navbar-inner
+				.container-fluid
+					a.btn.btn-navbar(data-toggle="collapse", data-target=".nav-collapse")
+						span.icon-bar
+						span.icon-bar
+						span.icon-bar
+					a.brand(href='/') Arcane Academy
+					.nav-collapse
+						div.nav
+							li: a(href='/submit') Submit Job
+							li: a(href='/control') Job Control
+							li: a(href='/projects') Projects
+							li: a(href='/monitor') Monitor
+							li: a(href='/help') Help
+		block layout
+			.container-fluid.main
+				.row-fluid
+					.span12
+						block content
+				footer
+					:markdown
+						Powered by [node.js](http://nodejs.org/), [coffeescript](http://coffeescript.org), [jQuery](http://jquery.com/), [jsdom](https://github.com/tmpvar/jsdom), [express](http://expressjs.com/), [jade](http://jade-lang.com/) and magic.

@@ -1,0 +1,52 @@
+<html>
+	<head>
+		<title>selector.js test</title>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="../helpers.js"></script>
+		<script type="text/javascript" src="../debug/debug.js"></script>
+		<script type="text/javascript" src="selector.js"></script>
+		<script>
+			var content = {}
+			content.document = document;
+			var fbDocument = document;
+			$(document).ready(function(){
+				var mySel1 = new Selector();
+				mySel1.addDOMNode($('#firstuniqueid'));
+				console.log(mySel1.getSelector().toString());
+				
+				var mySel2 = new Selector();
+				mySel2.addDOMNode($('.product:first-child'));
+				mySel2.addDOMNode($('.product:last-child'));
+				mySel2.excludeDOMNode('li:last-child');
+				mySel2.detectList();
+				mySel2.mark(true);
+				console.log(mySel2.getSelector().toString());
+				
+				var mySel3 = new Selector(mySel1);
+				mySel3.addDOMNode($('.productlist .product:nth-child(2)'));
+				console.log(mySel3.getSelector().toString());
+			});
+		</script>
+	</head>
+	<body>
+		<div>
+			<div id="firstuniqueid">
+				<ul class="productlist">
+					<li class="product">Produkt 1</li>
+					<li class="product">Produkt 2</li>
+					<li class="product">Produkt 3</li>
+					<li class="product">Produkt 4</li>
+					<li class="product">Produkt 5</li>
+				</ul>
+				<ul>
+					<li class="product">Produkt 1</li>
+					<li class="product">Produkt 2</li>
+					<li class="product">Produkt 3</li>
+					<li class="product">Produkt 4</li>
+					<li class="product">Produkt 5</li>
+				</ul>
+			</div>
+		</div>
+		<div id="console"></div>
+	</body>
+</html>

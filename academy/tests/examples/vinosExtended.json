@@ -1,0 +1,2901 @@
+{
+    "mappings": {
+        "1335339686490": {
+            "map": {
+                "productov-desc": "Bodega",
+                "brown": "Name",
+                "productdetail-desc": "Beschreibung",
+                "price-ov": "Preis",
+                "img_0": false,
+                "productdetail-descleft": false,
+                "productdetail-descright": "Bewertung",
+                "Preis/Liter": "Preis/Liter",
+                "productdetail-content": false,
+                "productdetail-overview": false,
+                "productdetail-infotext": false,
+                "productdetail-price": false,
+                "price": false,
+                "price-small": false,
+                "productrating-content": false,
+                "productrating-titel-big": false,
+                "productrating-box-white": false,
+                "small-gold2": false,
+                "productrating-info": false,
+                "small2": false,
+                "productrating-titel": false,
+                "gold": false,
+                "productrating-date": false,
+                "productrating-text": false,
+                "abstand": false,
+                "productov-box-big hochbild": false,
+                "img_1": false,
+                "img_2": false,
+                "img_3": false,
+                "img_4": false,
+                "img_5": false,
+                "img_6": false,
+                "img_7": false,
+                "img_8": false,
+                "img_9": false,
+                "img_10": false,
+                "img_11": false,
+                "img_12": false,
+                "img_13": false,
+                "img_14": false,
+                "img_15": false,
+                "img_16": false,
+                "img_17": false,
+                "img_18": false,
+                "img_19": false,
+                "img_20": false,
+                "img_21": false,
+                "img_22": false,
+                "img_23": false,
+                "img_24": false,
+                "img_25": false,
+                "Kundenbewertungen": false,
+                "Alkoholgehalt": false,
+                "Geschmack": false,
+                "Passt gut zu": false,
+                "Trinktemperatur": false,
+                "Name": false,
+                "DO": false,
+                "small-gold": false,
+                "small": false
+            },
+            "validFor": [
+                "nav1335340103097"
+            ],
+            "name": "Default mapping"
+        },
+        "1335871523494": {
+            "map": {
+                "productdetail-descleft": false,
+                "productdetail-descright": false,
+                "img_0": false,
+                "img_1": false,
+                "img_2": false,
+                "img_3": false,
+                "img_4": false,
+                "Alkoholgehalt": "",
+                "Geschmack": "",
+                "Passt gut zu": "",
+                "Trinktemperatur": "",
+                "Name": "",
+                "D.O.": false,
+                "DO": ""
+            },
+            "validFor": [
+                "nav1335869024417"
+            ],
+            "name": "mapping2"
+        }
+    },
+    "navigation": {
+        "base": [
+            {
+                "name": "Entry point",
+                "type": "Start",
+                "config": {
+                    "request": {
+                        "url": "http://www.vinos.de/main10.php?func=10"
+                    }
+                },
+                "id": "nav1335339686484",
+                "next": [
+                    "nav1335339686485"
+                ]
+            }
+        ],
+        "nav1335339686485": {
+            "name": "Fill form",
+            "type": "FillForm",
+            "config": {
+                "formSelector": "div.search > form:first-child",
+                "url": "http://www.vinos.de/main10.php?func=10xa",
+                "method": "get",
+                "parameters": [
+                    {
+                        "svJahrgang": {
+                            "entry": [
+                                "#{2006+i}"
+                            ]
+                        },
+                        "svAnbaugebiet": {
+                            "entry": [
+                                "D.O. Alicante"
+                            ]
+                        },
+                        "_iterator": {
+                            "interval": [
+                                0,
+                                3,
+                                1
+                            ]
+                        }
+                    },
+                    {
+                        "svJahrgang": {
+                            "entry": [
+                                "#{2004+i}"
+                            ]
+                        },
+                        "svAnbaugebiet": {
+                            "entry": [
+                                "D.O. Navarra"
+                            ]
+                        },
+                        "_iterator": {
+                            "interval": [
+                                0,
+                                3,
+                                1
+                            ]
+                        }
+                    }
+                ],
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Alkoholgehalt",
+                                "selector": "div:nth-child(8) > div:nth-child(2)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Geschmack",
+                                "selector": "div:nth-child(12) > div:nth-child(2)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Passt gut zu",
+                                "selector": "div:nth-child(13) > div:nth-child(2)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Trinktemperatur",
+                                "selector": "div:nth-child(14) > div:nth-child(2)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Name",
+                                "selector": "h1:nth-child(6)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "DO",
+                                "selector": "em:nth-child(5)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    },
+                    "SubItems": {
+                        "groups": []
+                    }
+                }
+            },
+            "next": [
+                "nav1335339686486"
+            ],
+            "id": "nav1335339686485",
+            "nodeConfigId": "1335339686347"
+        },
+        "nav1335339686486": {
+            "name": "Walk through pager",
+            "type": "Pager",
+            "config": {
+                "pagerSelector": "div.content-rahmen > div:nth-child(4)"
+            },
+            "next": [
+                "nav1335339686487"
+            ],
+            "id": "nav1335339686486"
+        },
+        "nav1335339686487": {
+            "name": "Walk through items",
+            "type": "WalkthroughItems",
+            "config": {
+                "itemSelector": "",
+                "customSelector": "div.content-rahmen .productov-box-big",
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Preis/Liter",
+                                "selector": "div:nth-child(4) > span:nth-child(12)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    },
+                    "SubItems": {
+                        "groups": [
+                            {
+                                "key": "Bewertung",
+                                "selector": "div.content-rahmen > div:nth-child(12) > div:nth-child(4) > div:nth-child(7)"
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1335340103096",
+                "nav1335869024415"
+            ],
+            "id": "nav1335339686487",
+            "nodeConfigId": "1335340037371"
+        },
+        "nav1335340103096": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": "",
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Preis/Liter",
+                                "selector": "div:nth-child(4) > span:nth-child(12)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    },
+                    "SubItems": {
+                        "groups": [
+                            {
+                                "key": "Bewertung",
+                                "selector": "div.content-rahmen > div:nth-child(12) > div:nth-child(4) > div:nth-child(7)"
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1335340103097"
+            ],
+            "id": "nav1335340103096",
+            "nodeConfigId": "1335340037371"
+        },
+        "nav1335340103097": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "collection": "v"
+            },
+            "next": [],
+            "id": "nav1335340103097"
+        },
+        "nav1335869024415": {
+            "name": "Follow link",
+            "type": "FollowLink",
+            "config": {
+                "linkSelector": ".brown",
+                "magic": {}
+            },
+            "next": [
+                "nav1335869024416"
+            ],
+            "id": "nav1335869024415",
+            "nodeConfigId": "1335877129230"
+        },
+        "nav1335869024416": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": "div.productdetail-content",
+                "customSelector": "div.productdetail-left > div:nth-child(2)",
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Alkoholgehalt",
+                                "selector": "div:nth-child(8) > div:nth-child(2)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Geschmack",
+                                "selector": "div:nth-child(12) > div:nth-child(2)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Passt gut zu",
+                                "selector": "div:nth-child(13) > div:nth-child(2)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Trinktemperatur",
+                                "selector": "div:nth-child(14) > div:nth-child(2)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Name",
+                                "selector": "h1:nth-child(6)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "DO",
+                                "selector": "em:nth-child(5)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    },
+                    "SubItems": {
+                        "groups": []
+                    }
+                }
+            },
+            "next": [
+                "nav1335869024417"
+            ],
+            "id": "nav1335869024416",
+            "nodeConfigId": "1335339686347"
+        },
+        "nav1335869024417": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "collection": "vi"
+            },
+            "next": [],
+            "id": "nav1335869024417"
+        }
+    },
+    "config": {
+        "currentConfigID": 1335877129230,
+        "configs": {
+            "1335339686347": {
+                "_name": "Default config",
+                "_id": 1335339686347,
+                "_listConfig": {
+                    "_DOMnodes": [],
+                    "_contexts": [],
+                    "_excludes": [],
+                    "_listSelectorArr": [
+                        "div.productdetail-left > div:nth-child(2)"
+                    ],
+                    "_marks": [
+                        {
+                            "0": {},
+                            "length": 1
+                        }
+                    ],
+                    "selectorString": "div.productdetail-left > div:nth-child(2)"
+                },
+                "_magicConfig": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Alkoholgehalt",
+                                "selector": "div:nth-child(8) > div:nth-child(2)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Geschmack",
+                                "selector": "div:nth-child(12) > div:nth-child(2)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Passt gut zu",
+                                "selector": "div:nth-child(13) > div:nth-child(2)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Trinktemperatur",
+                                "selector": "div:nth-child(14) > div:nth-child(2)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Name",
+                                "selector": "h1:nth-child(6)",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "DO",
+                                "selector": "em:nth-child(5)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    },
+                    "SubItems": {
+                        "groups": []
+                    }
+                },
+                "_formfillConfig": {
+                    "_fields": [
+                        {
+                            "fieldname": "Jahrgang",
+                            "type": "TextField",
+                            "data": {
+                                "selector": "input#such-jahrg",
+                                "name": "svJahrgang",
+                                "value": ""
+                            },
+                            "name": "svJahrgang"
+                        },
+                        {
+                            "fieldname": "Anbaugebiet",
+                            "type": "ComboBox",
+                            "data": {
+                                "selector": "select#such-abg",
+                                "name": "svAnbaugebiet",
+                                "value": [
+                                    {
+                                        "text": "Alle Gebiete",
+                                        "value": ""
+                                    },
+                                    {
+                                        "text": "Chacoli de Bizcaia",
+                                        "value": "Chacoli de Bizcaia"
+                                    },
+                                    {
+                                        "text": "D.O. Abona",
+                                        "value": "D.O. Abona"
+                                    },
+                                    {
+                                        "text": "D.O. Alella",
+                                        "value": "D.O. Alella"
+                                    },
+                                    {
+                                        "text": "D.O. Alicante",
+                                        "value": "D.O. Alicante"
+                                    },
+                                    {
+                                        "text": "D.O. Almansa",
+                                        "value": "D.O. Almansa"
+                                    },
+                                    {
+                                        "text": "D.O. Arlanza",
+                                        "value": "D.O. Arlanza"
+                                    },
+                                    {
+                                        "text": "D.O. Arribes",
+                                        "value": "D.O. Arribes"
+                                    },
+                                    {
+                                        "text": "D.O. Bierzo",
+                                        "value": "D.O. Bierzo"
+                                    },
+                                    {
+                                        "text": "D.O. Bizkaiko Txakolina",
+                                        "value": "D.O. Bizkaiko Txakolina"
+                                    },
+                                    {
+                                        "text": "D.O. Bullas",
+                                        "value": "D.O. Bullas"
+                                    },
+                                    {
+                                        "text": "D.O. Ca. Priorat",
+                                        "value": "D.O. Ca. Priorat"
+                                    },
+                                    {
+                                        "text": "D.O. Ca. Rioja",
+                                        "value": "D.O. Ca. Rioja"
+                                    },
+                                    {
+                                        "text": "D.O. Calatayud",
+                                        "value": "D.O. Calatayud"
+                                    },
+                                    {
+                                        "text": "D.O. Campo de Borja",
+                                        "value": "D.O. Campo de Borja"
+                                    },
+                                    {
+                                        "text": "D.O. Cariñena",
+                                        "value": "D.O. Cariñena"
+                                    },
+                                    {
+                                        "text": "D.O. Catalunya",
+                                        "value": "D.O. Catalunya"
+                                    },
+                                    {
+                                        "text": "D.O. Cava",
+                                        "value": "D.O. Cava"
+                                    },
+                                    {
+                                        "text": "D.O. Cigales",
+                                        "value": "D.O. Cigales"
+                                    },
+                                    {
+                                        "text": "D.O. Conca de Barberà",
+                                        "value": "D.O. Conca de Barberà"
+                                    },
+                                    {
+                                        "text": "D.O. Condado de Huelva",
+                                        "value": "D.O. Condado de Huelva"
+                                    },
+                                    {
+                                        "text": "D.O. Costers del Segre",
+                                        "value": "D.O. Costers del Segre"
+                                    },
+                                    {
+                                        "text": "D.O. El Hierro",
+                                        "value": "D.O. El Hierro"
+                                    },
+                                    {
+                                        "text": "D.O. Empordà",
+                                        "value": "D.O. Empordà"
+                                    },
+                                    {
+                                        "text": "D.O. Getariako-Txakolina",
+                                        "value": "D.O. Getariako-Txakolina"
+                                    },
+                                    {
+                                        "text": "D.O. Gran Canaria",
+                                        "value": "D.O. Gran Canaria"
+                                    },
+                                    {
+                                        "text": "D.O. Jerez-Xérès-Sherry - Manzanilla de Sanlúcar d",
+                                        "value": "D.O. Jerez-Xérès-Sherry - Manzanilla de Sanlúcar d"
+                                    },
+                                    {
+                                        "text": "D.O. Jumilla",
+                                        "value": "D.O. Jumilla"
+                                    },
+                                    {
+                                        "text": "D.O. La Mancha",
+                                        "value": "D.O. La Mancha"
+                                    },
+                                    {
+                                        "text": "D.O. La Palma",
+                                        "value": "D.O. La Palma"
+                                    },
+                                    {
+                                        "text": "D.O. Lanzarote",
+                                        "value": "D.O. Lanzarote"
+                                    },
+                                    {
+                                        "text": "D.O. Málaga - Sierras de Málaga",
+                                        "value": "D.O. Málaga - Sierras de Málaga"
+                                    },
+                                    {
+                                        "text": "D.O. Manchuela",
+                                        "value": "D.O. Manchuela"
+                                    },
+                                    {
+                                        "text": "D.O. Méntrida",
+                                        "value": "D.O. Méntrida"
+                                    },
+                                    {
+                                        "text": "D.O. Mondéjar",
+                                        "value": "D.O. Mondéjar"
+                                    },
+                                    {
+                                        "text": "D.O. Monte de Lentiscal",
+                                        "value": "D.O. Monte de Lentiscal"
+                                    },
+                                    {
+                                        "text": "D.O. Monterrei",
+                                        "value": "D.O. Monterrei"
+                                    },
+                                    {
+                                        "text": "D.O. Montilla-Moriles",
+                                        "value": "D.O. Montilla-Moriles"
+                                    },
+                                    {
+                                        "text": "D.O. Montsant",
+                                        "value": "D.O. Montsant"
+                                    },
+                                    {
+                                        "text": "D.O. Navarra",
+                                        "value": "D.O. Navarra"
+                                    },
+                                    {
+                                        "text": "D.O. Penedès",
+                                        "value": "D.O. Penedès"
+                                    },
+                                    {
+                                        "text": "D.O. Pla de Bages",
+                                        "value": "D.O. Pla de Bages"
+                                    },
+                                    {
+                                        "text": "D.O. Rías Baixas",
+                                        "value": "D.O. Rías Baixas"
+                                    },
+                                    {
+                                        "text": "D.O. Ribeira Sacra",
+                                        "value": "D.O. Ribeira Sacra"
+                                    },
+                                    {
+                                        "text": "D.O. Ribeiro",
+                                        "value": "D.O. Ribeiro"
+                                    },
+                                    {
+                                        "text": "D.O. Ribera del Duero",
+                                        "value": "D.O. Ribera del Duero"
+                                    },
+                                    {
+                                        "text": "D.O. Ribera del Guadiana",
+                                        "value": "D.O. Ribera del Guadiana"
+                                    },
+                                    {
+                                        "text": "D.O. Ribera del Queiles",
+                                        "value": "D.O. Ribera del Queiles"
+                                    },
+                                    {
+                                        "text": "D.O. Rueda",
+                                        "value": "D.O. Rueda"
+                                    },
+                                    {
+                                        "text": "D.O. Somontano",
+                                        "value": "D.O. Somontano"
+                                    },
+                                    {
+                                        "text": "D.O. Tacoronte-Acentejo",
+                                        "value": "D.O. Tacoronte-Acentejo"
+                                    },
+                                    {
+                                        "text": "D.O. Tarragona",
+                                        "value": "D.O. Tarragona"
+                                    },
+                                    {
+                                        "text": "D.O. Terra Alta",
+                                        "value": "D.O. Terra Alta"
+                                    },
+                                    {
+                                        "text": "D.O. Tierra de León",
+                                        "value": "D.O. Tierra de León"
+                                    },
+                                    {
+                                        "text": "D.O. Tierra del Vino de Zamora",
+                                        "value": "D.O. Tierra del Vino de Zamora"
+                                    },
+                                    {
+                                        "text": "D.O. Toro",
+                                        "value": "D.O. Toro"
+                                    },
+                                    {
+                                        "text": "D.O. Uclés",
+                                        "value": "D.O. Uclés"
+                                    },
+                                    {
+                                        "text": "D.O. Utiel-Requena",
+                                        "value": "D.O. Utiel-Requena"
+                                    },
+                                    {
+                                        "text": "D.O. Valdeorras",
+                                        "value": "D.O. Valdeorras"
+                                    },
+                                    {
+                                        "text": "D.O. Valdepeñas",
+                                        "value": "D.O. Valdepeñas"
+                                    },
+                                    {
+                                        "text": "D.O. Valencia",
+                                        "value": "D.O. Valencia"
+                                    },
+                                    {
+                                        "text": "D.O. Valle de Güimar",
+                                        "value": "D.O. Valle de Güimar"
+                                    },
+                                    {
+                                        "text": "D.O. Valle de la Orotava",
+                                        "value": "D.O. Valle de la Orotava"
+                                    },
+                                    {
+                                        "text": "D.O. Vinos de Madrid",
+                                        "value": "D.O. Vinos de Madrid"
+                                    },
+                                    {
+                                        "text": "D.O. Ycoden-Daute-Isora Tenerife",
+                                        "value": "D.O. Ycoden-Daute-Isora Tenerife"
+                                    },
+                                    {
+                                        "text": "D.O. Yecla",
+                                        "value": "D.O. Yecla"
+                                    },
+                                    {
+                                        "text": "Mallorca - D.O.Binissalem",
+                                        "value": "Mallorca - D.O.Binissalem"
+                                    },
+                                    {
+                                        "text": "Mallorca - D.O.Pla i Llevant",
+                                        "value": "Mallorca - D.O.Pla i Llevant"
+                                    },
+                                    {
+                                        "text": "Mallorca - Vi de la terra Mallorca",
+                                        "value": "Mallorca - Vi de la terra Mallorca"
+                                    },
+                                    {
+                                        "text": "Mallorca - Vi de la Terra »Serra de Tramuntana-Cos",
+                                        "value": "Mallorca - Vi de la Terra »Serra de Tramuntana-Cos"
+                                    },
+                                    {
+                                        "text": "Mallorca - Vi de Taula",
+                                        "value": "Mallorca - Vi de Taula"
+                                    },
+                                    {
+                                        "text": "Mesa",
+                                        "value": "Mesa"
+                                    },
+                                    {
+                                        "text": "V.C.P.R.D. Valles de Benavente",
+                                        "value": "V.C.P.R.D. Valles de Benavente"
+                                    },
+                                    {
+                                        "text": "V.T. Arribes del Duero",
+                                        "value": "V.T. Arribes del Duero"
+                                    },
+                                    {
+                                        "text": "V.T. Bajo Aragón",
+                                        "value": "V.T. Bajo Aragón"
+                                    },
+                                    {
+                                        "text": "V.T. Cádiz",
+                                        "value": "V.T. Cádiz"
+                                    },
+                                    {
+                                        "text": "V.T. Castilla",
+                                        "value": "V.T. Castilla"
+                                    },
+                                    {
+                                        "text": "V.T. Castilla",
+                                        "value": "V.T. Castilla"
+                                    },
+                                    {
+                                        "text": "V.T. Castilla y León",
+                                        "value": "V.T. Castilla y León"
+                                    },
+                                    {
+                                        "text": "V.T. Contraviesa-Alpujarra",
+                                        "value": "V.T. Contraviesa-Alpujarra"
+                                    },
+                                    {
+                                        "text": "V.T. Eivissa",
+                                        "value": "V.T. Eivissa"
+                                    },
+                                    {
+                                        "text": "V.T. El Terrerazo",
+                                        "value": "V.T. El Terrerazo"
+                                    },
+                                    {
+                                        "text": "V.T. Extremadura",
+                                        "value": "V.T. Extremadura"
+                                    },
+                                    {
+                                        "text": "V.T. Formentera",
+                                        "value": "V.T. Formentera"
+                                    },
+                                    {
+                                        "text": "V.T. Ribera del Arlanza",
+                                        "value": "V.T. Ribera del Arlanza"
+                                    },
+                                    {
+                                        "text": "V.T. Ribera del Queiles",
+                                        "value": "V.T. Ribera del Queiles"
+                                    },
+                                    {
+                                        "text": "V.T. Valles de Sadacia",
+                                        "value": "V.T. Valles de Sadacia"
+                                    },
+                                    {
+                                        "text": "Vino de Mesa/Vi de Taula",
+                                        "value": "Vino de Mesa/Vi de Taula"
+                                    },
+                                    {
+                                        "text": "Vinos de Pago Dehesa del Carrizal",
+                                        "value": "Vinos de Pago Dehesa del Carrizal"
+                                    },
+                                    {
+                                        "text": "Vinos de Pago Dominio de Valdepusa",
+                                        "value": "Vinos de Pago Dominio de Valdepusa"
+                                    },
+                                    {
+                                        "text": "Vinos de Pago El Terrerazo",
+                                        "value": "Vinos de Pago El Terrerazo"
+                                    },
+                                    {
+                                        "text": "Vinos de Pago Finca Élez",
+                                        "value": "Vinos de Pago Finca Élez"
+                                    },
+                                    {
+                                        "text": "Vinos de Pago Señorío de Arínzano",
+                                        "value": "Vinos de Pago Señorío de Arínzano"
+                                    }
+                                ]
+                            },
+                            "name": "svAnbaugebiet"
+                        }
+                    ],
+                    "_datasets": [
+                        {
+                            "Jahrgang": {
+                                "fieldname": "Jahrgang",
+                                "value": "#{2006+i}",
+                                "text": "#{2006+i}"
+                            },
+                            "_iterator": {
+                                "useIndex": true,
+                                "distinct": false,
+                                "indexFromVal": 0,
+                                "indexToVal": 3,
+                                "indexDistVal": [],
+                                "indexStepSize": 1
+                            },
+                            "Anbaugebiet": {
+                                "fieldname": "Anbaugebiet",
+                                "value": "D.O. Alicante"
+                            }
+                        },
+                        {
+                            "Jahrgang": {
+                                "fieldname": "Jahrgang",
+                                "value": "#{2004+i}",
+                                "text": "#{2004+i}"
+                            },
+                            "_iterator": {
+                                "useIndex": true,
+                                "distinct": false,
+                                "indexFromVal": 0,
+                                "indexToVal": 3,
+                                "indexDistVal": [],
+                                "indexStepSize": 1
+                            },
+                            "Anbaugebiet": {
+                                "fieldname": "Anbaugebiet",
+                                "value": "D.O. Navarra"
+                            }
+                        }
+                    ],
+                    "importedJson": {
+                        "name": null,
+                        "file": null,
+                        "fileName": null
+                    }
+                }
+            },
+            "1335340037371": {
+                "_name": "New Config",
+                "_id": 1335340037371,
+                "_listConfig": {
+                    "_DOMnodes": [],
+                    "_contexts": [],
+                    "_excludes": [],
+                    "_listSelectorArr": [
+                        "div.content-rahmen .productov-box-big"
+                    ],
+                    "_marks": [
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        }
+                    ],
+                    "selectorString": "div.content-rahmen .productov-box-big"
+                },
+                "_magicConfig": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Preis/Liter",
+                                "selector": "div:nth-child(4) > span:nth-child(12)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    },
+                    "SubItems": {
+                        "groups": [
+                            {
+                                "key": "Bewertung",
+                                "selector": "div.content-rahmen > div:nth-child(12) > div:nth-child(4) > div:nth-child(7)"
+                            }
+                        ]
+                    }
+                },
+                "_formfillConfig": {
+                    "_fields": [],
+                    "_datasets": [],
+                    "importedJson": {
+                        "name": null,
+                        "file": null,
+                        "fileName": null
+                    }
+                }
+            },
+            "1335877129230": {
+                "_name": "followLink",
+                "_id": 1335877129230,
+                "_listConfig": {
+                    "_DOMnodes": [
+                        "div.content-rahmen > div:nth-child(5) > div:nth-child(4) > h1:nth-child(2) > a:first-child",
+                        "div.content-rahmen > div:nth-child(6) > div:nth-child(4) > h1:nth-child(2) > a:first-child"
+                    ],
+                    "_contexts": [],
+                    "_excludes": [],
+                    "_listSelectorArr": [
+                        "div.content-rahmen .brown"
+                    ],
+                    "_marks": [
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        }
+                    ],
+                    "selectorString": "div.content-rahmen .brown",
+                    "selector": {
+                        "selectorArr": [
+                            "div.content-rahmen > div:nth-child(5) > div:nth-child(4) > h1:nth-child(2) > a:first-child,div.content-rahmen > div:nth-child(6) > div:nth-child(4) > h1:nth-child(2) > a:first-child"
+                        ]
+                    }
+                },
+                "_magicConfig": {},
+                "_formfillConfig": {
+                    "_fields": [],
+                    "_datasets": [],
+                    "importedJson": {
+                        "name": null,
+                        "file": null,
+                        "fileName": null
+                    }
+                }
+            }
+        }
+    },
+    "mappingData": [
+        {
+            "id": 1335339686490,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "http://www.vinos.de/",
+                    "selector": {
+                        "_DOMnodes": [],
+                        "_contexts": [],
+                        "_excludes": [],
+                        "_listSelectorArr": [],
+                        "_marks": []
+                    },
+                    "data": [],
+                    "currentData": []
+                },
+                {
+                    "selector": {
+                        "_DOMnodes": [],
+                        "_contexts": [],
+                        "_excludes": [],
+                        "_listSelectorArr": [],
+                        "_marks": []
+                    },
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.vinos.de/main10.php?func=10"
+                },
+                {
+                    "selector": {
+                        "_DOMnodes": [],
+                        "_contexts": [],
+                        "_excludes": [],
+                        "_listSelectorArr": [],
+                        "_marks": []
+                    },
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.vinos.de/main10.php?func=10xa&svWeinname=&svFarbe=Wei%DF%2F+Blanco&svJahrgang=2004&svPreisspanne=&svAnbaugebiet=&svWeingut=&svQstufe=&suche=Suchen"
+                },
+                {
+                    "selector": {
+                        "_DOMnodes": [],
+                        "_contexts": [],
+                        "_excludes": [],
+                        "_listSelectorArr": [],
+                        "_marks": []
+                    },
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.vinos.de/main10.php?func=10xa&svWeinname=&svFarbe=Wei%DF%2F+Blanco&svJahrgang=2005&svPreisspanne=&svAnbaugebiet=&svWeingut=&svQstufe=&suche=Suchen"
+                },
+                {
+                    "selector": {
+                        "_DOMnodes": [],
+                        "_contexts": [],
+                        "_excludes": [],
+                        "_listSelectorArr": [],
+                        "_marks": []
+                    },
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.vinos.de/main10.php?func=10xa&svWeinname=&svFarbe=Wei%DF%2F+Blanco&svJahrgang=2006&svPreisspanne=&svAnbaugebiet=&svWeingut=&svQstufe=&suche=Suchen"
+                },
+                {
+                    "selector": "div.content-rahmen .productov-box-big",
+                    "data": [
+                        {
+                            "key": "productov-desc",
+                            "dbKey": "Weinkeller",
+                            "checked": "checked",
+                            "values": [
+                                "Bodegas Bohigas D.O. Catalunya Pro Flasche",
+                                "Bodegas Can Ràfols dels Caus D.O. Penedès Pro Flasche",
+                                "Bodegas Dominio do Bibei D.O. Ribeira Sacra Pro Flasche",
+                                "Bodegas Alejandro Fernández D.O. La Mancha Pro Flasche",
+                                "Bodegas La Tapada D.O. Valdeorras Pro Flasche",
+                                "Bodegas Jean León D.O. Penedès Pro Flasche",
+                                "Bodegas Orowines - Jorge Ordóñez D.O. Málaga - Sierras de Málaga Pro Flasche",
+                                "Bodegas Julián Chivite D.O. Navarra Pro Flasche"
+                            ]
+                        },
+                        {
+                            "key": "brown",
+                            "dbKey": "Weinname",
+                            "checked": "checked",
+                            "values": [
+                                "Bohigas Tinto »Fermí«  2007",
+                                "Can Ràfols dels Caus Blanco »Gran Caus«  2007",
+                                "Can Ràfols dels Caus Blanco »Xarel·lo Pairal«  2007",
+                                "Dominio do Bibei »La Pena«  2007",
+                                "El Vínculo Blanco »Alejairén«  2007",
+                                "Guitián Blanco »Fermendado en barrica«  2007",
+                                "Jean León Chardonnay »Vinya Gigi«  2007",
+                                "Jorge Ordóñez & Co. No.1 »Selección Especial«  - 0,375 L.  2007",
+                                "Julián Chivite »Colección 125« Chardonnay  2007",
+                                "Julián Chivite »Colección 125« Dulce Vendimia Tardía - 0,375 L.  2007"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-desc",
+                            "dbKey": "Beschreibung",
+                            "checked": "checked",
+                            "values": [
+                                "»Eine der edelsten Rebsorten, sofern Adel auf der Fähigkeit beruht, seriöse Roweine hervorzubringen, die ...",
+                                "Carlos Esteva - charismatischer Eigner der Bodegas Can Ràfols dels Caus - ist einer der großen alten Pioniere des ...",
+                                "Die Dominio do Bibei gehört zu jenen strahlenden neuen Sternen der Iberischen Halbinsel, die eindrucksvoll beweisen ...",
+                                "Paraje La Golosa – Das ist die beste, extrem steinige Einzellage von El Vínculo und besitzt exzellentes Potenzial ...",
+                                "Welch' Hommage an die ebenso großartige wie hochwertige, autochthone Rebsorte Godello, die die rührige Bodegas La ...",
+                                "Der Jean León Chardonnay »Vinya Gigi« ist zweifellos einer der besten und berühmtesten Weißweine Spaniens und hat ...",
+                                "Dass in Málaga erstklassige Süßweine möglich sind, das hat schon Telmo Rodríguez mit seinem bahnbrechenden 'Molino ...",
+                                "Weltklasse-Chardonnay.... Der sich durch seine reichen Fruchtkomponenten und die sehr feine Holzaromatik auszeichnet ...",
+                                "Die heimliche Eminenz unter den großen Süßweinen der Iberischen Halbinsel: Der Moscatel Colección 125 Vendimia ..."
+                            ]
+                        },
+                        {
+                            "key": "price-ov",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "18,95 €",
+                                "13,95 €",
+                                "19,95 €",
+                                "44,90 €",
+                                "22,90 €",
+                                "21,90 €",
+                                "15,95 €",
+                                "43,90 €",
+                                "29,90 €"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Abbildung"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descleft",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Robert Parker - The Wine Advocate",
+                                "Guía Peñín 2011",
+                                "Stephen Tanzer's International Wine Cellar",
+                                "Guía Peñín 2010",
+                                "Guía Proensa 2010",
+                                "Vivir El Vino Guía 2010",
+                                "Guía Repsol 2010",
+                                "Guía Repsol 2011",
+                                "Jancis Robinson - Master of Wine"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descright",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "90/100",
+                                "91/100",
+                                "93/100",
+                                "92/100",
+                                "98/100",
+                                "94/100",
+                                "96/100",
+                                "95/100",
+                                "99/100",
+                                "17/20"
+                            ]
+                        },
+                        {
+                            "key": "Preis/Liter",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "(25,27 €/Liter)",
+                                "(18,60 €/Liter)",
+                                "(26,60 €/Liter)",
+                                "(59,87 €/Liter)",
+                                "(30,53 €/Liter)",
+                                "(29,20 €/Liter)",
+                                "(42,53 €/Liter)",
+                                "(58,53 €/Liter)",
+                                "(79,73 €/Liter)"
+                            ]
+                        }
+                    ],
+                    "currentData": [
+                        {
+                            "key": "productov-desc",
+                            "dbKey": "Weinkeller",
+                            "checked": false,
+                            "values": [
+                                "Bodegas Bohigas D.O. Catalunya Pro Flasche",
+                                "Bodegas Can Ràfols dels Caus D.O. Penedès Pro Flasche",
+                                "Bodegas Dominio do Bibei D.O. Ribeira Sacra Pro Flasche",
+                                "Bodegas Alejandro Fernández D.O. La Mancha Pro Flasche",
+                                "Bodegas La Tapada D.O. Valdeorras Pro Flasche",
+                                "Bodegas Jean León D.O. Penedès Pro Flasche",
+                                "Bodegas Orowines - Jorge Ordóñez D.O. Málaga - Sierras de Málaga Pro Flasche",
+                                "Bodegas Julián Chivite D.O. Navarra Pro Flasche"
+                            ]
+                        },
+                        {
+                            "key": "brown",
+                            "dbKey": "Weinname",
+                            "checked": false,
+                            "values": [
+                                "Bohigas Tinto »Fermí«  2007",
+                                "Can Ràfols dels Caus Blanco »Gran Caus«  2007",
+                                "Can Ràfols dels Caus Blanco »Xarel·lo Pairal«  2007",
+                                "Dominio do Bibei »La Pena«  2007",
+                                "El Vínculo Blanco »Alejairén«  2007",
+                                "Guitián Blanco »Fermendado en barrica«  2007",
+                                "Jean León Chardonnay »Vinya Gigi«  2007",
+                                "Jorge Ordóñez & Co. No.1 »Selección Especial«  - 0,375 L.  2007",
+                                "Julián Chivite »Colección 125« Chardonnay  2007",
+                                "Julián Chivite »Colección 125« Dulce Vendimia Tardía - 0,375 L.  2007"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-desc",
+                            "dbKey": "Beschreibung",
+                            "checked": false,
+                            "values": [
+                                "»Eine der edelsten Rebsorten, sofern Adel auf der Fähigkeit beruht, seriöse Roweine hervorzubringen, die ...",
+                                "Carlos Esteva - charismatischer Eigner der Bodegas Can Ràfols dels Caus - ist einer der großen alten Pioniere des ...",
+                                "Die Dominio do Bibei gehört zu jenen strahlenden neuen Sternen der Iberischen Halbinsel, die eindrucksvoll beweisen ...",
+                                "Paraje La Golosa – Das ist die beste, extrem steinige Einzellage von El Vínculo und besitzt exzellentes Potenzial ...",
+                                "Welch' Hommage an die ebenso großartige wie hochwertige, autochthone Rebsorte Godello, die die rührige Bodegas La ...",
+                                "Der Jean León Chardonnay »Vinya Gigi« ist zweifellos einer der besten und berühmtesten Weißweine Spaniens und hat ...",
+                                "Dass in Málaga erstklassige Süßweine möglich sind, das hat schon Telmo Rodríguez mit seinem bahnbrechenden 'Molino ...",
+                                "Weltklasse-Chardonnay.... Der sich durch seine reichen Fruchtkomponenten und die sehr feine Holzaromatik auszeichnet ...",
+                                "Die heimliche Eminenz unter den großen Süßweinen der Iberischen Halbinsel: Der Moscatel Colección 125 Vendimia ..."
+                            ]
+                        },
+                        {
+                            "key": "price-ov",
+                            "dbKey": "Preis",
+                            "checked": false,
+                            "values": [
+                                "18,95 €",
+                                "13,95 €",
+                                "19,95 €",
+                                "44,90 €",
+                                "22,90 €",
+                                "21,90 €",
+                                "15,95 €",
+                                "43,90 €",
+                                "29,90 €"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Abbildung"
+                            ]
+                        },
+                        {
+                            "key": "Preis/Liter",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "(25,27 €/Liter)",
+                                "(18,60 €/Liter)",
+                                "(26,60 €/Liter)",
+                                "(59,87 €/Liter)",
+                                "(30,53 €/Liter)",
+                                "(29,20 €/Liter)",
+                                "(42,53 €/Liter)",
+                                "(58,53 €/Liter)",
+                                "(79,73 €/Liter)"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descleft",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Robert Parker - The Wine Advocate",
+                                "Guía Peñín 2011",
+                                "Stephen Tanzer's International Wine Cellar",
+                                "Guía Peñín 2010",
+                                "Guía Proensa 2010",
+                                "Vivir El Vino Guía 2010",
+                                "Guía Repsol 2010",
+                                "Guía Repsol 2011",
+                                "Jancis Robinson - Master of Wine"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descright",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "90/100",
+                                "91/100",
+                                "93/100",
+                                "92/100",
+                                "98/100",
+                                "94/100",
+                                "96/100",
+                                "95/100",
+                                "99/100",
+                                "17/20"
+                            ]
+                        }
+                    ],
+                    "url": "http://www.vinos.de/main10.php?func=10xa&svWeinname=&svFarbe=Wei%DF%2F+Blanco&svJahrgang=2007&svPreisspanne=&svAnbaugebiet=&svWeingut=&svQstufe=&suche=Suchen"
+                },
+                {
+                    "selector": "div.content-rahmen .productov-box-big",
+                    "data": [
+                        {
+                            "key": "productov-desc",
+                            "dbKey": "Bodega",
+                            "checked": "checked",
+                            "values": [
+                                "Bodegas Bernabé Navarro D.O. Alicante Pro Flasche",
+                                "Bodegas Enrique Mendoza D.O. Alicante Pro Flasche"
+                            ]
+                        },
+                        {
+                            "key": "brown",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "Beryna  2008",
+                                "Enrique Mendoza Cabernet Sauvignon - Shiraz Reserva 2008",
+                                "Enrique Mendoza Pinot Noir  2008",
+                                "Enrique Mendoza »Moscatel Mendoza« - 0,5 L.  2008"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-desc",
+                            "dbKey": "Beschreibung",
+                            "checked": "checked",
+                            "values": [
+                                "Dass die Bodegas Bernabé Navarro schnell zu einer wichtigen Adresse in der D.O. Alicante wurde, verdankt sie einer ...",
+                                "Eines muss man dem tatkräftigen Pepe Mendoza lassen. (Pepe ist der Sohn von Enrique und heute für das Weingut ...",
+                                "Sanft, üppig und verführerisch. Überragende Aromen von dunklen, reifen Beeren, die den fruchtigen Charakter ...",
+                                "Einer der feinsten Moscatels Spaniens. Ein selten guter Wein ... Als hätte man einen Sauternes im Glas, der auf ..."
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descleft",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Robert Parker - The Wine Advocate",
+                                "Guía Repsol 2012",
+                                "Guía Peñín 2011",
+                                "Guía Peñín 2012",
+                                "Guía Proensa 2012",
+                                "Berliner Weinführer"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descright",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "92/100",
+                                "93/100",
+                                "17/20"
+                            ]
+                        },
+                        {
+                            "key": "price-ov",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "10,95 €",
+                                "14,95 €",
+                                "12,90 €"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Abbildung"
+                            ]
+                        },
+                        {
+                            "key": "Preis/Liter",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "(14,60 €/Liter)",
+                                "(19,93 €/Liter)",
+                                "(25,80 €/Liter)"
+                            ]
+                        }
+                    ],
+                    "currentData": [
+                        {
+                            "key": "productov-desc",
+                            "dbKey": "Bodega",
+                            "checked": "checked",
+                            "values": [
+                                "Bodegas Bernabé Navarro D.O. Alicante Pro Flasche",
+                                "Bodegas Enrique Mendoza D.O. Alicante Pro Flasche"
+                            ]
+                        },
+                        {
+                            "key": "brown",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "Beryna  2008",
+                                "Enrique Mendoza Cabernet Sauvignon - Shiraz Reserva 2008",
+                                "Enrique Mendoza Pinot Noir  2008",
+                                "Enrique Mendoza »Moscatel Mendoza« - 0,5 L.  2008"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-desc",
+                            "dbKey": "Beschreibung",
+                            "checked": "checked",
+                            "values": [
+                                "Dass die Bodegas Bernabé Navarro schnell zu einer wichtigen Adresse in der D.O. Alicante wurde, verdankt sie einer ...",
+                                "Eines muss man dem tatkräftigen Pepe Mendoza lassen. (Pepe ist der Sohn von Enrique und heute für das Weingut ...",
+                                "Sanft, üppig und verführerisch. Überragende Aromen von dunklen, reifen Beeren, die den fruchtigen Charakter ...",
+                                "Einer der feinsten Moscatels Spaniens. Ein selten guter Wein ... Als hätte man einen Sauternes im Glas, der auf ..."
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descleft",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Robert Parker - The Wine Advocate",
+                                "Guía Repsol 2012",
+                                "Guía Peñín 2011",
+                                "Guía Peñín 2012",
+                                "Guía Proensa 2012",
+                                "Berliner Weinführer"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descright",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "92/100",
+                                "93/100",
+                                "17/20"
+                            ]
+                        },
+                        {
+                            "key": "price-ov",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "10,95 €",
+                                "14,95 €",
+                                "12,90 €"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Abbildung"
+                            ]
+                        },
+                        {
+                            "key": "Preis/Liter",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "(14,60 €/Liter)",
+                                "(19,93 €/Liter)",
+                                "(25,80 €/Liter)"
+                            ]
+                        }
+                    ],
+                    "url": "http://www.vinos.de/main10.php?func=10xa&svWeinname=&svFarbe=&svJahrgang=2008&svPreisspanne=&svAnbaugebiet=D.O.+Alicante&svWeingut=&svQstufe=&suche=Suchen"
+                },
+                {
+                    "selector": "div.productdetail-left > div:nth-child(2)",
+                    "data": [
+                        {
+                            "key": "productdetail-content",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Preisbox   productdetail-right"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-overview",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Bewertung     Produktinformationen  (2)  Bodegas Corellanas"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descleft",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Alkohol:",
+                                "Trinkreife:",
+                                "Rebsorten:",
+                                "Barriqueausbau:",
+                                "Geschmack:",
+                                "Anlass:",
+                                "Trinktemperatur:",
+                                "Allgemeine Jahrgangs-Bewertungen:"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descright",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "13 %",
+                                "jetzt bis ca. 2014",
+                                "Cabernet Sauvignon, Merlot, Tempranillo",
+                                "12 Monate",
+                                "trocken",
+                                "täglicher Genuss",
+                                "Entre 16º y 18ºC",
+                                "Der Feinschmecker: **** (Sehr Gut)"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-infotext",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Seit dem ersten Jahrgang ist die Viña Rubicán Reserva aus der renommierten Bodegas Corellanas ein außergewöhnlich eigenständiger Wein und wird in seiner feingreiften 2004er Edition (großer Jahrgang!), diesem Ruf vollends gerecht. Dunkles purpurrotes Kleid im Glas. Die intensiven Aromen von schwarzen Waldbeeren, Kirschen, mediterrane Kräuter und floralen Noten in der Nase verbinden sich mit einem dicht gewobenen, gut eingebundenen Tanninkostüm und einer dezenten Holznote, vom Ausbau in Barriques. Hervorragendes Verhältnis von Preis und Genuss! Schon jetzt sehr schön zu trinken!"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-price",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Preis pro Flasche:"
+                            ]
+                        },
+                        {
+                            "key": "price",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "11,90 €"
+                            ]
+                        },
+                        {
+                            "key": "price-small",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "15,87 €/Liter"
+                            ]
+                        },
+                        {
+                            "key": "productrating-content",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kundenbewertungen   Kommentarbox     Kommentarbox"
+                            ]
+                        },
+                        {
+                            "key": "productrating-titel-big",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kundenbewertungen"
+                            ]
+                        },
+                        {
+                            "key": "productrating-box-white",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "(2) Kundenrezensionen"
+                            ]
+                        },
+                        {
+                            "key": "small-gold2",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Durchschnittliche Kundenbewertungen"
+                            ]
+                        },
+                        {
+                            "key": "productrating-info",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Jeden Monat verlosen wir unter den eingegangenen Bewertungen drei Geschenkcards im Wert von jeweils 100,- €"
+                            ]
+                        },
+                        {
+                            "key": "small2",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Ihre Meinung ist uns wichtig."
+                            ]
+                        },
+                        {
+                            "key": "productrating-titel",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "von"
+                            ]
+                        },
+                        {
+                            "key": "gold",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "FrankE | Stuttgart",
+                                "Christian Kurzidem | Penzberg"
+                            ]
+                        },
+                        {
+                            "key": "productrating-date",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "09.04.2011",
+                                "25.03.2011"
+                            ]
+                        },
+                        {
+                            "key": "productrating-text",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Dieser Wein besitz alles, was ein Wein in meinen Augen haben sollte. Säure-Frucht Balance, filigran eingebundene Elemente, ohne excessiven Holzeinsatz. Dieser Wein macht selbst beim letzten Schluck (der Flasche) noch Lust auf mehr. Ist sein Geld allemal Wert.",
+                                "Gute Struktur, schöne Tannine, ausbalancierte Frucht. Der Merlot macht ihn etwas schwer, was ich persönlich aber mehr schätze als bemängle. Ist seine 12 € ohne Zweifel wert. Kauf ich wieder."
+                            ]
+                        },
+                        {
+                            "key": "abstand",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Bodegas Corellanas",
+                                "D.O. Navarra"
+                            ]
+                        },
+                        {
+                            "key": "productov-box-big hochbild",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "productov-desc"
+                            ]
+                        },
+                        {
+                            "key": "productov-desc",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Bodegas Corellanas D.O. Navarra Pro Flasche"
+                            ]
+                        },
+                        {
+                            "key": "brown",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Sarasate Moscatel Dulce Natural »Expresión«  - 0,5L.  2011",
+                                "Viña Rubicán Tinto Joven  2010",
+                                "Viña Rubicán Crianza 2006",
+                                "Vino de Artista »Edición Limitada Johannes Grützke«  2004"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-desc",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Dieser überaus delikate Moscatel de Petit Grain sorgt immer wieder für eine Überraschung und löst jähe Begeisterung ...",
+                                "Ein wunderschöner Wein aus der großen Kooperative im kleinen Städtchen Corella in Navarra zum wirklich günstigen ...",
+                                "Klassischer Navarra, diese gut gelungene Cuvée aus Tempranillo und Cabernet Sauvignon. Nicht so schwer, sondern fein ...",
+                                "Dass Kunst und Wein eine fruchtbare Marriage eingehen können, das weiß man spätestens, seit das legendäre Château ..."
+                            ]
+                        },
+                        {
+                            "key": "price-ov",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "8,95 €",
+                                "5,50 €",
+                                "6,95 €",
+                                "14,90 €"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Viña Rubicán Reserva 2004"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_2",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_3",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_4",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_5",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_6",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                ".."
+                            ]
+                        },
+                        {
+                            "key": "img_7",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_8",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_9",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_10",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_11",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_12",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_13",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_14",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_15",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_16",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_17",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_18",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_19",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_20",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_21",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_22",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Abbildung"
+                            ]
+                        },
+                        {
+                            "key": "img_23",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Abbildung"
+                            ]
+                        },
+                        {
+                            "key": "img_24",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Abbildung"
+                            ]
+                        },
+                        {
+                            "key": "img_25",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Abbildung"
+                            ]
+                        },
+                        {
+                            "key": "Kundenbewertungen",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                [
+                                    [
+                                        {
+                                            "key": "productrating-titel-big",
+                                            "element": {
+                                                "nodeIndex": 3
+                                            },
+                                            "value": "Kundenbewertungen",
+                                            "name": "SimpleAttributes"
+                                        },
+                                        {
+                                            "key": "productrating-box-white",
+                                            "element": {
+                                                "nodeIndex": 5,
+                                                "sizcache05782353328442069": 80
+                                            },
+                                            "value": "(2) Kundenrezensionen",
+                                            "name": "SimpleAttributes"
+                                        },
+                                        {
+                                            "key": "small-gold2",
+                                            "element": {
+                                                "nodeIndex": 1
+                                            },
+                                            "value": "Durchschnittliche Kundenbewertungen",
+                                            "name": "SimpleAttributes"
+                                        },
+                                        {
+                                            "key": "productrating-info",
+                                            "element": {
+                                                "nodeIndex": 7,
+                                                "sizcache05782353328442069": 80
+                                            },
+                                            "value": "Jeden Monat verlosen wir unter den eingegangenen Bewertungen drei Geschenkcards im Wert von jeweils 100,- €",
+                                            "name": "SimpleAttributes"
+                                        },
+                                        {
+                                            "key": "small2",
+                                            "element": {
+                                                "nodeIndex": 1
+                                            },
+                                            "value": "Ihre Meinung ist uns wichtig.",
+                                            "name": "SimpleAttributes"
+                                        },
+                                        {
+                                            "key": "productrating-titel",
+                                            "element": {
+                                                "nodeIndex": 2
+                                            },
+                                            "value": "von",
+                                            "name": "SimpleAttributes"
+                                        },
+                                        {
+                                            "key": "gold",
+                                            "element": {},
+                                            "value": "FrankE | Stuttgart",
+                                            "name": "SimpleAttributes"
+                                        },
+                                        {
+                                            "key": "productrating-date",
+                                            "element": {
+                                                "nodeIndex": 3
+                                            },
+                                            "value": "09.04.2011",
+                                            "name": "SimpleAttributes"
+                                        },
+                                        {
+                                            "key": "productrating-text",
+                                            "element": {
+                                                "nodeIndex": 4,
+                                                "sizcache05782353328442069": 80
+                                            },
+                                            "value": "Dieser Wein besitz alles, was ein Wein in meinen Augen haben sollte. Säure-Frucht Balance, filigran eingebundene Elemente, ohne excessiven Holzeinsatz. Dieser Wein macht selbst beim letzten Schluck (der Flasche) noch Lust auf mehr. Ist sein Geld allemal Wert.",
+                                            "name": "SimpleAttributes"
+                                        },
+                                        {
+                                            "key": "productrating-titel",
+                                            "element": {
+                                                "nodeIndex": 2
+                                            },
+                                            "value": "von",
+                                            "name": "SimpleAttributes"
+                                        },
+                                        {
+                                            "key": "gold",
+                                            "element": {},
+                                            "value": "Christian Kurzidem | Penzberg",
+                                            "name": "SimpleAttributes"
+                                        },
+                                        {
+                                            "key": "productrating-date",
+                                            "element": {
+                                                "nodeIndex": 3
+                                            },
+                                            "value": "25.03.2011",
+                                            "name": "SimpleAttributes"
+                                        },
+                                        {
+                                            "key": "productrating-text",
+                                            "element": {
+                                                "nodeIndex": 4,
+                                                "sizcache05782353328442069": 80
+                                            },
+                                            "value": "Gute Struktur, schöne Tannine, ausbalancierte Frucht. Der Merlot macht ihn etwas schwer, was ich persönlich aber mehr schätze als bemängle. Ist seine 12 € ohne Zweifel wert. Kauf ich wieder.",
+                                            "name": "SimpleAttributes"
+                                        },
+                                        {
+                                            "key": "img_0",
+                                            "value": "Voller Punkt",
+                                            "element": {},
+                                            "name": "ImageAltTags"
+                                        },
+                                        {
+                                            "key": "img_1",
+                                            "value": "Voller Punkt",
+                                            "element": {},
+                                            "name": "ImageAltTags"
+                                        },
+                                        {
+                                            "key": "img_2",
+                                            "value": "Voller Punkt",
+                                            "element": {},
+                                            "name": "ImageAltTags"
+                                        },
+                                        {
+                                            "key": "img_3",
+                                            "value": "Voller Punkt",
+                                            "element": {},
+                                            "name": "ImageAltTags"
+                                        },
+                                        {
+                                            "key": "img_4",
+                                            "value": "Kein Punkt",
+                                            "element": {},
+                                            "name": "ImageAltTags"
+                                        },
+                                        {
+                                            "key": "img_5",
+                                            "value": "Voller Punkt",
+                                            "element": {},
+                                            "name": "ImageAltTags"
+                                        },
+                                        {
+                                            "key": "img_6",
+                                            "value": "Voller Punkt",
+                                            "element": {},
+                                            "name": "ImageAltTags"
+                                        },
+                                        {
+                                            "key": "img_7",
+                                            "value": "Voller Punkt",
+                                            "element": {},
+                                            "name": "ImageAltTags"
+                                        },
+                                        {
+                                            "key": "img_8",
+                                            "value": "Voller Punkt",
+                                            "element": {},
+                                            "name": "ImageAltTags"
+                                        },
+                                        {
+                                            "key": "img_9",
+                                            "value": "Kein Punkt",
+                                            "element": {},
+                                            "name": "ImageAltTags"
+                                        },
+                                        {
+                                            "key": "img_10",
+                                            "value": "Voller Punkt",
+                                            "element": {},
+                                            "name": "ImageAltTags"
+                                        },
+                                        {
+                                            "key": "img_11",
+                                            "value": "Voller Punkt",
+                                            "element": {},
+                                            "name": "ImageAltTags"
+                                        },
+                                        {
+                                            "key": "img_12",
+                                            "value": "Voller Punkt",
+                                            "element": {},
+                                            "name": "ImageAltTags"
+                                        },
+                                        {
+                                            "key": "img_13",
+                                            "value": "Voller Punkt",
+                                            "element": {},
+                                            "name": "ImageAltTags"
+                                        },
+                                        {
+                                            "key": "img_14",
+                                            "value": "Kein Punkt",
+                                            "element": {},
+                                            "name": "ImageAltTags"
+                                        }
+                                    ]
+                                ]
+                            ]
+                        },
+                        {
+                            "key": "Alkoholgehalt",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "13 %"
+                            ]
+                        },
+                        {
+                            "key": "Geschmack",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "trocken"
+                            ]
+                        },
+                        {
+                            "key": "Passt gut zu",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "täglicher Genuss"
+                            ]
+                        },
+                        {
+                            "key": "Trinktemperatur",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Entre 16º y 18ºC"
+                            ]
+                        },
+                        {
+                            "key": "Name",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Viña RubicánReserva 2004"
+                            ]
+                        },
+                        {
+                            "key": "DO",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "D.O. Navarra"
+                            ]
+                        }
+                    ],
+                    "currentData": [
+                        {
+                            "key": "productdetail-descleft",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Alkohol:",
+                                "Trinkreife:",
+                                "Rebsorten:",
+                                "Barriqueausbau:",
+                                "Geschmack:",
+                                "Anlass:",
+                                "Trinktemperatur:",
+                                "Allgemeine Jahrgangs-Bewertungen:"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descright",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "13 %",
+                                "jetzt bis ca. 2014",
+                                "Cabernet Sauvignon, Merlot, Tempranillo",
+                                "12 Monate",
+                                "trocken",
+                                "täglicher Genuss",
+                                "Entre 16º y 18ºC",
+                                "Der Feinschmecker: **** (Sehr Gut)"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_2",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_3",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Voller Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_4",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "Alkoholgehalt",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "13 %"
+                            ]
+                        },
+                        {
+                            "key": "Geschmack",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "trocken"
+                            ]
+                        },
+                        {
+                            "key": "Passt gut zu",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "täglicher Genuss"
+                            ]
+                        },
+                        {
+                            "key": "Trinktemperatur",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Entre 16º y 18ºC"
+                            ]
+                        },
+                        {
+                            "key": "Name",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Viña RubicánReserva 2004"
+                            ]
+                        },
+                        {
+                            "key": "DO",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "D.O. Navarra"
+                            ]
+                        }
+                    ],
+                    "url": "http://www.vinos.de/vina-rubican-reserva-2004,8353.html?func=10xa#rezensionen"
+                },
+                {
+                    "selector": "div.content-rahmen .productov-box-big",
+                    "data": [
+                        {
+                            "key": "productdetail-overview",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Bewertung     Produktinformationen  (0)  Bodegas y Viñedos El Sequé"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descleft",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Alkohol:",
+                                "Trinkreife:",
+                                "Rebsorten:",
+                                "Barriqueausbau:",
+                                "Geschmack:",
+                                "Passt gut zu:",
+                                "Trinktemperatur:",
+                                "Alter der Rebstöcke:",
+                                "Gesamtsäure (g/l):",
+                                "Restzuckergehalt (g/l):",
+                                "ph:"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descright",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "14 %",
+                                "jetzt bis ca. 2016",
+                                "Monastrell 90% Syrah, Cabernet Sauvignon,Tempranillo 10%",
+                                "Envejecido durante 12 meses en barricas nuevas de roble francés.",
+                                "trocken",
+                                "Ragouts",
+                                "Entre 16º y 18ºC",
+                                "80+",
+                                "5,60",
+                                "1,90",
+                                "3,70"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-infotext",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Juan Carlos López de Lacalle, Önologe bei Artadi erzeugt diesen Wein zusammen mit Agapito Rico Martínez von El Carche aus Jumilla in der Weinbauregion D.O. Alicante im Süden Spaniens. Und wie alles was diese charismatischen Weinmacher in die Hände nehmen, ist auch dieser Wein einfach von überragender Qualität. Aus Trauben uralter Monastrell-Stöcke gekeltert unud mit einer kleinen Portion Syrah, Cabernet Sauvignon und Tempranillo veredelt - stellt dieser Wein einen der besten fassgereiften Weine aus dem Süden Spaniens dar, mit einer herrlich animierende Fruchttiefe, saftig-weichen Tanninen und einer schmelzigen Textur die verführerisch über die Zunge gleitet.  Der 2006er - Frucht eines ganz großen Jahrganges in Alicante - zeigt im Bouquet Lakritze, schwarze Johannisbeerkonfitüre, florale Noten, (Veilchen, Petunien), ein Hauch von Bitterschokolade und Kaffee, sowie feine Noten nach Unterholz und Steinpilzen. Am Gaumen präsentiert sich diese Cuvée exzellent balanciert, mit edler Würze, toller Struktur und mit elegantem Spiel. Der Nachklang zeigt Potenzial für weitere Reife. Eine Entdeckung, die sich lohnt!"
+                            ]
+                        },
+                        {
+                            "key": "small-gold",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Pressestimmen:"
+                            ]
+                        },
+                        {
+                            "key": "small",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Guía Proensa 2009: 92/100",
+                                "Guía Repsol 2009: 92/100",
+                                "Stephen Tanzer's International Wine Cellar: 92/100"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-price",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Preis pro Flasche:"
+                            ]
+                        },
+                        {
+                            "key": "price",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "23,95 €"
+                            ]
+                        },
+                        {
+                            "key": "price-small",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "31,93 €/Liter"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "El Sequé  2006"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_2",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_3",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_4",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_5",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_6",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                ".."
+                            ]
+                        }
+                    ],
+                    "currentData": [],
+                    "url": "http://www.vinos.de/el-seque-2006,7973.html?func=10xa"
+                },
+                {
+                    "selector": "div.content-rahmen .productov-box-big",
+                    "data": [
+                        {
+                            "key": "productov-desc",
+                            "dbKey": "Bodega",
+                            "checked": "checked",
+                            "values": [
+                                "Bodegas y Viñedos El Sequé D.O. Alicante Pro Flasche",
+                                "Bodegas Enrique Mendoza D.O. Alicante Pro Flasche"
+                            ]
+                        },
+                        {
+                            "key": "brown",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "El Sequé  2006",
+                                "Enrique Mendoza Petit Verdot  2006"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-desc",
+                            "dbKey": "Beschreibung",
+                            "checked": "checked",
+                            "values": [
+                                "Juan Carlos López de Lacalle, Önologe bei Artadi erzeugt diesen Wein zusammen mit Agapito Rico Martínez von El ...",
+                                "Aus einer Rarität ist schnell der beliebteste Wein von Enrique Mendoza geworden: der rebsortenreine Petit Verdot ..."
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descleft",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Guía Proensa 2009",
+                                "Guía Repsol 2009",
+                                "Stephen Tanzer's International Wine Cellar",
+                                "Guía Peñín 2011"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descright",
+                            "dbKey": "Bewertung",
+                            "checked": "checked",
+                            "values": [
+                                "92/100",
+                                "91/100"
+                            ]
+                        },
+                        {
+                            "key": "price-ov",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "23,95 €",
+                                "13,95 €"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Abbildung"
+                            ]
+                        },
+                        {
+                            "key": "Preis/Liter",
+                            "dbKey": "Preis/Liter",
+                            "checked": "checked",
+                            "values": [
+                                "(31,93 €/Liter)",
+                                "(18,60 €/Liter)"
+                            ]
+                        }
+                    ],
+                    "currentData": [
+                        {
+                            "key": "productov-desc",
+                            "dbKey": "Bodega",
+                            "checked": "checked",
+                            "values": [
+                                "Bodegas y Viñedos El Sequé D.O. Alicante Pro Flasche",
+                                "Bodegas Enrique Mendoza D.O. Alicante Pro Flasche"
+                            ]
+                        },
+                        {
+                            "key": "brown",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "El Sequé  2006",
+                                "Enrique Mendoza Petit Verdot  2006"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-desc",
+                            "dbKey": "Beschreibung",
+                            "checked": "checked",
+                            "values": [
+                                "Juan Carlos López de Lacalle, Önologe bei Artadi erzeugt diesen Wein zusammen mit Agapito Rico Martínez von El ...",
+                                "Aus einer Rarität ist schnell der beliebteste Wein von Enrique Mendoza geworden: der rebsortenreine Petit Verdot ..."
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descleft",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Guía Proensa 2009",
+                                "Guía Repsol 2009",
+                                "Stephen Tanzer's International Wine Cellar",
+                                "Guía Peñín 2011"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descright",
+                            "dbKey": "Bewertung",
+                            "checked": "checked",
+                            "values": [
+                                "92/100",
+                                "91/100"
+                            ]
+                        },
+                        {
+                            "key": "price-ov",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "23,95 €",
+                                "13,95 €"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Abbildung"
+                            ]
+                        },
+                        {
+                            "key": "Preis/Liter",
+                            "dbKey": "Preis/Liter",
+                            "checked": "checked",
+                            "values": [
+                                "(31,93 €/Liter)",
+                                "(18,60 €/Liter)"
+                            ]
+                        }
+                    ],
+                    "url": "http://www.vinos.de/main10.php?svAnbaugebiet=D.O.+Alicante&svJahrgang=2006&func=10xa"
+                }
+            ]
+        },
+        {
+            "id": 1335871523494,
+            "name": "mapping2",
+            "page": [
+                {
+                    "url": "http://www.vinos.de/el-seque-2006,7973.html?func=10xa",
+                    "data": [
+                        {
+                            "key": "productdetail-descleft",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Alkohol:",
+                                "Trinkreife:",
+                                "Rebsorten:",
+                                "Barriqueausbau:",
+                                "Geschmack:",
+                                "Passt gut zu:",
+                                "Trinktemperatur:",
+                                "Alter der Rebstöcke:",
+                                "Gesamtsäure (g/l):",
+                                "Restzuckergehalt (g/l):",
+                                "ph:"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descright",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "14 %",
+                                "jetzt bis ca. 2016",
+                                "Monastrell 90% Syrah, Cabernet Sauvignon,Tempranillo 10%",
+                                "Envejecido durante 12 meses en barricas nuevas de roble francés.",
+                                "trocken",
+                                "Ragouts",
+                                "Entre 16º y 18ºC",
+                                "80+",
+                                "5,60",
+                                "1,90",
+                                "3,70"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_2",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_3",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_4",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "Alkoholgehalt",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "14 %"
+                            ]
+                        },
+                        {
+                            "key": "Geschmack",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "trocken"
+                            ]
+                        },
+                        {
+                            "key": "Passt gut zu",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Ragouts"
+                            ]
+                        },
+                        {
+                            "key": "Trinktemperatur",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Entre 16º y 18ºC"
+                            ]
+                        },
+                        {
+                            "key": "Name",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "El Sequé 2006"
+                            ]
+                        },
+                        {
+                            "key": "D.O.",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "D.O. Alicante"
+                            ]
+                        },
+                        {
+                            "key": "DO",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "D.O. Alicante"
+                            ]
+                        }
+                    ],
+                    "selector": "div.productdetail-left > div:nth-child(2)",
+                    "currentData": [
+                        {
+                            "key": "productdetail-descleft",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Alkohol:",
+                                "Trinkreife:",
+                                "Rebsorten:",
+                                "Barriqueausbau:",
+                                "Geschmack:",
+                                "Passt gut zu:",
+                                "Trinktemperatur:",
+                                "Alter der Rebstöcke:",
+                                "Gesamtsäure (g/l):",
+                                "Restzuckergehalt (g/l):",
+                                "ph:"
+                            ]
+                        },
+                        {
+                            "key": "productdetail-descright",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "14 %",
+                                "jetzt bis ca. 2016",
+                                "Monastrell 90% Syrah, Cabernet Sauvignon,Tempranillo 10%",
+                                "Envejecido durante 12 meses en barricas nuevas de roble francés.",
+                                "trocken",
+                                "Ragouts",
+                                "Entre 16º y 18ºC",
+                                "80+",
+                                "5,60",
+                                "1,90",
+                                "3,70"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_2",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_3",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "img_4",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kein Punkt"
+                            ]
+                        },
+                        {
+                            "key": "Alkoholgehalt",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "14 %"
+                            ]
+                        },
+                        {
+                            "key": "Geschmack",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "trocken"
+                            ]
+                        },
+                        {
+                            "key": "Passt gut zu",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Ragouts"
+                            ]
+                        },
+                        {
+                            "key": "Trinktemperatur",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Entre 16º y 18ºC"
+                            ]
+                        },
+                        {
+                            "key": "Name",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "El Sequé 2006"
+                            ]
+                        },
+                        {
+                            "key": "DO",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "D.O. Alicante"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "selector": {
+                        "_DOMnodes": [],
+                        "_contexts": [],
+                        "_excludes": [],
+                        "_listSelectorArr": [],
+                        "_marks": []
+                    },
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.vinos.de/main10.php?svAnbaugebiet=D.O.+Alicante&svJahrgang=2006&func=10xa"
+                }
+            ]
+        }
+    ],
+    "project": "vinos"
+}

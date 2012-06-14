@@ -1,0 +1,1138 @@
+{
+    "mappings": {
+        "1328472338742": {
+            "map": {
+                "price": "Preis",
+                "details": "Produktbewertung",
+                "img_0": "Produktname",
+                "desc std": "Produktbeschreibung",
+				"subitem-reviews": "subitem-reviews"
+            },
+            "validFor": [
+                "nav1328472338712"
+            ],
+            "name": "Default mapping"
+        },
+        "1328473093337": {
+            "map": {
+                "price": "Preis",
+                "details": "Produktbewertung",
+                "img_0": "Produktname"
+            },
+            "validFor": [
+                "nav1328472338709"
+            ],
+            "name": "mapping1"
+        }
+    },
+    "navigation": {
+        "base": [
+            {
+                "name": "Entry point",
+                "type": "Start",
+                "config": {
+                    "request": {
+                        "url": "http://www.megagadgets.de"
+                    }
+                },
+                "id": "nav1328472338703",
+                "next": [
+                    "nav1328472338705"
+                ]
+            }
+        ],
+        "nav1328472338705": {
+            "name": "Fill form",
+            "type": "FillForm",
+            "config": {
+                "formSelector": [
+                    "#search_mini_form"
+                ],
+                "url": "http://www.megagadgets.de/catalogsearch/result/",
+                "method": "GET",
+                "parameters": [
+                    {
+						"q": {"entry":["Darth Vader"]}
+                    },
+                    {
+						"q": {"entry":["iPhone"]}
+                    },
+                    {
+						"q": {"entry":["Lavalampe"]}
+                    }
+                ],
+                "customSelector": [
+                    "#products-list > li:first-child"
+                ],
+                "magic": {}
+            },
+            "next": [
+                "nav1328472338706"
+            ],
+            "id": "nav1328472338705",
+            "nodeConfigId": "1328472338703"
+        },
+        "nav1328472338706": {
+            "name": "Walk through items",
+            "type": "WalkthroughItems",
+            "config": {
+                "itemSelector": [
+                    "html > body > div:nth-child(5) > div:nth-child(2) > div:nth-child(3) > div:first-child > div:nth-child(4) > div:first-child > div:nth-child(2) > ol#products-list > li:first-child"
+                ]
+            },
+            "next": [
+                "nav1328472338707"
+            ],
+            "id": "nav1328472338706"
+        },
+        "nav1328472338707": {
+            "name": "Follow link",
+            "type": "FollowLink",
+            "config": {
+                "linkSelector": [
+                    "div > div > h2 > a"
+                ]
+            },
+            "next": [
+                "nav1328472338708"
+            ],
+            "id": "nav1328472338707"
+        },
+        "nav1328472338708": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "customSelector": [
+                    ".product-view"
+                ],
+                "magic": {
+                    "SubItems": {
+                        "groups": [
+                            {
+                                "key": "subitem-reviews",
+                                "selector": ".box-reviews dd"
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1328472338709"
+            ],
+            "id": "nav1328472338708"
+        },
+        "nav1328472338709": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "collection": "gadgets"
+            },
+            "next": [],
+            "id": "nav1328472338709"
+        },
+        "nav1328472338710": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": ""
+            },
+            "next": [
+                "nav1328472338712"
+            ],
+            "id": "nav1328472338710"
+        },
+        "nav1328472338712": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "collection": "gadgets"
+            },
+            "next": [],
+            "id": "nav1328472338712"
+        }
+    },
+    "config": {
+        "currentConfigID": 1328472839198,
+        "configs": {
+            "1328472338703": {
+                "_name": "Default config",
+                "_id": 1328472338703,
+                "_listConfig": {
+                    "_inspectedNodes": [],
+                    "_exceptions": [],
+                    "_selectors": [
+                        "#products-list > li:first-child"
+                    ],
+                    "_frameSels": []
+                },
+                "_magicConfig": {},
+                "_formfillConfig": {
+                    "_fields": [
+                        {
+                            "fieldname": "SEARCH",
+                            "selector": "#search",
+                            "name": "q",
+                            "format": "DD.MM.YYYY",
+                            "type": "TextField"
+                        }
+                    ],
+                    "_datasets": [
+                        {
+                            "SEARCH": {
+                                "label": "Jet Pack",
+                                "dataType": "String",
+                                "value": "Jet Pack"
+                            }
+                        },
+                        {
+                            "SEARCH": {
+                                "label": "iPhone",
+                                "dataType": "String",
+                                "value": "iPhone"
+                            }
+                        },
+                        {
+                            "SEARCH": {
+                                "label": "Lavalampe",
+                                "dataType": "String",
+                                "value": "Lavalampe"
+                            }
+                        }
+                    ]
+                }
+            },
+            "1328472839198": {
+                "_name": "mapping1",
+                "_id": 1328472839198,
+                "_listConfig": {
+                    "_inspectedNodes": [
+                        {}
+                    ],
+                    "_exceptions": [],
+                    "_selectors": [],
+                    "_frameSels": []
+                },
+                "_magicConfig": {},
+                "_formfillConfig": {
+                    "_fields": [],
+                    "_datasets": []
+                }
+            }
+        }
+    },
+    "mappingData": [
+        {
+            "id": 1328472338742,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "http://www.megagadgets.de/moon-in-my-room.html",
+                    "selector": ".product-view",
+                    "data": [
+                        {
+                            "key": "link-wishlist",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Auf den Wunschzettel"
+                            ]
+                        },
+                        {
+                            "key": "price",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "29"
+                            ]
+                        },
+                        {
+                            "key": "review-icon",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Bewertungen (1)"
+                            ]
+                        },
+                        {
+                            "key": "foto-icon",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Fotos (0)"
+                            ]
+                        },
+                        {
+                            "key": "video-icon",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Videos (1)"
+                            ]
+                        },
+                        {
+                            "key": "offerte-icon",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Großhandel"
+                            ]
+                        },
+                        {
+                            "key": "social",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Facebook       facebook      Twitter       twitter      Mail       Tell a Friend"
+                            ]
+                        },
+                        {
+                            "key": "details",
+                            "dbKey": "Produktbewertung",
+                            "checked": "checked",
+                            "values": [
+                                "Sehr schön hergestellt, sehr leicht zu bedienen, gibt wunderbares Licht und ist wirklich romantisch :)"
+                            ]
+                        },
+                        {
+                            "key": "author",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kundenmeinung von"
+                            ]
+                        },
+                        {
+                            "key": "date",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "14.07.11 |"
+                            ]
+                        },
+                        {
+                            "key": "input-box",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Upload dein Video oder Foto                  URL oder dein Video                   Upload dein Foto"
+                            ]
+                        },
+                        {
+                            "key": "flexuploader-install-flash",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Dieser Inhalt benötigt einen aktuellen Adobe Flash Player"
+                            ]
+                        },
+                        {
+                            "key": "file-info",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "{{name}} ({{size}})"
+                            ]
+                        },
+                        {
+                            "key": "flexuploader-template-progress",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "{{percent}}% {{uploaded}} / {{total}}"
+                            ]
+                        },
+                        {
+                            "key": "recaptcha_instructions_image",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Geben Sie die 2 Wörter ein:"
+                            ]
+                        },
+                        {
+                            "key": "recaptcha_instructions_audio",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Geben Sie das Gehörte ein:"
+                            ]
+                        },
+                        {
+                            "key": "recaptcha_instructions_error",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Falsch. Bitte versuchen Sie es erneut."
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": "Produktname",
+                            "checked": "checked",
+                            "values": [
+                                "Moon In My Room"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Moon in my Room - lichtgevende maan"
+                            ]
+                        },
+                        {
+                            "key": "img_2",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Moon in my Room"
+                            ]
+                        },
+                        {
+                            "key": "img_3",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "reCAPTCHA-Bild"
+                            ]
+                        },
+                        {
+                            "key": "img_4",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Neues Captcha abrufen"
+                            ]
+                        },
+                        {
+                            "key": "img_5",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Audio-Captcha abrufen"
+                            ]
+                        },
+                        {
+                            "key": "img_6",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Captcha abrufen"
+                            ]
+                        },
+                        {
+                            "key": "img_7",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Hilfe"
+                            ]
+                        }
+                    ],
+                    "currentData": [
+                        {
+                            "key": "link-wishlist",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Auf den Wunschzettel"
+                            ]
+                        },
+                        {
+                            "key": "price",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "29"
+                            ]
+                        },
+                        {
+                            "key": "review-icon",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Bewertungen (1)"
+                            ]
+                        },
+                        {
+                            "key": "foto-icon",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Fotos (0)"
+                            ]
+                        },
+                        {
+                            "key": "video-icon",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Videos (1)"
+                            ]
+                        },
+                        {
+                            "key": "offerte-icon",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Großhandel"
+                            ]
+                        },
+                        {
+                            "key": "social",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Facebook       facebook      Twitter       twitter      Mail       Tell a Friend"
+                            ]
+                        },
+                        {
+                            "key": "details",
+                            "dbKey": "Produktbewertung",
+                            "checked": "checked",
+                            "values": [
+                                "Sehr schön hergestellt, sehr leicht zu bedienen, gibt wunderbares Licht und ist wirklich romantisch :)"
+                            ]
+                        },
+                        {
+                            "key": "author",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kundenmeinung von"
+                            ]
+                        },
+                        {
+                            "key": "date",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "14.07.11 |"
+                            ]
+                        },
+                        {
+                            "key": "input-box",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Upload dein Video oder Foto                  URL oder dein Video                   Upload dein Foto"
+                            ]
+                        },
+                        {
+                            "key": "flexuploader-install-flash",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Dieser Inhalt benötigt einen aktuellen Adobe Flash Player"
+                            ]
+                        },
+                        {
+                            "key": "file-info",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "{{name}} ({{size}})"
+                            ]
+                        },
+                        {
+                            "key": "flexuploader-template-progress",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "{{percent}}% {{uploaded}} / {{total}}"
+                            ]
+                        },
+                        {
+                            "key": "recaptcha_instructions_image",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Geben Sie die 2 Wörter ein:"
+                            ]
+                        },
+                        {
+                            "key": "recaptcha_instructions_audio",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Geben Sie das Gehörte ein:"
+                            ]
+                        },
+                        {
+                            "key": "recaptcha_instructions_error",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Falsch. Bitte versuchen Sie es erneut."
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": "Produktname",
+                            "checked": "checked",
+                            "values": [
+                                "Moon In My Room"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Moon in my Room - lichtgevende maan"
+                            ]
+                        },
+                        {
+                            "key": "img_2",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Moon in my Room"
+                            ]
+                        },
+                        {
+                            "key": "img_3",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "reCAPTCHA-Bild"
+                            ]
+                        },
+                        {
+                            "key": "img_4",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Neues Captcha abrufen"
+                            ]
+                        },
+                        {
+                            "key": "img_5",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Audio-Captcha abrufen"
+                            ]
+                        },
+                        {
+                            "key": "img_6",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Captcha abrufen"
+                            ]
+                        },
+                        {
+                            "key": "img_7",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Hilfe"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "selector": "",
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.megagadgets.de/"
+                },
+                {
+                    "selector": "html > body > div:nth-child(5) > div:nth-child(2) > div:nth-child(3) > div:first-child > div:nth-child(4) > div:first-child > div:nth-child(2) > ol#products-list > li:first-child",
+                    "data": [
+                        {
+                            "key": "Moon In My Room",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Moon In My Room"
+                            ]
+                        },
+                        {
+                            "key": "desc std",
+                            "dbKey": "Produktbeschreibung",
+                            "checked": "checked",
+                            "values": [
+                                "Zaubere ein romantisches Mondlicht mit der Moon In My Room Lampe in dein Schlafzimmer."
+                            ]
+                        },
+                        {
+                            "key": "price",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "29"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": "Produktname",
+                            "checked": "checked",
+                            "values": [
+                                "Moon In My Room"
+                            ]
+                        }
+                    ],
+                    "currentData": [
+                        {
+                            "key": "Moon In My Room",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Moon In My Room"
+                            ]
+                        },
+                        {
+                            "key": "desc std",
+                            "dbKey": "Produktbeschreibung",
+                            "checked": "checked",
+                            "values": [
+                                "Zaubere ein romantisches Mondlicht mit der Moon In My Room Lampe in dein Schlafzimmer."
+                            ]
+                        },
+                        {
+                            "key": "price",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "29"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": "Produktname",
+                            "checked": "checked",
+                            "values": [
+                                "Moon In My Room"
+                            ]
+                        }
+                    ],
+                    "url": "http://www.megagadgets.de/catalogsearch/result/?q=Jet+Pack"
+                }
+            ]
+        },
+        {
+            "id": 1328473093337,
+            "name": "mapping1",
+            "page": [
+                {
+                    "url": "http://www.megagadgets.de/moon-in-my-room.html",
+                    "data": [
+                        {
+                            "key": "link-wishlist",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Auf den Wunschzettel"
+                            ]
+                        },
+                        {
+                            "key": "price",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "29"
+                            ]
+                        },
+                        {
+                            "key": "review-icon",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Bewertungen (1)"
+                            ]
+                        },
+                        {
+                            "key": "foto-icon",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Fotos (0)"
+                            ]
+                        },
+                        {
+                            "key": "video-icon",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Videos (1)"
+                            ]
+                        },
+                        {
+                            "key": "offerte-icon",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Großhandel"
+                            ]
+                        },
+                        {
+                            "key": "social",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Facebook       facebook      Twitter       twitter      Mail       Tell a Friend"
+                            ]
+                        },
+                        {
+                            "key": "details",
+                            "dbKey": "Produktbewertung",
+                            "checked": "checked",
+                            "values": [
+                                "Sehr schön hergestellt, sehr leicht zu bedienen, gibt wunderbares Licht und ist wirklich romantisch :)"
+                            ]
+                        },
+                        {
+                            "key": "author",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kundenmeinung von"
+                            ]
+                        },
+                        {
+                            "key": "date",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "14.07.11 |"
+                            ]
+                        },
+                        {
+                            "key": "input-box",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Upload dein Video oder Foto                  URL oder dein Video                   Upload dein Foto"
+                            ]
+                        },
+                        {
+                            "key": "flexuploader-install-flash",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Dieser Inhalt benötigt einen aktuellen Adobe Flash Player"
+                            ]
+                        },
+                        {
+                            "key": "file-info",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "{{name}} ({{size}})"
+                            ]
+                        },
+                        {
+                            "key": "flexuploader-template-progress",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "{{percent}}% {{uploaded}} / {{total}}"
+                            ]
+                        },
+                        {
+                            "key": "recaptcha_instructions_image",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Geben Sie die 2 Wörter ein:"
+                            ]
+                        },
+                        {
+                            "key": "recaptcha_instructions_audio",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Geben Sie das Gehörte ein:"
+                            ]
+                        },
+                        {
+                            "key": "recaptcha_instructions_error",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Falsch. Bitte versuchen Sie es erneut."
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": "Produktname",
+                            "checked": "checked",
+                            "values": [
+                                "Moon In My Room"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Moon in my Room - lichtgevende maan"
+                            ]
+                        },
+                        {
+                            "key": "img_2",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Moon in my Room"
+                            ]
+                        },
+                        {
+                            "key": "img_3",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "reCAPTCHA-Bild"
+                            ]
+                        },
+                        {
+                            "key": "img_4",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Neues Captcha abrufen"
+                            ]
+                        },
+                        {
+                            "key": "img_5",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Audio-Captcha abrufen"
+                            ]
+                        },
+                        {
+                            "key": "img_6",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Captcha abrufen"
+                            ]
+                        },
+                        {
+                            "key": "img_7",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Hilfe"
+                            ]
+                        }
+                    ],
+                    "selector": ".product-view",
+                    "currentData": [
+                        {
+                            "key": "link-wishlist",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Auf den Wunschzettel"
+                            ]
+                        },
+                        {
+                            "key": "price",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "29"
+                            ]
+                        },
+                        {
+                            "key": "review-icon",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Bewertungen (1)"
+                            ]
+                        },
+                        {
+                            "key": "foto-icon",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Fotos (0)"
+                            ]
+                        },
+                        {
+                            "key": "video-icon",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Videos (1)"
+                            ]
+                        },
+                        {
+                            "key": "offerte-icon",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Großhandel"
+                            ]
+                        },
+                        {
+                            "key": "social",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Facebook       facebook      Twitter       twitter      Mail       Tell a Friend"
+                            ]
+                        },
+                        {
+                            "key": "details",
+                            "dbKey": "Produktbewertung",
+                            "checked": "checked",
+                            "values": [
+                                "Sehr schön hergestellt, sehr leicht zu bedienen, gibt wunderbares Licht und ist wirklich romantisch :)"
+                            ]
+                        },
+                        {
+                            "key": "author",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kundenmeinung von"
+                            ]
+                        },
+                        {
+                            "key": "date",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "14.07.11 |"
+                            ]
+                        },
+                        {
+                            "key": "input-box",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Upload dein Video oder Foto                  URL oder dein Video                   Upload dein Foto"
+                            ]
+                        },
+                        {
+                            "key": "flexuploader-install-flash",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Dieser Inhalt benötigt einen aktuellen Adobe Flash Player"
+                            ]
+                        },
+                        {
+                            "key": "file-info",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "{{name}} ({{size}})"
+                            ]
+                        },
+                        {
+                            "key": "flexuploader-template-progress",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "{{percent}}% {{uploaded}} / {{total}}"
+                            ]
+                        },
+                        {
+                            "key": "recaptcha_instructions_image",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Geben Sie die 2 Wörter ein:"
+                            ]
+                        },
+                        {
+                            "key": "recaptcha_instructions_audio",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Geben Sie das Gehörte ein:"
+                            ]
+                        },
+                        {
+                            "key": "recaptcha_instructions_error",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Falsch. Bitte versuchen Sie es erneut."
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": "Produktname",
+                            "checked": "checked",
+                            "values": [
+                                "Moon In My Room"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Moon in my Room - lichtgevende maan"
+                            ]
+                        },
+                        {
+                            "key": "img_2",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Moon in my Room"
+                            ]
+                        },
+                        {
+                            "key": "img_3",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "reCAPTCHA-Bild"
+                            ]
+                        },
+                        {
+                            "key": "img_4",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Neues Captcha abrufen"
+                            ]
+                        },
+                        {
+                            "key": "img_5",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Audio-Captcha abrufen"
+                            ]
+                        },
+                        {
+                            "key": "img_6",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Captcha abrufen"
+                            ]
+                        },
+                        {
+                            "key": "img_7",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Hilfe"
+                            ]
+                        }
+                    ]
+                },
+                {
+                    "selector": "",
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.megagadgets.de/catalogsearch/result/?q=Jet+Pack"
+                }
+            ]
+        }
+    ],
+    "project": "extensionDemo"
+}

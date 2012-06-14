@@ -1,0 +1,157 @@
+<!DOCTYPE html><html><head><title>collection.coffee</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><link rel="stylesheet" media="all" href="../../../docco.css"></head><body><div id="container"><div id="background"></div><div id="jump_to">Jump To &hellip;<div id="jump_wrapper"><div id="jump_page"><a href="../../../index.html" class="source"><span class="file_name">README</span></a><a href="../../../lib/cluster.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">cluster.coffee</span></a><a href="../../../lib/job.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">job.coffee</span></a><a href="../../../lib/public/js/collection.coffee.html" class="source selected"><span class="base_path">lib / public / js / </span><span class="file_name">collection.coffee</span></a><a href="../../../lib/public/js/extract.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">extract.coffee</span></a><a href="../../../lib/public/js/filterEmulator.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">filterEmulator.coffee</span></a><a href="../../../lib/public/js/mergePresets.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">mergePresets.coffee</span></a><a href="../../../lib/public/js/script.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">script.coffee</span></a><a href="../../../lib/public/js/transformPresets.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">transformPresets.coffee</span></a><a href="../../../lib/resultTreeNode.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">resultTreeNode.coffee</span></a><a href="../../../lib/routers/api.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">api.coffee</span></a><a href="../../../lib/routers/help.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">help.coffee</span></a><a href="../../../lib/routers/jobs.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">jobs.coffee</span></a><a href="../../../lib/routers/monitor.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">monitor.coffee</span></a><a href="../../../lib/routers/projects.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">projects.coffee</span></a><a href="../../../lib/routers/submit.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">submit.coffee</span></a><a href="../../../lib/schemas/job.coffee.html" class="source "><span class="base_path">lib / schemas / </span><span class="file_name">job.coffee</span></a><a href="../../../lib/schemas/project.coffee.html" class="source "><span class="base_path">lib / schemas / </span><span class="file_name">project.coffee</span></a><a href="../../../lib/server.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">server.coffee</span></a><a href="../../../lib/spawner.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">spawner.coffee</span></a><a href="../../../lib/supervisor.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">supervisor.coffee</span></a><a href="../../../lib/task.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">task.coffee</span></a><a href="../../../lib/transform.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">transform.coffee</span></a><a href="../../../lib/worker.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">worker.coffee</span></a></div></div></div><table cellpadding="0" cellspacing="0"><thead><tr><th class="docs"><h1>collection.coffee</h1><div class="filepath">lib/public/js/</div></th><th class="code"></th></tr></thead><tbody><tr id="section-1"><td class="docs"><div class="pilwrap"><a href="#section-1" class="pilcrow">&#182;</a></div>
+</td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nx">CollectionRow</span> <span class="k">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span>
+
+<span class="k">class</span> <span class="nx">CollectionCell</span> <span class="k">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span>
+
+<span class="k">class</span> <span class="nx">CollectionColumn</span> <span class="k">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span>
+
+<span class="k">class</span> <span class="nx">CollectionStructure</span> <span class="k">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Collection</span>
+  <span class="nv">model: </span><span class="nx">CollectionColumn</span>
+
+
+<span class="k">class</span> <span class="nx">Collection</span> <span class="k">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Collection</span>
+  <span class="nv">model: </span><span class="nx">CollectionRow</span>
+
+<span class="k">class</span> <span class="nx">CollectionTableColumnHeader</span> <span class="k">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span>
+
+  <span class="nv">tagName: </span><span class="s">&#39;th&#39;</span>
+  
+  <span class="nv">events:</span>
+    <span class="s">&#39;click .icon-remove&#39;</span><span class="o">:</span> <span class="s">&#39;rmColumn&#39;</span>
+  
+  <span class="nv">initialize: </span><span class="p">(</span><span class="nx">opts</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="vi">@parent = </span><span class="nx">opts</span><span class="p">.</span><span class="nx">parent</span>
+  
+  <span class="nv">rmColumn: </span><span class="p">(</span><span class="nx">evt</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nx">@parent</span><span class="p">.</span><span class="nx">model</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">remove</span> <span class="nx">@model</span>
+  
+  <span class="nv">render: </span><span class="o">=&gt;</span>
+    <span class="nx">@$el</span><span class="p">.</span><span class="nx">text</span> <span class="nx">@model</span><span class="p">.</span><span class="nx">get</span> <span class="s">&#39;key&#39;</span>
+    <span class="nx">@$el</span><span class="p">.</span><span class="nx">prepend</span> <span class="s">&#39; &lt;i class=&quot;icon-remove&quot; style=&quot;display:none&quot;&gt;&lt;/i&gt;&#39;</span>
+    <span class="k">return</span> <span class="nx">@</span>
+
+
+<span class="k">class</span> <span class="nx">CollectionTableCellView</span> <span class="k">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span>
+
+  <span class="nv">tagName: </span><span class="s">&#39;td&#39;</span>
+
+  <span class="nv">render: </span><span class="o">=&gt;</span>
+    <span class="nv">subitem = </span><span class="nx">@model</span><span class="p">.</span><span class="nx">get</span> <span class="s">&#39;value&#39;</span>
+    <span class="k">if</span> <span class="nx">subitem</span><span class="o">?</span> <span class="o">and</span> <span class="k">typeof</span> <span class="nx">subitem</span> <span class="o">is</span> <span class="s">&#39;object&#39;</span>
+      <span class="k">if</span> <span class="nx">subitem</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">info</span> <span class="s">&#39;Render subitems:&#39;</span><span class="p">,</span> <span class="nx">subitem</span> <span class="c1"># TODO: Subitem handling!</span>
+        
+        <span class="nv">subitemTable = </span><span class="nx">$</span> <span class="s">&#39;&#39;&#39;</span>
+<span class="s">        &lt;table&gt;</span>
+<span class="s">          &lt;thead&gt;&lt;tr&gt;&lt;/tr&gt;&lt;/thead&gt;</span>
+<span class="s">          &lt;tbody&gt;&lt;/tbody&gt;</span>
+<span class="s">        &lt;/table&gt;&#39;&#39;&#39;</span>
+        
+        <span class="k">for</span> <span class="nx">key</span><span class="p">,</span><span class="nx">value</span> <span class="k">of</span> <span class="nx">subitem</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+          <span class="nx">subitemTable</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s">&#39;thead tr&#39;</span><span class="p">).</span><span class="nx">append</span> <span class="s">&quot;&quot;&quot;&lt;th&gt;</span><span class="si">#{</span><span class="nx">key</span><span class="si">}</span><span class="s">&lt;/th&gt;&quot;&quot;&quot;</span>
+
+        <span class="k">for</span> <span class="nx">item</span> <span class="k">in</span> <span class="nx">subitem</span>
+          <span class="nx">subitemTable</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s">&#39;tbody&#39;</span><span class="p">).</span><span class="nx">append</span> <span class="s">&#39;&lt;tr&gt;&lt;/tr&gt;&#39;</span>
+          <span class="k">for</span> <span class="nx">key</span><span class="p">,</span><span class="nx">value</span> <span class="k">of</span> <span class="nx">item</span>
+            <span class="nx">subitemTable</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="s">&#39;tbody tr:last&#39;</span><span class="p">).</span><span class="nx">append</span> <span class="s">&quot;&quot;&quot;&lt;td&gt;</span><span class="si">#{</span><span class="nx">value</span><span class="si">}</span><span class="s">&lt;/td&gt;&quot;&quot;&quot;</span>
+
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;THE TABLE:&#39;</span><span class="p">,</span> <span class="nx">subitemTable</span><span class="p">.</span><span class="nx">html</span><span class="p">()</span>
+
+        <span class="nx">@$el</span><span class="p">.</span><span class="nx">html</span> <span class="s">&quot;&quot;&quot;</span>
+<span class="s">        &lt;a class=&quot;btn btn-info subitem&quot; rel=&quot;popover&quot;</span>
+<span class="s">          data-content=&#39;&lt;table class=&quot;table table-condensed&quot;&gt;</span><span class="si">#{</span><span class="nx">subitemTable</span><span class="p">.</span><span class="nx">html</span><span class="p">()</span><span class="si">}</span><span class="s">&lt;/table&gt;&#39;</span>
+<span class="s">          data-original-title=&quot;</span><span class="si">#{</span><span class="nx">@model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&#39;key&#39;</span><span class="p">)</span><span class="si">}</span><span class="s"> - </span><span class="si">#{</span><span class="nx">subitem</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="s">&quot;&gt;Subitems (</span><span class="si">#{</span><span class="nx">subitem</span><span class="p">.</span><span class="nx">length</span><span class="si">}</span><span class="s">)&lt;/a&gt;</span>
+<span class="s">        &quot;&quot;&quot;</span>
+      <span class="k">else</span> <span class="nx">@$el</span><span class="p">.</span><span class="nx">html</span> <span class="s">&quot;&quot;</span>
+    <span class="k">else</span>
+      <span class="nx">@$el</span><span class="p">.</span><span class="nx">html</span> <span class="nx">@model</span><span class="p">.</span><span class="nx">get</span> <span class="s">&#39;value&#39;</span>
+    <span class="k">return</span> <span class="nx">@</span>
+
+
+
+
+<span class="k">class</span> <span class="nx">CollectionTableView</span> <span class="k">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span>
+  
+  <span class="nv">tagName: </span><span class="s">&#39;table&#39;</span>
+  <span class="nv">className: </span><span class="s">&#39;table table-striped collection-table&#39;</span>
+  
+  <span class="nv">initialize: </span><span class="p">(</span><span class="nx">opts</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nx">@model</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="kc">on</span> <span class="s">&#39;remove&#39;</span><span class="p">,</span> <span class="nx">@render</span>
+    
+  <span class="nv">render: </span><span class="o">=&gt;</span>
+    <span class="nx">@$el</span><span class="p">.</span><span class="nx">html</span> <span class="s">&#39;&#39;</span></pre></div></td></tr><tr id="section-2"><td class="docs"><div class="pilwrap"><a href="#section-2" class="pilcrow">&#182;</a></div><p>build the table header</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="nv">thead = </span><span class="nx">$</span> <span class="s">&#39;&lt;thead&gt;&lt;/thead&gt;&#39;</span>
+    <span class="nv">theadrow = </span><span class="nx">thead</span><span class="p">.</span><span class="nx">append</span> <span class="s">&#39;&lt;tr&gt;&lt;/tr&gt;&#39;</span></pre></div></td></tr><tr id="section-3"><td class="docs"><div class="pilwrap"><a href="#section-3" class="pilcrow">&#182;</a></div><p>decide if the view should filter for the show/hide flag</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="k">if</span> <span class="nx">@model</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">at</span><span class="p">(</span><span class="mi">0</span><span class="p">).</span><span class="nx">get</span><span class="p">(</span><span class="s">&#39;show&#39;</span><span class="p">)</span><span class="o">?</span>
+      <span class="nv">filterFn = </span><span class="nf">(e) -&gt;</span> <span class="nx">e</span><span class="p">.</span><span class="nx">get</span> <span class="s">&#39;show&#39;</span>
+    <span class="k">else</span>
+      <span class="nv">filterFn = </span><span class="o">-&gt;</span> <span class="kc">true</span>
+    </pre></div></td></tr><tr id="section-4"><td class="docs"><div class="pilwrap"><a href="#section-4" class="pilcrow">&#182;</a></div><p>build the table head and remember the keys used</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="nv">keys = </span><span class="p">[]</span>
+    <span class="k">for</span> <span class="nx">entry</span> <span class="k">in</span> <span class="nx">@model</span><span class="p">.</span><span class="nx">structure</span><span class="p">.</span><span class="nx">filter</span><span class="p">(</span><span class="nx">filterFn</span><span class="p">)</span>
+      <span class="nx">keys</span><span class="p">.</span><span class="nx">push</span> <span class="nx">entry</span><span class="p">.</span><span class="nx">get</span> <span class="s">&#39;key&#39;</span>
+      <span class="nv">h = </span><span class="k">new</span> <span class="nx">CollectionTableColumnHeader</span>
+        <span class="nv">model: </span><span class="nx">entry</span>
+        <span class="nv">parent: </span><span class="nx">@</span>
+      <span class="nx">theadrow</span><span class="p">.</span><span class="nx">append</span><span class="p">(</span><span class="nx">h</span><span class="p">.</span><span class="nx">render</span><span class="p">().</span><span class="nx">el</span><span class="p">)</span>
+    <span class="nx">@$el</span><span class="p">.</span><span class="nx">append</span> <span class="nx">thead</span>
+
+    <span class="nx">@model</span><span class="p">.</span><span class="nx">each</span> <span class="p">(</span><span class="nx">entry</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="nv">row = </span><span class="nx">$</span><span class="p">(</span><span class="s">&#39;&lt;tr&gt;&lt;/tr&gt;&#39;</span><span class="p">)</span>
+      <span class="k">for</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">keys</span>
+        <span class="nv">model = </span><span class="k">new</span> <span class="nx">CollectionCell</span>
+          <span class="nv">key: </span><span class="nx">key</span>
+          <span class="nv">value: </span><span class="nx">entry</span><span class="p">.</span><span class="nx">get</span> <span class="nx">key</span>
+        <span class="nv">cellView = </span><span class="k">new</span> <span class="nx">CollectionTableCellView</span>
+           <span class="nv">model: </span><span class="nx">model</span>
+         <span class="nx">row</span><span class="p">.</span><span class="nx">append</span> <span class="nx">cellView</span><span class="p">.</span><span class="nx">render</span><span class="p">().</span><span class="nx">el</span>
+      <span class="nx">@$el</span><span class="p">.</span><span class="nx">append</span> <span class="nx">row</span>
+    <span class="k">return</span> <span class="nx">@</span>
+
+
+
+<span class="nx">$</span> <span class="o">-&gt;</span></pre></div></td></tr><tr id="section-5"><td class="docs"><div class="pilwrap"><a href="#section-5" class="pilcrow">&#182;</a></div><p>create the table structure (columns)</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="nv">structure = </span><span class="k">new</span> <span class="nx">CollectionStructure</span>
+  <span class="k">if</span> <span class="nx">rawStructure</span><span class="o">?</span>
+    <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">value</span> <span class="k">of</span> <span class="nx">rawStructure</span>
+      <span class="nx">structure</span><span class="p">.</span><span class="nx">add</span> <span class="k">new</span> <span class="nx">CollectionColumn</span>
+        <span class="nv">key: </span><span class="nx">key</span>
+        <span class="nv">count: </span><span class="nx">value</span><span class="p">.</span><span class="nx">count</span>
+        <span class="nv">ratio: </span><span class="nx">value</span><span class="p">.</span><span class="nx">ratio</span>
+        <span class="nv">show: </span><span class="nx">value</span><span class="p">.</span><span class="nx">show</span>
+  <span class="k">else</span>
+    <span class="k">for</span> <span class="nx">key</span> <span class="k">in</span> <span class="nx">rawKeys</span>
+      <span class="nx">structure</span><span class="p">.</span><span class="nx">add</span> <span class="k">new</span> <span class="nx">CollectionColumn</span>
+        <span class="nv">key: </span><span class="nx">key</span>
+        <span class="nv">count: </span><span class="mi">0</span>
+        <span class="nv">ratio: </span><span class="mi">0</span>
+        <span class="nv">show: </span><span class="kc">true</span>
+  
+  <span class="nv">entryCollection = </span><span class="k">new</span> <span class="nx">Collection</span> <span class="nx">rawData</span>
+  <span class="nv">entryCollection.structure = </span><span class="nx">structure</span> <span class="c1"># let the collection know about its structure</span>
+      
+  <span class="nv">tableView = </span><span class="k">new</span> <span class="nx">CollectionTableView</span>
+    <span class="nv">model: </span><span class="nx">entryCollection</span> 
+
+  <span class="nv">tableElement = </span><span class="nx">$</span> <span class="s">&#39;.collection-table-wrap&#39;</span>
+  <span class="nx">tableElement</span><span class="p">.</span><span class="nx">append</span> <span class="nx">tableView</span><span class="p">.</span><span class="nx">render</span><span class="p">().</span><span class="nx">el</span>
+  
+  <span class="nx">$</span><span class="p">(</span><span class="nb">document</span><span class="p">).</span><span class="kc">on</span> <span class="s">&#39;hover&#39;</span><span class="p">,</span> <span class="s">&#39;th&#39;</span><span class="p">,</span> <span class="nf">(evt) -&gt;</span>
+    <span class="k">if</span> <span class="nx">evt</span><span class="p">.</span><span class="nx">type</span> <span class="o">is</span> <span class="s">&#39;mouseenter&#39;</span>
+      <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s">&#39;i&#39;</span><span class="p">).</span><span class="nx">show</span><span class="p">()</span>
+    <span class="k">else</span>
+      <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">find</span><span class="p">(</span><span class="s">&#39;i&#39;</span><span class="p">).</span><span class="nx">hide</span><span class="p">()</span></pre></div></td></tr><tr id="section-6"><td class="docs"><div class="pilwrap"><a href="#section-6" class="pilcrow">&#182;</a></div><p>fancy up the stuffs</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="nx">$</span><span class="p">(</span><span class="s">&#39;.collection-table th&#39;</span><span class="p">).</span><span class="nx">tooltip</span>
+    <span class="nv">placement: </span><span class="s">&#39;bottom&#39;</span>
+    
+  <span class="nx">$</span><span class="p">(</span><span class="s">&#39;.btn.subitem&#39;</span><span class="p">).</span><span class="nx">popover</span>
+    <span class="nv">placement: </span><span class="s">&#39;left&#39;</span>
+    <span class="nv">trigger: </span><span class="s">&#39;focus&#39;</span>
+    <span class="nv">delay: </span><span class="p">{</span><span class="nv">show: </span><span class="mi">500</span><span class="p">,</span> <span class="nv">hide: </span><span class="mi">100</span><span class="p">}</span>
+
+  <span class="nx">$</span><span class="p">(</span><span class="s">&#39;.btn.subitem&#39;</span><span class="p">).</span><span class="nx">click</span> <span class="o">-&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">toggleClass</span> <span class="s">&#39;btn-info&#39;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="k">this</span><span class="p">).</span><span class="nx">popover</span> <span class="s">&#39;toggle&#39;</span>
+    
+
+</pre></div></td></tr></tbody></table><div id="generated">generated Sun Apr 22 2012 13:44:46 GMT+0200 (CEST)  </div><div id="projectname"><a href="../../../index.html">Arcane Academy Frontend</a></div></div></body></html>

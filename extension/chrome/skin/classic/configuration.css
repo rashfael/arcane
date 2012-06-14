@@ -1,0 +1,76 @@
+#configuration {
+	position: absolute;
+	min-width: 800px;
+	height: 90%;
+	left: 50%;
+	top: 10px;
+	margin-left: -400px;
+}
+
+.contextPanel {
+	float: left;
+	width: 425px;
+	margin-left: 10px;
+	overflow-y:auto;
+}
+
+#inputItemHeader {
+	overflow: hidden;
+	background: url(images/bg1.png) repeat-x;
+	margin-top: 2px;
+	border: 1px solid gray;
+	color: black;
+	height: 30px;
+	background-color: #D5ECFF;
+	border-bottom: 1px solid black;
+}
+
+.inputItem {
+	overflow: hidden;
+	border: 1px solid gray;
+	color: black;
+	height: 30px;
+	background-color: #fafaff;
+	border-bottom: 1px solid black;
+}
+
+.inherentInputItem {
+	overflow: hidden;
+	border: 1px solid gray;
+	color: black;
+	height: 30px;
+	background-color: #fafaff;
+	border-bottom: 1px solid black;
+}
+
+.inputExpandItem {
+	overflow: hidden;
+	border: 1px solid gray;
+	color: black;
+	height: 60px;
+	background-color: #f0f0f5;
+	border-bottom: 1px solid black;
+}
+
+.inherentInputExpandItem {
+	overflow: hidden;
+	border: 1px solid gray;
+	color: black;
+	height: 60px;
+	background-color: #f0f0f5;
+	border-bottom: 1px solid black;
+}
+
+.inputItemInnerDiv {
+	width: 82px;
+	position: relative;
+	float: left;
+	margin-top: 6px;	
+}
+
+.inputItemInnerDiv {
+	width: 82px;
+	position: relative;
+	float: left;
+	margin-top: 6px;	
+}

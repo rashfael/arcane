@@ -1,0 +1,239 @@
+{
+    "mappings": {
+        "1326738629463": {
+            "map": {
+                "preview": "Name",
+                "strasse": "Adresse",
+                "nummer": "Telefonnummer"
+            },
+            "validFor": [
+                "nav1326738629427",
+                "nav1326738629430"
+            ],
+            "name": "Default mapping"
+        }
+    },
+    "navigation": {
+        "base": [
+            {
+                "name": "Entry point",
+                "type": "Start",
+                "config": {
+                    "request": {
+                        "url": "http://www2.dasoertliche.de/Controller?topKw=0&form_name=search_nat&context=0&choose=true&buab=71100198&page=0&ci=Stuttgart&book=2249&rci=yes&action=43&kw=Pizza&buc=2249"
+                    }
+                },
+                "id": "nav1326738629427",
+                "next": [
+                    "nav1326738629428"
+                ]
+            }
+        ],
+        "nav1326738629428": {
+            "name": "Walk through items",
+            "type": "WalkthroughItems",
+            "config": {
+                "customSelector": "#az .item,#az link,#az .noprint:parent > div",
+                "magic": {}
+            },
+            "next": [
+                "nav1326738629429"
+            ],
+            "id": "nav1326738629428",
+            "nodeConfigId": "1326738629427"
+        },
+        "nav1326738629429": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": ""
+            },
+            "next": [
+                "nav1326738629430"
+            ],
+            "id": "nav1326738629429"
+        },
+        "nav1326738629430": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "itemSelector": ""
+            },
+            "next": [],
+            "id": "nav1326738629430"
+        }
+    },
+    "config": {
+        "currentConfigID": 1326738629427,
+        "configs": {
+            "1326738629427": {
+                "_name": "Default config",
+                "_id": 1326738629427,
+                "_listConfig": {
+                    "_inspectedNodes": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {
+                            "sizcache0046344018007793086": 61
+                        },
+                        {},
+                        {},
+                        {},
+                        {}
+                    ],
+                    "_exceptions": [],
+                    "_selectors": [
+                        "#az .item",
+                        "#az link",
+                        "#az .noprint:parent > div"
+                    ]
+                },
+                "_magicConfig": {}
+            }
+        }
+    },
+    "mappingData": [
+        {
+            "id": 1326738629463,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "http://www2.dasoertliche.de/?form_name=search_reg&cmd=cmd_search_std_reg&ci=Stuttgart&buc=2249&buab=71100198",
+                    "selector": "",
+                    "data": []
+                },
+                {
+                    "selector": "#az .item,#az link,#az .noprint:parent > div",
+                    "data": [
+                        {
+                            "key": "preview",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "Alsigo Pizzeria",
+                                "Anatolia Pizza & Kebab Pizzeria",
+                                "Anatolien Pizza Kebap Grill Inh. Aziz Azlag Imbiss",
+                                "Angelo's Pizza Taxi",
+                                "Angelo's Pizza Taxi GmbH",
+                                "Angelo`s Pizza Taxi",
+                                "Angelo`s Pizza-Taxi",
+                                "Avanti-Avanti Pizza-Service",
+                                "Babylon Pizza-Service"
+                            ]
+                        },
+                        {
+                            "key": "strasse",
+                            "dbKey": "Adresse",
+                            "checked": "checked",
+                            "values": [
+                                "Böblinger Str. 42, 70199 Stuttgart",
+                                "Freihofstr. 37, 70439 Stuttgart",
+                                "Büchsenstr. 22, 70174 Stuttgart",
+                                "Ostendstr. 70, 70188 Stuttgart",
+                                "Wächterstr. 2, 70182 Stuttgart",
+                                "Ostendstr. 18, 70190 Stuttgart",
+                                "Münchinger Str. 5, 70439 Stuttgart"
+                            ]
+                        },
+                        {
+                            "key": "nummer",
+                            "dbKey": "Telefonnummer",
+                            "checked": "checked",
+                            "values": [
+                                "(07 11) 6 58 31 37",
+                                "(07 11) 50 44 02 36",
+                                "(07 11) 91 25 86 34",
+                                "(07 11) 9 97 93 39",
+                                "(07 11) 26 42 42",
+                                "(07 11) 23 22 22",
+                                "(07 11) 23 33 64",
+                                "Fax (07 11) 2 36 10 47",
+                                "Fax (07 11) 2 62 17 97",
+                                "(07 11) 26 79 79",
+                                "(07 11) 2 62 17 17",
+                                "(07 11) 2 85 94 00",
+                                "(07 11) 5 59 44 94"
+                            ]
+                        },
+                        {
+                            "key": "Bewertung bei golocal",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Jetzt bei golocal"
+                            ]
+                        },
+                        {
+                            "key": "toplink preview",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Web"
+                            ]
+                        },
+                        {
+                            "key": "topmail",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "E-Mail"
+                            ]
+                        },
+                        {
+                            "key": "hide_on_expand",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "mehr..."
+                            ]
+                        },
+                        {
+                            "key": "Zugehörige Einträge einblenden",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Zugehörige Einträge einblenden"
+                            ]
+                        },
+                        {
+                            "key": "Zugehörige Einträge ausblenden",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Zugehörige Einträge ausblenden"
+                            ]
+                        },
+                        {
+                            "key": "entry",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Angelo's Pizza Taxi",
+                                "Angelo's Pizza Taxi Bonura"
+                            ]
+                        }
+                    ],
+                    "url": "http://www2.dasoertliche.de/Controller?topKw=0&form_name=search_nat&context=0&choose=true&buab=71100198&page=0&ci=Stuttgart&book=2249&rci=yes&action=43&kw=Pizza&buc=2249"
+                }
+            ]
+        }
+    ]
+}

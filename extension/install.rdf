@@ -1,0 +1,23 @@
+﻿<?xml version="1.0"?>
+
+<RDF xmlns="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+     xmlns:em="http://www.mozilla.org/2004/em-rdf#">
+
+  <Description about="urn:mozilla:install-manifest">
+    <em:id>arcaneWand@wedex.iao.fraunhofer.de</em:id>
+    <em:version>0.9</em:version>
+   
+    <!-- Firefox -->
+    <em:targetApplication>
+      <Description>
+        <em:id>{ec8030f7-c20a-464f-9b0e-13a3a9e97384}</em:id>
+        <em:minVersion>1.5</em:minVersion>
+        <em:maxVersion>10.0.0.*</em:maxVersion>
+      </Description>
+    </em:targetApplication>
+
+    <em:name>Arcane Wand</em:name>
+    <em:description>Arcane Wand is the client for Arcane Academy and both together offer the ability to scrape large data from web pages. Thereby Arcane Wand supports the user in modelling Scraping Job Descriptions. Arcane Academy uses this Descriptions to execute the effective scraping. </em:description>
+    <em:creator>Anonymous</em:creator>
+  </Description>      
+</RDF>

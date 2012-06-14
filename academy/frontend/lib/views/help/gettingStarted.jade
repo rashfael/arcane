@@ -1,0 +1,239 @@
+extends layoutHelp
+
+block help
+	:markdown
+		# Mein erster Job
+
+		Ziel des Kapitels ist es, einen einfachen Job zu modellieren 
+		und dabei grundlegende Funktionen von *Wand* zu erläutern. Das 
+		Szenario des Jobs ist, dass der Benutzer Hotelinformationen 
+		(Hotelname und -beschreibung) zu zwei möglichen Urlaubszielen 
+		(Mallorca und London) und zwei verschiedenen Zeiträumen von 
+		der Webseite hotelsuche.de scrapen möchte.
+		
+		WICHTIG: Wenn Sie das Szenario selbstständig durchspielen, müssen Sie sicherstellen,
+		dass die Zeiträume, die in das Formular eingetragen werden, in der Zukunft liegen, 
+		z.B. also anstelle des Datums "17.04.2012" mindestens das aktuelle Datum eintragen. 
+
+	div(id='generated-toc')
+
+	:markdown
+		## Entry point konfigurieren
+		Nachdem *Wand* gestartet und hotelsuche.de aufgerufen wurde, 
+		befinden wir uns im Navigation-Tab der Anwendung. Es besteht 
+		bereits ein "Entry Point", also ein Startpunkt für den Scraping-
+		Vorgang, jedoch ist dieser noch nicht konfiguriert. Nach einem 
+		Klick auf den Knoten wird dieser blau umrandet und seine 
+		Eigenschaften im Bereich auf der rechten Seite eingeblendet. 
+		In diesem hat der Benutzer die Möglichkeit, die aktuelle URL 
+		über einen Klick auf 'Insert currently opened URL' in das 
+		entsprechende Feld einzutragen. Dies ist auch die einzige 
+		Einstellung, die innerhalb des Knotens verpflichtend ist. Die 
+		Eigenschaften "Data Mapping" und "Configuration" werden im 
+		Laufe dieses Kapitels noch näher erläutert. "Encoding" gibt das 
+		Encoding der Seite an. Zur Auswahl stehen zwei weitverbreitete 
+		Encodings. Um dem Benutzer die Wahl zu erleichtern, wird neben dem 
+		"Encoding"-Label ein Hinweis angezeigt. Da das Encoding für 
+		diesen Job irrelevant ist, wird die Einstellung einfach auf 
+		"-not specified-" belassen. 
+		
+		![Entry point](/img/help/wand_gettingStarted_ep.png "Konfiguration des Entry points")
+		
+		## Fill form erstellen und konfigurieren
+		
+		### Submit URL und Submit Method
+		Da sich auf der geöffneten Seite ein Formular befindet, und der 
+		Benutzer nach Hotels auf Mallorca und in London suchen möchte, 
+		erstellen wir nach unserem "Entry Point" einen "Fill Form"-Knoten. 
+		Dies erreichen wir, indem wir auf den 
+		![Add navigation node](/img/help/node_16.png "Add navigation node")-Button
+		klicken und "Fill Form" auswählen. Nach der Auswahl erscheint ein 
+		"Fill Form"-Knoten hinter dem bereits spezifizierten Entry Point. 
+		Nun selektieren wir den neu erstellten Knoten. Zur Rechten erscheinen 
+		wiederum dessen Eigenschaften. Um ein Formular befüllen zu können 
+		benötigt *Academy* die "Submit-URL" des Formulars und die "Submit 
+		Methode". Falls ihnen diese Begriffe nichts sagen, ist das nicht weiter 
+		schlimm. Sie können beide ganz einfach ermitteln, indem sie auf den 
+		![Inspect](/img/help/Templarian_inspector_16.png "Inspect Form Selector")-Button 
+		klicken. Innerhalb des Webseitenbereichs sollte jetzt ein Bereich 
+		erscheinen, der die Überschrift "InspectBar" trägt. Die InspectBar 
+		können sie verwenden, um zielsicherer auf Elemente zu zeigen. 
+		Einzelheiten zu diesem Thema finden sie [hier](wand/gui#InspectBar). Wir fahren nun mit 
+		dem Cursor, welcher HTML-Elemente beim Hovern farblich umrandet, 
+		über das Eingabefeld des Zielortes (siehe Grafik unterhalb) und 
+		bestätigen unsere Auswahl mit einem Klick. Sofort erscheint ein Dialog, 
+		der den Benutzer darauf hinweist, dass es sich bei dem gewählten 
+		Element um kein Form-Element handelt. Über einen Klick auf "Ok", sucht 
+		*Wand* automatisch nach dem zugehörigen Form und entnimmt ihm die 
+		"Submit URL" und die "Submit Method".
+		
+		![Fill form inspect](/img/help/wand_gettingStarted_ff1.png "Zielort-Input Inspecten")
+		
+		### Fill Form Configuration
+		Als nächstes müssen wir die Parameter spezifizieren, die in das 
+		Formular, genauer gesagt den Zielort, das Anreise- und Abreisedatum, 
+		eingetragen werden sollen. In unserem Fall "London" und "Mallorca" in 
+		den Zeiträum "17.04.2012-24.04.2012" und "25.04.2012-01.05.2012". Dazu 
+		müssen wir eine sogenannte Configuration verwenden. Da in *Wand* 
+		standardmäßig eine "Default Config" vorhanden ist, können wir diese 
+		benutzen, indem wir sie bei der Eigenschaft Configuration auswählen. 
+		Die Configuration können wir im gleich benannten Configuration-Tab 
+		einsehen und bearbeiten. Daher wechseln wir in den besagten Tab und 
+		selektieren den Accordion-Eintrag "Fill Form Configuration". Die 
+		nächste Aufgabe besteht darin, zu definieren, in welche Formularelemente 
+		Daten eingetragen werden sollen. Dazu tragen wir in das Feld "Name" den 
+		Wert "Zielort" ein, zeigen über den 
+		![Inspect](/img/help/Templarian_inspector_16.png "Inspect Form Element Selector")-Button 
+		des "Selector"-Felds auf das Eingabeelement (gleiches Vorgehen wie im 
+		Schritt zuvor) und klicken auf den 
+		![Add Form Element](/img/help/plus-button_16.png "Add Form Element")-Button 
+		neben dem "Type" Feld. Der Zustand ihrer Fill Form Configuration sollte 
+		nun wie folgt aussehen: 
+		
+		![Fill form inspect](/img/help/wand_gettingStarted_ff2.png "Zielort")
+		
+		Auf die gleiche Weise fügen wir die Eingabeelemente "Anreisedatum" und 
+		"Abreisedatum" des Formulars als Form Elemente hinzu. Wir benennen sie
+		dabei genauso, wie sie im Formular beschriftet sind. Der Inhalt Ihres 
+		Browsers sollte nun wie folgt aussehen:
+		
+		![Fill form inspect](/img/help/wand_gettingStarted_ff5.png "Anreisedatum und Abreisedatum")
+		
+		#### Datasets definieren
+		Der letzte Schritt der Konfiguration des "Fill Form"-Knotens besteht 
+		darin, die Werte zu definieren, welche in die angelegten Form-Elemente 
+		eingetragen werden sollen. Eingabewerte werden in 
+		sogenannten "Datasets" angegeben. Ein Dataset repräsentiert jeweils 
+		eine Eingabeiteration, die von *Academy* durchgeführt wird. Daher 
+		legen wir zwei Datasets an: eines für die Werte "Mallorca", "17.04.2012" und "24.04.2012" und eines 
+		für die Werte "London", "25.04.2012" und "01.05.2012". Ein Dataset kann über den 
+		![Add Dataset](/img/help/plus-button_16.png "Add Dataset")-Button 
+		rechts neben der Tabelle angelegt werden. Die Eingabefelder des 
+		ersten Datansets werden jeweils mit einem der Werte des ersten Werte-Tripels
+		befüllt, die des Zweiten mit denen des zweiten Trippels. Jetzt sollte
+		ihre Tabelle so befüllt sein, wie es auf der folgenden Grafik zu sehen ist:
+		
+		![Datasets Added](/img/help/wand_gettingStarted_ff4.png "Hinzugefügte Datasets")
+		
+		Damit haben wir die "Fill Form"-Konfiguration abgeschlossen und kehren 
+		in den Navigation-Tab zurück, um mit der Modellierung fortzufahren.
+		
+				
+		## Walk Through Pager und Walk Through Items anlegen und konfigurieren
+		Nun muss modelliert werden wie *Academy* mit den Ergebnisseiten der 
+		Suche umgehen soll. Dazu tragen wir in das Suchfeld "Zielort" auf 
+		hotelsuche.de "Mallorca" ein und klicken auf den "Hotels finden"-Button 
+		des Formulars. Die neu geladene Seite enthält eine Liste von gleich 
+		aufgebauten Einträgen, welche die Daten, die wir scrapen wollen, 
+		enthalten. Am unteren Ende der Liste finden wir des Weiteren einen 
+		Pager vor. Um wirklich alle Suchergebnisse zu erhalten, müssen wir also 
+		die Liste auf jeder Pagerseite durchlaufen. Das teilen wir *Academy* 
+		mit, indem wir nach dem "Fill Form"-Knoten einen "Walk Through Pager"-, 
+		gefolgt von einem "Walk Through Items"-Knoten hinzufügen. Unser 
+		Navigationsgraph ist mit vier Knoten größer als unsere 
+		Modellierungsfläche. Um die Übersicht zu bewahren und scrollen zu 
+		vermeiden, werden wir die Darstellung unserer Knoten anpassen. Dazu 
+		klicken wir auf den Pfeil auf der rechten Seite des "Arcane Wand"-Tab 
+		und wählen den Eintrag "Advanced Options...".
+		
+		![Advanced Options](/img/help/wand_gettingStarted_options1.png "Advanced Options...")
+		
+		Im "Advanced Options"-Dialog selektieren wir den Tab "Display", wählen 
+		bei der Einstellung "Node Style" die Option "Image" aus und bestätigen 
+		die	Einstellungsänderungen mit einem Klick auf "Ok". Da wir nun den 
+		ganzen Navigationsgraph wieder im Überblick haben, können wir mit der 
+		eigentlichen Modellierung fortfahren. Als Letztes hatten wir den Knoten 
+		für den Pager und die Liste angelegt, jedoch noch nicht konfiguriert. 
+		Wir beginnen mit der Konfiguration des "Walk Through Pager"-Knotens. 
+		Dazu selektieren wir ihn und verwenden den 
+		![Inspect](/img/help/Templarian_inspector_16.png "Inspect Pager Selector")-Button
+		der "Pager Selector"-Eigenschaft, um auf das Element zu zeigen, das 
+		alle Pagereinträge enthält.
+		
+		![Pager Selector](/img/help/wand_gettingStarted_pager.png "Pager Selector")
+		
+		Den "Walk Through Items"-Knoten konfigurieren wir, indem wir ihn 
+		selektieren und bei der Eigenschaft "Selector" über den 
+		![Inspect](/img/help/Templarian_inspector_16.png "Inspect Selector")-Button 
+		auf einen Eintrag der Suchergebnis-Liste zeigen. Damit sagen wir 
+		*Academy*, dass alle direkten Geschwister dieses Elements durchlaufen 
+		werden sollen.
+		
+		![Walk through items](/img/help/wand_gettingStarted_wti.png "Walk through items")
+		
+		## Magic und Collect Data anlegen und konfigurieren
+		Die letzten beiden Schritte bestehen darin, *Academy* anzuweisen, 
+		mögliche Schlüssel-Wert-Paare innerhalb der Listenelemente zu erkennen 
+		und alle Daten zu extrahieren. Daher legen wir nach dem "Walk Through 
+		Items"-Knoten einen "Magic"-Knoten, gefolgt von einem "Collect Data"-
+		Knoten, an. Der "Magic"-Knoten ist in seinem initialen Zustand für unser 
+		Szenario bereits ausreichend konfiguriert, weswegen wir uns direkt dem 
+		"Collect Data"-Knoten widmen. Dieser benötigt ein sogenanntes Mapping 
+		und einen Namen für die Collection, in welche die Ergebnisse 
+		gespeichert werden sollen. Als "Collection Name" tragen wir 
+		"hotelsuche" ein und als "Data Mapping" wählen wir das "Default 
+		Mapping" aus.
+		
+		![Collect Data](/img/help/wand_gettingStarted_fin.png "Collect Data")
+		
+		### Mapping konfigurieren
+		Um die Konfiguration des "Collect Data"-Knotens abzuschließen, müssen 
+		wir das "Default Mapping" seinerseits noch konfigurieren. Dazu wechseln 
+		wir in den Mappings-Tab. In diesem Tab kann der Benutzer festlegen, wie 
+		die von Magic erkannten Schlüssel-Wert-Paare in der Datenbank abgebildet 
+		werden. Wir erhalten die Paare, indem wir den Selector in der Combobox 
+		"Configuration" auswählen und auf den 
+		![Update Button](/img/help/arrow-circle-double_16.png "Update Button")-Button
+		klicken. Durch einen Klick auf die Spalte mit dem Schlüssel "hotels-p" 
+		und einen Blick auf den zugehörigen Wert erkennen wir schnell, dass es 
+		sich hierbei um die Beschreibung des Hotels handelt. "img\_0" enthält 
+		den Namen des Hotels. Sofern uns die Spaltenbenennung der 
+		Collectiontabelle egal wäre, könnten wir die Eingabefelder der 
+		"DatabaseKey"-Spalte leer lassen und lediglich die Checkboxen der beiden 
+		Zeilen anchecken. In diesem Fall würden die Daten extrahiert und die
+		Spalten der Collectiontabelle würden wie die Schlüssel benannt werden. 
+		Da "hotels\-p" und "img\_0" jedoch nicht wirklich aufschlussreich sind, 
+		tragen wir bei "hotels-p" "Hotelbeschreibung" und bei "img_0" 
+		"Hotelname" ein. 
+		
+		![Mapping Tab](/img/help/wand_gettingStarted_mapping.png "Mapping Tab")
+		
+		Die Modellierung ist damit abgeschlossen und der Job bereit für die 
+		Übermittelung an *Academy* . Bevor wir dies tun können, müssen wir aber
+		zunächst noch die URL des Servers definieren. Dazu öffnen
+		wir erneut den "Advanced Options..."-Dialog und tragen die URL oder IP 
+		anstelle von "localhost" und den Port anstelle von "9000" ein und 
+		bestätigen. Sollten Sie *Academy* im Werkszustand und lokal laufen 
+		lassen, können Sie die initialen Einstellungen beibehalten.\\
+		Als Letztes klicken wir auf den 
+		![Send Job](/img/help/mail-send_16.png "Send current Job to Scraper")-Button,
+		bestätigen, dass wir ein neues Projekt anlegen wollen und geben dessen 
+		Namen an. Den Namen bestätigen wir wiederum und erhalten eine Meldung, 
+		die besagt, dass der Job erfolgreich empfangen wurde. Über einen Klick 
+		auf den angezeigen Job-Link gelangen wir direkt auf die grafische 
+		Oberfläche des Servers, auf der wir den Job starten können.
+		
+		## Academy Web UI: Job beobachten
+		Die Academy Web UI wird beim Klick auf den Job-Link im vorgehenden Schritt
+		automatisch geöffnet. Alternativ kann die Web UI auch manuell geöffnet werden
+		(standardmäßig über *http://<Adresse>:9000* erreichbar). Dort besteht die Möglichkeit,
+		über den Navigationspunkt *Job Control* einen Überblick aller laufenden Jobs
+		anzeigen zu lassen. Alternativ kann ein Job auch über sein zugeordnetes Projekt
+		gefunden werden (Navigationspunkt *Projects*).
+
+		![Job-Seite](/img/help/gettingStarted_job_view.png "Job-Seite")
+
+		Auf der Job-Seite wird eine Übersicht (Status, Zeitpunkt des Beginns, ...) über den
+		gewählten Job gezeigt. Es können verschiedene Aktionen in Bezug auf den Job ausgeführt
+		werden (Start, Stop, Pause, Rename, ...). Außerdem sind unter *Data* die sog. *Raw Collections*
+		verlinkt, welche von diesem Job mit Daten befüllt werden. Diese können "live" durch Klick auf
+		den jeweiligen Collection-Link geöffnet und betrachtet werden (Collection-Seite),
+		auch während der Job noch läuft.
+
+		## Eingesammelte Daten exportieren
+		Die Daten einer Collection können sehr einfach exportiert werden. Auf der Collection-Seite
+		besteht die Möglichkeit, die Daten entweder in Form einer CSV- oder einer JSON-Datei zu
+		exportieren.
+		Die Exportmöglichkeit steht ebenfalls schon zur Verfügung während der Job noch läuft.
+
+		![Collection-Seite](/img/help/gettingStarted_collection_view.png "Collection-Seite")

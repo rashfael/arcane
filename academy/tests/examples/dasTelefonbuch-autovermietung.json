@@ -1,0 +1,1127 @@
+{
+    "mappings": {
+        "1328805656223": {
+            "map": {
+                "col2": "Adresse",
+                "col4": "Telefonnummer",
+                "Name": ""
+            },
+            "validFor": [
+                "nav1328805656188"
+            ],
+            "name": "Default mapping"
+        }
+    },
+    "navigation": {
+        "base": [
+            {
+                "name": "Entry point",
+                "type": "Start",
+                "config": {
+                    "request": {
+                        "url": "http://www1.dastelefonbuch.de"
+                    }
+                },
+                "id": "nav1328805656183",
+                "next": [
+                    "nav1328805656184"
+                ]
+            }
+        ],
+        "nav1328805656184": {
+          "name": "Fill form",
+            "type": "FillForm",
+            "config": {
+                 "formSelector": [
+                    "html > body > form:nth-child(3)"
+                ],
+                "url": "http://www1.dastelefonbuch.de/",
+                "method": "GET",
+                "parameters": [
+					{ 
+						"_iterator": {"sequence":[3,4,5]},
+						"kw": {"entry":["Autovermietung"]},
+						"pc": {"entry":["#{i*i+2}"]},
+						"cmd":{"entry":["search"]}
+					}
+				],
+                "customSelector": [
+                    ".leftside .entry"
+                ],
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Name",
+                                "selector": "tr:first-child > td.col1 > a.name",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1328805656185"
+            ],
+            "id": "nav1328805656184",
+            "nodeConfigId": "1328805656183"
+        },
+        "nav1328805656185": {
+            "name": "Pager",
+            "type": "Pager",
+            "config": {
+                "pagerSelector": [
+                    "html > body > div:nth-child(2) > form:nth-child(7) > div.hitlist > div.pagenav > ul:nth-child(2)"
+                ]
+            },
+            "next": [
+                "nav1328805656186"
+            ],
+            "id": "nav1328805656185"
+        },
+        "nav1328805656186": {
+            "name": "Walk through items",
+            "type": "WalkthroughItems",
+            "config": {
+                "itemSelector": [
+                    "#entry_1"
+                ],
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Name",
+                                "selector": "tr:first-child > td.col1 > a.name",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1328805656187"
+            ],
+            "id": "nav1328805656186",
+            "nodeConfigId": "1328805656183"
+        },
+        "nav1328805656187": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": [
+                    ""
+                ],
+                "customSelector": [
+                    ""
+                ],
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Name",
+                                "selector": "tr:first-child > td.col1 > a.name",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1328805656188"
+            ],
+            "id": "nav1328805656187",
+            "nodeConfigId": "1328805656183"
+        },
+        "nav1328805656188": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "collection": "autovermietung"
+            },
+            "next": [],
+            "id": "nav1328805656188"
+        }
+    },
+    "config": {
+        "currentConfigID": 1328805656183,
+        "configs": {
+            "1328805656183": {
+                "_name": "Default config",
+                "_id": 1328805656183,
+                "_listConfig": {
+                    "_inspectedNodes": [
+                        {},
+                        {}
+                    ],
+                    "_exceptions": [],
+                    "_selectors": [
+                        ".leftside .entry"
+                    ],
+                    "_frameSels": []
+                },
+                "_magicConfig": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Name",
+                                "selector": "tr:first-child > td.col1 > a.name",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                },
+                "_formfillConfig": {
+                    "_fields": [
+                        {
+                            "fieldname": "What",
+                            "selector": "#what",
+                            "name": "kw",
+                            "format": "DD.MM.YYYY",
+                            "type": "TextField"
+                        },
+                        {
+                            "fieldname": "Where",
+                            "selector": "#where",
+                            "name": "ort",
+                            "format": "DD.MM.YYYY",
+                            "type": "TextField"
+                        }
+                    ],
+                    "_datasets": []
+                }
+            }
+        }
+    },
+    "mappingData": [
+        {
+            "id": 1328805656223,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "http://www1.dastelefonbuch.de/",
+                    "selector": "",
+                    "data": [],
+                    "currentData": []
+                },
+                {
+                    "selector": "",
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.dastelefonbuch.de/"
+                },
+                {
+                    "selector": ".leftside .entry",
+                    "data": [
+                        {
+                            "key": "Autovermietung Buchbinder",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Autovermietung Buchbinder"
+                            ]
+                        },
+                        {
+                            "key": "col2",
+                            "dbKey": "Adresse",
+                            "checked": "checked",
+                            "values": [
+                                "Nikolaus-Otto-Str. 3                          70771 Leinfelden-Echterding...Echterdingen",
+                                "Landhausstr. 204                          70188 StuttgartOstheim",
+                                "Krailenshaldenstr. 1                          70469 StuttgartFeuerbach-Ost",
+                                "Pflasteräckerstr. 6                          70186 StuttgartGablenberg",
+                                "Sigmaringer Str. 92                          70567 StuttgartMöhringen-Ost",
+                                "Isolde-Kurz-Str. 49                          70619 StuttgartRiedenberg",
+                                "Dieselstr. 6                          70736 FellbachOeffingen",
+                                "Rotweg 21                          70437 StuttgartRot",
+                                "Porschestr. 22                          70435 StuttgartZuffenhausen-Schützenbühl",
+                                "Bludenzer Str. 19                          70469 StuttgartFeuerbach",
+                                "Sigmaringer Str. 92                          70567 StuttgartMöhringen",
+                                "Hauptbahnhof                           70173 Stuttgart",
+                                "Katharinenstr. 18                          70182 Stuttgart",
+                                "Flughafen Terminal 3                           70629 Stuttgart",
+                                "Burgenlandstr. 42                          70469 StuttgartBahnhof Feuerbach",
+                                "Rosenbergstr. 24                          70174 StuttgartStuttgart-Mitte"
+                            ]
+                        },
+                        {
+                            "key": "topweb",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Web"
+                            ]
+                        },
+                        {
+                            "key": "topmail",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "E-Mail"
+                            ]
+                        },
+                        {
+                            "key": "Öffnungszeiten",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Zeiten"
+                            ]
+                        },
+                        {
+                            "key": "Kundeninformationen",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Firmendetails"
+                            ]
+                        },
+                        {
+                            "key": "Kontakt auf Karte ansehen",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Karte"
+                            ]
+                        },
+                        {
+                            "key": "Eintrag zu meinem Adressbuch hinzufügen",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kontakt"
+                            ]
+                        },
+                        {
+                            "key": "col4",
+                            "dbKey": "Telefonnummer",
+                            "checked": "checked",
+                            "values": [
+                                "0711 69 96 66 10",
+                                "0711 2 85 09 31",
+                                "0711 99 31 60 10",
+                                "0711 46 47 87",
+                                "0711 7 22 20 55",
+                                "0711 7 28 83 26",
+                                "0711 5 10 34 04",
+                                "0711 98 79 79-0",
+                                "0711 8 70 13 71",
+                                "0177 8 55 46 40",
+                                "0711 7 22 21 11",
+                                "0711 7 22 20 56",
+                                "0711 2 23 72 58",
+                                "0711 2 36 94 45",
+                                "0711 7 97 77 34",
+                                "0711 2 39 32-0",
+                                "0711 9 48 44 51",
+                                "0711 8 49 90 00",
+                                "0711 46 99 55 16"
+                            ]
+                        },
+                        {
+                            "key": "freecall premium",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "gratis anrufen >>"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Autovermietung Buchbinder\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tNikolaus-Otto-Str. 3\n\n                         70771 Leinfelden-Echterding...Echterdingen",
+                                "\n                    \tKrailenshaldenstr. 1\n\n                         70469 StuttgartFeuerbach-Ost"
+                            ]
+                        },
+                        {
+                            "key": "Name",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Autovermietung Buchbinder",
+                                "Abschleppdienst Meixner",
+                                "Autovermietung Mages GmbH & Co. KG",
+                                "A.V.T. Autovermietung Topcar",
+                                "Auto Europe Rent a Car Agentur Schumann Autovermi...",
+                                "Auto-Rep. Car Tech",
+                                "Autohaus Marquardt Heilmann + Gleich",
+                                "Autovermietung Böhmler",
+                                "Autovermietung Raible GmbH",
+                                "Autovermietung Topcar",
+                                "Autovermietung topcar Inh. Bernd Schumann",
+                                "AVIS Autovermietung GmbH & Co. KG",
+                                "AVIS Autovermietung GmbH & Co.KG",
+                                "AVIS Autovermietung GmbH & Co. KG Autovermietung",
+                                "AVIS Autovermietung GmbH & Co. KG Stuttgart Flugh...",
+                                "Avis Autovermietung Raible",
+                                "AVT Autovermietung topcar Inh. Bernd Schumann",
+                                "AZNUR Stuttgart GmbH Autovermietung"
+                            ]
+                        },
+                        {
+                            "key": "Abschleppdienst Meixner",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Abschleppdienst Meixner"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Abschleppdienst Meixner\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tLandhausstr. 204\n\n                         70188 StuttgartOstheim"
+                            ]
+                        },
+                        {
+                            "key": "Autovermietung Mages GmbH & Co. KG",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Autovermietung Mages GmbH & Co. KG"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Autovermietung Mages GmbH & Co. KG\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tPflasteräckerstr. 6\n\n                         70186 StuttgartGablenberg"
+                            ]
+                        },
+                        {
+                            "key": "A.V.T. Autovermietung Topcar",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "A.V.T. Autovermietung Topcar"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            A.V.T. Autovermietung Topcar\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tSigmaringer Str. 92\n\n                         70567 StuttgartMöhringen-Ost"
+                            ]
+                        },
+                        {
+                            "key": "Auto Europe Rent a Car Agentur Schumann Autovermietung",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Auto Europe Rent a Car Agentur Schumann Autovermi..."
+                            ]
+                        },
+                        {
+                            "key": "freecall",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "gratis anrufen >>"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Auto Europe Rent a Car Agentur Schumann Autovermi...\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tIsolde-Kurz-Str. 49\n\n                         70619 StuttgartRiedenberg"
+                            ]
+                        },
+                        {
+                            "key": "Auto-Rep. Car Tech",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Auto-Rep. Car Tech"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Auto-Rep. Car Tech\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tDieselstr. 6\n\n                         70736 FellbachOeffingen"
+                            ]
+                        },
+                        {
+                            "key": "Autohaus Marquardt Heilmann + Gleich",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Autohaus Marquardt Heilmann + Gleich"
+                            ]
+                        },
+                        {
+                            "key": "slogan",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Das persönliche Autohaus"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Autohaus Marquardt Heilmann + Gleich\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                            Das persönliche Autohaus"
+                            ]
+                        },
+                        {
+                            "key": "Autovermietung Böhmler",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Autovermietung Böhmler"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Autovermietung Böhmler\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tPorschestr. 22\n\n                         70435 StuttgartZuffenhausen-Schützenbühl"
+                            ]
+                        },
+                        {
+                            "key": "Autovermietung Raible GmbH",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Autovermietung Raible GmbH"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Autovermietung Raible GmbH\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tBludenzer Str. 19\n\n                         70469 StuttgartFeuerbach"
+                            ]
+                        },
+                        {
+                            "key": "Autovermietung Topcar",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Autovermietung Topcar"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Autovermietung Topcar\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tSigmaringer Str. 92\n\n                         70567 StuttgartMöhringen-Ost"
+                            ]
+                        },
+                        {
+                            "key": "Autovermietung topcar Inh. Bernd Schumann",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Autovermietung topcar Inh. Bernd Schumann"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Autovermietung topcar Inh. Bernd Schumann\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tSigmaringer Str. 92\n\n                         70567 StuttgartMöhringen"
+                            ]
+                        },
+                        {
+                            "key": "AVIS Autovermietung GmbH & Co. KG",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AVIS Autovermietung GmbH & Co. KG"
+                            ]
+                        },
+                        {
+                            "key": "Filialen",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Filialen"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            AVIS Autovermietung GmbH & Co. KG\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tHauptbahnhof \n\n                         70173 Stuttgart",
+                                "\n                    \tFlughafen Terminal 3 \n\n                         70629 Stuttgart"
+                            ]
+                        },
+                        {
+                            "key": "AVIS Autovermietung GmbH & Co.KG",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AVIS Autovermietung GmbH & Co.KG"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Fax"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            AVIS Autovermietung GmbH & Co.KG\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tKatharinenstr. 18\n\n                         70182 Stuttgart"
+                            ]
+                        },
+                        {
+                            "key": "AVIS Autovermietung GmbH & Co. KG Autovermietung",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AVIS Autovermietung GmbH & Co. KG Autovermietung"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            AVIS Autovermietung GmbH & Co. KG Autovermietung\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tKatharinenstr. 18\n\n                         70182 Stuttgart"
+                            ]
+                        },
+                        {
+                            "key": "AVIS Autovermietung GmbH & Co. KG Stuttgart Flughafen",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AVIS Autovermietung GmbH & Co. KG Stuttgart Flugh..."
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            AVIS Autovermietung GmbH & Co. KG Stuttgart Flugh...\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \t \n\n                         "
+                            ]
+                        },
+                        {
+                            "key": "Avis Autovermietung Raible",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Avis Autovermietung Raible"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Avis Autovermietung Raible\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tBurgenlandstr. 42\n\n                         70469 StuttgartBahnhof Feuerbach"
+                            ]
+                        },
+                        {
+                            "key": "AVT Autovermietung topcar Inh. Bernd Schumann",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AVT Autovermietung topcar Inh. Bernd Schumann"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            AVT Autovermietung topcar Inh. Bernd Schumann\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tSigmaringer Str. 92\n\n                         70567 StuttgartMöhringen"
+                            ]
+                        },
+                        {
+                            "key": "AZNUR Stuttgart GmbH Autovermietung",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AZNUR Stuttgart GmbH Autovermietung"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            AZNUR Stuttgart GmbH Autovermietung\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tRosenbergstr. 24\n\n                         70174 StuttgartStuttgart-Mitte"
+                            ]
+                        }
+                    ],
+                    "currentData": [
+                        {
+                            "key": "Autovermietung Buchbinder",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Autovermietung Buchbinder"
+                            ]
+                        },
+                        {
+                            "key": "col2",
+                            "dbKey": "Adresse",
+                            "checked": "checked",
+                            "values": [
+                                "Nikolaus-Otto-Str. 3                          70771 Leinfelden-Echterding...Echterdingen",
+                                "Landhausstr. 204                          70188 StuttgartOstheim",
+                                "Krailenshaldenstr. 1                          70469 StuttgartFeuerbach-Ost",
+                                "Pflasteräckerstr. 6                          70186 StuttgartGablenberg",
+                                "Sigmaringer Str. 92                          70567 StuttgartMöhringen-Ost",
+                                "Isolde-Kurz-Str. 49                          70619 StuttgartRiedenberg",
+                                "Dieselstr. 6                          70736 FellbachOeffingen",
+                                "Rotweg 21                          70437 StuttgartRot",
+                                "Porschestr. 22                          70435 StuttgartZuffenhausen-Schützenbühl",
+                                "Bludenzer Str. 19                          70469 StuttgartFeuerbach",
+                                "Sigmaringer Str. 92                          70567 StuttgartMöhringen",
+                                "Hauptbahnhof                           70173 Stuttgart",
+                                "Katharinenstr. 18                          70182 Stuttgart",
+                                "Flughafen Terminal 3                           70629 Stuttgart",
+                                "Burgenlandstr. 42                          70469 StuttgartBahnhof Feuerbach",
+                                "Rosenbergstr. 24                          70174 StuttgartStuttgart-Mitte"
+                            ]
+                        },
+                        {
+                            "key": "topweb",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Web"
+                            ]
+                        },
+                        {
+                            "key": "topmail",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "E-Mail"
+                            ]
+                        },
+                        {
+                            "key": "Öffnungszeiten",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Zeiten"
+                            ]
+                        },
+                        {
+                            "key": "Kundeninformationen",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Firmendetails"
+                            ]
+                        },
+                        {
+                            "key": "Kontakt auf Karte ansehen",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Karte"
+                            ]
+                        },
+                        {
+                            "key": "Eintrag zu meinem Adressbuch hinzufügen",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kontakt"
+                            ]
+                        },
+                        {
+                            "key": "col4",
+                            "dbKey": "Telefonnummer",
+                            "checked": "checked",
+                            "values": [
+                                "0711 69 96 66 10",
+                                "0711 2 85 09 31",
+                                "0711 99 31 60 10",
+                                "0711 46 47 87",
+                                "0711 7 22 20 55",
+                                "0711 7 28 83 26",
+                                "0711 5 10 34 04",
+                                "0711 98 79 79-0",
+                                "0711 8 70 13 71",
+                                "0177 8 55 46 40",
+                                "0711 7 22 21 11",
+                                "0711 7 22 20 56",
+                                "0711 2 23 72 58",
+                                "0711 2 36 94 45",
+                                "0711 7 97 77 34",
+                                "0711 2 39 32-0",
+                                "0711 9 48 44 51",
+                                "0711 8 49 90 00",
+                                "0711 46 99 55 16"
+                            ]
+                        },
+                        {
+                            "key": "freecall premium",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "gratis anrufen >>"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Autovermietung Buchbinder\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tNikolaus-Otto-Str. 3\n\n                         70771 Leinfelden-Echterding...Echterdingen",
+                                "\n                    \tKrailenshaldenstr. 1\n\n                         70469 StuttgartFeuerbach-Ost"
+                            ]
+                        },
+                        {
+                            "key": "Name",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Autovermietung Buchbinder",
+                                "Abschleppdienst Meixner",
+                                "Autovermietung Mages GmbH & Co. KG",
+                                "A.V.T. Autovermietung Topcar",
+                                "Auto Europe Rent a Car Agentur Schumann Autovermi...",
+                                "Auto-Rep. Car Tech",
+                                "Autohaus Marquardt Heilmann + Gleich",
+                                "Autovermietung Böhmler",
+                                "Autovermietung Raible GmbH",
+                                "Autovermietung Topcar",
+                                "Autovermietung topcar Inh. Bernd Schumann",
+                                "AVIS Autovermietung GmbH & Co. KG",
+                                "AVIS Autovermietung GmbH & Co.KG",
+                                "AVIS Autovermietung GmbH & Co. KG Autovermietung",
+                                "AVIS Autovermietung GmbH & Co. KG Stuttgart Flugh...",
+                                "Avis Autovermietung Raible",
+                                "AVT Autovermietung topcar Inh. Bernd Schumann",
+                                "AZNUR Stuttgart GmbH Autovermietung"
+                            ]
+                        },
+                        {
+                            "key": "Abschleppdienst Meixner",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Abschleppdienst Meixner"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Abschleppdienst Meixner\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tLandhausstr. 204\n\n                         70188 StuttgartOstheim"
+                            ]
+                        },
+                        {
+                            "key": "Autovermietung Mages GmbH & Co. KG",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Autovermietung Mages GmbH & Co. KG"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Autovermietung Mages GmbH & Co. KG\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tPflasteräckerstr. 6\n\n                         70186 StuttgartGablenberg"
+                            ]
+                        },
+                        {
+                            "key": "A.V.T. Autovermietung Topcar",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "A.V.T. Autovermietung Topcar"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            A.V.T. Autovermietung Topcar\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tSigmaringer Str. 92\n\n                         70567 StuttgartMöhringen-Ost"
+                            ]
+                        },
+                        {
+                            "key": "Auto Europe Rent a Car Agentur Schumann Autovermietung",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Auto Europe Rent a Car Agentur Schumann Autovermi..."
+                            ]
+                        },
+                        {
+                            "key": "freecall",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "gratis anrufen >>"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Auto Europe Rent a Car Agentur Schumann Autovermi...\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tIsolde-Kurz-Str. 49\n\n                         70619 StuttgartRiedenberg"
+                            ]
+                        },
+                        {
+                            "key": "Auto-Rep. Car Tech",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Auto-Rep. Car Tech"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Auto-Rep. Car Tech\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tDieselstr. 6\n\n                         70736 FellbachOeffingen"
+                            ]
+                        },
+                        {
+                            "key": "Autohaus Marquardt Heilmann + Gleich",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Autohaus Marquardt Heilmann + Gleich"
+                            ]
+                        },
+                        {
+                            "key": "slogan",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Das persönliche Autohaus"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Autohaus Marquardt Heilmann + Gleich\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                            Das persönliche Autohaus"
+                            ]
+                        },
+                        {
+                            "key": "Autovermietung Böhmler",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Autovermietung Böhmler"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Autovermietung Böhmler\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tPorschestr. 22\n\n                         70435 StuttgartZuffenhausen-Schützenbühl"
+                            ]
+                        },
+                        {
+                            "key": "Autovermietung Raible GmbH",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Autovermietung Raible GmbH"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Autovermietung Raible GmbH\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tBludenzer Str. 19\n\n                         70469 StuttgartFeuerbach"
+                            ]
+                        },
+                        {
+                            "key": "Autovermietung Topcar",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Autovermietung Topcar"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Autovermietung Topcar\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tSigmaringer Str. 92\n\n                         70567 StuttgartMöhringen-Ost"
+                            ]
+                        },
+                        {
+                            "key": "Autovermietung topcar Inh. Bernd Schumann",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Autovermietung topcar Inh. Bernd Schumann"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Autovermietung topcar Inh. Bernd Schumann\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tSigmaringer Str. 92\n\n                         70567 StuttgartMöhringen"
+                            ]
+                        },
+                        {
+                            "key": "AVIS Autovermietung GmbH & Co. KG",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AVIS Autovermietung GmbH & Co. KG"
+                            ]
+                        },
+                        {
+                            "key": "Filialen",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Filialen"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            AVIS Autovermietung GmbH & Co. KG\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tHauptbahnhof \n\n                         70173 Stuttgart",
+                                "\n                    \tFlughafen Terminal 3 \n\n                         70629 Stuttgart"
+                            ]
+                        },
+                        {
+                            "key": "AVIS Autovermietung GmbH & Co.KG",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AVIS Autovermietung GmbH & Co.KG"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Fax"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            AVIS Autovermietung GmbH & Co.KG\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tKatharinenstr. 18\n\n                         70182 Stuttgart"
+                            ]
+                        },
+                        {
+                            "key": "AVIS Autovermietung GmbH & Co. KG Autovermietung",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AVIS Autovermietung GmbH & Co. KG Autovermietung"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            AVIS Autovermietung GmbH & Co. KG Autovermietung\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tKatharinenstr. 18\n\n                         70182 Stuttgart"
+                            ]
+                        },
+                        {
+                            "key": "AVIS Autovermietung GmbH & Co. KG Stuttgart Flughafen",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AVIS Autovermietung GmbH & Co. KG Stuttgart Flugh..."
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            AVIS Autovermietung GmbH & Co. KG Stuttgart Flugh...\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \t \n\n                         "
+                            ]
+                        },
+                        {
+                            "key": "Avis Autovermietung Raible",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Avis Autovermietung Raible"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            Avis Autovermietung Raible\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tBurgenlandstr. 42\n\n                         70469 StuttgartBahnhof Feuerbach"
+                            ]
+                        },
+                        {
+                            "key": "AVT Autovermietung topcar Inh. Bernd Schumann",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AVT Autovermietung topcar Inh. Bernd Schumann"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            AVT Autovermietung topcar Inh. Bernd Schumann\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tSigmaringer Str. 92\n\n                         70567 StuttgartMöhringen"
+                            ]
+                        },
+                        {
+                            "key": "AZNUR Stuttgart GmbH Autovermietung",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AZNUR Stuttgart GmbH Autovermietung"
+                            ]
+                        },
+                        {
+                            "key": "\n                           \n                            AZNUR Stuttgart GmbH Autovermietung\n                           \n                            ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n                    \tRosenbergstr. 24\n\n                         70174 StuttgartStuttgart-Mitte"
+                            ]
+                        }
+                    ],
+                    "url": "http://www1.dastelefonbuch.de/?bi=88&kw=autovermietung&ci=stuttgart&ciid=8595&cmd=search&cx=-96861&cy=-246077&ci_kgs=08111000000&mdest=sec1.www1&vert_ok=1&ort_ok=1&mergerid=&cilist=0&sp=0&aktion=23"
+                }
+            ]
+        }
+    ]
+}

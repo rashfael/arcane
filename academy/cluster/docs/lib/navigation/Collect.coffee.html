@@ -1,0 +1,45 @@
+<!DOCTYPE html><html><head><title>Collect.coffee</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><link rel="stylesheet" media="all" href="../../docco.css"></head><body><div id="container"><div id="background"></div><div id="jump_to">Jump To &hellip;<div id="jump_wrapper"><div id="jump_page"><a href="../../index.html" class="source"><span class="file_name">README</span></a><a href="../../lib/cluster.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">cluster.coffee</span></a><a href="../../lib/encoder.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">encoder.coffee</span></a><a href="../../lib/navigation.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">navigation.coffee</span></a><a href="../../lib/navigation/Collect.coffee.html" class="source selected"><span class="base_path">lib / navigation / </span><span class="file_name">Collect.coffee</span></a><a href="../../lib/navigation/FillForm.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">FillForm.coffee</span></a><a href="../../lib/navigation/FollowLink.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">FollowLink.coffee</span></a><a href="../../lib/navigation/Generic.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Generic.coffee</span></a><a href="../../lib/navigation/Magic.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Magic.coffee</span></a><a href="../../lib/navigation/Pager.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Pager.coffee</span></a><a href="../../lib/navigation/Start.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Start.coffee</span></a><a href="../../lib/navigation/WalkthroughItems.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">WalkthroughItems.coffee</span></a><a href="../../lib/navigation/WalkthroughLinks.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">WalkthroughLinks.coffee</span></a><a href="../../lib/navigation/helpers.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">helpers.coffee</span></a><a href="../../lib/parser.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">parser.coffee</span></a><a href="../../lib/worker.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">worker.coffee</span></a></div></div></div><table cellpadding="0" cellspacing="0"><thead><tr><th class="docs"><h1>Collect.coffee</h1><div class="filepath">lib/navigation/</div></th><th class="code"></th></tr></thead><tbody><tr id="section-1"><td class="docs"><div class="pilwrap"><a href="#section-1" class="pilcrow">&#182;</a></div>
+</td><td class="code"><div class="highlight"><pre><span class="nv">log4js = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;log4js&#39;</span><span class="p">)</span>
+<span class="nv">logger = </span><span class="nx">log4js</span><span class="p">.</span><span class="nx">getLogger</span> <span class="s">&#39;nav:collect&#39;</span>
+<span class="nx">logger</span><span class="p">.</span><span class="nx">setLevel</span> <span class="s">&#39;DEBUG&#39;</span>
+
+<span class="nv">Generic = </span><span class="nx">require</span> <span class="s">&#39;./Generic&#39;</span>
+<span class="nv">helpers = </span><span class="nx">require</span> <span class="s">&#39;./helpers&#39;</span>
+
+<span class="nv">Mongolian = </span><span class="nx">require</span> <span class="s">&#39;mongolian&#39;</span>
+<span class="nv">server = </span><span class="k">new</span> <span class="nx">Mongolian</span> <span class="nx">global</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">mongolian</span><span class="p">.</span><span class="nx">url</span></pre></div></td></tr><tr id="section-2"><td class="docs"><div class="pilwrap"><a href="#section-2" class="pilcrow">&#182;</a></div><h3>Collect</h3>
+
+<p>Endpoint of a scraping path. Dump all previously code to the collector.</p>
+
+<p>Options:</p>
+
+<ul>
+<li><strong>mapping.map</strong>: the map for the data keys to the wanted keys</li>
+<li><strong>database</strong>: database were the data should be saved</li>
+<li><strong>collection</strong>: specifies the collection were the data in the given database is saved</li>
+</ul>
+</td><td class="code"><div class="highlight"><pre><span class="nv">module.exports = </span><span class="k">class</span> <span class="nx">Collect</span> <span class="k">extends</span> <span class="nx">Generic</span>
+  
+  <span class="nv">process: </span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nv">mapping = </span><span class="nx">@config</span><span class="p">.</span><span class="nx">mapping</span><span class="p">.</span><span class="nx">map</span> <span class="c1"># gets the mapping from the given config</span>
+    <span class="k">if</span> <span class="nx">mapping</span> <span class="o">and</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">mapping</span><span class="p">).</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span> <span class="c1"># if the mapping exists, it map the keys of the data to new</span>
+      <span class="nv">insertData = </span><span class="p">{}</span> <span class="c1"># keys and drops the data were the old key is in the config false</span>
+      
+      <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">val</span> <span class="k">of</span> <span class="nx">@input</span>
+        <span class="k">if</span> <span class="nx">mapping</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">is</span> <span class="kc">false</span>
+          <span class="k">continue</span>
+        <span class="k">if</span> <span class="nx">mapping</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">is</span> <span class="s">&#39;&#39;</span> <span class="o">or</span> <span class="o">not</span> <span class="nx">mapping</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span><span class="o">?</span>
+          <span class="nx">insertData</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="nx">val</span>
+        <span class="k">else</span>
+          <span class="nx">insertData</span><span class="p">[</span><span class="nx">mapping</span><span class="p">[</span><span class="nx">key</span><span class="p">]]</span> <span class="o">=</span> <span class="nx">val</span>
+    <span class="k">else</span>
+      <span class="nv">insertData = </span><span class="nx">@input</span> <span class="c1"># if no mapping is defined, it takes all data</span>
+    <span class="k">if</span> <span class="nb">Object</span><span class="p">.</span><span class="nx">keys</span><span class="p">(</span><span class="nx">insertData</span><span class="p">).</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span>
+      <span class="k">for</span> <span class="nx">key</span><span class="p">,</span><span class="nx">val</span> <span class="k">of</span> <span class="nx">insertData</span>
+        <span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span> <span class="s">&#39;-| Collect |-&gt; &#39;</span> <span class="o">+</span> <span class="nx">key</span> <span class="o">+</span> <span class="s">&#39; : &#39;</span> <span class="o">+</span> <span class="nx">val</span>
+      <span class="nx">server</span><span class="p">.</span><span class="nx">db</span><span class="p">(</span><span class="nx">@config</span><span class="p">.</span><span class="nx">database</span><span class="p">).</span><span class="nx">collection</span><span class="p">(</span><span class="nx">@config</span><span class="p">.</span><span class="nx">collection</span><span class="p">).</span><span class="nx">insert</span> <span class="nx">insertData</span>
+    <span class="k">else</span>
+      <span class="nx">logger</span><span class="p">.</span><span class="nx">error</span> <span class="s">&#39;No Data found&#39;</span>
+    <span class="nx">cb</span> <span class="kc">null</span><span class="p">,</span> <span class="nx">@input</span>
+
+</pre></div></td></tr></tbody></table><div id="generated">generated Sun Apr 22 2012 13:41:41 GMT+0200 (CEST)  </div><div id="projectname"><a href="../../index.html">Arcane Academy Cluster</a></div></div></body></html>

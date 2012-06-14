@@ -1,0 +1,937 @@
+{
+    "mappings": {
+        "1330443466367": {
+            "map": {
+                "hit_detail": false,
+                "Details ansehen": false,
+                "hit_title": "Name",
+                "hit_left": false,
+                "hit_address": "Adresse",
+                "eintrag_0": false,
+                "hit_right": false,
+                "hit_phone_no": "Telefonnummer",
+                "hit_fax_no": false,
+                "hit_text": false,
+                "Karte anzeigen": false,
+                "Eintrag merken": false,
+                "likeh1": false,
+                "innerspan": false,
+                "newwindow": false,
+                "Teilen auf Facebook": false,
+                "img_0": false,
+                "eintrag_1": false,
+                "E-Mail versenden": false,
+                "eintrag_2": false,
+                "hit_extra_content": false,
+                "eintrag_3": false,
+                "eintrag_4": false,
+                "eintrag_5": false,
+                "eintrag_6": false,
+                "eintrag_7": false,
+                "eintrag_8": false,
+                "eintrag_9": false,
+                "eintrag_10": false,
+                "eintrag_11": false,
+                "hit_phone_0180": false,
+                "startext": false,
+                "eintrag_12": false,
+                "eintrag_13": false,
+                "eintrag_14": false
+            },
+            "validFor": [
+                "nav1330443466330"
+            ],
+            "name": "Default mapping"
+        },
+        "1330443466384": {
+            "map": {},
+            "validFor": [],
+            "name": "Default mapping"
+        }
+    },
+    "navigation": {
+        "base": [
+            {
+                "name": "Entry point",
+                "type": "Start",
+                "config": {
+                    "request": {
+                        "url": "http://www.gelbeseiten.de/yp/quick.yp"
+                    }
+                },
+                "id": "nav1330443466325",
+                "next": [
+                    "nav1330443466326"
+                ]
+            }
+        ],
+        "nav1330443466326": {
+            "name": "Fill form",
+            "type": "FillForm",
+            "config": {
+                "formSelector": [
+                    "#startpageForm"
+                ],
+                "url": "http://www.gelbeseiten.de/yp/search.yp",
+                "method": "get",
+                "parameters": [
+                    {
+						"execute": {
+                            "entry": ["Suchen"]
+                        },
+                        "subject": {
+                            "entry": ["Autovermietung"]
+                        },
+                        "location": {
+                            "entry": ["Stuttgart"]
+                        }
+                    }
+                ],
+                "customSelector": [
+                    " .search_hit:parent"
+                ],
+                "magic": {}
+            },
+            "next": [
+                "nav1330443466327"
+            ],
+            "id": "nav1330443466326",
+            "nodeConfigId": "1330443466325"
+        },
+        "nav1330443466327": {
+            "name": "Walk through pager",
+            "type": "Pager",
+            "config": {
+                "pagerSelector": [
+                    "div#maincontent > div:nth-child(2) > div:nth-child(12) > div:nth-child(2) > ul:first-child"
+                ]
+            },
+            "next": [
+                "nav1330443466328"
+            ],
+            "id": "nav1330443466327"
+        },
+        "nav1330443466328": {
+            "name": "Walk through items",
+            "type": "WalkthroughItems",
+            "config": {
+                "customSelector": [
+                    " .search_hit:parent"
+                ],
+                "magic": {}
+            },
+            "next": [
+                "nav1330443466329"
+            ],
+            "id": "nav1330443466328",
+            "nodeConfigId": "1330443466325"
+        },
+        "nav1330443466329": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": ""
+            },
+            "next": [
+                "nav1330443466330"
+            ],
+            "id": "nav1330443466329"
+        },
+        "nav1330443466330": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "collection": "Autovermietung"
+            },
+            "next": [],
+            "id": "nav1330443466330"
+        }
+    },
+    "config": {
+        "currentConfigID": 1330443466325,
+        "configs": {
+            "1330443466325": {
+                "_name": "Default config",
+                "_id": 1330443466325,
+                "_listConfig": {
+                    "_inspectedNodes": [
+                        {
+                            "nodeIndex": 1,
+                            "sizcache032903595576022315": 90
+                        }
+                    ],
+                    "_exceptions": [],
+                    "_selectors": [
+                        " .search_hit:parent"
+                    ],
+                    "_frameSels": []
+                },
+                "_magicConfig": {},
+                "_formfillConfig": {
+                    "_fields": [
+                        {
+                            "fieldname": "WHAT",
+                            "type": "TextField",
+                            "data": {
+                                "selector": "#what_search",
+                                "name": "subject"
+                            }
+                        },
+                        {
+                            "fieldname": "WHERE",
+                            "type": "TextField",
+                            "data": {
+                                "selector": "#where_search",
+                                "name": "location"
+                            }
+                        }
+                    ],
+                    "_datasets": [
+                        {
+                            "WHAT": {
+                                "label": "",
+                                "value": "Autovermietung",
+                                "fieldname": "WHAT",
+                                "useIndex": false,
+                                "distinct": true,
+                                "indexFromVal": 0,
+                                "indexToVal": 0,
+                                "indexDistVal": 0,
+                                "indexStepSize": 1,
+                                "text": "Autovermietung"
+                            },
+                            "WHERE": {
+                                "label": "",
+                                "value": "70374",
+                                "fieldname": "WHERE",
+                                "useIndex": false,
+                                "distinct": true,
+                                "indexFromVal": 0,
+                                "indexToVal": 0,
+                                "indexDistVal": 0,
+                                "indexStepSize": 1,
+                                "text": "70374"
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    },
+    "mappingData": [
+        {
+            "id": 1330443466367,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "http://www.dastelefonbuch.de/",
+                    "selector": "",
+                    "data": [],
+                    "currentData": []
+                },
+                {
+                    "selector": "",
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.gelbeseiten.de/yp/122/search.yp?sessionDataString=H4sIAAAAAAAAAEWHMQ4CMQzAXsMYKWnLpVV2uBGBBCPKXVPBhtos%2FJ5uDJZt0sBYGDfYsTKk2BS0ZAJjq7EqBbIN2pKZQmMJJOX7kXQIp-pHafdjbbc759vy%2FZO9abZj2%2FSUOJCvKBeU6647ymOJJo5gWPFJikh9YOBnNhwAAAA-e-e&at=yp&kindOfSearch=tradesearch&subject=Autovermietung&location=70374&x=0&y=0&distance=-1&execute=Suchen&suggest_choose=on&rz=122"
+                },
+                {
+                    "selector": "",
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.gelbeseiten.de/yp/122/search.yp?sessionDataString=H4sIAAAAAAAAAF2PQU/DMAyFf82OmWwnqRP5NE0acEAgJnFF2ep2RWMbbVYYv54AQqj49qz3/D1jIobIsDFbqNk42ySTYkCjrLWtExLqxjRVYKSGhUjsjFZDTn0etMtaxNX66U9LvJykWpzzcdT-ppdN8PrSSGCw7ccWsfaubQzfsu-pE3PFlJyH2qddDUb3dSYwHu3IyXkoOPXl7X-pZxzW2jyDAER4Xvk-pEM4AaOMJpKtUN4MOfIU5d2FeShPernEObmSIlmkacVrkJte9zqmw4fcegAPLlSOubJyh4BO7kEeDMpyGpzZf5e-puj5a4WJtHCEGciFY-pQQoAo5taAEAAA-e-e&skip=4&distance=0"
+                },
+                {
+                    "selector": "",
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.gelbeseiten.de/yp/122//subscriberlist_search.yp?sessionDataString=H4sIAAAAAAAAAI2PTU%2FDMAxAf02PmWznw4l8mioNOCAQk-pCI0jXtisY2umwwfj3tymWc8MGyLT37GSMxBIZKraBmZXQTVQweVeJU6zoiYapU4zwjNSykRRe0SH2bqm132HSHnIb-pZvl6NZJw3oubH%2FPulPr3LuXjtpXIoNmI-pQ%2Fvcx%2FrdEixX62lRiJpTcGlrPWYs7fByscyH3NuY5%2FlDTwiwiVkN93ZA6OcVCDtUD4VGbIU5Mv4mR8etnIOMzIDRTKP16K3IHd92qRT3H7LvQWwYB0bQNTyMABOHkGeLudkiVJe44X-ps280frZOXi5EQeXkNBa%2FUjztatBptsBmcPoBqT01DJgBAAA-e&at=yp&kindOfSearch=tradesearch&subject=Autovermietung&location=70376&x=0&y=0&distance=-1&execute=Suchen&sort=relevanz&sort=relevanz&suggest_choose=on&noticeName=Name+des+Merkzettels&noticeTargetUrl=http%3A%2F%2Fwww.gelbeseiten.de%2Fyp%2F122%2Fmeinegelbeseiten%2FajaxSpeicherMerkzettel.yp%3FsessionDataString%3DH4sIAAAAAAAAAI2PTU%2FDMAxAf02PmWznw4l8mioNOCAQk-pCI0jXtisY2umwwfj3tymWc8MGyLT37GSMxBIZKraBmZXQTVQweVeJU6zoiYapU4zwjNSykRRe0SH2bqm132HSHnIb-pZvl6NZJw3oubH%2FPulPr3LuXjtpXIoNmI-pQ%2Fvcx%2FrdEixX62lRiJpTcGlrPWYs7fByscyH3NuY5%2FlDTwiwiVkN93ZA6OcVCDtUD4VGbIU5Mv4mR8etnIOMzIDRTKP16K3IHd92qRT3H7LvQWwYB0bQNTyMABOHkGeLudkiVJe44X-ps280frZOXi5EQeXkNBa%2FUjztatBptsBmcPoBqT01DJgBAAA-e"
+                },
+                {
+                    "selector": "",
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.gelbeseiten.de/yp/122//subscriberlist_search.yp?sessionDataString=H4sIAAAAAAAAAI2OS08CQRCEf80eh3T3PHomdSIkPg5GI4lXM8vOrmsQcBlQ%2FPUSPeHJulWlvkpxFqWk1JoVdWqc7bPJKbIpWjrbZRYurelDVJZeIQ62kasyDaXdjPv1uK%2Fl7K-pXzxcR0mmHMD%2FU7bFMb2Oph82ArGQ1wP2Hj3XKXdmXPK1e0LEIavTJ431ZD7UOeap4pcjM9CNsf7d3pIyjSS5awYcRxxoSPl2cRQ4cPU5pJqSiDvN8-pe6GcDuVdTnmzRfuPJEnH9QRs8U9swQ8EB4NY3EJNvbPUqMLPFnoudo7St6SWC%2F4BlHg1rNpAQAA&at=yp&kindOfSearch=tradesearch&subject=Autovermietung&location=70374&x=0&y=0&distance=-1&execute=Suchen&sort=relevanz&sort=relevanz&suggest_choose=on&noticeName=Name+des+Merkzettels&noticeTargetUrl=http%3A%2F%2Fwww.gelbeseiten.de%2Fyp%2F122%2Fmeinegelbeseiten%2FajaxSpeicherMerkzettel.yp%3FsessionDataString%3DH4sIAAAAAAAAAI2OS08CQRCEf80eh3T3PHomdSIkPg5GI4lXM8vOrmsQcBlQ%2FPUSPeHJulWlvkpxFqWk1JoVdWqc7bPJKbIpWjrbZRYurelDVJZeIQ62kasyDaXdjPv1uK%2Fl7K-pXzxcR0mmHMD%2FU7bFMb2Oph82ArGQ1wP2Hj3XKXdmXPK1e0LEIavTJ431ZD7UOeap4pcjM9CNsf7d3pIyjSS5awYcRxxoSPl2cRQ4cPU5pJqSiDvN8-pe6GcDuVdTnmzRfuPJEnH9QRs8U9swQ8EB4NY3EJNvbPUqMLPFnoudo7St6SWC%2F4BlHg1rNpAQAA"
+                },
+                {
+                    "selector": "",
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.gelbeseiten.de/yp/122//subscriberlist_search.yp?sessionDataString=H4sIAAAAAAAAAI2PzU7DMBCEnyZHV7trO2trTlUlfg4IRCWuyG2cNKi0JXUD5ekJcCon5rar-pXZnOIlSVFqZNTVqnG2TSTGwyZob2yQWzivT1kFZWoV42Equ8tDl1a4%2FbvtjydN8vXy-pWCGeD6jnp7If8%2FDa53LadUhKVh3cf%2FhQhtTkY07DeoOGRbBxlS5Qgo8eb8tyKqVLQ8ELBWamH2H%2F-p-pFAyhhNFFsz3o048RLx4cIsTFU9znEmbqIE83QZ8YZwO-pRtHtPuE3eeyJMLtVOtLe6Z2OGB8GgYi0uwsn8ufWd9stDJ2nLtfJAQrcMXR3o6rm4BAAA-e&at=yp&kindOfSearch=tradesearch&subject=Autovermietung&location=70376&x=0&y=0&distance=-1&execute=Suchen&sort=relevanz&sort=relevanz&suggest_choose=on&noticeName=Name+des+Merkzettels&noticeTargetUrl=http%3A%2F%2Fwww.gelbeseiten.de%2Fyp%2F122%2Fmeinegelbeseiten%2FajaxSpeicherMerkzettel.yp%3FsessionDataString%3DH4sIAAAAAAAAAI2PzU7DMBCEnyZHV7trO2trTlUlfg4IRCWuyG2cNKi0JXUD5ekJcCon5rar-pXZnOIlSVFqZNTVqnG2TSTGwyZob2yQWzivT1kFZWoV42Equ8tDl1a4%2FbvtjydN8vXy-pWCGeD6jnp7If8%2FDa53LadUhKVh3cf%2FhQhtTkY07DeoOGRbBxlS5Qgo8eb8tyKqVLQ8ELBWamH2H%2F-p-pFAyhhNFFsz3o048RLx4cIsTFU9znEmbqIE83QZ8YZwO-pRtHtPuE3eeyJMLtVOtLe6Z2OGB8GgYi0uwsn8ufWd9stDJ2nLtfJAQrcMXR3o6rm4BAAA-e"
+                },
+                {
+                    "selector": " .search_hit:parent",
+                    "data": [
+                        {
+                            "key": "hit_detail",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "START i_tn_adresse.jsp   ENDE i_tn_adresse.jsp  START i_tn_news.jsp   ENDE i_tn_news.jsp   START i_tn_sonderinhalte.jsp   ENDE i_tn_sonderinhalte.jsp  START i_tn_freetext_tar.jsp   ENDE i_tn_freetext_tar.jsp"
+                            ]
+                        },
+                        {
+                            "key": "Details ansehen",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Mehr Info"
+                            ]
+                        },
+                        {
+                            "key": "hit_title",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "Autovermietung Hertz",
+                                "Autovermietung Buchbinder",
+                                "Autovermietung Enterprise Deutschland GmbH",
+                                "Autovermietung Mages",
+                                "Herrmann Metall",
+                                "Autovermietung CARO",
+                                "berner Autovermietung",
+                                "Autovermietung Böhmler",
+                                "Avis",
+                                "Trick-Reisen GmbH Kleinbusverleih",
+                                "Urlaubsauto-Online",
+                                "A.V.T. Autovermietung"
+                            ]
+                        },
+                        {
+                            "key": "hit_left",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "START i_tn_branche.jsp   ENDE i_tn_branche.jsp   START i_tn_vorschau.jsp   ENDE i_tn_vorschau.jsp"
+                            ]
+                        },
+                        {
+                            "key": "hit_address",
+                            "dbKey": "Adresse",
+                            "checked": "checked",
+                            "values": [
+                                "Pragstr. 120, 70376 Stuttgart",
+                                "Krailenshaldenstr. 1, 70469 Stuttgart",
+                                "Am Wallgraben 99, 70565 Stuttgart",
+                                "Kesselstr. 36, 70327 Stuttgart",
+                                "Silberburgstr. 148, 70176 Stuttgart",
+                                "Stuttgart Flughafen, Terminal 3, Ebene 2 70629 Stuttgart",
+                                "Pflasteräckerstr. 6, 70186 Stuttgart",
+                                "Immergrünweg 6, 70771 Leinfelden-Echterdingen",
+                                "Korntaler Landstr. 84, 70499 Stuttgart",
+                                "Anton-Schmidt-Str. 13, 71332 Waiblingen",
+                                "Porschestr. 22, 70435 Stuttgart",
+                                "Hauptbahnhof 70173 Stuttgart",
+                                "Bannholzstr. 5, 73037 Göppingen",
+                                "70619 Stuttgart",
+                                "Sigmaringer Str. 92, 70567 Stuttgart"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_0",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "hit_right",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "START i_tn_button_freecall.jsp   ENDE i_tn_button_freecall.jsp"
+                            ]
+                        },
+                        {
+                            "key": "hit_phone_no",
+                            "dbKey": "Telefonnummer",
+                            "checked": "checked",
+                            "values": [
+                                "Tel: (0711) 5 09 02 80",
+                                "Tel: (0711) 99 31 60 10",
+                                "Tel: (0711) 7 81 90 50",
+                                "Tel: (0711) 3 15 48 30",
+                                "Tel: (0711) 6 58 35 80",
+                                "Tel: (0711) 7 82 40 70",
+                                "Tel: (0711) 46 47 87",
+                                "Tel: (0711) 6 40 54 10",
+                                "Tel: (0711) 35 85 39 02",
+                                "Tel: (07151) 98 61 80",
+                                "Tel: (0711) 8 70 13 71",
+                                "Tel: (07161) 8 30 09",
+                                "Tel: (0711) 7 22 21 11",
+                                "Tel: (0711) 7 22 20 55"
+                            ]
+                        },
+                        {
+                            "key": "hit_fax_no",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Fax: (0711) 5 09 02 77",
+                                "Fax: (0711) 99 31 60 20",
+                                "Fax: (0711) 48 66 73",
+                                "Fax: (0711) 6 49 22 63",
+                                "Fax: (07151) 9 86 18 18",
+                                "Fax: (07161) 81 75 55"
+                            ]
+                        },
+                        {
+                            "key": "hit_text",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Hertz Autovermietung-einfach mobiler! Fahrzeuge vom Kleinwagen bir zur Sattelzugmaschine. Vom Kleinwagen bis zur Sattelzugmaschine. Weltweit die von Privat- wir Geschäftskunden meistgenutzte Autovermietung. Weltweit die meistgenut ...",
+                                "Mit Buchbinder sind Sie hin und weg ....",
+                                "Für jede Gelegenheit den perfekten Mietwagen. Wir holen Sie ab !",
+                                "Bitte besuchen Sie unsere Homepage!"
+                            ]
+                        },
+                        {
+                            "key": "Karte anzeigen",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Karte"
+                            ]
+                        },
+                        {
+                            "key": "Eintrag merken",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Merken"
+                            ]
+                        },
+                        {
+                            "key": "likeh1",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Vielen Dank für Ihre Bestellung."
+                            ]
+                        },
+                        {
+                            "key": "innerspan",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Zurück zu GelbeSeiten.de"
+                            ]
+                        },
+                        {
+                            "key": "newwindow",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Webseite"
+                            ]
+                        },
+                        {
+                            "key": "Teilen auf Facebook",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Teilen"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Schließen"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_1",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "E-Mail versenden",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "E-Mail"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_2",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "hit_extra_content",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "|"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_3",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_4",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_5",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_6",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_7",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_8",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_9",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_10",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_11",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "hit_phone_0180",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Tel: 0180 5 21 77 15*"
+                            ]
+                        },
+                        {
+                            "key": "startext",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "*14 ct./Min. aus dt. Festnetz, Mobil max. 42 ct./Min."
+                            ]
+                        },
+                        {
+                            "key": "eintrag_12",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_13",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_14",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        }
+                    ],
+                    "currentData": [
+                        {
+                            "key": "hit_detail",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "START i_tn_adresse.jsp   ENDE i_tn_adresse.jsp  START i_tn_news.jsp   ENDE i_tn_news.jsp   START i_tn_sonderinhalte.jsp   ENDE i_tn_sonderinhalte.jsp  START i_tn_freetext_tar.jsp   ENDE i_tn_freetext_tar.jsp"
+                            ]
+                        },
+                        {
+                            "key": "Details ansehen",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Mehr Info"
+                            ]
+                        },
+                        {
+                            "key": "hit_title",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "Autovermietung Hertz",
+                                "Autovermietung Buchbinder",
+                                "Autovermietung Enterprise Deutschland GmbH",
+                                "Autovermietung Mages",
+                                "Herrmann Metall",
+                                "Autovermietung CARO",
+                                "berner Autovermietung",
+                                "Autovermietung Böhmler",
+                                "Avis",
+                                "Trick-Reisen GmbH Kleinbusverleih",
+                                "Urlaubsauto-Online",
+                                "A.V.T. Autovermietung"
+                            ]
+                        },
+                        {
+                            "key": "hit_left",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "START i_tn_branche.jsp   ENDE i_tn_branche.jsp   START i_tn_vorschau.jsp   ENDE i_tn_vorschau.jsp"
+                            ]
+                        },
+                        {
+                            "key": "hit_address",
+                            "dbKey": "Adresse",
+                            "checked": "checked",
+                            "values": [
+                                "Pragstr. 120, 70376 Stuttgart",
+                                "Krailenshaldenstr. 1, 70469 Stuttgart",
+                                "Am Wallgraben 99, 70565 Stuttgart",
+                                "Kesselstr. 36, 70327 Stuttgart",
+                                "Silberburgstr. 148, 70176 Stuttgart",
+                                "Stuttgart Flughafen, Terminal 3, Ebene 2 70629 Stuttgart",
+                                "Pflasteräckerstr. 6, 70186 Stuttgart",
+                                "Immergrünweg 6, 70771 Leinfelden-Echterdingen",
+                                "Korntaler Landstr. 84, 70499 Stuttgart",
+                                "Anton-Schmidt-Str. 13, 71332 Waiblingen",
+                                "Porschestr. 22, 70435 Stuttgart",
+                                "Hauptbahnhof 70173 Stuttgart",
+                                "Bannholzstr. 5, 73037 Göppingen",
+                                "70619 Stuttgart",
+                                "Sigmaringer Str. 92, 70567 Stuttgart"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_0",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "hit_right",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "START i_tn_button_freecall.jsp   ENDE i_tn_button_freecall.jsp"
+                            ]
+                        },
+                        {
+                            "key": "hit_phone_no",
+                            "dbKey": "Telefonnummer",
+                            "checked": "checked",
+                            "values": [
+                                "Tel: (0711) 5 09 02 80",
+                                "Tel: (0711) 99 31 60 10",
+                                "Tel: (0711) 7 81 90 50",
+                                "Tel: (0711) 3 15 48 30",
+                                "Tel: (0711) 6 58 35 80",
+                                "Tel: (0711) 7 82 40 70",
+                                "Tel: (0711) 46 47 87",
+                                "Tel: (0711) 6 40 54 10",
+                                "Tel: (0711) 35 85 39 02",
+                                "Tel: (07151) 98 61 80",
+                                "Tel: (0711) 8 70 13 71",
+                                "Tel: (07161) 8 30 09",
+                                "Tel: (0711) 7 22 21 11",
+                                "Tel: (0711) 7 22 20 55"
+                            ]
+                        },
+                        {
+                            "key": "hit_fax_no",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Fax: (0711) 5 09 02 77",
+                                "Fax: (0711) 99 31 60 20",
+                                "Fax: (0711) 48 66 73",
+                                "Fax: (0711) 6 49 22 63",
+                                "Fax: (07151) 9 86 18 18",
+                                "Fax: (07161) 81 75 55"
+                            ]
+                        },
+                        {
+                            "key": "hit_text",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Hertz Autovermietung-einfach mobiler! Fahrzeuge vom Kleinwagen bir zur Sattelzugmaschine. Vom Kleinwagen bis zur Sattelzugmaschine. Weltweit die von Privat- wir Geschäftskunden meistgenutzte Autovermietung. Weltweit die meistgenut ...",
+                                "Mit Buchbinder sind Sie hin und weg ....",
+                                "Für jede Gelegenheit den perfekten Mietwagen. Wir holen Sie ab !",
+                                "Bitte besuchen Sie unsere Homepage!"
+                            ]
+                        },
+                        {
+                            "key": "Karte anzeigen",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Karte"
+                            ]
+                        },
+                        {
+                            "key": "Eintrag merken",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Merken"
+                            ]
+                        },
+                        {
+                            "key": "likeh1",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Vielen Dank für Ihre Bestellung."
+                            ]
+                        },
+                        {
+                            "key": "innerspan",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Zurück zu GelbeSeiten.de"
+                            ]
+                        },
+                        {
+                            "key": "newwindow",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Webseite"
+                            ]
+                        },
+                        {
+                            "key": "Teilen auf Facebook",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Teilen"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Schließen"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_1",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "E-Mail versenden",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "E-Mail"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_2",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "hit_extra_content",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "|"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_3",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_4",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_5",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_6",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_7",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_8",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_9",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_10",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_11",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "hit_phone_0180",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Tel: 0180 5 21 77 15*"
+                            ]
+                        },
+                        {
+                            "key": "startext",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "*14 ct./Min. aus dt. Festnetz, Mobil max. 42 ct./Min."
+                            ]
+                        },
+                        {
+                            "key": "eintrag_12",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_13",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        },
+                        {
+                            "key": "eintrag_14",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Branche:"
+                            ]
+                        }
+                    ],
+                    "url": "http://www.gelbeseiten.de/yp/122//subscriberlist_search.yp?sessionDataString=H4sIAAAAAAAAAI2Py07DQAxFvybLqex5eUZeVZV4LBCISmzRpHFCUEnLZBIoX08Eq7DCu2vdc2Rj0gSRoFYHaEhZ0yaVYkAlJI1pEmqUWrU-pEOqWWHs2lb6S3Ek99OOxH4ss-pXr%2FvFpxvJzZb6dymiW%2F9VKmoeNEYMiz%2FQ8fSk6NjJLy4YUb1JpLcNHx-p75MpXQpF36FgIjwM3z6dZ-pBkGcVbTCaP5S2SD7ypw2bgB6D40vcaCBNlrdpfd0N8G2Wo8xp-pOI7B-pDAebKAaPgecXn8AfhRIe%2FWYGX-pmCra8ZNhWqqtXThtnLGevwFPh-ph6aQEAAA-e-e&at=yp&kindOfSearch=tradesearch&subject=Autovermietung&location=Stuttgart&x=0&y=0&distance=-1&execute=Suchen&sort=relevanz&sort=relevanz&suggest_choose=on&noticeName=Name+des+Merkzettels&noticeTargetUrl=http%3A%2F%2Fwww.gelbeseiten.de%2Fyp%2F122%2Fmeinegelbeseiten%2FajaxSpeicherMerkzettel.yp%3FsessionDataString%3DH4sIAAAAAAAAAI2Py07DQAxFvybLqex5eUZeVZV4LBCISmzRpHFCUEnLZBIoX08Eq7DCu2vdc2Rj0gSRoFYHaEhZ0yaVYkAlJI1pEmqUWrU-pEOqWWHs2lb6S3Ek99OOxH4ss-pXr%2FvFpxvJzZb6dymiW%2F9VKmoeNEYMiz%2FQ8fSk6NjJLy4YUb1JpLcNHx-p75MpXQpF36FgIjwM3z6dZ-pBkGcVbTCaP5S2SD7ypw2bgB6D40vcaCBNlrdpfd0N8G2Wo8xp-pOI7B-pDAebKAaPgecXn8AfhRIe%2FWYGX-pmCra8ZNhWqqtXThtnLGevwFPh-ph6aQEAAA-e-e"
+                }
+            ]
+        },
+        {
+            "id": 1330443466384,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "http://www.dastelefonbuch.de/",
+                    "selector": "",
+                    "data": [],
+                    "currentData": []
+                }
+            ]
+        }
+    ]
+}

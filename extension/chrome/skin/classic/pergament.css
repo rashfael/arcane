@@ -1,0 +1,15 @@
+.pergament-box {
+	display: inline-block;
+	text-align: center;
+	position: absolute;
+	overflow: hidden;
+	-moz-border-radius: 10px;
+	border: 1px solid #dddddd;
+	background: #eeeeee
+		url(images/ui-bg_highlight-soft_100_eeeeee_1x100.png) 50% top repeat-x;
+	color: #333333;
+}
+
+.pergament-selected {
+	border-color: blue;
+}

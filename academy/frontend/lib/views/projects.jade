@@ -1,0 +1,13 @@
+extends layout
+
+block content
+	h1 Projects
+
+	table.table.table-striped.table-bordered
+		thead
+			tr
+				th Name
+		tbody
+			- each project in projects
+				tr
+					td: a(href='/projects/'+encodeURIComponent(project.id))= project.id

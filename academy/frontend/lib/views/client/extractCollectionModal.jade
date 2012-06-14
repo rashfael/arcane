@@ -1,0 +1,12 @@
+include ../mixins/form_helpers
+
+.modal-header
+	a.close(data-dismiss='modal') ×
+	h3 Edit Collection
+.modal-body
+	form.form-horizontal
+		fieldset
+			mixin textfield('name', name, 'Name')
+.modal-footer
+	a.btn.btn-primary.save Save
+	a.btn.cancel Cancel

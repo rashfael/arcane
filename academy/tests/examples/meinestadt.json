@@ -1,0 +1,436 @@
+{
+    "mappings": {
+        "1326749779151": {
+            "map": {
+                "mt-ms_address": "Adresse",
+                "mt-ms_phonenumber": "Telefon",
+                "Name": ""
+            },
+            "validFor": [
+                "nav1326749779113",
+                "nav1326749779116",
+                "nav1326749779115"
+            ],
+            "name": "Default mapping"
+        }
+    },
+    "navigation": {
+        "base": [
+            {
+                "name": "Entry point",
+                "type": "Start",
+                "config": {
+                    "request": {
+                        "url": "http://branchenbuch.meinestadt.de/stuttgart/suche?words=Pizza"
+                    }
+                },
+                "id": "nav1326749779113",
+                "next": [
+                    "nav1326749779114"
+                ]
+            }
+        ],
+        "nav1326749779114": {
+            "name": "Walk through items",
+            "type": "WalkthroughItems",
+            "config": {
+                "customSelector": ".mt-bb-result-list .undefined,.mt-bb-result-list > div.mt-ms_standard_new > div",
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Name",
+                                "selector": "div.mt_ms_right > div.mt_ms_left_print_strait > div.mt-ms_title > a.katalogtitel-gratis",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1326749779115"
+            ],
+            "id": "nav1326749779114",
+            "nodeConfigId": "1326749779112"
+        },
+        "nav1326749779115": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": "",
+                "customSelector": "",
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Name",
+                                "selector": "div.mt_ms_right > div.mt_ms_left_print_strait > div.mt-ms_title > a.katalogtitel-gratis",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1326749779116"
+            ],
+            "id": "nav1326749779115",
+            "nodeConfigId": "1326749779112"
+        },
+        "nav1326749779116": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "itemSelector": ""
+            },
+            "next": [],
+            "id": "nav1326749779116"
+        }
+    },
+    "config": {
+        "currentConfigID": 1326749779112,
+        "configs": {
+            "1326749779112": {
+                "_name": "Default config",
+                "_id": 1326749779112,
+                "_listConfig": {
+                    "_inspectedNodes": [
+                        {
+                            "sizcache047758477892508266": 396,
+                            "sizset": 830,
+                            "nodeIndex": 1
+                        },
+                        {
+                            "sizcache047758477892508266": 396,
+                            "sizset": 875,
+                            "nodeIndex": 1
+                        },
+                        {
+                            "sizcache047758477892508266": 396,
+                            "sizset": 931,
+                            "nodeIndex": 1
+                        },
+                        {
+                            "sizcache047758477892508266": 396,
+                            "sizset": 976,
+                            "nodeIndex": 1
+                        }
+                    ],
+                    "_exceptions": [],
+                    "_selectors": [
+                        ".mt-bb-result-list .undefined",
+                        ".mt-bb-result-list > div.mt-ms_standard_new > div"
+                    ]
+                },
+                "_magicConfig": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Name",
+                                "selector": "div.mt_ms_right > div.mt_ms_left_print_strait > div.mt-ms_title > a.katalogtitel-gratis",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    },
+    "mappingData": [
+        {
+            "id": 1326749779151,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "http://www.meinestadt.de/",
+                    "selector": "",
+                    "data": []
+                },
+                {
+                    "selector": "",
+                    "data": [],
+                    "url": "http://home.meinestadt.de/stuttgart/suche?words=Pizza"
+                },
+                {
+                    "selector": ".mt-bb-result-list .undefined,.mt-bb-result-list > div.mt-ms_standard_new > div",
+                    "data": [
+                        {
+                            "key": "Alberto Peluso NLV Pizzeria - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Alberto Peluso NLV Pizzeria"
+                            ]
+                        },
+                        {
+                            "key": "mt-ms_address",
+                            "dbKey": "Adresse",
+                            "checked": "checked",
+                            "values": [
+                                "Heßbrühlstr.  36, 70565 Stuttgart",
+                                "Calwer Str. 46, 70173 Stuttgart",
+                                "Wilhelmsplatz  4, 70182 Stuttgart",
+                                "Silberburgstr.  151, 70176 Stuttgart",
+                                "Senefelderstr.  11, 70178 Stuttgart",
+                                "Sigmaringer Str.  2, 70567 Stuttgart",
+                                "Augsburger Str. 672, 70329 Stuttgart",
+                                "Freihofstr.  37, 70439 Stuttgart",
+                                "Ostendstr.  70, 70188 Stuttgart",
+                                "Wächterstr.  2, 70182 Stuttgart",
+                                "Calwer Str.  23, 70173 Stuttgart",
+                                "Schenkensteinstr.  2, 70469 Stuttgart",
+                                "Hauptstr.  60, 70563 Stuttgart",
+                                "Schönbuchstr.  2, 70565 Stuttgart",
+                                "Liststr.  30, 70180 Stuttgart",
+                                "Mittlere Str.  8, 70597 Stuttgart",
+                                "Rotenwaldstr.  383, 70197 Stuttgart",
+                                "Feuerbacher-Tal-Str.  4, 70469 Stuttgart",
+                                "Böblinger Str. 14, 70178 Stuttgart",
+                                "Kirchtalstr.  29, 70435 Stuttgart"
+                            ]
+                        },
+                        {
+                            "key": "mt-ms_phonenumber",
+                            "dbKey": "Telefon",
+                            "checked": "checked",
+                            "values": [
+                                "Tel.: 0711/7802230",
+                                "Tel.: 0711/2296168",
+                                "Tel.: 0711/2362057",
+                                "Tel.: 0711/6014746",
+                                "Tel.: 0711/4898373",
+                                "Tel.: 0711/7199933",
+                                "Tel.: 0711/326983",
+                                "Tel.: 0711/50440236",
+                                "Tel.: 0711/264242",
+                                "Tel.: 0711/247272",
+                                "Tel.: 0711/294744",
+                                "Tel.: 0711/853152",
+                                "Tel.: 0711/7353042",
+                                "Tel.: 0711/90745801",
+                                "Tel.: 0711/6079032",
+                                "Tel.: 0711/7651756",
+                                "Tel.: 0711/690710",
+                                "Tel.: 0711/813081",
+                                "Tel.: 0711/9641464",
+                                "Tel.: 0711/8706969"
+                            ]
+                        },
+                        {
+                            "key": "Alle Adressen aus dieser Branche anzeigen",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Pizzeria Stuttgart",
+                                "Selbstbedienungsrestaurant Stuttgart",
+                                "Italienisches Restaurant Stuttgart",
+                                "Restaurant Stuttgart",
+                                "Schankwirtschaft Stuttgart",
+                                "Gasthof Stuttgart",
+                                "Pizzaservice Stuttgart",
+                                "Sonstiges Restaurant Stuttgart",
+                                "Gaststätte & Restaurant Stuttgart"
+                            ]
+                        },
+                        {
+                            "key": "\n\n",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n\n"
+                            ]
+                        },
+                        {
+                            "key": "Name",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Alberto Peluso NLV Pizzeria",
+                                "Al Corso",
+                                "Alessandro Magno Gaststätte Il pomodoro",
+                                "Alfonso Rubinaccio La casa del gusto",
+                                "Ali Asghar Taheri Lebensmittel/Pizza TGF Pizzaservice",
+                                "Ali Reza Ghavam Maanavi und Maryam Saieidi Pizzeria",
+                                "Al Vecchio Mulino",
+                                "Anatolia Pizza & Kebab",
+                                "Angelo's Pizza-Taxi",
+                                "Angelo's Pizza Taxi GmbH",
+                                "Angelo Annunziata Gaststätte La Nuova Trattoria Da Franco",
+                                "Angelo Crocco Pizzeria",
+                                "Angelo Patane Pizza Express",
+                                "Aniello Trinchese Restaurant Pizzeria",
+                                "Annamaria Gualardia Franca & Franco",
+                                "Antonio Guastella Gaststätte Tavola Calda",
+                                "Antonio Mollo Vereinsgaststätte Pizzeria Da Antonio",
+                                "Antonio Settecase und Ugur Köklü Pazzo Pizza-Service",
+                                "Arminstuben Pizzeria Rustica",
+                                "Ashok Mutharja Pizza-Express"
+                            ]
+                        },
+                        {
+                            "key": "Al Corso - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Al Corso"
+                            ]
+                        },
+                        {
+                            "key": "Alessandro Magno Gaststätte Il pomodoro - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Alessandro Magno Gaststätte Il pomodoro"
+                            ]
+                        },
+                        {
+                            "key": "Alfonso Rubinaccio La casa del gusto - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Alfonso Rubinaccio La casa del gusto"
+                            ]
+                        },
+                        {
+                            "key": "Hier klicken, um mehr Informationen zu diesem Eintrag zu sehen.",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "weitere"
+                            ]
+                        },
+                        {
+                            "key": "Ali Asghar Taheri Lebensmittel/Pizza TGF Pizzaservice - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Ali Asghar Taheri Lebensmittel/Pizza TGF Pizzaservice"
+                            ]
+                        },
+                        {
+                            "key": "Ali Reza Ghavam Maanavi und Maryam Saieidi Pizzeria - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Ali Reza Ghavam Maanavi und Maryam Saieidi Pizzeria"
+                            ]
+                        },
+                        {
+                            "key": "Al Vecchio Mulino - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Al Vecchio Mulino"
+                            ]
+                        },
+                        {
+                            "key": "Anatolia Pizza & Kebab - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Anatolia Pizza & Kebab"
+                            ]
+                        },
+                        {
+                            "key": "Angelo's Pizza-Taxi - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Angelo's Pizza-Taxi"
+                            ]
+                        },
+                        {
+                            "key": "Angelo's Pizza Taxi GmbH - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Angelo's Pizza Taxi GmbH"
+                            ]
+                        },
+                        {
+                            "key": "Angelo Annunziata Gaststätte La Nuova Trattoria Da Franco - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Angelo Annunziata Gaststätte La Nuova Trattoria Da Franco"
+                            ]
+                        },
+                        {
+                            "key": "Angelo Crocco Pizzeria - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Angelo Crocco Pizzeria"
+                            ]
+                        },
+                        {
+                            "key": "Angelo Patane Pizza Express - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Angelo Patane Pizza Express"
+                            ]
+                        },
+                        {
+                            "key": "Aniello Trinchese Restaurant Pizzeria - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Aniello Trinchese Restaurant Pizzeria"
+                            ]
+                        },
+                        {
+                            "key": "Annamaria Gualardia Franca & Franco - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Annamaria Gualardia Franca & Franco"
+                            ]
+                        },
+                        {
+                            "key": "Antonio Guastella Gaststätte Tavola Calda - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Antonio Guastella Gaststätte Tavola Calda"
+                            ]
+                        },
+                        {
+                            "key": "Antonio Mollo Vereinsgaststätte Pizzeria Da Antonio - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Antonio Mollo Vereinsgaststätte Pizzeria Da Antonio"
+                            ]
+                        },
+                        {
+                            "key": "Antonio Settecase und Ugur Köklü Pazzo Pizza-Service - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Antonio Settecase und Ugur Köklü Pazzo Pizza-Service"
+                            ]
+                        },
+                        {
+                            "key": "Arminstuben Pizzeria Rustica - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Arminstuben Pizzeria Rustica"
+                            ]
+                        },
+                        {
+                            "key": "Ashok Mutharja Pizza-Express - Stuttgart",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Ashok Mutharja Pizza-Express"
+                            ]
+                        }
+                    ],
+                    "url": "http://branchenbuch.meinestadt.de/stuttgart/suche?words=Pizza"
+                }
+            ]
+        }
+    ]
+}

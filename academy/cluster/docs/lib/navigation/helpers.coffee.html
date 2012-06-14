@@ -1,0 +1,181 @@
+<!DOCTYPE html><html><head><title>helpers.coffee</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><link rel="stylesheet" media="all" href="../../docco.css"></head><body><div id="container"><div id="background"></div><div id="jump_to">Jump To &hellip;<div id="jump_wrapper"><div id="jump_page"><a href="../../index.html" class="source"><span class="file_name">README</span></a><a href="../../lib/cluster.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">cluster.coffee</span></a><a href="../../lib/encoder.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">encoder.coffee</span></a><a href="../../lib/navigation.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">navigation.coffee</span></a><a href="../../lib/navigation/Collect.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Collect.coffee</span></a><a href="../../lib/navigation/FillForm.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">FillForm.coffee</span></a><a href="../../lib/navigation/FollowLink.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">FollowLink.coffee</span></a><a href="../../lib/navigation/Generic.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Generic.coffee</span></a><a href="../../lib/navigation/Magic.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Magic.coffee</span></a><a href="../../lib/navigation/Pager.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Pager.coffee</span></a><a href="../../lib/navigation/Start.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Start.coffee</span></a><a href="../../lib/navigation/WalkthroughItems.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">WalkthroughItems.coffee</span></a><a href="../../lib/navigation/WalkthroughLinks.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">WalkthroughLinks.coffee</span></a><a href="../../lib/navigation/helpers.coffee.html" class="source selected"><span class="base_path">lib / navigation / </span><span class="file_name">helpers.coffee</span></a><a href="../../lib/parser.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">parser.coffee</span></a><a href="../../lib/worker.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">worker.coffee</span></a></div></div></div><table cellpadding="0" cellspacing="0"><thead><tr><th class="docs"><h1>helpers.coffee</h1><div class="filepath">lib/navigation/</div></th><th class="code"></th></tr></thead><tbody><tr id="section-1"><td class="docs"><div class="pilwrap"><a href="#section-1" class="pilcrow">&#182;</a></div>
+</td><td class="code"><div class="highlight"><pre><span class="nv">log4js = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;log4js&#39;</span><span class="p">)</span>
+<span class="nv">logger = </span><span class="nx">log4js</span><span class="p">.</span><span class="nx">getLogger</span> <span class="s">&#39;navigation&#39;</span>
+<span class="nx">logger</span><span class="p">.</span><span class="nx">setLevel</span> <span class="s">&#39;DEBUG&#39;</span></pre></div></td></tr><tr id="section-2"><td class="docs"><div class="pilwrap"><a href="#section-2" class="pilcrow">&#182;</a></div><p>Contains different NavigationElements</p>
+</td><td class="code"><div class="highlight"><pre><span class="nv">util = </span><span class="nx">require</span> <span class="s">&#39;util&#39;</span>
+<span class="nv">jquery = </span><span class="nx">require</span> <span class="s">&#39;jquery&#39;</span>
+<span class="nv">assert = </span><span class="nx">require</span> <span class="s">&#39;assert&#39;</span>
+<span class="nv">jsdom = </span><span class="nx">require</span> <span class="s">&#39;jsdom&#39;</span>
+<span class="nv">request = </span><span class="nx">require</span> <span class="s">&#39;request&#39;</span>
+<span class="nv">encoder = </span><span class="nx">require</span> <span class="s">&#39;../encoder&#39;</span></pre></div></td></tr><tr id="section-3"><td class="docs"><div class="pilwrap"><a href="#section-3" class="pilcrow">&#182;</a></div><h3>getElements</h3>
+
+<p>Returns an Array of items from jQuery choosen by the given selector.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>window</strong>: window of the current site, is used for the selector</li>
+<li><strong>selector</strong>: selector of the element or elements</li>
+<li><strong>elementType</strong>: if the elements should have a special type (for example a), empty string for a types</li>
+<li><strong>configEncoding</strong>: specified encoding for the site</li>
+</ul>
+</td><td class="code"><div class="highlight"><pre><span class="nv">module.exports.getElements = </span><span class="nf">(window, selector, elementType, configEncoding, cb) -&gt;</span>
+  <span class="k">if</span> <span class="nx">selector</span>
+    <span class="k">if</span> <span class="nx">selector</span><span class="p">.</span><span class="nx">constructor</span> <span class="o">is</span> <span class="nb">Array</span> <span class="c1"># if an selector is an array with more than one element, then the searched elements are in an iFrame</span>
+      <span class="k">if</span> <span class="nx">selector</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span>
+        <span class="nv">src = </span><span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span><span class="p">(</span><span class="nx">selector</span><span class="p">[</span><span class="mi">0</span><span class="p">])[</span><span class="mi">0</span><span class="p">].</span><span class="nx">getAttribute</span> <span class="s">&#39;src&#39;</span>
+        <span class="k">if</span> <span class="nx">src</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s">&quot;http://&quot;</span><span class="p">)</span> <span class="o">isnt</span> <span class="mi">0</span>
+          <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="s">&quot;src is not absolute: &quot;</span> <span class="o">+</span> <span class="nx">src</span>
+          <span class="nv">url = </span><span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nx">_URL</span>
+          <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="nx">url</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">,</span> <span class="nx">url</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s">&#39;//&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">)</span>
+          <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="nx">url</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">url</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">,</span> <span class="nx">url</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s">&#39;//&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
+          <span class="nv">url = </span><span class="nx">url</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="nx">url</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s">&#39;/&#39;</span><span class="p">,</span> <span class="nx">url</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="s">&#39;//&#39;</span><span class="p">)</span> <span class="o">+</span> <span class="mi">2</span><span class="p">))</span>
+          <span class="nv">src = </span><span class="nx">url</span> <span class="o">+</span> <span class="nx">src</span>
+          <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="s">&quot;new src: &quot;</span> <span class="o">+</span> <span class="nx">src</span>
+
+        <span class="nv">src.encoding = </span><span class="s">&#39;binary&#39;</span>
+        <span class="nx">request</span> <span class="nx">src</span><span class="p">,</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nx">res</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="o">=&gt;</span></pre></div></td></tr><tr id="section-4"><td class="docs"><div class="pilwrap"><a href="#section-4" class="pilcrow">&#182;</a></div><p>Transform encoding if necessary</p>
+</td><td class="code"><div class="highlight"><pre>          <span class="k">if</span> <span class="nx">configEncoding</span><span class="o">?</span>
+            <span class="nv">encoding = </span><span class="nx">configEncoding</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span>
+            <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="s">&quot;using manual encoding: &quot;</span> <span class="o">+</span> <span class="nx">task</span><span class="p">.</span><span class="nx">encoding</span>
+          <span class="k">else</span> <span class="k">if</span> <span class="nx">res</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s">&#39;content-type&#39;</span><span class="p">]</span><span class="o">?</span></pre></div></td></tr><tr id="section-5"><td class="docs"><div class="pilwrap"><a href="#section-5" class="pilcrow">&#182;</a></div><p>Hint: res.headers['content-type'] should be something
+like "text/html;charset=ISO-8859-1"</p>
+</td><td class="code"><div class="highlight"><pre>            <span class="nv">parts = </span><span class="nx">res</span><span class="p">.</span><span class="nx">headers</span><span class="p">[</span><span class="s">&#39;content-type&#39;</span><span class="p">].</span><span class="nx">split</span> <span class="s">&#39;=&#39;</span>
+            <span class="k">if</span> <span class="nx">parts</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">1</span>
+              <span class="nv">encoding = </span><span class="nx">parts</span><span class="p">[</span><span class="nx">parts</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">].</span><span class="nx">toLowerCase</span><span class="p">()</span>
+          <span class="nv">body = </span><span class="nx">encoder</span><span class="p">.</span><span class="nx">toUtf8</span> <span class="nx">body</span><span class="p">,</span> <span class="nx">encoding</span>
+
+          <span class="k">throw</span> <span class="nx">err</span> <span class="k">if</span> <span class="nx">err</span>
+          <span class="nx">jsdom</span><span class="p">.</span><span class="nx">env</span> <span class="nx">body</span><span class="p">,</span> <span class="p">[],</span> <span class="nf">(err, window) -&gt;</span>
+            <span class="k">if</span> <span class="nx">err</span>
+              <span class="nx">logger</span><span class="p">.</span><span class="nx">fatal</span> <span class="s">&quot;Window creation failed wit </span><span class="si">#{</span><span class="nx">err</span><span class="si">}</span><span class="s"> HTML: &quot;</span> <span class="o">+</span> <span class="nx">@html</span>
+              <span class="nx">cb</span> <span class="nx">err</span><span class="p">,</span> <span class="kc">null</span> <span class="c1"># fast exit if window creation fails hard</span>
+              <span class="k">return</span> <span class="kc">null</span></pre></div></td></tr><tr id="section-6"><td class="docs"><div class="pilwrap"><a href="#section-6" class="pilcrow">&#182;</a></div><p>set url of document from request to allow resolving of relative hyperlinks</p>
+</td><td class="code"><div class="highlight"><pre>            <span class="nb">window</span><span class="p">.</span><span class="nb">document</span><span class="p">.</span><span class="nv">_URL = </span><span class="nx">src</span></pre></div></td></tr><tr id="section-7"><td class="docs"><div class="pilwrap"><a href="#section-7" class="pilcrow">&#182;</a></div><p>attach jQuery to the window</p>
+</td><td class="code"><div class="highlight"><pre>            <span class="nx">jquery</span><span class="p">.</span><span class="nx">create</span> <span class="nb">window</span>
+            <span class="nx">assert</span><span class="p">.</span><span class="nx">ok</span> <span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span><span class="p">,</span> <span class="s">&#39;Window has loaded jQuery&#39;</span>
+            <span class="nx">logger</span><span class="p">.</span><span class="nx">debug</span> <span class="s">&quot;JSDOM: Created Window with jQuery </span><span class="si">#{</span><span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span><span class="p">.</span><span class="nx">fn</span><span class="p">.</span><span class="nx">jquery</span><span class="si">}</span><span class="s">!&quot;</span>          
+            <span class="nx">getElements</span> <span class="nb">window</span><span class="p">,</span> <span class="nx">selector</span><span class="p">.</span><span class="nx">slice</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="nx">selector</span><span class="p">.</span><span class="nx">length</span><span class="p">),</span> <span class="nx">elementType</span><span class="p">,</span> <span class="nx">configEncoding</span><span class="p">,</span> <span class="nf">(elements) -&gt;</span>
+              <span class="nb">window</span><span class="p">.</span><span class="nx">close</span><span class="p">()</span>
+              <span class="nx">cb</span> <span class="nx">elements</span>
+      <span class="k">else</span>
+        <span class="nv">elements = </span><span class="nx">getjQueryElements</span> <span class="nb">window</span><span class="p">,</span> <span class="nx">selector</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nx">elementType</span>
+        <span class="nx">cb</span> <span class="nx">elements</span>
+    <span class="k">else</span>
+      <span class="nx">cb</span> <span class="nx">getjQueryElements</span> <span class="nb">window</span><span class="p">,</span> <span class="nx">selector</span><span class="p">,</span> <span class="nx">elementType</span>
+  <span class="k">else</span>
+    <span class="nx">cb</span> <span class="kc">null</span>
+    
+  </pre></div></td></tr><tr id="section-8"><td class="docs"><div class="pilwrap"><a href="#section-8" class="pilcrow">&#182;</a></div><h3>getjQueryElements</h3>
+
+<p>Searchs for elements of the given type. First in the given selector, then in the children and then
+in the parents and parents parents and so on.</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>window</strong>: window of the current site</li>
+<li><strong>selector</strong>: selector for the elements</li>
+<li><strong>elementType</strong>: if the elements should have a special type (for example a), empty string for a types</li>
+</ul>
+</td><td class="code"><div class="highlight"><pre><span class="nv">getjQueryElements = </span><span class="nf">(window, selector, elementType) -&gt;</span>
+  <span class="nv">type = </span><span class="nx">elementType</span> <span class="c1">#.toLowerCase()</span>
+  <span class="nv">elements = </span><span class="nx">createElementsFromSelector</span> <span class="nb">window</span><span class="p">,</span> <span class="nx">selector</span>
+  <span class="k">if</span> <span class="nx">elements</span><span class="p">.</span><span class="nx">length</span> <span class="o">is</span> <span class="mi">0</span>
+    <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="s">&quot;Cant find an element with the selector&quot;</span>
+    <span class="nx">elements</span>
+  <span class="k">else</span>
+    <span class="k">if</span> <span class="nx">type</span> <span class="o">is</span> <span class="s">&quot;&quot;</span>
+      <span class="nx">elements</span>
+    <span class="k">else</span>
+      <span class="nv">newElements = </span><span class="nx">elements</span>
+      <span class="k">if</span> <span class="o">not</span> <span class="nx">elementsFromType</span><span class="p">(</span><span class="nx">newElements</span><span class="p">,</span> <span class="nx">type</span><span class="p">)</span> <span class="o">and</span> <span class="nx">elements</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="s">&quot;using type&quot;</span>
+        <span class="nv">newElements = </span><span class="nx">elements</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span>
+      <span class="k">if</span> <span class="o">not</span> <span class="nx">elementsFromType</span><span class="p">(</span><span class="nx">newElements</span><span class="p">,</span> <span class="nx">type</span><span class="p">)</span> <span class="o">and</span> <span class="nx">elements</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span>
+        <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="s">&quot;using parent and type&quot;</span>
+        <span class="nv">newElements = </span><span class="nx">elements</span><span class="p">.</span><span class="nx">parent</span><span class="p">()</span>
+        <span class="k">while</span> <span class="nx">newElements</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">type</span><span class="p">).</span><span class="nx">length</span> <span class="o">is</span> <span class="mi">0</span> <span class="o">and</span> <span class="nx">newElements</span><span class="p">[</span><span class="mi">0</span><span class="p">].</span><span class="nx">nodeName</span><span class="p">.</span><span class="nx">toUpperCase</span><span class="p">()</span> <span class="o">isnt</span> <span class="s">&#39;HTML&#39;</span>
+          <span class="nv">newElements = </span><span class="nx">newElements</span><span class="p">.</span><span class="nx">parent</span><span class="p">()</span>
+        <span class="nv">newElements = </span><span class="nx">newElements</span><span class="p">.</span><span class="nx">find</span><span class="p">(</span><span class="nx">type</span><span class="p">)</span>
+      <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="s">&quot;Elements found: &quot;</span> <span class="o">+</span> <span class="nx">newElements</span><span class="p">.</span><span class="nx">length</span>
+      <span class="nx">newElements</span></pre></div></td></tr><tr id="section-9"><td class="docs"><div class="pilwrap"><a href="#section-9" class="pilcrow">&#182;</a></div><h3>elementsFromType</h3>
+
+<p>Checks if the elements are from the given type</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>elements</strong>: list of elements</li>
+<li><strong>type</strong>: wanted type of the elements</li>
+</ul>
+</td><td class="code"><div class="highlight"><pre><span class="nv">elementsFromType = </span><span class="nf">(elements, type) -&gt;</span>
+  <span class="k">return</span> <span class="kc">false</span> <span class="k">if</span> <span class="nx">elements</span><span class="p">.</span><span class="nx">length</span> <span class="o">==</span> <span class="mi">0</span>
+  <span class="k">for</span> <span class="nx">el</span> <span class="k">in</span> <span class="nx">elements</span>
+    <span class="k">return</span> <span class="kc">false</span> <span class="k">if</span> <span class="nx">el</span><span class="p">.</span><span class="nx">nodeName</span><span class="p">.</span><span class="nx">toLowerCase</span><span class="p">()</span> <span class="o">isnt</span> <span class="nx">type</span>
+  <span class="k">return</span> <span class="kc">true</span></pre></div></td></tr><tr id="section-10"><td class="docs"><div class="pilwrap"><a href="#section-10" class="pilcrow">&#182;</a></div><h3>isEmpty</h3>
+
+<p>Checks if a selector is empty</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>selector</strong>: selector which is to prove</li>
+</ul>
+</td><td class="code"><div class="highlight"><pre><span class="nv">module.exports.isEmpty = </span><span class="nf">(selector) -&gt;</span>
+  <span class="o">not</span> <span class="nx">selector</span><span class="o">?</span> <span class="o">or</span> <span class="p">(</span><span class="nx">selector</span> <span class="k">instanceof</span> <span class="nb">Array</span> <span class="o">and</span> <span class="p">(</span><span class="nx">selector</span><span class="p">.</span><span class="nx">length</span> <span class="o">is</span> <span class="mi">0</span> <span class="o">or</span> <span class="nx">selector</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">is</span> <span class="s">&quot;&quot;</span><span class="p">))</span></pre></div></td></tr><tr id="section-11"><td class="docs"><div class="pilwrap"><a href="#section-11" class="pilcrow">&#182;</a></div><h3>create ElementsFromSelector</h3>
+
+<p>Tries to use the given selector in a better way with different strategies:</p>
+
+<ol>
+<li>the normal selector</li>
+<li>removes the last > from the selector, then the one before and so on</li>
+<li>removes all > of the selector</li>
+<li>removes all nth-child and first-child</li>
+<li>combination of 3. and 4.</li>
+</ol>
+
+<p>strategies are used in this order and stops when an element is found</p>
+
+<p>Parameters:</p>
+
+<ul>
+<li><strong>window</strong>: window were the selector is used</li>
+<li><strong>selector</strong>: selector for the searched elements</li>
+</ul>
+</td><td class="code"><div class="highlight"><pre><span class="nv">createElementsFromSelector = </span><span class="nf">(window, selector) -&gt;</span>
+  <span class="nv">elements = </span><span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span><span class="p">(</span><span class="nx">selector</span><span class="p">)</span>
+  <span class="k">if</span> <span class="nx">elements</span><span class="p">.</span><span class="nx">length</span> <span class="o">&gt;</span> <span class="mi">0</span>
+    <span class="nx">elements</span>
+  <span class="k">if</span> <span class="nx">elements</span><span class="p">.</span><span class="nx">length</span> <span class="o">is</span> <span class="mi">0</span>
+    <span class="nv">splittedSelector = </span><span class="nx">selector</span><span class="p">.</span><span class="nx">split</span><span class="p">(</span><span class="s">&#39;&gt;&#39;</span><span class="p">)</span>
+    <span class="nv">count = </span><span class="nx">splittedSelector</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">2</span>
+    
+    <span class="k">for</span> <span class="nx">j</span> <span class="k">in</span> <span class="p">[</span><span class="mi">1</span><span class="p">..(</span><span class="nx">splittedSelector</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span><span class="p">)]</span>
+      <span class="k">if</span> <span class="nx">elements</span> <span class="o">is</span> <span class="mi">0</span>
+        <span class="nv">newSelector = </span><span class="s">&quot;&quot;</span>
+        <span class="k">for</span> <span class="nx">s</span><span class="p">,</span> <span class="nx">i</span> <span class="k">in</span> <span class="nx">splittedSelector</span>
+          <span class="nv">newSelector = </span><span class="nx">newSelector</span> <span class="o">+</span> <span class="nx">s</span>
+          <span class="k">if</span> <span class="nx">i</span> <span class="o">is</span> <span class="nx">count</span>
+            <span class="nv">newSelector = </span><span class="nx">newSelector</span> <span class="o">+</span> <span class="s">&#39; &#39;</span>
+          <span class="k">else</span>
+            <span class="nv">newSelector = </span><span class="nx">newSelector</span> <span class="o">+</span> <span class="s">&#39;&gt;&#39;</span>
+        <span class="nv">newSelector = </span><span class="nx">newSelector</span><span class="p">.</span><span class="nx">slice</span> <span class="mi">0</span><span class="p">,</span> <span class="nx">newSelector</span><span class="p">.</span><span class="nx">length</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="nv">count = </span><span class="nx">count</span> <span class="o">-</span> <span class="mi">1</span>
+        <span class="nv">elements = </span><span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span><span class="p">(</span><span class="nx">newSelector</span><span class="p">)</span>
+      
+  <span class="k">if</span> <span class="nx">elements</span><span class="p">.</span><span class="nx">length</span> <span class="o">is</span> <span class="mi">0</span></pre></div></td></tr><tr id="section-12"><td class="docs"><div class="pilwrap"><a href="#section-12" class="pilcrow">&#182;</a></div><p>Delete all ></p>
+</td><td class="code"><div class="highlight"><pre>    <span class="nv">newSelector = </span><span class="nx">selector</span><span class="p">.</span><span class="nx">replace</span> <span class="sr">/&gt;/g</span><span class="p">,</span> <span class="s">&quot; &quot;</span>
+    <span class="nv">elements = </span><span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span> <span class="nx">newSelector</span>
+  <span class="k">if</span> <span class="nx">elements</span><span class="p">.</span><span class="nx">length</span> <span class="o">is</span> <span class="mi">0</span></pre></div></td></tr><tr id="section-13"><td class="docs"><div class="pilwrap"><a href="#section-13" class="pilcrow">&#182;</a></div><p>Delete all nth-child and first-child</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="nv">newSelector = </span><span class="nx">selector</span><span class="p">.</span><span class="nx">replace</span> <span class="sr">/:first-child/g</span><span class="p">,</span> <span class="s">&quot;&quot;</span>
+    <span class="nv">newSelector = </span><span class="nx">newSelector</span><span class="p">.</span><span class="nx">replace</span> <span class="sr">/:nth-child\(\d+\)/g</span><span class="p">,</span> <span class="s">&quot;&quot;</span>
+    <span class="nv">elements = </span><span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span> <span class="nx">newSelector</span>
+  <span class="k">if</span> <span class="nx">elements</span><span class="p">.</span><span class="nx">length</span> <span class="o">is</span> <span class="mi">0</span></pre></div></td></tr><tr id="section-14"><td class="docs"><div class="pilwrap"><a href="#section-14" class="pilcrow">&#182;</a></div><p>Delete all >, nth-child and first-child</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="nv">newSelector = </span><span class="nx">selector</span><span class="p">.</span><span class="nx">replace</span> <span class="sr">/&gt;/g</span><span class="p">,</span> <span class="s">&quot; &quot;</span>
+    <span class="nv">newSelector = </span><span class="nx">selector</span><span class="p">.</span><span class="nx">replace</span> <span class="sr">/:first-child/g</span><span class="p">,</span> <span class="s">&quot;&quot;</span>
+    <span class="nv">newSelector = </span><span class="nx">newSelector</span><span class="p">.</span><span class="nx">replace</span> <span class="sr">/:nth-child\(\d+\)/g</span><span class="p">,</span> <span class="s">&quot;&quot;</span>
+    <span class="nv">elements = </span><span class="nb">window</span><span class="p">.</span><span class="nx">jQuery</span> <span class="nx">newSelector</span>
+  <span class="nx">elements</span>
+
+</pre></div></td></tr></tbody></table><div id="generated">generated Sun Apr 22 2012 13:41:45 GMT+0200 (CEST)  </div><div id="projectname"><a href="../../index.html">Arcane Academy Cluster</a></div></div></body></html>

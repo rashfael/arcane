@@ -1,0 +1,40 @@
+extends project_details
+
+block context
+	form(method='post')
+		table.table.table-condensed.structure
+			thead
+				tr
+					th
+						input(type='checkbox', onclick='toggleCheckboxes(this.checked);', checked)
+						!= " "
+						span Show
+					th Found Keys
+					th Count
+					th Ratio
+			tbody
+				for val, key in structure
+					tr
+						if val.show
+							td: input(type='checkbox', name=key, value=true, checked)
+						else
+							td: input(type='checkbox', name=key, value=true)
+						if val.config
+							td: strong= key
+							td: strong= val.count
+							td: strong #{(val.ratio * 100).toFixed(2)} %
+						else
+							td= key
+							td= val.count
+							td #{(val.ratio * 100).toFixed(2)} %
+		.actions
+			button.btn.primary(type="send", value="Send") Send
+			!= " "
+			button.btn(type="reset", value="Reset") Reset
+	
+	script(type='text/javascript')
+		var toggleCheckboxes = function(toggleState) {
+			$('table.table-condensed.structure tbody input').each(function() {
+				$(this).attr('checked', toggleState);
+			});
+		}

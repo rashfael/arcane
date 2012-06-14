@@ -1,0 +1,8 @@
+{"mappings":{"base":{"validFor":["base"],"map":{"sampleKey":"sampleValue","keyToIgnore":null}}},
+"navigation":{
+"base":{"type":"Start","config":{"request":{"url":"http://localhost:3000/"}},"next":["nodeCategories"]},
+"nodeCategories":{"type":"WalkthroughLinks","config":{"areaSelector":"#mainCategories"},"next":["nodeCategoryOverview"]},
+"nodeCategoryOverview":{"type":"WalkthroughItems","config":{"customSelector":"ul.items li"},"next":["nodeItemFollowDetails", "nodeItemFollowDetails2"]},
+"nodeItemFollowDetails":{"type":"FollowLink","config":{"linkSelector":"a.details"},"next":["nodeItemCollect"]},
+"nodeItemFollowDetails2":{"type":"FollowLink","config":{"linkSelector":"a.details"},"next":["nodeItemCollect"]},
+"nodeItemCollect":{"type":"Collect","config":{"itemSelector":"body"}}}}

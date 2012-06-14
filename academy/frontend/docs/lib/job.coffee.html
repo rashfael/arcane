@@ -1,0 +1,239 @@
+<!DOCTYPE html><html><head><title>job.coffee</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><link rel="stylesheet" media="all" href="../docco.css"></head><body><div id="container"><div id="background"></div><div id="jump_to">Jump To &hellip;<div id="jump_wrapper"><div id="jump_page"><a href="../index.html" class="source"><span class="file_name">README</span></a><a href="../lib/cluster.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">cluster.coffee</span></a><a href="../lib/job.coffee.html" class="source selected"><span class="base_path">lib / </span><span class="file_name">job.coffee</span></a><a href="../lib/public/js/collection.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">collection.coffee</span></a><a href="../lib/public/js/extract.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">extract.coffee</span></a><a href="../lib/public/js/filterEmulator.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">filterEmulator.coffee</span></a><a href="../lib/public/js/mergePresets.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">mergePresets.coffee</span></a><a href="../lib/public/js/script.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">script.coffee</span></a><a href="../lib/public/js/transformPresets.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">transformPresets.coffee</span></a><a href="../lib/resultTreeNode.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">resultTreeNode.coffee</span></a><a href="../lib/routers/api.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">api.coffee</span></a><a href="../lib/routers/help.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">help.coffee</span></a><a href="../lib/routers/jobs.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">jobs.coffee</span></a><a href="../lib/routers/monitor.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">monitor.coffee</span></a><a href="../lib/routers/projects.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">projects.coffee</span></a><a href="../lib/routers/submit.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">submit.coffee</span></a><a href="../lib/schemas/job.coffee.html" class="source "><span class="base_path">lib / schemas / </span><span class="file_name">job.coffee</span></a><a href="../lib/schemas/project.coffee.html" class="source "><span class="base_path">lib / schemas / </span><span class="file_name">project.coffee</span></a><a href="../lib/server.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">server.coffee</span></a><a href="../lib/spawner.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">spawner.coffee</span></a><a href="../lib/supervisor.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">supervisor.coffee</span></a><a href="../lib/task.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">task.coffee</span></a><a href="../lib/transform.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">transform.coffee</span></a><a href="../lib/worker.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">worker.coffee</span></a></div></div></div><table cellpadding="0" cellspacing="0"><thead><tr><th class="docs"><h1>job.coffee</h1><div class="filepath">lib/</div></th><th class="code"></th></tr></thead><tbody><tr id="section-1"><td class="docs"><div class="pilwrap"><a href="#section-1" class="pilcrow">&#182;</a></div><p>Job related code</p>
+</td><td class="code"><div class="highlight"><pre><span class="nv">log4js = </span><span class="nx">require</span> <span class="s">&#39;log4js&#39;</span>
+<span class="nv">logger = </span><span class="nx">log4js</span><span class="p">.</span><span class="nx">getLogger</span> <span class="s">&#39;job&#39;</span>
+<span class="nx">logger</span><span class="p">.</span><span class="nx">setLevel</span> <span class="s">&#39;DEBUG&#39;</span>
+
+<span class="nv">events = </span><span class="nx">require</span> <span class="s">&#39;events&#39;</span>
+<span class="nv">util = </span><span class="nx">require</span> <span class="s">&#39;util&#39;</span>
+<span class="nv">Task = </span><span class="nx">require</span> <span class="s">&#39;./task&#39;</span>
+<span class="nv">ResultTreeNode = </span><span class="nx">require</span> <span class="s">&#39;./resultTreeNode&#39;</span>
+
+<span class="nv">DbJob = </span><span class="nx">global</span><span class="p">.</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span> <span class="s">&#39;Job&#39;</span>
+
+<span class="nv">module.exports.JobState = JobState = </span><span class="p">{</span>
+    <span class="nv">Idle : </span><span class="s">&#39;idle&#39;</span>
+    <span class="nv">Paused : </span><span class="s">&#39;paused&#39;</span>
+    <span class="nv">Stopped : </span><span class="s">&#39;stopped&#39;</span>
+    <span class="nv">Running : </span><span class="s">&#39;running&#39;</span>
+    <span class="nv">Finished : </span><span class="s">&#39;finished&#39;</span>
+<span class="p">}</span></pre></div></td></tr><tr id="section-2"><td class="docs"><div class="pilwrap"><a href="#section-2" class="pilcrow">&#182;</a></div><p>configuration: job configuration JSON
+name: Job Name
+project: Associated project
+collector: a collector object instance</p>
+
+<h1>Events</h1>
+
+<ul>
+<li>start</li>
+<li>pause</li>
+<li>abort</li>
+<li>finished</li>
+</ul>
+</td><td class="code"><div class="highlight"><pre><span class="nv">module.exports.Job = </span><span class="k">class</span> <span class="nx">Job</span> <span class="k">extends</span> <span class="nx">events</span><span class="p">.</span><span class="nx">EventEmitter</span>
+  
+  <span class="nv">constructor: </span><span class="nf">(@_config, @name, @_project, @_collector) -&gt;</span>
+    <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="s">&#39;++ New Job!&#39;</span>
+
+    <span class="nx">events</span><span class="p">.</span><span class="nx">EventEmitter</span><span class="p">.</span><span class="nx">call</span> <span class="k">this</span>
+
+    <span class="k">throw</span> <span class="nb">Error</span><span class="p">(</span><span class="s">&#39;Emtpy job configuration!&#39;</span><span class="p">)</span> <span class="k">if</span> <span class="o">not</span> <span class="nx">@_config</span>
+    </pre></div></td></tr><tr id="section-3"><td class="docs"><div class="pilwrap"><a href="#section-3" class="pilcrow">&#182;</a></div><p>initialize things</p>
+</td><td class="code"><div class="highlight"><pre>    
+    <span class="vi">@state = </span><span class="nx">JobState</span><span class="p">.</span><span class="nx">Idle</span>
+    </pre></div></td></tr><tr id="section-4"><td class="docs"><div class="pilwrap"><a href="#section-4" class="pilcrow">&#182;</a></div><p>dates</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="vi">@submitted = </span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+    <span class="vi">@started = </span><span class="kc">undefined</span>
+    <span class="vi">@stopped = </span><span class="kc">undefined</span>
+    <span class="vi">@finished = </span><span class="kc">undefined</span>
+    
+    <span class="vi">@archived = </span><span class="kc">false</span>
+    <span class="vi">@configuration = </span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span> <span class="nx">@_config</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span>
+    <span class="vi">@project = </span><span class="nx">@_project</span><span class="p">.</span><span class="nx">_id</span>
+    <span class="vi">@collections = </span><span class="p">[]</span>
+    
+    <span class="nx">@generateTrees</span><span class="p">()</span>
+    </pre></div></td></tr><tr id="section-5"><td class="docs"><div class="pilwrap"><a href="#section-5" class="pilcrow">&#182;</a></div><p>throw job into db</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="vi">@_dbJob = </span><span class="k">new</span> <span class="nx">DbJob</span> <span class="p">{</span>
+      <span class="nv">_id: </span><span class="k">new</span> <span class="nx">global</span><span class="p">.</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">()</span>
+      <span class="nv">name: </span><span class="nx">@name</span>
+      <span class="nv">configuration: </span><span class="nx">@configuration</span>
+      <span class="nv">project: </span><span class="nx">@project</span>
+      <span class="nv">collections: </span><span class="nx">@collections</span>
+      <span class="nv">state: </span><span class="nx">@state</span>
+      <span class="nv">submitted: </span><span class="nx">@submitted</span>
+      <span class="nv">archived: </span><span class="kc">false</span>
+    <span class="p">}</span>
+    
+    <span class="nx">@_dbJob</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
+    
+    <span class="vi">@id = </span><span class="nx">@_dbJob</span><span class="p">.</span><span class="nx">_id</span></pre></div></td></tr><tr id="section-6"><td class="docs"><div class="pilwrap"><a href="#section-6" class="pilcrow">&#182;</a></div><p>generate the config tree from the configuration</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="nv">generateTrees: </span><span class="o">-&gt;</span></pre></div></td></tr><tr id="section-7"><td class="docs"><div class="pilwrap"><a href="#section-7" class="pilcrow">&#182;</a></div><p>TODO: check for cycles</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="nv">navigation = </span><span class="nx">@_config</span><span class="p">.</span><span class="nx">navigation</span>
+    </pre></div></td></tr><tr id="section-8"><td class="docs"><div class="pilwrap"><a href="#section-8" class="pilcrow">&#182;</a></div><p>build mapping dict</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="nv">nodeMappings = </span><span class="p">{}</span>
+    <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">val</span> <span class="k">of</span> <span class="nx">@_config</span><span class="p">.</span><span class="nx">mappings</span>
+      <span class="k">for</span> <span class="nx">validNode</span> <span class="k">in</span> <span class="nx">val</span><span class="p">.</span><span class="nx">validFor</span>
+        <span class="nx">nodeMappings</span><span class="p">[</span><span class="nx">validNode</span><span class="p">]</span> <span class="o">=</span> <span class="nx">val</span>
+    </pre></div></td></tr><tr id="section-9"><td class="docs"><div class="pilwrap"><a href="#section-9" class="pilcrow">&#182;</a></div><p>create root node</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="vi">@configTree = </span><span class="p">{</span><span class="nv">next: </span><span class="p">[]}</span></pre></div></td></tr><tr id="section-10"><td class="docs"><div class="pilwrap"><a href="#section-10" class="pilcrow">&#182;</a></div><p>recursive function to build the tree</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="nv">buildConfigTree = </span><span class="p">(</span><span class="nx">parent</span><span class="p">,</span> <span class="nx">navNode</span><span class="p">)</span> <span class="o">=&gt;</span></pre></div></td></tr><tr id="section-11"><td class="docs"><div class="pilwrap"><a href="#section-11" class="pilcrow">&#182;</a></div><p>if node already exists, just connect</p>
+</td><td class="code"><div class="highlight"><pre>      <span class="k">if</span> <span class="nx">navNode</span><span class="p">.</span><span class="nx">node</span><span class="o">?</span>
+        <span class="nx">navNode</span><span class="p">.</span><span class="nx">node</span><span class="p">.</span><span class="nx">prev</span><span class="p">.</span><span class="nx">push</span> <span class="nx">parent</span>
+        <span class="nx">parent</span><span class="p">.</span><span class="nx">next</span><span class="p">.</span><span class="nx">push</span> <span class="nx">navNode</span><span class="p">.</span><span class="nx">node</span>
+        <span class="k">return</span></pre></div></td></tr><tr id="section-12"><td class="docs"><div class="pilwrap"><a href="#section-12" class="pilcrow">&#182;</a></div><p>create new node</p>
+</td><td class="code"><div class="highlight"><pre>      <span class="nv">node = </span><span class="p">{</span>
+        <span class="nv">id: </span><span class="nx">navNode</span><span class="p">.</span><span class="nx">id</span>
+        <span class="nv">name: </span><span class="nx">navNode</span><span class="p">.</span><span class="nx">name</span>
+        <span class="nv">type: </span><span class="nx">navNode</span><span class="p">.</span><span class="nx">type</span>
+        <span class="nv">config: </span><span class="nx">navNode</span><span class="p">.</span><span class="nx">config</span>
+        <span class="nv">prev: </span><span class="p">[</span><span class="nx">parent</span><span class="p">]</span>
+        <span class="nv">next: </span><span class="p">[]</span>
+      <span class="p">}</span></pre></div></td></tr><tr id="section-13"><td class="docs"><div class="pilwrap"><a href="#section-13" class="pilcrow">&#182;</a></div><p>find encoding</p>
+</td><td class="code"><div class="highlight"><pre>      <span class="k">if</span> <span class="nx">navNode</span><span class="p">.</span><span class="nx">encoding</span>
+        <span class="nv">node.encoding = </span><span class="nx">navNode</span><span class="p">.</span><span class="nx">encoding</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="nx">parent</span>
+        <span class="nv">node.encoding = </span><span class="nx">parent</span><span class="p">.</span><span class="nx">encoding</span>
+      </pre></div></td></tr><tr id="section-14"><td class="docs"><div class="pilwrap"><a href="#section-14" class="pilcrow">&#182;</a></div><p>find mapping</p>
+</td><td class="code"><div class="highlight"><pre>      <span class="k">if</span> <span class="nx">nodeMappings</span><span class="p">[</span><span class="nx">node</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span>
+        <span class="nv">node.mapping = </span><span class="nx">nodeMappings</span><span class="p">[</span><span class="nx">node</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span>
+      <span class="k">else</span>
+        <span class="nv">node.mapping = </span><span class="nx">parent</span><span class="p">.</span><span class="nx">mapping</span>
+      
+      <span class="k">if</span> <span class="nx">node</span><span class="p">.</span><span class="nx">type</span> <span class="o">is</span> <span class="s">&#39;FillForm&#39;</span>
+        <span class="nv">node.config.mapping = </span><span class="nx">node</span><span class="p">.</span><span class="nx">mapping</span>
+      </pre></div></td></tr><tr id="section-15"><td class="docs"><div class="pilwrap"><a href="#section-15" class="pilcrow">&#182;</a></div><p>generate additional config for collect nodes</p>
+</td><td class="code"><div class="highlight"><pre>      <span class="k">if</span> <span class="nx">node</span><span class="p">.</span><span class="nx">type</span> <span class="o">is</span> <span class="s">&#39;Collect&#39;</span>
+        <span class="nv">node.config.mapping = </span><span class="nx">node</span><span class="p">.</span><span class="nx">mapping</span>
+        <span class="nv">node.config.database = </span><span class="nx">@_project</span><span class="p">.</span><span class="nx">database</span>
+        
+        <span class="k">if</span> <span class="o">not</span> <span class="nx">node</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">collection</span><span class="o">?</span>
+          <span class="nv">node.config.collection = </span><span class="s">&#39;raw:&#39;</span> <span class="o">+</span> <span class="k">new</span> <span class="nx">global</span><span class="p">.</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span><span class="p">()</span>
+        <span class="k">else</span>
+          <span class="nv">node.config.collection = </span><span class="s">&#39;raw:&#39;</span> <span class="o">+</span> <span class="nx">node</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">collection</span>
+        </pre></div></td></tr><tr id="section-16"><td class="docs"><div class="pilwrap"><a href="#section-16" class="pilcrow">&#182;</a></div><p>create clean list of keys</p>
+</td><td class="code"><div class="highlight"><pre>        <span class="nv">structure = </span><span class="p">{}</span>
+        <span class="k">if</span> <span class="nx">node</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">mapping</span><span class="o">?</span>
+          <span class="k">for</span> <span class="nx">key</span><span class="p">,</span> <span class="nx">val</span> <span class="k">of</span> <span class="nx">node</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">mapping</span><span class="p">.</span><span class="nx">map</span>
+            <span class="k">if</span> <span class="nx">val</span> <span class="o">is</span> <span class="kc">false</span></pre></div></td></tr><tr id="section-17"><td class="docs"><div class="pilwrap"><a href="#section-17" class="pilcrow">&#182;</a></div><p>structure[key] = {count: 0, ratio:0, show: false, config: true}</p>
+</td><td class="code"><div class="highlight"><pre>              <span class="k">continue</span>
+            <span class="k">else</span> <span class="k">if</span> <span class="o">not</span> <span class="nx">val</span>
+              <span class="nx">structure</span><span class="p">[</span><span class="nx">key</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="nv">count: </span><span class="mi">0</span><span class="p">,</span> <span class="nx">ratio</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nv">show: </span><span class="kc">true</span><span class="p">,</span> <span class="nv">config: </span><span class="kc">true</span><span class="p">}</span>
+            <span class="k">else</span>
+              <span class="nx">structure</span><span class="p">[</span><span class="nx">val</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="nv">count: </span><span class="mi">0</span><span class="p">,</span> <span class="nx">ratio</span><span class="o">:</span><span class="mi">0</span><span class="p">,</span> <span class="nv">show: </span><span class="kc">true</span><span class="p">,</span> <span class="nv">config: </span><span class="kc">true</span><span class="p">}</span>
+        </pre></div></td></tr><tr id="section-18"><td class="docs"><div class="pilwrap"><a href="#section-18" class="pilcrow">&#182;</a></div><p>TODO could create duplicates, fix later</p>
+</td><td class="code"><div class="highlight"><pre>        <span class="nx">@collections</span><span class="p">.</span><span class="nx">push</span> <span class="nx">node</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">collection</span></pre></div></td></tr><tr id="section-19"><td class="docs"><div class="pilwrap"><a href="#section-19" class="pilcrow">&#182;</a></div><p>TODO possibly overrides everything</p>
+</td><td class="code"><div class="highlight"><pre>        <span class="nx">@_project</span><span class="p">.</span><span class="nx">collections</span><span class="p">[</span><span class="nx">node</span><span class="p">.</span><span class="nx">config</span><span class="p">.</span><span class="nx">collection</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="nv">type: </span><span class="s">&#39;raw&#39;</span><span class="p">,</span> <span class="nv">structure: </span><span class="nx">structure</span><span class="p">}</span>
+        <span class="nx">@_project</span><span class="p">.</span><span class="nx">markModified</span> <span class="s">&#39;collections&#39;</span>
+      </pre></div></td></tr><tr id="section-20"><td class="docs"><div class="pilwrap"><a href="#section-20" class="pilcrow">&#182;</a></div><p>remember our created node in the configuration</p>
+</td><td class="code"><div class="highlight"><pre>      <span class="nv">navNode.node = </span><span class="nx">node</span>
+      <span class="nx">parent</span><span class="p">.</span><span class="nx">next</span><span class="p">.</span><span class="nx">push</span> <span class="nx">node</span></pre></div></td></tr><tr id="section-21"><td class="docs"><div class="pilwrap"><a href="#section-21" class="pilcrow">&#182;</a></div><p>recursion!</p>
+</td><td class="code"><div class="highlight"><pre>      <span class="k">for</span> <span class="nx">navNodeName</span> <span class="k">in</span> <span class="nx">navNode</span><span class="p">.</span><span class="nx">next</span>
+        <span class="nx">buildConfigTree</span> <span class="nx">node</span><span class="p">,</span> <span class="nx">navigation</span><span class="p">[</span><span class="nx">navNodeName</span><span class="p">]</span>
+    </pre></div></td></tr><tr id="section-22"><td class="docs"><div class="pilwrap"><a href="#section-22" class="pilcrow">&#182;</a></div><p>start recursive build depending on configuration base
+check if base is array</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="k">if</span> <span class="nx">navigation</span><span class="p">.</span><span class="nx">base</span><span class="p">.</span><span class="nx">next</span><span class="o">?</span>
+      <span class="nx">buildConfigTree</span> <span class="nx">@configTree</span><span class="p">,</span> <span class="nx">navigation</span><span class="p">.</span><span class="nx">base</span>
+    <span class="k">else</span>
+      <span class="k">for</span> <span class="nx">base</span> <span class="k">in</span> <span class="nx">navigation</span><span class="p">.</span><span class="nx">base</span>
+        <span class="nx">buildConfigTree</span> <span class="nx">@configTree</span><span class="p">,</span> <span class="nx">base</span></pre></div></td></tr><tr id="section-23"><td class="docs"><div class="pilwrap"><a href="#section-23" class="pilcrow">&#182;</a></div><p>initialize result tree</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="vi">@resultTree = </span><span class="k">new</span> <span class="nx">ResultTreeNode</span> <span class="kc">undefined</span><span class="p">,</span> <span class="kc">undefined</span>
+    <span class="nx">@resultTree</span><span class="p">.</span><span class="nx">addChildren</span> <span class="nx">@configTree</span><span class="p">.</span><span class="nx">next</span></pre></div></td></tr><tr id="section-24"><td class="docs"><div class="pilwrap"><a href="#section-24" class="pilcrow">&#182;</a></div><p>create new task and send it to the worker</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="nv">deployWorker: </span><span class="p">(</span><span class="nx">worker</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nv">node = </span><span class="nx">@resultTree</span><span class="p">.</span><span class="nx">findNextNode</span><span class="p">()</span></pre></div></td></tr><tr id="section-25"><td class="docs"><div class="pilwrap"><a href="#section-25" class="pilcrow">&#182;</a></div><p>no free nodes does not mean that the job is finished, some tasks could still be open
+just do nothing, scheduler handles this</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="k">if</span> <span class="nx">node</span> <span class="o">is</span> <span class="kc">undefined</span>
+      <span class="k">return</span> <span class="kc">false</span>
+    
+    <span class="nv">node.inProgress = </span><span class="kc">true</span></pre></div></td></tr><tr id="section-26"><td class="docs"><div class="pilwrap"><a href="#section-26" class="pilcrow">&#182;</a></div><p>start node has no input</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="k">if</span> <span class="nx">node</span><span class="p">.</span><span class="nx">configNode</span><span class="p">.</span><span class="nx">type</span> <span class="o">isnt</span> <span class="s">&#39;Start&#39;</span>
+      <span class="nv">input = </span><span class="nx">node</span><span class="p">.</span><span class="nx">input</span>
+    
+    <span class="nv">config = </span><span class="nx">node</span><span class="p">.</span><span class="nx">configNode</span><span class="p">.</span><span class="nx">config</span>
+    <span class="nv">type = </span><span class="nx">node</span><span class="p">.</span><span class="nx">configNode</span><span class="p">.</span><span class="nx">type</span>
+    <span class="nv">task = </span><span class="k">new</span> <span class="nx">Task</span> <span class="nx">worker</span><span class="p">,</span> <span class="nx">config</span><span class="p">,</span> <span class="nx">type</span><span class="p">,</span> <span class="nx">input</span>
+    <span class="nv">task.node = </span><span class="nx">node</span></pre></div></td></tr><tr id="section-27"><td class="docs"><div class="pilwrap"><a href="#section-27" class="pilcrow">&#182;</a></div><p>TODO, put this in the config</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="k">if</span> <span class="nx">node</span><span class="p">.</span><span class="nx">configNode</span><span class="p">.</span><span class="nx">encoding</span>
+      <span class="nv">task.encoding = </span><span class="nx">node</span><span class="p">.</span><span class="nx">configNode</span><span class="p">.</span><span class="nx">encoding</span>
+    <span class="nv">task.job = </span><span class="nx">@</span>
+    <span class="nx">worker</span><span class="p">.</span><span class="nx">work</span> <span class="nx">task</span>
+    <span class="k">return</span> <span class="kc">true</span></pre></div></td></tr><tr id="section-28"><td class="docs"><div class="pilwrap"><a href="#section-28" class="pilcrow">&#182;</a></div><p>gets called from the scheduler on finish response from the worker</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="nv">finishTask: </span><span class="p">(</span><span class="nx">task</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nv">node = </span><span class="nx">task</span><span class="p">.</span><span class="nx">node</span>
+    <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="s">&#39;Output Count: &#39;</span> <span class="o">+</span> <span class="nx">task</span><span class="p">.</span><span class="nx">output</span><span class="p">.</span><span class="nx">length</span>
+    <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="s">&#39;Next Node Count: &#39;</span> <span class="o">+</span> <span class="nx">node</span><span class="p">.</span><span class="nx">configNode</span><span class="p">.</span><span class="nx">next</span><span class="p">.</span><span class="nx">length</span>
+    
+    <span class="nv">node.inProgress = </span><span class="kc">false</span>
+    </pre></div></td></tr><tr id="section-29"><td class="docs"><div class="pilwrap"><a href="#section-29" class="pilcrow">&#182;</a></div><p>use given local collector, if existing, just for testing</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="k">if</span> <span class="nx">@_collector</span><span class="o">?</span> <span class="o">and</span> <span class="nx">node</span><span class="p">.</span><span class="nx">type</span> <span class="o">is</span> <span class="s">&#39;Collect&#39;</span>
+      <span class="k">for</span> <span class="nx">output</span> <span class="k">in</span> <span class="nx">task</span><span class="p">.</span><span class="nx">output</span>
+        <span class="nx">@_collector</span><span class="p">.</span><span class="nx">save</span> <span class="nx">output</span>
+    <span class="k">else</span></pre></div></td></tr><tr id="section-30"><td class="docs"><div class="pilwrap"><a href="#section-30" class="pilcrow">&#182;</a></div><p>create children from output</p>
+</td><td class="code"><div class="highlight"><pre>      <span class="k">for</span> <span class="nx">input</span> <span class="k">in</span> <span class="nx">task</span><span class="p">.</span><span class="nx">output</span>
+        <span class="k">for</span> <span class="nx">configNode</span> <span class="k">in</span> <span class="nx">node</span><span class="p">.</span><span class="nx">configNode</span><span class="p">.</span><span class="nx">next</span>
+          <span class="nx">node</span><span class="p">.</span><span class="nx">addChild</span> <span class="nx">configNode</span><span class="p">,</span> <span class="nx">input</span>
+    </pre></div></td></tr><tr id="section-31"><td class="docs"><div class="pilwrap"><a href="#section-31" class="pilcrow">&#182;</a></div><p>try removing finished node and check if all work is done</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="nx">node</span><span class="p">.</span><span class="nx">remove</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nx">@resultTree</span><span class="p">.</span><span class="nx">children</span><span class="p">.</span><span class="nx">length</span> <span class="o">is</span> <span class="mi">0</span>
+      <span class="vi">@state = </span><span class="nx">JobState</span><span class="p">.</span><span class="nx">Finished</span>
+      <span class="vi">@finished = </span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;!! Job is done !!&#39;</span>
+      <span class="vi">@_dbJob.state = </span><span class="nx">@state</span>
+      <span class="vi">@_dbJob.finished = </span><span class="nx">@finished</span>
+      <span class="nx">@_dbJob</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
+      <span class="nx">@emit</span> <span class="s">&#39;finished&#39;</span><span class="p">,</span> <span class="p">{}</span></pre></div></td></tr><tr id="section-32"><td class="docs"><div class="pilwrap"><a href="#section-32" class="pilcrow">&#182;</a></div><p>all the status changes</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="nv">getStatus: </span><span class="o">=&gt;</span>
+    <span class="k">return</span> <span class="p">{</span>
+      <span class="nv">state : </span><span class="nx">@state</span>
+      <span class="nv">submitted : </span><span class="nx">@submitted</span>
+      <span class="nv">started : </span><span class="nx">@started</span>
+      <span class="nv">stopped : </span><span class="nx">@stopped</span>
+      <span class="nv">finished : </span><span class="nx">@finished</span></pre></div></td></tr><tr id="section-33"><td class="docs"><div class="pilwrap"><a href="#section-33" class="pilcrow">&#182;</a></div><p>finishedWorkers: @spawner.finishedWorkers
+runningWorkers: @spawner.runningWorkers</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="p">}</span>
+  </pre></div></td></tr><tr id="section-34"><td class="docs"><div class="pilwrap"><a href="#section-34" class="pilcrow">&#182;</a></div><p>@param {function} cb Callback is executed when the job was successfully started</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="nv">start: </span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="k">if</span> <span class="nx">@state</span> <span class="o">!=</span> <span class="nx">JobState</span><span class="p">.</span><span class="nx">Finished</span> <span class="o">and</span> <span class="nx">@state</span> <span class="o">!=</span> <span class="nx">JobState</span><span class="p">.</span><span class="nx">Running</span> <span class="o">and</span> <span class="nx">@state</span> <span class="o">!=</span> <span class="nx">JobState</span><span class="p">.</span><span class="nx">Stopped</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;Starting job!&quot;</span>
+      <span class="vi">@state = </span><span class="nx">JobState</span><span class="p">.</span><span class="nx">Running</span>
+      <span class="vi">@started = </span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+      <span class="vi">@_dbJob.state = </span><span class="nx">@state</span>
+      <span class="vi">@_dbJob.started = </span><span class="nx">@started</span>
+      <span class="nx">@_dbJob</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
+      <span class="nx">@emit</span> <span class="s">&#39;start&#39;</span>
+      <span class="nx">cb</span><span class="o">?</span><span class="p">()</span>
+
+  <span class="nv">pause: </span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="k">if</span> <span class="nx">@state</span> <span class="o">!=</span> <span class="nx">JobState</span><span class="p">.</span><span class="nx">Finished</span> <span class="o">and</span> <span class="nx">@state</span> <span class="o">!=</span> <span class="nx">JobState</span><span class="p">.</span><span class="nx">Stopped</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;Pausing job!&#39;</span>
+      <span class="vi">@state = </span><span class="nx">JobState</span><span class="p">.</span><span class="nx">Paused</span>
+      <span class="vi">@stopped = </span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+      <span class="vi">@_dbJob.state = </span><span class="nx">@state</span>
+      <span class="vi">@_dbJob.stopped = </span><span class="nx">@stopped</span>
+      <span class="nx">@_dbJob</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
+      <span class="nx">@emit</span> <span class="s">&#39;pause&#39;</span>
+      <span class="nx">cb</span><span class="o">?</span><span class="p">()</span>
+  
+  <span class="nv">abort: </span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;Aborting job!&#39;</span>
+    <span class="vi">@state = </span><span class="nx">JobState</span><span class="p">.</span><span class="nx">Stopped</span>
+    <span class="vi">@stopped = </span><span class="k">new</span> <span class="nb">Date</span><span class="p">()</span>
+    <span class="vi">@_dbJob.state = </span><span class="nx">@state</span>
+    <span class="vi">@_dbJob.stopped = </span><span class="nx">@stopped</span>
+    <span class="nx">@_dbJob</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
+    <span class="nx">@emit</span> <span class="s">&#39;abort&#39;</span>
+    <span class="nx">cb</span><span class="p">()</span> <span class="k">if</span> <span class="nx">cb</span><span class="o">?</span>
+
+  <span class="k">delete</span><span class="o">:</span> <span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;Deleting job!&#39;</span>
+    <span class="k">if</span> <span class="nx">@state</span> <span class="o">is</span> <span class="nx">JobState</span><span class="p">.</span><span class="nx">Running</span>
+      <span class="nx">cb</span><span class="p">(</span><span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="s">&#39;Cannot delete a running Job&#39;</span><span class="p">))</span>
+      <span class="k">return</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;Cleaning up DB Job&#39;</span>
+    <span class="nx">@_project</span><span class="p">.</span><span class="nx">jobs</span><span class="p">.</span><span class="nx">splice</span><span class="p">(</span><span class="nx">@_project</span><span class="p">.</span><span class="nx">jobs</span><span class="p">.</span><span class="nx">indexOf</span><span class="p">(</span><span class="nx">@_id</span><span class="p">),</span><span class="mi">1</span><span class="p">)</span>
+    <span class="nx">@_project</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
+    <span class="nx">@_dbJob</span><span class="p">.</span><span class="nx">remove</span> <span class="o">=&gt;</span>
+      <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;Removing traces of myself&#39;</span>
+      <span class="k">delete</span> <span class="nx">global</span><span class="p">.</span><span class="nx">jobs</span><span class="p">[</span><span class="nx">@id</span><span class="p">]</span>
+      <span class="nx">cb</span><span class="p">(</span><span class="kc">null</span><span class="p">)</span>
+
+</pre></div></td></tr></tbody></table><div id="generated">generated Sun Apr 22 2012 13:44:46 GMT+0200 (CEST)  </div><div id="projectname"><a href="../index.html">Arcane Academy Frontend</a></div></div></body></html>

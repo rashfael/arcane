@@ -1,0 +1,252 @@
+{
+    "mappings": {
+        "1328110734717": {
+            "map": {
+                "srt_text": "Beschreibung",
+                "verfuegbarkeits_status_0": "Verfügbarkeit",
+                "Name": "Name"
+            },
+            "validFor": [
+                "nav1328110734649"
+            ],
+            "name": "Default mapping"
+        }
+    },
+    "navigation": {
+        "base": [
+            {
+                "name": "Entry point",
+                "type": "Start",
+                "config": {
+                    "request": {
+                        "url": "http://www.hello-store.de/haushaltselektronik::c79/"
+                    }
+                },
+                "id": "nav1328110734646",
+                "next": [
+                    "nav1328110734647"
+                ]
+            }
+        ],
+        "nav1328110734647": {
+            "name": "Walk through links",
+            "type": "WalkthroughLinks",
+            "config": {
+                "customSelector": "#sort > table:nth-child(6) tr:nth-child(3) > td:first-child > table:first-child tr > td > table tr > td > table tr > td > a > img",
+                "magic": {}
+            },
+            "next": [
+                "nav1328110734648"
+            ],
+            "id": "nav1328110734647",
+            "nodeConfigId": "1328110794248"
+        },
+        "nav1328110734648": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": "",
+                "customSelector": ".fieldtext",
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Name",
+                                "selector": "tbody:first-child > tr:first-child > td:first-child > table:first-child tr:first-child > td:first-child > span:first-child",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Preis",
+                                "selector": "tbody:first-child > tr:first-child > td:first-child > table:first-child tr:nth-child(9) > td:nth-child(3) > table:first-child tr:first-child",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1328110734649"
+            ],
+            "id": "nav1328110734648",
+            "nodeConfigId": "1328110734646"
+        },
+        "nav1328110734649": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "collection": "HelloStore01022012"
+            },
+            "next": [],
+            "id": "nav1328110734649"
+        }
+    },
+    "config": {
+        "currentConfigID": "1328110734646",
+        "configs": {
+            "1328110734646": {
+                "_name": "Default config",
+                "_id": 1328110734646,
+                "_listConfig": {
+                    "_inspectedNodes": [
+                        {
+                            "sizcache": 1119,
+                            "sizset": 0
+                        }
+                    ],
+                    "_exceptions": [],
+                    "_selectors": []
+                },
+                "_magicConfig": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Name",
+                                "selector": "tbody:first-child > tr:first-child > td:first-child > table:first-child tr:first-child > td:first-child > span:first-child",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Preis",
+                                "selector": "tbody:first-child > tr:first-child > td:first-child > table:first-child tr:nth-child(9) > td:nth-child(3) > table:first-child tr:first-child",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                },
+                "_formfillConfig": {
+                    "_fields": [],
+                    "_datasets": []
+                }
+            },
+            "1328110794248": {
+                "_name": "WTL",
+                "_id": 1328110794248,
+                "_listConfig": {
+                    "_inspectedNodes": [
+                        {},
+                        {},
+                        {},
+                        {},
+                        {},
+                        {}
+                    ],
+                    "_exceptions": [],
+                    "_selectors": [
+                        "#sort > table:nth-child(6) tr:nth-child(3) > td:first-child > table:first-child tr > td > table tr > td > table tr > td > a > img"
+                    ]
+                },
+                "_magicConfig": {},
+                "_formfillConfig": {
+                    "_fields": [],
+                    "_datasets": []
+                }
+            }
+        }
+    },
+    "mappingData": [
+        {
+            "id": 1328110734717,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "http://www.hello-store.de/haushaltselektronik::c79/",
+                    "selector": "",
+                    "data": []
+                },
+                {
+                    "selector": ".fieldtext",
+                    "data": [
+                        {
+                            "key": "srt_text",
+                            "dbKey": "Beschreibung",
+                            "checked": "checked",
+                            "values": [
+                                "Super tolle Glitter Lampe von Hello Kitty in hell rosa.* Beobachte den stylischen reflektierenden Glitter * Beobachte die magische Bewegungen vom Glitter im Glaszylinder* Maße: 34cm x 8.5cm* Birne 25W inkl.* Strom: 230V~50HZ"
+                            ]
+                        },
+                        {
+                            "key": "verfuegbarkeits_status_0",
+                            "dbKey": "Verfügbarkeit",
+                            "checked": "checked",
+                            "values": [
+                                "sofort lieferbar"
+                            ]
+                        },
+                        {
+                            "key": "addthis_button_compact hs_links at300m",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Share"
+                            ]
+                        },
+                        {
+                            "key": "addthis_separator",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "|"
+                            ]
+                        },
+                        {
+                            "key": "\n\t\t\n\t\t\n\t\t\t  Glitterlampe (Light pink)\n\t\t\n\t\t\n\t\t\t\n\t\t\n\t\t\n\t\t\t\n\t\t\n\t\t\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\tSuper tolle Glitter Lampe von Hello Kitty in hell rosa.* Beobachte den stylischen reflektierenden Glitter * Beobachte die magische Bewegungen vom Glitter im Glaszylinder* Maße: 34cm x 8.5cm* Birne 25W inkl.* Strom: 230V~50HZ\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\n\t\t\n\t\t\t\n\t\t \t\n\t\t\t \n\t\t\t\n\t\t\n\t\t\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\n\t\t\n\t\t   \n\t\t   \n\t\t   Menge \n\t\t \n\t\t\n\t\t\tProduktnummer:\n\t\t\tVerfügbarkeit\n\t\t\t\n\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\t\n\t\t\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\n\t\t\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\tHKPAIL1\n\t\t\t\tsofort lieferbar\n\t\t\t\n\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\n\t\t\n\t\t\t \n\t\t\n\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\t\t\n\t\t\t\t\n\t\t\t\n\t\t\n\t\t\n\t\t\t\n\n\n  Share\n  |\n\n  \n  \n  \n\n\nvar addthis_config = {\n  ui_language: 'de',\n  ui_cobrand: 'CLUDES',\n  ui_delay: 128,\n  ui_508_compliant: true,\n  services_compact: 'favorites, print, twitter, identica, linkedin, facebook, meinvz, studivz, misterwong_de, delicious, google, yahoobkm, live',\n}\nvar addthis_share =\n{\n  title: '\"Glitterlampe (Light pink)\" auf hello-store.de',\n  templates: {\n    twitter: 'Schaut euch mal den folgenden Artikel auf hello-store.de an {{url}} #hellostore #empfehlung',\n  }\n}\n\n\n\n\t\t\t\n\t\t\n\n\t\t\n\t\t\t \n\t\t\n\n\t\t\n\n\t\n\t\t\n\t",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "  Glitterlampe (Light pink)"
+                            ]
+                        },
+                        {
+                            "key": "\n\t\t\t\n\t\t\t",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n\t\t\tSuper tolle Glitter Lampe von Hello Kitty in hell rosa.* Beobachte den stylischen reflektierenden Glitter * Beobachte die magische Bewegungen vom Glitter im Glaszylinder* Maße: 34cm x 8.5cm* Birne 25W inkl.* Strom: 230V~50HZ\n\t\t\t\n\t\t\t\n\t\t\t"
+                            ]
+                        },
+                        {
+                            "key": "Produktnummer:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Verfügbarkeit"
+                            ]
+                        },
+                        {
+                            "key": "\n\t\t\t\n\t\t\t\n\t\t\t\tHKPAIL1\n\t\t\t\tsofort lieferbar\n\t\t\t\n\n\t\t\t\n\t\t\t\n\t\t\t\n\t\t\t",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "HKPAIL1"
+                            ]
+                        },
+                        {
+                            "key": "HKPAIL1",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "sofort lieferbar"
+                            ]
+                        },
+                        {
+                            "key": "\n\t\t\t\t\n\t\t\t",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\t\n\t\t\t\t\n\t\t\t"
+                            ]
+                        },
+                        {
+                            "key": "Name",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "Glitterlampe (Light pink)"
+                            ]
+                        }
+                    ],
+                    "url": "http://www.hello-store.de/glitterlampe-light-pink::i1861.htm"
+                }
+            ]
+        }
+    ]
+}

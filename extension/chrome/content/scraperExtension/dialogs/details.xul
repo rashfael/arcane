@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<?xml-stylesheet href="chrome://global/skin/global.css" type="text/css"?>
+<dialog id="detailsDialog" xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" title="" buttons="accept,disclosure" onload="onLoad();" style="background-color: menu !important; opacity: 1.0;">   
+	<script type="application/x-javascript">
+		/**
+		 * Initializes the details dialog.
+		 */
+		function onLoad(){
+
+			var link=document.getElementById("link");
+			link.value=window.arguments[0].linkLabel;
+			link.href=window.arguments[0].href;
+	
+	
+			document.getElementById("description").value=window.arguments[0].description;
+	
+			document.getElementById("reason").value=window.arguments[0].reason;
+	
+			document.title=window.arguments[0].title;
+	
+			document.getElementById("image").setAttribute('class',window.arguments[0].image);
+			window.sizeToContent();
+		};
+		
+		/**
+		 * Adapts the width an height of the dialog.
+		 */
+		function onDisclosure(){
+			var detailsArea=document.getElementById("details");
+			
+			detailsArea.value=window.arguments[0].details;
+			var state=document.getElementById("detailsBttn").checked;
+		
+			if(state==true)
+				detailsArea.height="200";
+			else
+				detailsArea.height="0";
+			detailsArea.hidden=!state;
+			window.sizeToContent();
+		};
+	</script>
+	<vbox>
+		<hbox>
+			<image id="image"/>
+			<label id="description"/>
+			<label id="reason"/>
+			<label id="link" class="text-link"/>
+		</hbox>
+		<hbox>
+			<spacer flex="1"/>
+			<button dlgtype="accept"/>
+			<button id="detailsBttn" dlgtype="disclosure" type="checkbox" oncommand="onDisclosure();"/>
+			<spacer flex="1"/>
+		</hbox>
+		<textbox id="details" flex="2" hidden="true" multiline="true" readonly="true" height="0"/>
+	</vbox>
+</dialog>

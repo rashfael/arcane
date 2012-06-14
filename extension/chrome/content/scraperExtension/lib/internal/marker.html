@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>marker.js module test</title>
+		<script type="text/javascript" src="jquery.js"></script>
+		<script type="text/javascript" src="marker.js"></script>		
+		<script type="text/javascript">
+			$(document).ready(function() {
+				var myMarker = new Marker(document,"yellow");
+				myMarker.markBySelector("html > body > div:first-child,div:not(html > body > div:nth-child(1))");
+				
+				$("div").click(function(e){
+					myMarker.removeAllMarks();
+				});
+			});
+		</script>
+		<link rel="stylesheet" type="text/css" href="../../../skin/classic/marker.css" />
+		<style>
+			div {
+				margin: 2px;
+				padding: 10px;
+				background-color: navy;
+				color: white;
+			}
+		</style>
+	</head>
+	<body>
+		<div>This is a marked div.</div>
+		<div>This div shouldn't be marked.<br/>Click it to remove all marks.</div>
+		<div>This should be a marked one again.</div>
+	</body>
+</html>

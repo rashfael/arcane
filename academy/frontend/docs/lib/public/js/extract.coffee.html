@@ -1,0 +1,134 @@
+<!DOCTYPE html><html><head><title>extract.coffee</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><link rel="stylesheet" media="all" href="../../../docco.css"></head><body><div id="container"><div id="background"></div><div id="jump_to">Jump To &hellip;<div id="jump_wrapper"><div id="jump_page"><a href="../../../index.html" class="source"><span class="file_name">README</span></a><a href="../../../lib/cluster.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">cluster.coffee</span></a><a href="../../../lib/job.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">job.coffee</span></a><a href="../../../lib/public/js/collection.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">collection.coffee</span></a><a href="../../../lib/public/js/extract.coffee.html" class="source selected"><span class="base_path">lib / public / js / </span><span class="file_name">extract.coffee</span></a><a href="../../../lib/public/js/filterEmulator.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">filterEmulator.coffee</span></a><a href="../../../lib/public/js/mergePresets.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">mergePresets.coffee</span></a><a href="../../../lib/public/js/script.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">script.coffee</span></a><a href="../../../lib/public/js/transformPresets.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">transformPresets.coffee</span></a><a href="../../../lib/resultTreeNode.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">resultTreeNode.coffee</span></a><a href="../../../lib/routers/api.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">api.coffee</span></a><a href="../../../lib/routers/help.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">help.coffee</span></a><a href="../../../lib/routers/jobs.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">jobs.coffee</span></a><a href="../../../lib/routers/monitor.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">monitor.coffee</span></a><a href="../../../lib/routers/projects.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">projects.coffee</span></a><a href="../../../lib/routers/submit.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">submit.coffee</span></a><a href="../../../lib/schemas/job.coffee.html" class="source "><span class="base_path">lib / schemas / </span><span class="file_name">job.coffee</span></a><a href="../../../lib/schemas/project.coffee.html" class="source "><span class="base_path">lib / schemas / </span><span class="file_name">project.coffee</span></a><a href="../../../lib/server.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">server.coffee</span></a><a href="../../../lib/spawner.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">spawner.coffee</span></a><a href="../../../lib/supervisor.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">supervisor.coffee</span></a><a href="../../../lib/task.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">task.coffee</span></a><a href="../../../lib/transform.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">transform.coffee</span></a><a href="../../../lib/worker.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">worker.coffee</span></a></div></div></div><table cellpadding="0" cellspacing="0"><thead><tr><th class="docs"><h1>extract.coffee</h1><div class="filepath">lib/public/js/</div></th><th class="code"></th></tr></thead><tbody><tr id="section-1"><td class="docs"><div class="pilwrap"><a href="#section-1" class="pilcrow">&#182;</a></div>
+</td><td class="code"><div class="highlight"><pre><span class="k">class</span> <span class="nx">Attribute</span> <span class="k">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span>
+  
+<span class="k">class</span> <span class="nx">AttributeView</span> <span class="k">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span>
+  <span class="nv">tagName: </span><span class="s">&#39;li&#39;</span>
+  <span class="nv">className: </span><span class="s">&#39;ui-state-default attribute&#39;</span>
+  
+  <span class="nv">initialize: </span><span class="o">=&gt;</span>
+    <span class="nx">@$el</span><span class="p">.</span><span class="nx">data</span> <span class="s">&#39;view&#39;</span><span class="p">,</span> <span class="nx">@</span>
+
+  <span class="nv">render: </span><span class="o">=&gt;</span>
+    <span class="k">if</span> <span class="nx">@model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&#39;referenceKey&#39;</span><span class="p">)</span>
+      <span class="nx">@$el</span><span class="p">.</span><span class="nx">attr</span> <span class="s">&#39;class&#39;</span><span class="p">,</span> <span class="s">&#39;ui-state-highlight attribute&#39;</span>
+    <span class="nx">@$el</span><span class="p">.</span><span class="nx">text</span> <span class="nx">@model</span><span class="p">.</span><span class="nx">get</span> <span class="s">&#39;name&#39;</span>
+    <span class="k">return</span> <span class="nx">@</span>
+
+<span class="k">class</span> <span class="nx">AttributeList</span> <span class="k">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Collection</span>
+  <span class="nv">model: </span><span class="nx">Attribute</span>
+
+<span class="k">class</span> <span class="nx">Collection</span> <span class="k">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">Model</span>
+  <span class="nv">defaults:</span>
+    <span class="nv">attributes: </span><span class="k">new</span> <span class="nx">AttributeList</span><span class="p">()</span>
+
+<span class="k">class</span> <span class="nx">CollectionModalView</span> <span class="k">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span>
+  <span class="nv">tagName: </span><span class="s">&#39;div&#39;</span>
+  <span class="nv">className: </span><span class="s">&#39;modal fade&#39;</span>
+
+  <span class="nv">events:</span>
+    <span class="s">&#39;click .save&#39;</span><span class="o">:</span> <span class="s">&#39;save&#39;</span>
+    <span class="s">&#39;click .cancel&#39;</span><span class="o">:</span> <span class="s">&#39;hide&#39;</span>
+    <span class="s">&#39;hidden&#39;</span><span class="o">:</span> <span class="s">&#39;hidden&#39;</span>
+    <span class="s">&#39;shown&#39;</span><span class="o">:</span> <span class="s">&#39;shown&#39;</span>
+  
+  <span class="nv">template: </span><span class="s">&#39;views/client/extractCollectionModal&#39;</span>
+
+  <span class="nv">render: </span><span class="o">=&gt;</span>
+    <span class="nx">@$el</span><span class="p">.</span><span class="nx">html</span> <span class="nx">jade</span><span class="p">.</span><span class="nx">render</span> <span class="nx">@template</span><span class="p">,</span> <span class="nx">@model</span><span class="p">.</span><span class="nx">toJSON</span><span class="p">()</span>
+    <span class="nx">@$el</span><span class="p">.</span><span class="nx">modal</span><span class="p">(</span><span class="nv">show: </span><span class="kc">false</span><span class="p">)</span>
+    <span class="nx">@delegateEvents</span><span class="p">()</span>
+    <span class="nx">@$el</span><span class="p">.</span><span class="nx">modal</span> <span class="s">&#39;show&#39;</span>
+  
+  <span class="nv">save: </span><span class="o">=&gt;</span>
+    <span class="nx">@model</span><span class="p">.</span><span class="nx">set</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">,</span><span class="nx">@$</span><span class="p">(</span><span class="s">&#39;form [name=name]&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">())</span>
+    <span class="nx">@hide</span><span class="p">()</span>
+  
+  <span class="nv">hide: </span><span class="o">=&gt;</span>
+    <span class="nx">@$el</span><span class="p">.</span><span class="nx">modal</span> <span class="s">&#39;hide&#39;</span>
+  
+  <span class="nv">hidden: </span><span class="o">=&gt;</span>
+    <span class="nx">@remove</span><span class="p">()</span>
+  
+  <span class="nv">shown: </span><span class="o">=&gt;</span>
+
+
+<span class="k">class</span> <span class="nx">CollectionView</span> <span class="k">extends</span> <span class="nx">Backbone</span><span class="p">.</span><span class="nx">View</span>
+  <span class="nv">tagName: </span><span class="s">&#39;div&#39;</span>
+  <span class="nv">className: </span><span class="s">&#39;collection&#39;</span>
+
+  <span class="nv">events:</span>
+    <span class="s">&#39;click i.icon-pencil&#39;</span><span class="o">:</span> <span class="s">&#39;edit&#39;</span>
+
+  <span class="nv">template: </span><span class="s">&#39;views/client/extractCollection&#39;</span>
+
+  <span class="nv">initialize: </span><span class="o">=&gt;</span>
+    <span class="nx">@model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&#39;attributes&#39;</span><span class="p">).</span><span class="kc">on</span> <span class="s">&#39;add&#39;</span><span class="p">,</span> <span class="nx">@addAttr</span>
+    <span class="nx">@model</span><span class="p">.</span><span class="kc">on</span> <span class="s">&#39;change&#39;</span><span class="p">,</span> <span class="nx">@render</span>
+    <span class="nx">@$el</span><span class="p">.</span><span class="nx">html</span> <span class="nx">jade</span><span class="p">.</span><span class="nx">render</span> <span class="nx">@template</span><span class="p">,</span>
+      <span class="nv">name: </span><span class="nx">@model</span><span class="p">.</span><span class="nx">get</span> <span class="s">&#39;name&#39;</span>
+      <span class="nv">type: </span><span class="nx">@model</span><span class="p">.</span><span class="nx">get</span> <span class="s">&#39;type&#39;</span>
+    <span class="nx">@$</span><span class="p">(</span><span class="s">&#39;ul&#39;</span><span class="p">).</span><span class="nx">sortable</span><span class="p">({</span>
+      <span class="nv">connectWith: </span><span class="s">&#39;.sortable&#39;</span>
+      <span class="nv">placeholder: </span><span class="s">&#39;ui-state-highlight&#39;</span>
+      <span class="nv">items: </span><span class="s">&#39;:not(li.key)&#39;</span>
+      <span class="nv">remove: </span><span class="nx">@remove</span>
+      <span class="nv">receive: </span><span class="nx">@receive</span>
+    <span class="p">}).</span><span class="nx">disableSelection</span><span class="p">()</span>
+    <span class="nx">@model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&#39;attributes&#39;</span><span class="p">).</span><span class="nx">forEach</span> <span class="p">(</span><span class="nx">attr</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="nx">@$</span><span class="p">(</span><span class="s">&#39;ul&#39;</span><span class="p">).</span><span class="nx">append</span> <span class="k">new</span> <span class="nx">AttributeView</span><span class="p">({</span><span class="nv">model: </span><span class="nx">attr</span><span class="p">}).</span><span class="nx">render</span><span class="p">().</span><span class="nx">el</span>
+    
+    <span class="k">return</span> <span class="nx">@</span>
+
+  <span class="nv">render: </span><span class="p">()</span><span class="o">=&gt;</span>
+    <span class="nx">@$</span><span class="p">(</span><span class="s">&#39;h4&#39;</span><span class="p">).</span><span class="nx">text</span> <span class="nx">@model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&#39;name&#39;</span><span class="p">)</span>
+  
+  <span class="nv">edit: </span><span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="k">new</span> <span class="nx">CollectionModalView</span><span class="p">({</span><span class="nx">model</span><span class="o">:</span><span class="nx">@model</span><span class="p">}).</span><span class="nx">render</span><span class="p">()</span>
+
+  <span class="nv">remove: </span><span class="p">(</span><span class="nx">event</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nx">@model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&#39;attributes&#39;</span><span class="p">).</span><span class="nx">remove</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">srcElement</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s">&#39;view&#39;</span><span class="p">).</span><span class="nx">model</span><span class="p">)</span>
+  
+  <span class="nv">receive: </span><span class="p">()</span> <span class="o">=&gt;</span>
+    <span class="nx">@model</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="s">&#39;attributes&#39;</span><span class="p">).</span><span class="nx">add</span><span class="p">(</span><span class="nx">$</span><span class="p">(</span><span class="nx">event</span><span class="p">.</span><span class="nx">srcElement</span><span class="p">).</span><span class="nx">data</span><span class="p">(</span><span class="s">&#39;view&#39;</span><span class="p">).</span><span class="nx">model</span><span class="p">)</span>
+
+
+<span class="nx">$</span> <span class="o">-&gt;</span>
+  <span class="nv">rawCol = </span><span class="k">new</span> <span class="nx">Collection</span>
+    <span class="nv">name: </span><span class="nx">rawColl</span>
+    <span class="nv">attributes: </span><span class="k">new</span> <span class="nx">AttributeList</span> <span class="nx">rawColumns</span>
+    <span class="nv">type: </span><span class="s">&#39;raw&#39;</span>
+  <span class="nv">referenceCol = </span><span class="k">new</span> <span class="nx">Collection</span>
+    <span class="nv">name: </span><span class="s">&#39;Reference&#39;</span>
+    <span class="nv">type: </span><span class="s">&#39;reference&#39;</span>
+  <span class="nv">resultCol = </span><span class="k">new</span> <span class="nx">Collection</span>
+    <span class="nv">attributes: </span><span class="k">new</span> <span class="nx">AttributeList</span> <span class="p">[{</span><span class="nv">name: </span><span class="s">&#39;reference key&#39;</span><span class="p">,</span> <span class="nx">referenceKey</span><span class="o">:</span><span class="kc">true</span><span class="p">}]</span>
+    <span class="nv">name: </span><span class="s">&#39;Result&#39;</span>
+    <span class="nv">type: </span><span class="s">&#39;result&#39;</span>
+
+  <span class="nv">rawColView = </span><span class="k">new</span> <span class="nx">CollectionView</span>
+    <span class="nv">model: </span><span class="nx">rawCol</span>
+  
+  <span class="nv">referenceColView = </span><span class="k">new</span> <span class="nx">CollectionView</span>
+    <span class="nv">model: </span><span class="nx">referenceCol</span>
+  
+  <span class="nv">resultColView = </span><span class="k">new</span> <span class="nx">CollectionView</span>
+    <span class="nv">model: </span><span class="nx">resultCol</span>
+
+  <span class="nv">colBox = </span><span class="nx">$</span> <span class="s">&#39;.collections&#39;</span>
+  <span class="nx">colBox</span><span class="p">.</span><span class="nx">append</span> <span class="nx">rawColView</span><span class="p">.</span><span class="nx">el</span>
+  <span class="nx">colBox</span><span class="p">.</span><span class="nx">append</span> <span class="nx">referenceColView</span><span class="p">.</span><span class="nx">el</span>
+  <span class="nx">colBox</span><span class="p">.</span><span class="nx">append</span> <span class="nx">resultColView</span><span class="p">.</span><span class="nx">el</span>
+
+  <span class="nx">$</span><span class="p">(</span><span class="s">&#39;#submit&#39;</span><span class="p">).</span><span class="nx">click</span> <span class="o">-&gt;</span></pre></div></td></tr><tr id="section-2"><td class="docs"><div class="pilwrap"><a href="#section-2" class="pilcrow">&#182;</a></div><p>$(@).button 'loading'</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="nv">data =</span>
+      <span class="nv">raw: </span><span class="nx">rawCol</span>
+      <span class="nv">reference: </span><span class="nx">referenceCol</span>
+      <span class="nv">result: </span><span class="nx">resultCol</span>
+    <span class="nx">$</span><span class="p">.</span><span class="nx">ajax</span>
+      <span class="nv">type: </span><span class="s">&#39;POST&#39;</span>
+      <span class="nv">contentType: </span><span class="s">&#39;application/json&#39;</span>
+      <span class="nv">data: </span><span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span> <span class="nx">data</span>
+      <span class="nv">success: </span><span class="nf">(res, textStatus, jqXHR) -&gt;</span>
+        <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;grate success&#39;</span>
+
+</pre></div></td></tr></tbody></table><div id="generated">generated Sun Apr 22 2012 13:44:46 GMT+0200 (CEST)  </div><div id="projectname"><a href="../../../index.html">Arcane Academy Frontend</a></div></div></body></html>

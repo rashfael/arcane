@@ -1,0 +1,74 @@
+<!DOCTYPE html>  <html> <head>   <title>collectors.coffee</title>   <meta http-equiv="content-type" content="text/html; charset=UTF-8">   <link rel="stylesheet" media="all" href="docco.css" /> </head> <body>   <div id="container">     <div id="background"></div>            <div id="jump_to">         Jump To &hellip;         <div id="jump_wrapper">           <div id="jump_page">                                           <a class="source" href="cluster.html">                 cluster.coffee               </a>                                           <a class="source" href="collectors.html">                 collectors.coffee               </a>                                           <a class="source" href="encoder.html">                 encoder.coffee               </a>                                           <a class="source" href="navigation.html">                 navigation.coffee               </a>                                           <a class="source" href="Collect.html">                 Collect.coffee               </a>                                           <a class="source" href="FillForm.html">                 FillForm.coffee               </a>                                           <a class="source" href="FollowLink.html">                 FollowLink.coffee               </a>                                           <a class="source" href="Generic.html">                 Generic.coffee               </a>                                           <a class="source" href="Magic.html">                 Magic.coffee               </a>                                           <a class="source" href="Pager.html">                 Pager.coffee               </a>                                           <a class="source" href="Start.html">                 Start.coffee               </a>                                           <a class="source" href="WalkthroughItems.html">                 WalkthroughItems.coffee               </a>                                           <a class="source" href="WalkthroughLinks.html">                 WalkthroughLinks.coffee               </a>                                           <a class="source" href="helpers.html">                 helpers.coffee               </a>                                           <a class="source" href="parser.html">                 parser.coffee               </a>                                           <a class="source" href="worker.html">                 worker.coffee               </a>                        </div>         </div>       </div>          <table cellpadding="0" cellspacing="0">       <thead>         <tr>           <th class="docs">             <h1>               collectors.coffee             </h1>           </th>           <th class="code">           </th>         </tr>       </thead>       <tbody>                               <tr id="section-1">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-1">&#182;</a>               </div>                            </td>             <td class="code">               <div class="highlight"><pre><span class="nv">fs = </span><span class="nx">require</span> <span class="s">&#39;fs&#39;</span>
+<span class="nv">Mongolian = </span><span class="nx">require</span> <span class="s">&#39;mongolian&#39;</span>
+<span class="nv">assert = </span><span class="nx">require</span> <span class="s">&#39;assert&#39;</span>
+
+<span class="nv">server = </span><span class="k">new</span> <span class="nx">Mongolian</span></pre></div>             </td>           </tr>                               <tr id="section-2">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-2">&#182;</a>               </div>               <h1>#</h1>
+
+<p>Collector are used to save extracted data.</p>
+
+<p>Example usage:
+var Collector = require('./lib/collectors.js').Stdout;
+var c = new Collector({'exampleConfigKey': 'someValue'});
+c.save('some_data');</p>
+
+<h1>#</h1>             </td>             <td class="code">               <div class="highlight"><pre><span class="nv">module.exports.createCollector = </span><span class="nf">(config) -&gt;</span>
+	<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;Creating new Collector&#39;</span>
+	<span class="k">throw</span> <span class="nb">Error</span> <span class="s">&#39;No configuration given!&#39;</span> <span class="k">if</span> <span class="o">not</span> <span class="nx">config</span>
+	<span class="k">return</span> <span class="k">new</span> <span class="nx">collectorTypes</span><span class="p">[</span><span class="nx">config</span><span class="p">.</span><span class="nx">type</span><span class="p">]</span> <span class="nx">config</span>
+
+<span class="k">class</span> <span class="nx">Base</span>
+	<span class="nv">constructor: </span><span class="nf">(@config) -&gt;</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;++ New BaseCollector&#39;</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39; + Configuration:&#39;</span><span class="p">,</span> <span class="nx">@config</span>
+		
+	<span class="nv">save: </span><span class="nf">(data, currentNode) -&gt;</span>
+		<span class="k">throw</span> <span class="nb">Error</span> <span class="s">&#39;Override this method in the extending class!&#39;</span></pre></div>             </td>           </tr>                               <tr id="section-3">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-3">&#182;</a>               </div>               <h1>#</h1>
+
+<p>Stdout Collector</p>
+
+<h1>#</h1>             </td>             <td class="code">               <div class="highlight"><pre><span class="k">class</span> <span class="nx">Stdout</span> <span class="k">extends</span> <span class="nx">Base</span>
+	<span class="nv">constructor: </span><span class="nf">(@config) -&gt;</span>
+		<span class="k">super</span> <span class="nx">config</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;++ New StdoutCollector&#39;</span>
+		
+	<span class="nv">save: </span><span class="nf">(data, currentNode) -&gt;</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="nx">data</span>
+
+	<span class="nv">end: </span><span class="o">-&gt;</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;Collector finished!&#39;</span></pre></div>             </td>           </tr>                               <tr id="section-4">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-4">&#182;</a>               </div>               <h1>#</h1>
+
+<p>File Collector</p>
+
+<h1>#</h1>             </td>             <td class="code">               <div class="highlight"><pre><span class="k">class</span> <span class="nx">File</span> <span class="k">extends</span> <span class="nx">Base</span>
+	<span class="nv">constructor: </span><span class="nf">(@config) -&gt;</span>
+		<span class="k">super</span> <span class="nx">config</span>
+		<span class="vi">@stream = </span><span class="nx">fs</span><span class="p">.</span><span class="nx">createWriteStream</span><span class="p">(</span><span class="nx">@config</span><span class="p">.</span><span class="nx">file</span><span class="p">,</span> <span class="p">{</span><span class="nv">flags: </span><span class="s">&#39;w&#39;</span><span class="p">})</span>
+		
+	<span class="nv">save: </span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">currentNode</span><span class="p">)</span> <span class="o">=&gt;</span>
+		<span class="nx">@stream</span><span class="p">.</span><span class="nx">write</span> <span class="nx">JSON</span><span class="p">.</span><span class="nx">stringify</span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+	
+	<span class="nv">end: </span><span class="o">-&gt;</span>
+		<span class="nx">@stream</span><span class="p">.</span><span class="nx">end</span><span class="p">()</span></pre></div>             </td>           </tr>                               <tr id="section-5">             <td class="docs">               <div class="pilwrap">                 <a class="pilcrow" href="#section-5">&#182;</a>               </div>               <h1>#</h1>
+
+<p>MongoDB Collector</p>
+
+<p>TODO use given configuration instead of hardcoded data</p>
+
+<h1>#</h1>             </td>             <td class="code">               <div class="highlight"><pre>	
+<span class="k">class</span> <span class="nx">MongoDb</span> <span class="k">extends</span> <span class="nx">Base</span>
+	<span class="nv">constructor: </span><span class="nf">(@config) -&gt;</span>
+		<span class="k">super</span> <span class="nx">config</span>
+		<span class="vi">@db = </span><span class="nx">server</span><span class="p">.</span><span class="nx">db</span> <span class="nx">@config</span><span class="p">.</span><span class="nx">database</span>
+		<span class="vi">@collection = </span><span class="nx">@db</span><span class="p">.</span><span class="nx">collection</span> <span class="nx">@config</span><span class="p">.</span><span class="nx">collection</span>
+		<span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&#39;++ new MongoDb Collector&#39;</span><span class="p">,</span> <span class="nx">@config</span>
+	
+	<span class="nv">save: </span><span class="p">(</span><span class="nx">data</span><span class="p">,</span> <span class="nx">currentNode</span><span class="p">)</span> <span class="o">=&gt;</span>
+		<span class="nx">@collection</span><span class="p">.</span><span class="nx">insert</span> <span class="nx">data</span>
+
+<span class="nv">collectorTypes = </span><span class="p">{</span>
+	<span class="nx">Stdout</span>
+	<span class="nx">File</span>
+	<span class="nx">MongoDb</span>
+<span class="p">}</span>
+
+</pre></div>             </td>           </tr>                </tbody>     </table>   </div> </body> </html> 

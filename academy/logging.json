@@ -1,0 +1,48 @@
+{
+    "appenders": [
+        {
+            "category": "academy",
+			"level": "INFO",
+            "type": "file",
+            "filename": "academy.log",
+            "maxLogSize": 10000000,
+            "backups": 5
+        },
+		{
+			"category:": "academy",
+			"type": "console",
+			"level": "INFO"
+			},
+        {
+            "category": "academy-access",
+            "type": "file",
+            "filename": "academy.access.log",
+            "maxLogSize": 10000000,
+            "backups": 5
+        },
+		{
+			"category": "cluster",
+			"type": "file",
+			"filename": "cluster.log",
+			"maxLogSize": 10000000,
+			"backups": 5
+		},
+		{
+			"category": "worker",
+			"type": "file",
+			"filename": "workers.log",
+			"maxLogSize": 10000000,
+			"backups": 5
+		},
+        {
+            "category": "console",
+            "type": "console"
+        }
+    ],
+    "levels": {
+        "cluster": "DEBUG",
+        "worker": "DEBUG",
+        "console": "DEBUG",
+        "access": "INFO"
+    }
+}

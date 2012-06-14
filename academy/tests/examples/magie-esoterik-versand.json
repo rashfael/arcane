@@ -1,0 +1,1403 @@
+{
+    "mappings": {
+        "1333116525700": {
+            "map": {
+                "main": false,
+                "smallText": false,
+                "shipping": false,
+                "Ansha: Weiße Magie - Praxisbuch": false,
+                "infoBoxHeading": false,
+                "img_1": false,
+                "img_3": false,
+                "img_6": false,
+                "img_9": false,
+                "img_16": false,
+                "img_17": false,
+                "img_18": false,
+                "img_19": false,
+                "img_20": false,
+                "img_21": false,
+                "img_25": false,
+                "img_26": false,
+                "img_27": false,
+                "img_28": false,
+                "img_29": false,
+                "img_30": false,
+                "img_31": false,
+                "img_32": false,
+                "img_33": false,
+                "Name": "",
+                "Preis": "",
+                "ISBN": ""
+            },
+            "validFor": [
+                "nav1333116525667"
+            ],
+            "name": "Default mapping"
+        }
+    },
+    "navigation": {
+        "base": [
+            {
+                "name": "Entry point",
+                "type": "Start",
+                "config": {
+                    "request": {
+                        "url": "http://www.magie-esoterik-versand.de/catalog/magie-buecher-c-8.html?osCsid=hfnol46e4rp9skc2t8bb16iad6"
+                    }
+                },
+                "id": "nav1333116525662",
+                "next": [
+                    "nav1333116525663"
+                ]
+            }
+        ],
+        "nav1333116525663": {
+            "name": "Walk through items",
+            "type": "WalkthroughItems",
+            "config": {
+                "itemSelector": "",
+                "customSelector": "table.full tr:first-child > td:first-child > table:first-child tr:nth-child(4) > td:first-child > table:nth-child(2) tr > td > div > table",
+                "magic": {}
+            },
+            "next": [
+                "nav1333116525665"
+            ],
+            "id": "nav1333116525663",
+            "nodeConfigId": "1333116525662"
+        },
+        "nav1333116525665": {
+            "name": "Follow link",
+            "type": "FollowLink",
+            "config": {
+                "linkSelector": "tr:nth-child(3) > td:first-child > a:first-child"
+            },
+            "next": [
+                "nav1333116525666"
+            ],
+            "id": "nav1333116525665"
+        },
+        "nav1333116525666": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": "",
+                "customSelector": "table.full tr:first-child > td:first-child > form:first-child > table:first-child",
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Name",
+                                "selector": "h1.pageHeading > span:first-child",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Preis",
+                                "selector": "tr:nth-child(3) > td:first-child > div:first-child > table:first-child tr:first-child > td:nth-child(2) > h1:first-child",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "ISBN",
+                                "selector": "tr:nth-child(5) > td:first-child > p:nth-child(2)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1333116525667"
+            ],
+            "id": "nav1333116525666",
+            "nodeConfigId": "1333116791166"
+        },
+        "nav1333116525667": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {},
+            "next": [],
+            "id": "nav1333116525667"
+        }
+    },
+    "config": {
+        "currentConfigID": 1333116791166,
+        "configs": {
+            "1333116525662": {
+                "_name": "Default config",
+                "_id": 1333116525662,
+                "_listConfig": {
+                    "_DOMnodes": [
+                        {
+                            "sizcache09886916535132229": 453,
+                            "sizset": 40
+                        },
+                        {
+                            "sizcache09886916535132229": 453,
+                            "sizset": 43
+                        },
+                        {
+                            "sizcache09886916535132229": 453,
+                            "sizset": 52
+                        }
+                    ],
+                    "_contexts": [
+                        {
+                            "_liveHttpHeaders": {
+                                "isFromCache": false,
+                                "isFromProxy": false,
+                                "request": "GET /catalog/magie-buecher-c-8.html?osCsid=hfnol46e4rp9skc2t8bb16iad6 HTTP/1.1",
+                                "requestHeaders": [],
+                                "response": "HTTP/1.1 200 OK",
+                                "responseHeaders": []
+                            },
+                            "sizcache09886916535132229": 518,
+                            "location": {}
+                        }
+                    ],
+                    "_excludes": [],
+                    "_listSelectorArr": [
+                        "table.full > tbody:first-child > tr:first-child > td:first-child > table:first-child > tbody:first-child > tr:nth-child(4) > td:first-child > table:nth-child(2) > tbody:first-child > tr > td > div > table"
+                    ],
+                    "_marks": [
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        }
+                    ]
+                },
+                "_magicConfig": {},
+                "_formfillConfig": {
+                    "_fields": [],
+                    "_datasets": [],
+                    "importedJson": {
+                        "name": null,
+                        "file": null,
+                        "fileName": null
+                    }
+                }
+            },
+            "1333116791166": {
+                "_name": "Magic",
+                "_id": 1333116791166,
+                "_listConfig": {
+                    "_DOMnodes": [
+                        {
+                            "sizcache09886916535132229": 702,
+                            "sizset": 1
+                        }
+                    ],
+                    "_contexts": [
+                        {
+                            "_liveHttpHeaders": {
+                                "isFromCache": false,
+                                "isFromProxy": false,
+                                "request": "GET /catalog/ansha-weisse-magie-praxisbuch-p-277.html?cPath=8 HTTP/1.1",
+                                "requestHeaders": [],
+                                "response": "HTTP/1.1 200 OK",
+                                "responseHeaders": []
+                            },
+                            "location": {}
+                        }
+                    ],
+                    "_excludes": [],
+                    "_listSelectorArr": [],
+                    "_marks": [
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        },
+                        {
+                            "0": {},
+                            "length": 1
+                        }
+                    ]
+                },
+                "_magicConfig": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "Name",
+                                "selector": "h1.pageHeading > span:first-child",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "Preis",
+                                "selector": "tr:nth-child(3) > td:first-child > div:first-child > table:first-child tr:first-child > td:nth-child(2) > h1:first-child",
+                                "includeChildren": 2
+                            },
+                            {
+                                "key": "ISBN",
+                                "selector": "tr:nth-child(5) > td:first-child > p:nth-child(2)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                },
+                "_formfillConfig": {
+                    "_fields": [],
+                    "_datasets": [],
+                    "importedJson": {
+                        "name": null,
+                        "file": null,
+                        "fileName": null
+                    }
+                }
+            }
+        }
+    },
+    "mappingData": [
+        {
+            "id": 1333116525700,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "http://www.google.de/",
+                    "selector": {
+                        "_DOMnodes": [],
+                        "_contexts": [],
+                        "_excludes": [],
+                        "_listSelectorArr": [],
+                        "_marks": []
+                    },
+                    "data": [],
+                    "currentData": []
+                },
+                {
+                    "selector": {
+                        "_DOMnodes": [],
+                        "_contexts": [],
+                        "_excludes": [],
+                        "_listSelectorArr": [],
+                        "_marks": []
+                    },
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.magie-esoterik-versand.de/"
+                },
+                {
+                    "selector": {
+                        "_DOMnodes": [],
+                        "_contexts": [],
+                        "_excludes": [],
+                        "_listSelectorArr": [],
+                        "_marks": []
+                    },
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.magie-esoterik-versand.de/catalog/magie-buecher-c-8.html?osCsid=hfnol46e4rp9skc2t8bb16iad6"
+                },
+                {
+                    "selector": "table.full tr:first-child > td:first-child > form:first-child > table:first-child",
+                    "data": [
+                        {
+                            "key": "main",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Produkt 1 von 13",
+                                "Versandgewicht: 0.70kg",
+                                "Packmass: Maxibrief",
+                                "Anzahl:"
+                            ]
+                        },
+                        {
+                            "key": "smallText",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "[GOL442217660]",
+                                "alle Preisangaben inkl. MwSt, zzgl.",
+                                "9.90EUR",
+                                "7.90EUR",
+                                "19.90EUR",
+                                "17.80EUR",
+                                "22.90EUR",
+                                "14.90EUR"
+                            ]
+                        },
+                        {
+                            "key": "shipping",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Versandkosten"
+                            ]
+                        },
+                        {
+                            "key": "Ansha: Weiße Magie - Praxisbuch",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Für eine grössere Darstellungklicken Sie auf das Bild."
+                            ]
+                        },
+                        {
+                            "key": "infoBoxHeading",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kunden, die dieses Produkt gekauft haben, haben auch folgende Produkte gekauft:",
+                                "Neuheiten und weitere Produkte"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Nächstes Produkt"
+                            ]
+                        },
+                        {
+                            "key": "img_3",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Ansha: Weiße Magie - Praxisbuch"
+                            ]
+                        },
+                        {
+                            "key": "img_6",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Nächstes Produkt"
+                            ]
+                        },
+                        {
+                            "key": "img_9",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Bewertungen"
+                            ]
+                        },
+                        {
+                            "key": "img_16",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Drachen-Pentagramm"
+                            ]
+                        },
+                        {
+                            "key": "img_17",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Cassiellum  - Karmaklärung"
+                            ]
+                        },
+                        {
+                            "key": "img_18",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Eleonore Jacobi: Ouija-Set"
+                            ]
+                        },
+                        {
+                            "key": "img_19",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Isis kniend - schwarz/gold"
+                            ]
+                        },
+                        {
+                            "key": "img_20",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Isis-Amulett"
+                            ]
+                        },
+                        {
+                            "key": "img_21",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Chakra Stern - Anhänger"
+                            ]
+                        },
+                        {
+                            "key": "img_25",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Sun Catcher: Mandala blau"
+                            ]
+                        },
+                        {
+                            "key": "img_26",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Sun Catcher: Mandala orange"
+                            ]
+                        },
+                        {
+                            "key": "img_27",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Sun Catcher: 2 Vögel"
+                            ]
+                        },
+                        {
+                            "key": "img_28",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Sun Catcher: Regenbogen mit Sonne"
+                            ]
+                        },
+                        {
+                            "key": "img_29",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "CD- Indian Night Flower"
+                            ]
+                        },
+                        {
+                            "key": "img_30",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Turan: Die Rückkehr der Naturdevas"
+                            ]
+                        },
+                        {
+                            "key": "img_31",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Marko Pogacnik: Synchrone Welten"
+                            ]
+                        },
+                        {
+                            "key": "img_32",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "LaChapelle, Dolores: Sexualität - Der vergessene Schlüssel zur V"
+                            ]
+                        },
+                        {
+                            "key": "img_33",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Brönnle: Geistige Wesen"
+                            ]
+                        },
+                        {
+                            "key": "\n          \n        \n            \n              \n                \n                                Ansha: Weiße Magie - Praxisbuch[GOL442217660] \n                12.00EUR\n                              \n              \n                \n                alle Preisangaben inkl. MwSt, zzgl. Versandkosten\n              \n            \n        \n          \n        ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Ansha: Weiße Magie - Praxisbuch[GOL442217660] "
+                            ]
+                        },
+                        {
+                            "key": "Ansha: Weiße Magie - Praxisbuch[GOL442217660] ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "12.00EUR"
+                            ]
+                        },
+                        {
+                            "key": "\n          \n          \n            \n              \n                \n                \n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t    \t\n                   Anzahl: \n                  \n\t\t\t\t\t\t\t \t  \n\t\t\t\t\t\t\t\t\n              \n                \n              \n            \n          \n        ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n              \n                \n                \n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t    \t\n                   Anzahl: \n                  \n\t\t\t\t\t\t\t \t  \n\t\t\t\t\t\t\t\t\n              \n                \n              \n            "
+                            ]
+                        },
+                        {
+                            "key": "\n  \n    Drachen-Pentagramm\n    Cassiellum  - Karmaklärung\n    Eleonore Jacobi: Ouija-Set\n  \n  \n    Isis kniend - schwarz/gold\n    Isis-Amulett\n    Chakra Stern - Anhänger\n  \n\n",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Drachen-Pentagramm"
+                            ]
+                        },
+                        {
+                            "key": "Drachen-Pentagramm",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Cassiellum  - Karmaklärung"
+                            ]
+                        },
+                        {
+                            "key": "Isis kniend - schwarz/gold",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Isis-Amulett"
+                            ]
+                        },
+                        {
+                            "key": "\n  \n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Sun Catcher: Mandala blau9.90EUR\n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Sun Catcher: Mandala orange9.90EUR\n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Sun Catcher: 2 Vögel7.90EUR\n  \n  \n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Sun Catcher: Regenbogen mit Sonne9.90EUR\n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t CD- Indian Night Flower19.90EUR\n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Turan: Die Rückkehr der Naturdevas17.80EUR\n  \n  \n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Marko Pogacnik: Synchrone Welten22.90EUR\n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t LaChapelle, Dolores: Sexualität - Der vergessene Schlüssel zur V14.90EUR\n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Brönnle: Geistige Wesen14.90EUR\n  \n\n",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Sun Catcher: Mandala blau9.90EUR"
+                            ]
+                        },
+                        {
+                            "key": "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Sun Catcher: Mandala blau9.90EUR",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Sun Catcher: Mandala orange9.90EUR"
+                            ]
+                        },
+                        {
+                            "key": "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Sun Catcher: Regenbogen mit Sonne9.90EUR",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t CD- Indian Night Flower19.90EUR"
+                            ]
+                        },
+                        {
+                            "key": "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Marko Pogacnik: Synchrone Welten22.90EUR",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t LaChapelle, Dolores: Sexualität - Der vergessene Schlüssel zur V14.90EUR"
+                            ]
+                        },
+                        {
+                            "key": "Name",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Ansha: Weiße Magie - Praxisbuch[GOL442217660]"
+                            ]
+                        },
+                        {
+                            "key": "Preis",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "12.00EUR"
+                            ]
+                        },
+                        {
+                            "key": "ISBN",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "ISBN :  9783442217663"
+                            ]
+                        }
+                    ],
+                    "currentData": [
+                        {
+                            "key": "main",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Produkt 1 von 13",
+                                "Versandgewicht: 0.70kg",
+                                "Packmass: Maxibrief",
+                                "Anzahl:"
+                            ]
+                        },
+                        {
+                            "key": "smallText",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "[GOL442217660]",
+                                "alle Preisangaben inkl. MwSt, zzgl.",
+                                "9.90EUR",
+                                "7.90EUR",
+                                "19.90EUR",
+                                "17.80EUR",
+                                "22.90EUR",
+                                "14.90EUR"
+                            ]
+                        },
+                        {
+                            "key": "shipping",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Versandkosten"
+                            ]
+                        },
+                        {
+                            "key": "Ansha: Weiße Magie - Praxisbuch",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Für eine grössere Darstellungklicken Sie auf das Bild."
+                            ]
+                        },
+                        {
+                            "key": "infoBoxHeading",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kunden, die dieses Produkt gekauft haben, haben auch folgende Produkte gekauft:",
+                                "Neuheiten und weitere Produkte"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Nächstes Produkt"
+                            ]
+                        },
+                        {
+                            "key": "img_3",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Ansha: Weiße Magie - Praxisbuch"
+                            ]
+                        },
+                        {
+                            "key": "img_6",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Nächstes Produkt"
+                            ]
+                        },
+                        {
+                            "key": "img_9",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Bewertungen"
+                            ]
+                        },
+                        {
+                            "key": "img_16",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Drachen-Pentagramm"
+                            ]
+                        },
+                        {
+                            "key": "img_17",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Cassiellum  - Karmaklärung"
+                            ]
+                        },
+                        {
+                            "key": "img_18",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Eleonore Jacobi: Ouija-Set"
+                            ]
+                        },
+                        {
+                            "key": "img_19",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Isis kniend - schwarz/gold"
+                            ]
+                        },
+                        {
+                            "key": "img_20",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Isis-Amulett"
+                            ]
+                        },
+                        {
+                            "key": "img_21",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Chakra Stern - Anhänger"
+                            ]
+                        },
+                        {
+                            "key": "img_25",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Sun Catcher: Mandala blau"
+                            ]
+                        },
+                        {
+                            "key": "img_26",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Sun Catcher: Mandala orange"
+                            ]
+                        },
+                        {
+                            "key": "img_27",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Sun Catcher: 2 Vögel"
+                            ]
+                        },
+                        {
+                            "key": "img_28",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Sun Catcher: Regenbogen mit Sonne"
+                            ]
+                        },
+                        {
+                            "key": "img_29",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "CD- Indian Night Flower"
+                            ]
+                        },
+                        {
+                            "key": "img_30",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Turan: Die Rückkehr der Naturdevas"
+                            ]
+                        },
+                        {
+                            "key": "img_31",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Marko Pogacnik: Synchrone Welten"
+                            ]
+                        },
+                        {
+                            "key": "img_32",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "LaChapelle, Dolores: Sexualität - Der vergessene Schlüssel zur V"
+                            ]
+                        },
+                        {
+                            "key": "img_33",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Brönnle: Geistige Wesen"
+                            ]
+                        },
+                        {
+                            "key": "\n          \n        \n            \n              \n                \n                                Ansha: Weiße Magie - Praxisbuch[GOL442217660] \n                12.00EUR\n                              \n              \n                \n                alle Preisangaben inkl. MwSt, zzgl. Versandkosten\n              \n            \n        \n          \n        ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Ansha: Weiße Magie - Praxisbuch[GOL442217660] "
+                            ]
+                        },
+                        {
+                            "key": "Ansha: Weiße Magie - Praxisbuch[GOL442217660] ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "12.00EUR"
+                            ]
+                        },
+                        {
+                            "key": "\n          \n          \n            \n              \n                \n                \n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t    \t\n                   Anzahl: \n                  \n\t\t\t\t\t\t\t \t  \n\t\t\t\t\t\t\t\t\n              \n                \n              \n            \n          \n        ",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n              \n                \n                \n\t\t\t\t\t\t\t\t\n\t\t\t\t\t\t\t    \t\n                   Anzahl: \n                  \n\t\t\t\t\t\t\t \t  \n\t\t\t\t\t\t\t\t\n              \n                \n              \n            "
+                            ]
+                        },
+                        {
+                            "key": "\n  \n    Drachen-Pentagramm\n    Cassiellum  - Karmaklärung\n    Eleonore Jacobi: Ouija-Set\n  \n  \n    Isis kniend - schwarz/gold\n    Isis-Amulett\n    Chakra Stern - Anhänger\n  \n\n",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Drachen-Pentagramm"
+                            ]
+                        },
+                        {
+                            "key": "Drachen-Pentagramm",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Cassiellum  - Karmaklärung"
+                            ]
+                        },
+                        {
+                            "key": "Isis kniend - schwarz/gold",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Isis-Amulett"
+                            ]
+                        },
+                        {
+                            "key": "\n  \n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Sun Catcher: Mandala blau9.90EUR\n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Sun Catcher: Mandala orange9.90EUR\n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Sun Catcher: 2 Vögel7.90EUR\n  \n  \n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Sun Catcher: Regenbogen mit Sonne9.90EUR\n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t CD- Indian Night Flower19.90EUR\n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Turan: Die Rückkehr der Naturdevas17.80EUR\n  \n  \n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Marko Pogacnik: Synchrone Welten22.90EUR\n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t LaChapelle, Dolores: Sexualität - Der vergessene Schlüssel zur V14.90EUR\n    \n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Brönnle: Geistige Wesen14.90EUR\n  \n\n",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Sun Catcher: Mandala blau9.90EUR"
+                            ]
+                        },
+                        {
+                            "key": "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Sun Catcher: Mandala blau9.90EUR",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Sun Catcher: Mandala orange9.90EUR"
+                            ]
+                        },
+                        {
+                            "key": "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Sun Catcher: Regenbogen mit Sonne9.90EUR",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t CD- Indian Night Flower19.90EUR"
+                            ]
+                        },
+                        {
+                            "key": "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t Marko Pogacnik: Synchrone Welten22.90EUR",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "\n\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t LaChapelle, Dolores: Sexualität - Der vergessene Schlüssel zur V14.90EUR"
+                            ]
+                        },
+                        {
+                            "key": "Name",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "Ansha: Weiße Magie - Praxisbuch[GOL442217660]"
+                            ]
+                        },
+                        {
+                            "key": "Preis",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "12.00EUR"
+                            ]
+                        },
+                        {
+                            "key": "ISBN",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "ISBN :  9783442217663"
+                            ]
+                        }
+                    ],
+                    "url": "http://www.magie-esoterik-versand.de/catalog/ansha-weisse-magie-praxisbuch-p-277.html?cPath=8"
+                }
+            ]
+        }
+    ],
+    "project": "magie"
+}

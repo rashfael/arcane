@@ -1,0 +1,112 @@
+!!! 5
+html(lang="en")
+  head
+    title magic wand maual
+    link(rel="stylesheet", href="http://twitter.github.com/bootstrap/1.4.0/bootstrap.min.css")
+    style(type='text/css')
+      /* Override some defaults */
+      html, body {
+        background-color: #eee;
+      }
+      body {
+        padding-top: 40px; /* 40px to make the container go all the way to the bottom of the topbar */
+      }
+      .container > footer p {
+        text-align: center; /* center align it with the container */
+      }
+      .container {
+        width: 480px; /* downsize our container to make the content feel a bit tighter and more cohesive. NOTE: this removes two full columns from the grid, meaning you only go to 14 columns and not 16. */
+      }
+
+      /* The white background content wrapper */
+      .content {
+        background-color: #fff;
+        padding: 20px;
+        margin: 0 -20px; /* negative indent the amount of the padding to maintain the grid system */
+        -webkit-border-radius: 0 0 6px 6px;
+           -moz-border-radius: 0 0 6px 6px;
+                border-radius: 0 0 6px 6px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.15);
+                box-shadow: 0 1px 2px rgba(0,0,0,.15);
+      }
+
+      /* Page header tweaks */
+      .page-header {
+        background-color: #f5f5f5;
+        padding: 20px 20px 10px;
+        margin: -20px -20px 20px;
+      }
+
+      /* Styles you shouldn't keep as they are for displaying this base example only */
+      .content .span10,
+      .content .span4 {
+        min-height: 500px;
+      }
+      /* Give a quick and non-cross-browser friendly divider */
+      .content .span4 {
+        margin-left: 0;
+        padding-left: 19px;
+        border-left: 1px solid #eee;
+      }
+
+      .topbar .btn {
+        border: 0;
+      }  
+  body
+  
+    div.topbar
+      div.fill
+        div.container
+          a.brand magic wand  
+
+    div.container
+      div.content
+        div.page-header
+          h1 The Bookmarklet! <small>magic everywhere</small>
+          
+
+        h2 What is this, I don't even…
+    
+        p Wait. If you're only reading the source of this file, please do a 
+          | <code>$ coffee serve</code>. Then have a look at
+          | <a href='http://localhost:9000/'> this wonderful page</a>.
+
+        h2 Installation
+
+        p Drag this bookmarklet to your address-bar:
+        
+        div.container.span2
+          a.btn.large.primary(href=bookmarklet) magic wand
+        
+        p.space
+        
+        p Then just click the bookmark on any page you want.
+        
+        p <span class="label warning">Important</span>
+          |  You have to keep the server running while you want to use the.
+          | bookmarklet. It'll always provides you with the freshest magic
+          | out there.
+    
+        h2 Example
+    
+        p Just click the button above and hover over the following stuff:
+      
+        div.container.span5
+        
+          h3 A wonderful table.
+        
+          table.condensed-table
+            thead
+              tr
+                td name
+                td age
+            tbody
+              tr
+                td Alice
+                td 24
+        
+          h3 And some Stuff with CSS classes
+        
+          span.price 42€
+          p.descr Look at this amazing horse!

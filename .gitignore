@@ -1,15 +1,71 @@
-lib-cov
-*.seed
-*.log
-*.csv
-*.dat
+
+# Ignore OS cache files
+.DS_Store
+[Tt]humbs.db
+
+# Ignore vim swap & cache files
+*.swp
+*.swo
+*.swn
+*.un~
+
+# Ignore IDEA project files/folders
+.idea
+
+# Ignore cake caches
+.cake_task_cache
+
+# Ignore Kile temporary files
+*.backup
+*~
+
+# Ignore latex generator file
 *.out
-*.pid
-*.gz
+*.aux
+*.toc
+*.idx
+*.synctex.gz
+*.log
 
-pids
-logs
-results
+# 3rd party node modules
+*node_modules*
+magic/tests/html/*
 
-node_modules
+
+# magic library
+magic/out
+magic/docs
+magic/old/docs/index.html
+magic/old/test/sandbox/generated
+
+# scraper
+scraper/node_modules/*
+
+# server
+server/node_modules/*
+server/lib/public/css/style.css
+
+# FF extension build helpers
+create-xpi.sh
+test.xpi
+wedex-extension.xpi
+extension/scraperExtension@wedex.iao.fraunhofer.de.xpi
+
+# Extension builder bat
+extension/extension-builder.bat
+extension/extension-builder-debugger.bat
+
+# jqselector docs and testresults
+jqselector/docs/
+jqselector/tests/html/
+
+# js buildings for windows cluster
+academy/cluster/lib/*.js
+academy/cluster/*.js
+academy/commons/*.js
+academy/cluster/lib/navigation/*.js
+/lib/
+/magic.js
+
+# debug stuff
 npm-debug.log

@@ -1,0 +1,15 @@
+form(method='POST')
+	fieldset
+		legend Export Configuration
+		div.clearfix
+			label(for='configuration') JSON Config
+			div.input
+				textarea(class='xxlarge', name='configuration', rows='10')
+		div.clearfix
+			label(for='data') Data
+			div.input
+				textarea(class='xxlarge', name='data', rows='10')
+		div.actions
+			input(type='submit', class='btn primary', value='Submit')
+			&nbsp
+			button(type='reset', class='btn') Cancel

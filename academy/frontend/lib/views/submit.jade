@@ -1,0 +1,30 @@
+extends layout
+
+block content
+	h1 Submit
+
+	p Submit your generated configuration here to run a scraping session.
+
+	form.well(method='post', enctype='multipart/form-data')
+		fieldset
+			.clearfix
+				label(for'config[name]') Jobname
+				.input
+					input.xxlarge(type='text', name='config[name]')
+			.clearfix
+				label(for'config[project]') Project
+				.input
+					input.xxlarge(type='text', name='config[project]')
+			.clearfix
+				label(for='config[raw]') Configuration (JSON)
+				.input
+					textarea.xxlarge(type='textarea', rows='5', cols='100', name='config[raw]')
+			.clearfix
+				label(for='configfile') Upload file
+				.input
+					input.file-input(name='configfile', type='file')
+				.actions
+					button.btn.primary(type="send", value="Send") Send
+					!= " "
+					button.btn(type="reset", value="Reset") Reset
+

@@ -1,0 +1,25 @@
+fs = require 'fs'
+{exec} = require 'child_process'
+util = require 'util'
+
+task 'clean', 'Clean all generated files', ->
+	exec 'rm -r ./docs ./tests/html', (err, stdout, stderr) ->
+		notify 'Cleaned all!'
+
+task 'docs', 'Build documentation with docco', ->
+	exec 'docco src/*.js', (err, stdout, stderr) ->
+		notify stdout, err
+
+task 'tests', 'Build the tests', ->
+	exec 'jade tests/template --out tests/html', (err, stdout, stderr) ->
+		if err
+			notify 'Failed building test suite!', err
+		else
+			notify 'Built test suite. Open tests/html/index.html in your browser'
+
+notify = (message = '', err) -> 
+	if err
+		util.log 'ERROR: ' + message + '\n'
+		console.log err.message
+	else
+		util.log message

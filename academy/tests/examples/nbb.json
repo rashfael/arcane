@@ -1,0 +1,597 @@
+{
+    "mappings": {
+        "1326738105302": {
+            "map": {
+                "Prozessor": "Prozessor",
+                "Arbeitsspeicher": "RAM",
+                "Festplatte": "HDD",
+                "Display": "Display",
+                "avai product_price": "Preis",
+                "img_0": "Name"
+            },
+            "validFor": [
+                "nav1326738105266",
+                "nav1326738105270"
+            ],
+            "name": "Default mapping"
+        }
+    },
+    "navigation": {
+        "base": [
+            {
+                "name": "Entry point",
+                "type": "Start",
+                "config": {
+                    "request": {
+                        "url": "http://www.notebooksbilliger.de/"
+                    }
+                },
+                "id": "nav1326738105266",
+                "next": [
+                    "nav1326738105267"
+                ]
+            }
+        ],
+        "nav1326738105267": {
+            "name": "Follow link",
+            "type": "FollowLink",
+            "config": {
+                "linkSelector": ".categories > div:first-child > a:nth-child(5)"
+            },
+            "next": [
+                "nav1326738105268"
+            ],
+            "id": "nav1326738105267"
+        },
+        "nav1326738105268": {
+            "name": "Walk through items",
+            "type": "WalkthroughItems",
+            "config": {
+                "customSelector": "#listing_main .mouseover",
+                "magic": {}
+            },
+            "next": [
+                "nav1326738105269"
+            ],
+            "id": "nav1326738105268",
+            "nodeConfigId": "1326738105266"
+        },
+        "nav1326738105269": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": ""
+            },
+            "next": [
+                "nav1326738105270"
+            ],
+            "id": "nav1326738105269"
+        },
+        "nav1326738105270": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "itemSelector": ""
+            },
+            "next": [],
+            "id": "nav1326738105270"
+        }
+    },
+    "config": {
+        "currentConfigID": 1326738105266,
+        "configs": {
+            "1326738105266": {
+                "_name": "Default config",
+                "_id": 1326738105266,
+                "_listConfig": {
+                    "_inspectedNodes": [
+                        {},
+                        {}
+                    ],
+                    "_exceptions": [],
+                    "_selectors": [
+                        "#listing_main .mouseover"
+                    ]
+                },
+                "_magicConfig": {}
+            }
+        }
+    },
+    "mappingData": [
+        {
+            "id": 1326738105302,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "http://www.notebooksbilliger.de/",
+                    "selector": "",
+                    "data": []
+                },
+                {
+                    "selector": "#listing_main .mouseover",
+                    "data": [
+                        {
+                            "key": "reviews",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Kundenbewertung:"
+                            ]
+                        },
+                        {
+                            "key": "HP 635 A1E51EA *ATI RADEON 5.0*",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "HP 635 A1E51EA *ATI RADEON 5.0*"
+                            ]
+                        },
+                        {
+                            "key": "short_description_88989",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AMD E-Series E450 DUAL-CORE 2x 1.66 GHz/  /  / 39,62cm (15.6\") Display / ATI Radeon HD6320 / DVD Multi Brenner DL/  / HDMI / WLAN b/g/n /"
+                            ]
+                        },
+                        {
+                            "key": "Prozessor",
+                            "dbKey": "Prozessor",
+                            "checked": "checked",
+                            "values": [
+                                "2x 1,66 GHz",
+                                "2x 2,20 GHz",
+                                "2x 2,40 GHz",
+                                "4x 2,20 GHz",
+                                "2x 2,13 GHz",
+                                "2x 2,30 Ghz",
+                                "2x 2,10 GHz",
+                                "4x 1,40 GHz",
+                                "2x 1,65 GHz",
+                                "2x 2,50 GHz",
+                                "4x 2,0 GHz"
+                            ]
+                        },
+                        {
+                            "key": "Arbeitsspeicher",
+                            "dbKey": "RAM",
+                            "checked": "checked",
+                            "values": [
+                                "4096 MB",
+                                "6144 MB",
+                                "2048 MB",
+                                "8192 MB"
+                            ]
+                        },
+                        {
+                            "key": "Festplatte",
+                            "dbKey": "HDD",
+                            "checked": "checked",
+                            "values": [
+                                "320 GB",
+                                "500 GB",
+                                "250 GB",
+                                "750 GB",
+                                "640 GB",
+                                "1500 GB"
+                            ]
+                        },
+                        {
+                            "key": "Display",
+                            "dbKey": "Display",
+                            "checked": "checked",
+                            "values": [
+                                "39 cm (15,6\")",
+                                "43 cm (17,3\")",
+                                "29 cm (11,6\")"
+                            ]
+                        },
+                        {
+                            "key": "avai product_price",
+                            "dbKey": "Preis",
+                            "checked": "checked",
+                            "values": [
+                                "€ 299,00",
+                                "€ 379,00",
+                                "€ 429,00",
+                                "€ 749,00",
+                                "€ 289,00",
+                                "€ 479,00",
+                                "€ 499,00",
+                                "€ 388,80",
+                                "€ 349,00",
+                                "€ 341,80",
+                                "€ 359,00",
+                                "€ 699,00",
+                                "€ 1.099,00",
+                                "€ 799,00",
+                                "€ 529,00",
+                                "€ 599,00",
+                                "€ 449,00"
+                            ]
+                        },
+                        {
+                            "key": "img_0",
+                            "dbKey": "Name",
+                            "checked": "checked",
+                            "values": [
+                                "HP 635 A1E51EA *ATI RADEON 5.0*",
+                                "HP Pavilion G6-1254SG [PREIS-KNALLER]",
+                                "Lenovo ThinkPad Edge 15 NVM2CGE 03192CG",
+                                "HP Pavilion DV6-6B55SG [DER GAMER]",
+                                "Fujitsu LIFEBOOK AH530 [FREE-DOS-KNALLER 1.0]",
+                                "HP Pavilion G6-1255SG [Multimedia-Notebook]",
+                                "Fujitsu LIFEBOOK AH531",
+                                "HP 630 A1E25EA [B950,4GB,500GB,Win7]",
+                                "HP Pavilion G7-1205SG [BLU-RAY-KNALLER]",
+                                "Lenovo ThinkPad Edge 15 694D096 0319A18",
+                                "HP 635 A1E52EA *WIN 7 KNALLER 4.0*",
+                                "HP Pavilion G7-1255SG [ALLROUNDER]",
+                                "HP Pavilion DM1-4055SG [MOBILITY-STAR]",
+                                "LENOVO B570 M58FRGE FREEDOS-KNALLER!",
+                                "Acer Aspire 7750G-2458G64Mnkk",
+                                "ASUS G73SW-TZ264V",
+                                "HP Pavilion DV6-6B56SG [GAMING-STAR]",
+                                "Packard Bell Easynote TS11HR-204GE",
+                                "Acer Aspire 5755G-52458G64Mtks Wireless Display",
+                                "Hp Pavilion G6-1219SG [WIN7-PREIS-KNALLER]"
+                            ]
+                        },
+                        {
+                            "key": "img_2",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Produktdetails",
+                                "Versandkostenfrei",
+                                "Geld-Zurück Prämie",
+                                "Studentenprogramm"
+                            ]
+                        },
+                        {
+                            "key": "HP Pavilion G6-1254SG [PREIS-KNALLER]",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "HP Pavilion G6-1254SG [PREIS-KNALLER]"
+                            ]
+                        },
+                        {
+                            "key": "short_description_88956",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "/  / große / 15,6\"  Brightview LED-Display 1366x768 / Intel HD 3000 / SuperMulti DVD±R/RW DL / WLAN bgn / HDMI /"
+                            ]
+                        },
+                        {
+                            "key": "Lenovo ThinkPad Edge 15 NVM2CGE 03192CG",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Lenovo ThinkPad Edge 15 NVM2CGE 03192CG"
+                            ]
+                        },
+                        {
+                            "key": "short_description_82297",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "(3MB Cache, 2x 2.40 GHz) /  (2x2) /  / DVD±RW Laufwerk /  / 39,5 cm (15.6\") HD LED 16:9 WXGA (1.366x768) AntiGlare Display /  / Gigabit Ethernet / Intel® WiFi 1000 BGN /  / Webcam / 6 Zellen Akku (bis zu 4.5 Std.) / 7in1 Cardreader /"
+                            ]
+                        },
+                        {
+                            "key": "img_3",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Produktdetails",
+                                "Geld-Zurück Prämie"
+                            ]
+                        },
+                        {
+                            "key": "HP Pavilion DV6-6B55SG [DER GAMER]",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "HP Pavilion DV6-6B55SG [DER GAMER]"
+                            ]
+                        },
+                        {
+                            "key": "short_description_88954",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "und Turbo-Boost bis 3,1 GHz /  / 500 GB HDD / SuperMulti DVD±R/RW mit Double-Layer-Unterstützung /  / 39,62 cm (15,6\") Display mit 1366 x 768 /  / 2x USB 3.0 / 2x USB 2.0 / W-LAN 802.11 b/g/n / Gigabit LAN / HDMI /  / 2 Jahre Abhol- und Lieferservice"
+                            ]
+                        },
+                        {
+                            "key": "Fujitsu LIFEBOOK AH530 [FREE-DOS-KNALLER 1.0]",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Fujitsu LIFEBOOK AH530 [FREE-DOS-KNALLER 1.0]"
+                            ]
+                        },
+                        {
+                            "key": "short_description_80905",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "/  / 250GB Festplatte / Intel HD Grafik / 39.6 cm (15.6\") TFT LED Backlight HD glare / DVD Super Multi Brenner/  /  /  / WLAN bgn / FreeDos"
+                            ]
+                        },
+                        {
+                            "key": "HP Pavilion G6-1255SG [Multimedia-Notebook]",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "HP Pavilion G6-1255SG [Multimedia-Notebook]"
+                            ]
+                        },
+                        {
+                            "key": "short_description_88900",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Intel® Core™ i5-2430M Prozessor mit 2x 2,4 GHz Turboboost bis 3,0 GHz /  / große / 15,6\"  Brightview LED-Display 1366x768 / Intel HD 3000 / SuperMulti DVD±R/RW DL / WLAN bgn / HDMI /"
+                            ]
+                        },
+                        {
+                            "key": "Fujitsu LIFEBOOK AH531",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Fujitsu LIFEBOOK AH531"
+                            ]
+                        },
+                        {
+                            "key": "short_description_85280",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "/  /  Festplatte / Intel HD Grafik / 39.6 cm (15.6\") TFT LED Backlight HD  / DVD Super Multi Brenner/  /  /  / WLAN bgn /"
+                            ]
+                        },
+                        {
+                            "key": "HP 630 A1E25EA [B950,4GB,500GB,Win7]",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "HP 630 A1E25EA [B950,4GB,500GB,Win7]"
+                            ]
+                        },
+                        {
+                            "key": "short_description_88084",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Intel® Pentium® Prozessor B950 2x2,1 GHz/  /  / 39,62cm (15.6\") Display / Intel HD Grafik / DVD Multi Brenner DL/  / HDMI / WLAN b/g/n /"
+                            ]
+                        },
+                        {
+                            "key": "img_1",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Produktdetails",
+                                "Studentenprogramm"
+                            ]
+                        },
+                        {
+                            "key": "HP Pavilion G7-1205SG [BLU-RAY-KNALLER]",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "HP Pavilion G7-1205SG [BLU-RAY-KNALLER]"
+                            ]
+                        },
+                        {
+                            "key": "short_description_91225",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AMD  A6-3400M 4x 1,4 GHz /  / große / 17,3\"  Brightview LED-Display 1600x900 /  mit dediziertem Speicher /  und SuperMulti DVD±R/RW DL / WLAN bgn / HDMI /"
+                            ]
+                        },
+                        {
+                            "key": "Lenovo ThinkPad Edge 15 694D096 0319A18",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Lenovo ThinkPad Edge 15 694D096 0319A18"
+                            ]
+                        },
+                        {
+                            "key": "short_description_87162",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "(3MB Cache, 2x 2.13 GHz),  Arbeitsspeicher /  / DVD±RW Brenner /  mit DirectX® 10 / 39.5cm (15.6\") HD 16:9 (1.366x768) matt  / Webcam /  / eSATA /  / Intel® WiFi 1000 bgn / HD Audio /"
+                            ]
+                        },
+                        {
+                            "key": "HP 635 A1E52EA *WIN 7 KNALLER 4.0*",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "HP 635 A1E52EA *WIN 7 KNALLER 4.0*"
+                            ]
+                        },
+                        {
+                            "key": "short_description_90433",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AMD E-Series E450 DUAL-CORE 2x 1.66 GHz/  /  / 39,62cm (15.6\") Display / ATI Radeon HD6320 / DVD Multi Brenner DL/  / HDMI / WLAN b/g/n /"
+                            ]
+                        },
+                        {
+                            "key": "HP Pavilion G7-1255SG [ALLROUNDER]",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "HP Pavilion G7-1255SG [ALLROUNDER]"
+                            ]
+                        },
+                        {
+                            "key": "short_description_88957",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Intel® Core™ i5-2430M Prozessor mit 2x 2,4 GHz Turboboost bis 3,0 GHz /  / große / 17,3\"  Brightview LED-Display 1600x900 / Intel HD 3000 / SuperMulti DVD±R/RW DL / WLAN bgn / HDMI /"
+                            ]
+                        },
+                        {
+                            "key": "avai product_old_price",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Bisheriger Preis € 519,00",
+                                "Bisheriger Preis € 829,00",
+                                "Bisheriger Preis € 469,00"
+                            ]
+                        },
+                        {
+                            "key": "HP Pavilion DM1-4055SG [MOBILITY-STAR]",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "HP Pavilion DM1-4055SG [MOBILITY-STAR]"
+                            ]
+                        },
+                        {
+                            "key": "short_description_88955",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AMD  mit 2x 1,65 GHz /  Arbeitsspeicher / große Festplatte /  29,6 cm  Brightview LED-Display 1366x768 / AMD Radeon  bis zu 1,92 GB / Lautsprecher / GIGABIT Lan / WLAN bgn / Bluetooth /  / nur 1,6 kg /"
+                            ]
+                        },
+                        {
+                            "key": "LENOVO B570 M58FRGE FREEDOS-KNALLER!",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "LENOVO B570 M58FRGE FREEDOS-KNALLER!"
+                            ]
+                        },
+                        {
+                            "key": "short_description_85558",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "/  /  / 39 cm (15,6\") TFT Glare mit  / DVD Double Layer Brenner / WLAN bgn /  / Bluetooth 2.1 / Webcam / 6 in 1 Card Reader /  / ohne Betriebssystem"
+                            ]
+                        },
+                        {
+                            "key": "Acer Aspire 7750G-2458G64Mnkk",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Acer Aspire 7750G-2458G64Mnkk"
+                            ]
+                        },
+                        {
+                            "key": "short_description_89188",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "dank Turboboost bis zu 3,10GHz /  /  /  / USB 3.0 / 5-in-1 cardreader / WLAN /   /  / HDMI / Webcam / Windows 7 Home Premium 64 Bit"
+                            ]
+                        },
+                        {
+                            "key": "img_4",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Produktdetails"
+                            ]
+                        },
+                        {
+                            "key": "ASUS G73SW-TZ264V",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "ASUS G73SW-TZ264V"
+                            ]
+                        },
+                        {
+                            "key": "short_description_89879",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "/ / Festplatte  / NVIDIA GeForce GTX 460M  /  / 43cm (17.3\")  LED Backlight / USB 3.0 / Windows 7 Home Premium 64Bit"
+                            ]
+                        },
+                        {
+                            "key": "HP Pavilion DV6-6B56SG [GAMING-STAR]",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "HP Pavilion DV6-6B56SG [GAMING-STAR]"
+                            ]
+                        },
+                        {
+                            "key": "short_description_89062",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "mit 4x 2,2 GHz und Turbo-Boost bis 3,1 GHz /  /  HDD / SuperMulti DVD±R/RW mit Double-Layer-Unterstützung /  / 39,62 cm (15,6\") Display mit 1366 x 768 /  / 2x USB 3.0 / 2x USB 2.0 / W-LAN 802.11 b/g/n / Gigabit LAN / HDMI /  / 2 Jahre Abhol- und Lieferservice"
+                            ]
+                        },
+                        {
+                            "key": "Packard Bell Easynote TS11HR-204GE",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Packard Bell Easynote TS11HR-204GE"
+                            ]
+                        },
+                        {
+                            "key": "short_description_90740",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "/  / 500GB HDD /  / HDMI / Webcam / Windows 7 Home Premium 64 Bit  Einstiegsgamer mit neuem Intel Core i5-2430M und GT520 mit 1024MB Ram!"
+                            ]
+                        },
+                        {
+                            "key": "Acer Aspire 5755G-52458G64Mtks Wireless Display",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Acer Aspire 5755G-52458G64Mtks Wireless Display"
+                            ]
+                        },
+                        {
+                            "key": "short_description_90939",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "/ 39 cm (15,6\")  /  / 640GB HDD /  / HD Webcam / HDMI / USB 3.0 /  / Linux -"
+                            ]
+                        },
+                        {
+                            "key": "Hp Pavilion G6-1219SG [WIN7-PREIS-KNALLER]",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Hp Pavilion G6-1219SG [WIN7-PREIS-KNALLER]"
+                            ]
+                        },
+                        {
+                            "key": "short_description_90735",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "/  / große / 15,6\"  Brightview LED-Display 1366x768 /  / SuperMulti DVD±R/RW DL / WLAN bgn / HDMI /"
+                            ]
+                        }
+                    ],
+                    "url": "http://www.notebooksbilliger.de/notebooks"
+                }
+            ]
+        }
+    ]
+}

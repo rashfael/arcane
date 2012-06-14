@@ -1,0 +1,1 @@
+javascript:prefFile='';void(z=document.body.appendChild(document.createElement('script')));void(z.language='javascript');void(z.type='text/javascript');void(z.src='http://localhost:9000/bootstrap');void(z.id='magic-wand-bootstrap');

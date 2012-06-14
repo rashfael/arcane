@@ -1,0 +1,60 @@
+<!DOCTYPE html><html><head><title>WalkthroughItems.coffee</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><link rel="stylesheet" media="all" href="../../docco.css"></head><body><div id="container"><div id="background"></div><div id="jump_to">Jump To &hellip;<div id="jump_wrapper"><div id="jump_page"><a href="../../index.html" class="source"><span class="file_name">README</span></a><a href="../../lib/cluster.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">cluster.coffee</span></a><a href="../../lib/encoder.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">encoder.coffee</span></a><a href="../../lib/navigation.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">navigation.coffee</span></a><a href="../../lib/navigation/Collect.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Collect.coffee</span></a><a href="../../lib/navigation/FillForm.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">FillForm.coffee</span></a><a href="../../lib/navigation/FollowLink.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">FollowLink.coffee</span></a><a href="../../lib/navigation/Generic.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Generic.coffee</span></a><a href="../../lib/navigation/Magic.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Magic.coffee</span></a><a href="../../lib/navigation/Pager.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Pager.coffee</span></a><a href="../../lib/navigation/Start.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">Start.coffee</span></a><a href="../../lib/navigation/WalkthroughItems.coffee.html" class="source selected"><span class="base_path">lib / navigation / </span><span class="file_name">WalkthroughItems.coffee</span></a><a href="../../lib/navigation/WalkthroughLinks.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">WalkthroughLinks.coffee</span></a><a href="../../lib/navigation/helpers.coffee.html" class="source "><span class="base_path">lib / navigation / </span><span class="file_name">helpers.coffee</span></a><a href="../../lib/parser.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">parser.coffee</span></a><a href="../../lib/worker.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">worker.coffee</span></a></div></div></div><table cellpadding="0" cellspacing="0"><thead><tr><th class="docs"><h1>WalkthroughItems.coffee</h1><div class="filepath">lib/navigation/</div></th><th class="code"></th></tr></thead><tbody><tr id="section-1"><td class="docs"><div class="pilwrap"><a href="#section-1" class="pilcrow">&#182;</a></div>
+</td><td class="code"><div class="highlight"><pre><span class="nv">log4js = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;log4js&#39;</span><span class="p">)</span>
+<span class="nv">logger = </span><span class="nx">log4js</span><span class="p">.</span><span class="nx">getLogger</span> <span class="s">&#39;nav:walkItems&#39;</span>
+<span class="nx">logger</span><span class="p">.</span><span class="nx">setLevel</span> <span class="s">&#39;DEBUG&#39;</span>
+
+<span class="nv">Generic = </span><span class="nx">require</span> <span class="s">&#39;./Generic&#39;</span>
+<span class="nv">helpers = </span><span class="nx">require</span> <span class="s">&#39;./helpers&#39;</span></pre></div></td></tr><tr id="section-2"><td class="docs"><div class="pilwrap"><a href="#section-2" class="pilcrow">&#182;</a></div><h3>WalkthroughItems</h3>
+
+<p>returns sibling html fragments according to selector</p>
+
+<p>Options:</p>
+
+<ul>
+<li><strong>itemSelector</strong>: uses parent.children to get lists</li>
+<li><strong>customSelector</strong>: uses user specified jQuery selector, if this is set, then the itemSelector isnt used</li>
+<li><strong>encoding</strong>: uses user specified encoding (optional)</li>
+</ul>
+</td><td class="code"><div class="highlight"><pre><span class="nv">module.exports = </span><span class="k">class</span> <span class="nx">WalkthroughItems</span> <span class="k">extends</span> <span class="nx">Generic</span>
+
+  <span class="nv">validateSettings: </span><span class="o">=&gt;</span>
+    <span class="k">throw</span> <span class="nb">Error</span> <span class="s">&quot;WalkthroughItems: Missing item or custom selector!&quot;</span> <span class="nx">unless</span> <span class="nx">@config</span><span class="p">.</span><span class="nx">customSelector</span><span class="o">?</span> <span class="o">or</span> <span class="nx">@config</span><span class="p">.</span><span class="nx">itemSelector</span><span class="o">?</span>
+
+  <span class="nv">process: </span><span class="p">(</span><span class="nx">cb</span><span class="p">)</span> <span class="o">=&gt;</span>
+    <span class="nx">@validateSettings</span><span class="p">()</span>
+    <span class="nx">@getWindow</span> <span class="p">(</span><span class="nx">err</span><span class="p">,</span> <span class="nb">window</span><span class="p">)</span> <span class="o">=&gt;</span>
+      <span class="k">if</span> <span class="nx">err</span>
+        <span class="nb">window</span><span class="p">.</span><span class="nx">close</span><span class="p">()</span>
+        <span class="nx">logger</span><span class="p">.</span><span class="nx">fatal</span> <span class="s">&quot;WalkthroughItems got error from window: &quot;</span> <span class="o">+</span> <span class="nx">err</span>
+        <span class="nx">cb</span> <span class="nx">err</span><span class="p">,</span> <span class="kc">null</span>
+        <span class="k">return</span>
+      <span class="nv">out = </span><span class="p">[]</span>
+      <span class="nv">items = </span><span class="p">[]</span>
+
+      <span class="nx">helpers</span><span class="p">.</span><span class="nx">getElements</span> <span class="nb">window</span><span class="p">,</span> <span class="nx">@config</span><span class="p">.</span><span class="nx">itemSelector</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="nx">@config</span><span class="p">.</span><span class="nx">encoding</span><span class="p">,</span> <span class="p">(</span><span class="nx">itemElements</span><span class="p">)</span> <span class="o">=&gt;</span>
+        <span class="nx">helpers</span><span class="p">.</span><span class="nx">getElements</span> <span class="nb">window</span><span class="p">,</span> <span class="nx">@config</span><span class="p">.</span><span class="nx">customSelector</span><span class="p">,</span> <span class="s">&quot;&quot;</span><span class="p">,</span> <span class="nx">@config</span><span class="p">.</span><span class="nx">encoding</span><span class="p">,</span> <span class="p">(</span><span class="nx">customElements</span><span class="p">)</span> <span class="o">=&gt;</span>
+          <span class="k">if</span> <span class="nx">itemElements</span>
+            <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="s">&quot;ItemSelector: &quot;</span> <span class="o">+</span> <span class="nx">itemElements</span><span class="p">.</span><span class="nx">parent</span><span class="p">().</span><span class="nx">children</span><span class="p">().</span><span class="nx">length</span>
+            <span class="nv">items = </span><span class="nx">itemElements</span><span class="p">.</span><span class="nx">parent</span><span class="p">().</span><span class="nx">children</span><span class="p">()</span>
+          <span class="k">if</span> <span class="nx">customElements</span>
+            <span class="nx">logger</span><span class="p">.</span><span class="nx">info</span> <span class="s">&quot;CustomSelector: &quot;</span> <span class="o">+</span> <span class="nx">customElements</span><span class="p">.</span><span class="nx">length</span>
+            <span class="nv">items = </span><span class="nx">customElements</span>
+    
+          <span class="k">if</span> <span class="nx">items</span><span class="p">.</span><span class="nx">length</span> <span class="o">is</span> <span class="mi">0</span>
+            <span class="nx">logger</span><span class="p">.</span><span class="nx">fatal</span> <span class="s">&#39;WalkthroughItems selector returned no items!&#39;</span>
+            <span class="nx">logger</span><span class="p">.</span><span class="nx">fatal</span> <span class="s">&quot;Selectors: </span><span class="si">#{</span><span class="nx">@config</span><span class="p">.</span><span class="nx">itemSelector</span><span class="si">}</span><span class="s">, </span><span class="si">#{</span><span class="nx">@config</span><span class="p">.</span><span class="nx">customSelector</span><span class="si">}</span><span class="s">&quot;</span>
+          <span class="nx">items</span><span class="p">.</span><span class="nx">each</span> <span class="p">(</span><span class="nx">i</span><span class="p">,</span> <span class="nx">el</span><span class="p">)</span><span class="o">=&gt;</span>
+            <span class="nx">out</span><span class="p">.</span><span class="nx">push</span> <span class="p">{</span>
+              <span class="nv">request:</span>
+                <span class="nv">url: </span><span class="nx">@request</span><span class="p">.</span><span class="nx">url</span>
+              <span class="nv">html: </span><span class="nx">el</span><span class="p">.</span><span class="nx">innerHTML</span>
+            <span class="p">}</span>
+          <span class="k">if</span> <span class="nx">out</span><span class="p">.</span><span class="nx">length</span> <span class="o">is</span> <span class="mi">0</span>
+            <span class="nx">logger</span><span class="p">.</span><span class="nx">fatal</span> <span class="s">&#39;HTML:&#39;</span>
+            <span class="nx">logger</span><span class="p">.</span><span class="nx">fatal</span> <span class="s">&#39;WalkthroughItems produced no results! Check your selectors. The HTML is above.&#39;</span>
+            <span class="nx">logger</span><span class="p">.</span><span class="nx">fatal</span> <span class="s">&quot;itemSelector: &#39;</span><span class="si">#{</span><span class="nx">@config</span><span class="p">.</span><span class="nx">itemSelector</span><span class="si">}</span><span class="s">&#39;&quot;</span>
+            <span class="nx">logger</span><span class="p">.</span><span class="nx">fatal</span> <span class="s">&quot;customSelector: &#39;</span><span class="si">#{</span><span class="nx">@config</span><span class="p">.</span><span class="nx">customSelector</span><span class="si">}</span><span class="s">&#39;&quot;</span>
+          <span class="nb">window</span><span class="p">.</span><span class="nx">close</span><span class="p">()</span>
+          <span class="nx">cb</span> <span class="nx">err</span><span class="p">,</span> <span class="nx">out</span>
+
+</pre></div></td></tr></tbody></table><div id="generated">generated Sun Apr 22 2012 13:41:44 GMT+0200 (CEST)  </div><div id="projectname"><a href="../../index.html">Arcane Academy Cluster</a></div></div></body></html>

@@ -1,0 +1,151 @@
+body {
+	font: normal 12px verdana, arial, helvetica, sans-serif; //
+	padding: 5px; //
+	background-color: #FFF7DC;
+	color: black;
+	min-width: 560px;
+}
+
+h1 {
+	font: normal 20px verdana, arial, helvetica, sans-serif;
+}
+
+h2,h3 {
+	width: 100%;
+	text-align: center;
+	margin: 1.5em 0 .5em 0;
+}
+
+p {
+	width: 50%;
+	margin: 10px auto;
+}
+
+a {
+	color: black;
+	text-decoration: underline;
+}
+
+a:hover {
+	text-decoration: none;
+	background-color: #D5ECFF;
+}
+
+td {
+	background-color: #fafaff;
+	border-bottom: 1px solid #ccc;
+	text-align: left; /* IE */
+	overflow:hidden;
+	height: 27px;
+}
+
+td+td {
+	border-left: 1px solid #ccc;
+}
+
+/* above this is decorative, not part of the test */
+.fixed-table-container {
+	/* width: 50%; */
+	height: 200px;
+	border: 1px solid black;
+	margin: 0px auto;
+	background-color: white;
+	/* above is decorative or flexible */
+	position: relative; /* could be absolute or relative */
+	padding-top: 30px; /* height of header */
+	background-color: #fafaff;
+}
+
+.fixed-table-container-inner {
+	background-color: #fafaff;
+}
+
+.header-background {
+	border-bottom: 1px solid black;
+	background-color: #D5ECFF;
+	background: url(images/bg1.png) repeat-x;
+	height: 30px; /* height of header */
+	position: absolute;
+	top: 0;
+	right: 0;
+	left: 0;
+}
+
+table {
+	table-layout:fixed;
+}
+
+.th-inner {
+	position: absolute;
+	top: 0;
+	line-height: 30px; /* height of header */
+	text-align: left; //
+	border-left: 1px solid black;
+	padding-left: 5px;
+	padding-right: 5px;
+	margin-left: -5px;
+	border-bottom: 1px solid black;
+}
+
+.first .th-inner {
+	border-left: none;
+	padding-left: 6px;
+}
+
+/* for tableSorter headers */
+.fixed-table-container.sort-decoration {
+	overflow-x: auto;
+	min-width: 200px; /* enough width to show arrows */
+}
+
+.sort-decoration{
+	width: 20px;
+}
+
+.header .th-inner { //
+	background-color: #D5ECFF;
+	background: url(images/bg1.png) repeat-x;
+}
+
+.headerSortUp .th-inner,.headerSortDown .th-inner { //
+	background-color: #5DDFFD;
+	background: url(images/bg1.png) repeat-x;
+}
+
+span.sortArrow {
+	background: url(images/bg.gif) 0 4px no-repeat transparent;
+	padding: 1px 10px;
+	line-height: 30px;
+}
+
+.headerSortUp span.sortArrow {
+	background: url(images/asc.gif) 0 7px no-repeat transparent;
+}
+
+.headerSortDown span.sortArrow {
+	background: url(images/desc.gif) 0 7px no-repeat transparent;
+}
+
+.mappingDBKey {
+	width: 98%;
+}
+
+.markedMappingEntry {
+	background-color: lightgrey;
+}
+
+.loadedMappingEntry {
+	color: blue;
+}
+
+.wedexTableRowSelection {
+	background-color: #E5F2F2;
+}
+
+.wedexTableCellSelection {
+	background-color: #D9F2F2;
+}
+
+.hover {
+	background-color: lightblue;
+}

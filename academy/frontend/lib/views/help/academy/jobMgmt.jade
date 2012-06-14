@@ -1,0 +1,113 @@
+extends ../layoutHelp
+
+block help
+	:markdown
+		# Job-Verwaltung
+
+	div(id='generated-toc')
+
+	:markdown
+		## Config submitten
+		
+		In diesem Abschnitt wird erklärt, wie man eine vorhandene Konfigurationsdatei im JSON Format als Job auf den Scraper bekommt.
+		
+		Zur Orientierung ist der Link, mit welchen man in diesen Bereich kommt, rot markiert.
+		
+		Man hat folgende Eingabe Möglichkeiten:
+		
+		* Jobname: Name des Jobs, dieser muss nicht angegeben werden und kann auch später geändert werden. Wenn kein Name angegeben wird, wird als Name der Dateiname verwendet.
+		* Project: Name des Projektes, zu welchem der Job gehört. Hier darf kein leeres Feld bleiben.
+		* Configuration, Upload File: Man hat hier die Möglichkeit die JSON Konfiguration direkt in das "Configuration"-Feld zu schreiben oder die Konfigurationsdatei direkt hochzuladen ("Upload File").
+		
+		Mit dem "Send"-Button kann man den Job erstellen und mit "Reset" kann man die ausgefüllten Felder wieder löschen. Nach dem betätigen des "Send"-Buttons gelangt man auf die "Job View" Seite des gerade erstellten Jobs.
+		
+		![Submit Job](/img/help/scraper_job_submit.png "Job erstellen")
+
+	a(name='JobControl')
+	h2(class='helpChapter') Job Control
+
+	:markdown
+		In diesem Bereich wird die Übersichtsseite über alle Jobs des Scrapers erklärt.
+		
+		Zur Orientierung ist der Link, mit welchen man in diesen Bereich kommt, wieder rot markiert.
+		
+		Die Übersicht ist eine Tabelle und in folgende Spalten unterteilt:
+		
+		* #: Name des Jobs. Durch folgen dieses Links gelangt man auf die "Job View" Seite, einer Übersicht eines einzelnen Jobs.
+		* Project: Name des Projektes zu dem der Job gehört. Durch folgen dieses Links kommt man auf die zugehörige Projektseite.
+		* Archived: Hier wird angegeben, ob sich der Job im RAM befindet (no) oder in der Datenbank (yes). Der unterschied besteht darin, dass nur Jobs im RAM gestartet werden können.
+		* State: Aktueller Status des Jobs. Er kann folgende Zustände haben:
+			* idle: Job noch nicht gestartet
+			* running: Job läuft gerade
+			* paused: Job ist pausiert und kann fortgesetzt werden
+			* stopped: Job wurde durch den Benutzer abgebrochen und kann auch nicht mehr fortgesetzt werden
+			* finished: der Job ist fertig und alle Daten sind damit verfügbar.
+		* Start Date: Zeitpunkt, zu dem der Job gestartet wurde
+		* End Date: Zeitpunkt, zu dem der Job fertig gestellt wurde.
+		
+		![Job Control](/img/help/scraper_job_control.png "Job Control")
+
+		## Job View
+		
+		Hier gibt es eine einzel Übersicht über einen vorher ausgewählten Job. Hier ist es möglich sich die Details eines Jobs anzusehen und den Jobs zu starten, stoppen, usw.
+		
+		Man gelangt auf diese Seite, indem man entweder einen Job unter "Submit Job" neu erstellt hat, oder über die Job Übersicht "Job Control" oder über die Seite eines zugehörigen Projektes.
+		
+		Als Details gibt es folgende Inhalte:
+		
+		* Job UUID: eine eindeutige ID des Jobs
+		* Project: Projektname zu dem der Job gehört. Durch folgen dieses Links kommt man auf die zugehörige Projektseite.
+		* State: Status des Jobs. Kann die gleichen Zustände haben, wie unter "Job Control" erklärt.
+		* Data: Enthält Links zu den Collections, in denen die Daten angezeigt werden.
+		* Submitted: Zeitpunkt zu dem der Job zum Scraper geschickt wurde
+		* Started: Zeitpunkt zu dem der Job gestartet wurde
+		* Stopped: Zeitpunkt zu dem der Job gestoppt wurde
+		* Finished: Zeitpunkt zu dem der Job fertig gestellt wurde
+		* Configuration: die JSON Configuration des Jobs
+		
+		![Job View](/img/help/scraper_job_view.png "Job View")
+		
+		Hier wird erklärt, welche Aktionen mit dem Job durchgeführt werden können. Es gibt zwei verschiedene Bedienfelder:
+		
+		Eines für Jobs, welche im RAM liegen (also not archived sind)
+		
+		![Job View: Job not archived](/img/help/scraper_job_view_notarchived.png "Job View: Job nicht archiviert")
+		
+		und eines für Jobs, welche in der Datenbank liegen (also archived sind) und damit nicht mehr gestartet werden können.
+		
+		![Job View: Job archived](/img/help/scraper_job_view_archived.png "Job View: Job archiviert")
+		
+		Der einzige Unterschied besteht darin, dass man weniger Aktionen mit archivierten Jobs durchführen kann,
+		nämlich Reshedule, Delete, Rename.
+		
+		Im folgenden werden alle Aktionen erklärt:
+		
+		### Job starten (Start)
+
+		Mit diesem Button wird der Job gestartet, wenn er sich im Status 'idle' befindet oder der Job wird fortgeführt, wenn er sich im Status 'paused' befindet.
+		Danach hat der Job den Status 'running'.
+		Wenn der Job sich in anderen Zuständen als 'idle' oder 'pause' befindet, hat der Button keine Auswirkung.
+		
+		### Job pausieren (Pause)
+		
+		Wenn sich der Job im Zustand 'running' befindet, kann er mit diesem Button pausiert werden. Der Job befindet sich dann im Status 'paused' und
+		der Scraping-Vorgang wird angehalten, bis er entweder mit "Start" wieder fortgesetzt wird oder mit "Abort" abgebrochen wird.
+		Wenn sich der Job in einem anderen Zustand als 'running' befindet, hat der Button keine Auswirkung.
+		
+		### Job abbrechen (Abort)
+		
+		Hiermit kann der Job und damit der Scraping-Vorgang abgebrochen werden. Der Job kann nicht mehr gestartet werden.
+		Der Button zu jederzeit betätigt werden.
+		
+		### Job-Kopie erstellen (Reshedule)
+		
+		Mit diesem Button kann man eine Art Kopie des Jobs erstellen. Es wird alles von dem Job übernommen: Name, Project, JSON-Konfiguration.
+		Nur hat dieser Job eine andere ID und kann ganz normal gestartet werden, als wäre der Job bei "Submit Job" erstellt worden.
+		
+		### Job löschen (Delete)
+		
+		Löscht den Job aus dem Scraper. Es kann nicht mehr auf den Job zugegriffen werden. Es gibt keine Nachfrage ob wirklich gelöscht werden soll!
+		
+		### Job umbennenen (Rename)
+		
+		Hier kann man in einem neuen Fenster einen neuen Namen für den Job eingeben.

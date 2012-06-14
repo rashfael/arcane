@@ -1,0 +1,29 @@
+{exec} = require 'child_process'
+{spawn} = require 'child_process'
+{fork} = require 'child_process'
+task 'dropDb', 'Reset the academy database and drop all project databases', ->
+	exec 'mongo tests/dropAll.js', (err, stdout, stderr) ->
+		console.log stdout, stderr
+
+task 'frontend', 'Launch the academy server', ->
+	streams = ['stdout', 'stderr']
+	server = spawn 'coffee', ['frontend/lib/server']
+	console.log 'Spawned a frontend server!'
+	for s in streams
+		server[s].setEncoding('utf8')
+		server[s].on 'data', (data) ->
+			process[s].write(data)
+
+	console.log 'Open http://localhost:9000 in your browser.'
+
+task 'cluster', 'Launch a cluster', ->
+	streams = ['stdout', 'stderr']
+	cluster = spawn 'coffee', ['cluster/lib/cluster']
+	console.log 'Spawned a cluster!'
+	for s in streams
+		cluster[s].setEncoding('utf8')
+		cluster[s].on 'data', (data) ->
+			process[s].write(data)
+
+
+

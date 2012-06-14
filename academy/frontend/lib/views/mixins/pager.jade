@@ -1,0 +1,35 @@
+mixin pager(pager)
+	if pager.pages > 1
+		.pagination
+			ul
+				if !pager.previous
+					li.prev.disabled: a ← Previous
+				else
+					li.prev: a(href=pager.page - 1) ← Previous
+
+				if pager.page==0
+					li.active: a(href=0)= 1
+				else
+					li: a(href=0)= 1
+
+				if pager.render_range & pager.left_ellipsis
+					li.disabled: a="⋯"
+
+				- for (i=pager.range_start; i<pager.range_end; i++)
+					if i==pager.page
+						li.active: a(href=i)= i+1
+					else
+						li: a(href=i)= i+1
+
+				if pager.render_range & pager.right_ellipsis
+					li.disabled: a="⋯"
+
+				if pager.page==pager.pages-1
+					li.active: a(href=pager.pages - 1)= pager.pages
+				else
+					li: a(href=pager.pages - 1)= pager.pages
+
+				if !pager.next
+					li.next.disabled: a Next →
+				else
+					li.next: a(href=pager.page + 1) Next →

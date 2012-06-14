@@ -1,0 +1,46 @@
+extends project_details
+
+block controls
+	h4= 'Collection: ' + col
+	.btn-toolbar
+		if(!empty)
+			.btn-group
+				a.btn(href='/projects/#{project.id}/#{col}/structure')
+					i.icon-eye-open
+					=" Analyse Structure"
+				a.btn(href='/projects/#{project.id}/#{col}/merge')
+					=" Merge"
+				a.btn(href='/projects/#{project.id}/#{col}/transform')
+					=" Transform"
+				a.btn(href='/projects/#{project.id}/#{col}/extract')
+					i.icon-cog
+					=" Extract"
+			.btn-group
+				a.btn(href='/projects/#{project.id}/#{col}/export/csv/#{col}.csv')
+					i.icon-download-alt
+					=" CSV"
+				a.btn(href='/projects/#{project.id}/#{col}/export/json/#{col}.json')
+					i.icon-download-alt
+					=" JSON"
+		else
+			.btn-group
+				a.btn.disabled(href='/projects/#{project.id}/#{col}/structure')
+					i.icon-eye-open
+					=" Analyse Structure"
+				a.btn.disabled(href='/projects/#{project.id}/#{col}/merge')
+					=" Merge"
+				a.btn.disabled(href='/projects/#{project.id}/#{col}/transform')
+					=" Transform"
+				a.btn.disabled(href='/projects/#{project.id}/#{col}/extract')
+					i.icon-cog
+					=" Extract"
+			.btn-group
+				a.btn.disabled(href='/projects/#{project.id}/#{col}/export/csv/#{col}.csv')
+					i.icon-download-alt
+					=" CSV"
+				a.btn.disabled(href='/projects/#{project.id}/#{col}/export/json/#{col}.json')
+					i.icon-download-alt
+					=" JSON"
+
+block context
+	!=partial('collection_table')

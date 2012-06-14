@@ -1,0 +1,277 @@
+<?xml version="1.0"?>
+
+<!DOCTYPE prefwindow SYSTEM "chrome://scraperExtension/locale/options.dtd">
+
+<prefwindow xmlns="http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul" id="optionsDialog" buttons="accept,cancel" title="Advanced Options" style="background-color: menu !important; opacity: 1.0;" onload="setContextVars(); /*encrypt();*/ validate();">
+	
+	<stringbundleset id="stringbundleset">
+        <stringbundle id="strings_main" src="chrome://scraperExtension/locale/main.properties"/>
+        <stringbundle id="strings_options" src="chrome://scraperExtension/locale/options.properties"/>
+    </stringbundleset>
+	
+	<prefpane id="connectionPane" label="&options.connection.label;" image="chrome://scraperExtension/skin/images/database_32.png">
+		<preferences>
+			<preference id="pref_ip" name="extensions.firebug.scraperExtension.scraperIP" type="string"/>
+			<preference id="pref_port" name="extensions.firebug.scraperExtension.scraperPort" type="int"/>
+			<preference id="pref_usr" name="extensions.firebug.scraperExtension.usrName" type="string"/>
+			<preference id="pref_pwd" name="extensions.firebug.scraperExtension.pwd" type="string"/>
+			<preference id="pref_timeout" name="extensions.firebug.scraperExtension.timeout" type="int"/>
+			<preference id="pref_showPwd" name="extensions.firebug.scraperExtension.pref_showPwd" type="bool" onchange="encrypt()"/>
+		</preferences>
+		<commandset id="optionCommandSet">
+
+			<command id="cmd_ipHelp" oncommand="onShowHelp(0)"/>
+			<command id="cmd_portHelp" oncommand="onShowHelp(1)"/>
+			<command id="cmd_timeoutHelp" oncommand="onShowHelp(2)"/>
+			<command id="cmd_statusHelp" oncommand="onShowHelp(3)"/>
+			<command id="cmd_opacHelp" oncommand="onShowHelp(4)"/>
+			<command id="cmd_colorHelp" oncommand="onShowHelp(5)"/>
+			<command id="cmd_spacingHelp" oncommand="onShowHelp(6)"/>
+			<command id="cmd_styleHelp" oncommand="onShowHelp(7)"/>
+			
+		</commandset>
+		
+		<grid>
+			<columns><column/><column/></columns>
+			<rows>
+				<row align="center" style="text-align:right">
+					<image id="image_connectionPane" maxwidth='16' maxheight='16'/>
+					<description id="message_connectionPane" style="color:red" value=""/>
+				</row>
+			</rows>				
+		</grid>
+				
+		<groupbox>
+			<caption label="&options.connection.server.label;"/>		
+			<grid>
+				<columns><column/><column flex="2"/><column/></columns>
+				<rows>
+					<row align="center"><label value="&options.connection.ip.label;"/><textbox preference="pref_ip" id="scraperIp" onchange="validate()" /><toolbarbutton image="chrome://scraperExtension/skin/images/question-small-white_16.png" tooltiptext="&options.connection.ip.help.tooltip;" class="toolbar-text-button" command="cmd_ipHelp"/></row>
+					<row align="center"><label value="&options.connection.port.label;"/><textbox preference="pref_port" id="scraperPort" onchange="validate()" type="number"/><toolbarbutton image="chrome://scraperExtension/skin/images/question-small-white_16.png" tooltiptext="&options.connection.port.help.tooltip;" class="toolbar-text-button" command="cmd_portHelp"/></row>
+					<row align="center"><label value="&options.connection.timeout.label;"/><textbox preference="pref_timeout" id="connectionTimeout" type="number" min="0"/><toolbarbutton image="chrome://scraperExtension/skin/images/question-small-white_16.png" tooltiptext="&options.connection.timeout.help.tooltip;" class="toolbar-text-button" command="cmd_timeoutHelp"/></row>
+				</rows>				
+			</grid>			
+		</groupbox>
+		<!--groupbox>
+			<caption label="&options.connection.auth.label;"/>
+			<grid>
+				<columns><column/><column flex="2"/></columns>
+				<rows>
+					<row align="center"><label value="&options.connection.usr.label;"/><textbox preference="pref_usr" id="usrName"/></row>
+					<row align="center"><label value="&options.connection.pw.label;"/><textbox type="password" preference="pref_pwd" id="pwd"/></row>
+					<row align="center"><spacer flex="1"/><checkbox label="&options.connection.showpw.label;" id="showPwd" preference="pref_showPwd"/></row>
+				</rows>
+		  </grid>
+		</groupbox-->
+		
+	</prefpane>
+	<prefpane id="displayPane" label="&options.display.label;" image="chrome://scraperExtension/skin/images/monitor_32.png">
+		<preferences>
+			<preference id="pref_mappingKeysColor" name="extensions.firebug.scraperExtension.mappingKeysColor" type="string" />
+			<preference id="pref_mappingValuesColor" name="extensions.firebug.scraperExtension.mappingValuesColor" type="string" />
+			<preference id="pref_nodeSpacing" name="extensions.firebug.scraperExtension.nodeSpacing" type="int" />
+			<preference id="pref_nodeStyle" name="extensions.firebug.scraperExtension.nodeStyle" type="string" />
+			<preference id="pref_graphTheme" name="extensions.firebug.scraperExtension.graphTheme" type="string" />
+			<preference id="pref_statusTimeout" name="extensions.firebug.scraperExtension.statusTimeout" type="int"/>
+			<preference id="pref_markOpac" name="extensions.firebug.scraperExtension.markOpac" type="int"/>
+			<preference id="pref_markColor" name="extensions.firebug.scraperExtension.markColor" type="string" />
+		</preferences>
+		<grid>
+			<columns><column/><column/></columns>
+			<rows>
+				<row align="center" style="text-align:right">
+					<image id="image_colorPane" maxwidth='16' maxheight='16'/>		
+					<description id="message_colorPane" style="color:red" value=""/>
+				</row>
+			</rows>				
+		</grid>
+		<groupbox>
+			<caption label="&options.display.general.label;"/>
+			<grid>
+				<columns><column/><column flex="2"/><column/></columns>
+				<rows>
+					<row align="center"><label value="&options.display.stimeout.label;"/><textbox preference="pref_statusTimeout" id="statusTimeout" type="number" min="-1"/><toolbarbutton image="chrome://scraperExtension/skin/images/question-small-white_16.png" tooltiptext="&options.display.stimeout.tooltip;" class="toolbar-text-button" command="cmd_statusHelp"/></row>
+				</rows>
+			</grid>
+		</groupbox>
+		<groupbox>
+			<caption label="&options.display.colors.label;"/>
+			<grid>
+				<columns><column/><column flex="2"/><column/></columns>
+				<rows>
+					<row align="center"><label value="&options.display.opac.label;"/><textbox preference="pref_markOpac" id="confOpacity" type="number" min="0" max="100"/><spacer/><toolbarbutton image="chrome://scraperExtension/skin/images/question-small-white_16.png" tooltiptext="&options.display.opac.help.tooltip;" class="toolbar-text-button" command="cmd_opacHelp"/></row>
+					<row align="center"><label value="&options.display.color.label;"/><textbox id="confItemsColorTB" onchange="validate()" preference="pref_markColor"/><colorpicker preference="pref_markColor" type="button" onchange="validate()"/><toolbarbutton image="chrome://scraperExtension/skin/images/question-small-white_16.png" tooltiptext="&options.display.color.help.tooltip;" class="toolbar-text-button" command="cmd_colorHelp"/></row>
+				</rows>
+			</grid>
+		</groupbox>
+		<groupbox>
+			<caption label="&options.display.navigation.label;"/>
+			<grid>
+				<columns><column/><column flex="2"/><column/></columns>
+				<rows>
+					<tooltip id="scaleTlTp" state="open" noautohide="true" />
+					<row align="center"><label value="&options.display.spacing.label;"/>
+						<scale min="10" max="200" increment="10" preference-editable="true" preference="pref_nodeSpacing" id="nodeSpacingScale" onsyncfrompreference="var val=document.getElementById('pref_nodeSpacing').value; document.getElementById('scaleTlTp').label=val; return val;" onsynctopreference="var val=document.getElementById('nodeSpacingScale').value; document.getElementById('scaleTlTp').label=val;return val;" tooltip="scaleTlTp"/>
+						<toolbarbutton image="chrome://scraperExtension/skin/images/question-small-white_16.png" tooltiptext="&options.display.spacing.help.tooltip;" class="toolbar-text-button" command="cmd_spacingHelp"/>
+					</row>
+					<row align="center"><label value="&options.display.style.label;"/>
+						<menulist  preference="pref_nodeStyle">
+							<menupopup>
+								<menuitem label="&options.display.iat.label;" value="Image and Text"/>
+								<menuitem label="&options.display.i.label;" value="Image"/>
+							</menupopup>
+						</menulist>
+						<toolbarbutton image="chrome://scraperExtension/skin/images/question-small-white_16.png" tooltiptext="&options.display.style.help.tooltip;" class="toolbar-text-button" command="cmd_styleHelp"/>
+					</row>
+				</rows>
+			</grid>
+		</groupbox>
+	</prefpane>
+	
+	<script src="chrome://scraperExtension/content/lib/external/jquery.js" type="application/x-javascript"/>	
+	<script src="chrome://scraperExtension/content/lib/internal/helpers.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/lib/internal/status.js" type="application/x-javascript"/>
+	<script src="chrome://scraperExtension/content/comm/communication.js" type="application/x-javascript"/>
+	<script type="application/x-javascript">
+		/**
+		 * The firebug variable
+		 */
+		var Firebug;
+		
+		/**
+		 * The extension panel
+		 */
+		var fbDocument;			
+		
+		/**
+		 * Method which sets the global context variables to allow access to the extension panel and firebug
+		 */
+		function setContextVars(){
+			Firebug = window.arguments[0];
+			fbDocument = window.arguments[1];
+		};
+		
+		/**
+		 * Method which toggles the type of the pwd textbox depending on the state of the showPwd checkbox state.
+		 */
+		function encrypt(){
+			if(document.getElementById('showPwd').checked==true){
+				document.getElementById('pwd').type='';
+			}else{
+				document.getElementById('pwd').type='password';
+			};
+		};
+		
+		/**
+		 * Method to validate the inputs of textboxes for hexcodes. 
+		 */
+		function validateColor(){
+			var prefWin=document.getElementById("optionsDialog");
+			var messageBox=document.getElementById("message_colorPane");
+			prefWin.getButton("accept").disabled=false;
+			messageBox.value="";
+			
+			//Validate config items color
+			var confItemsColorTB=document.getElementById('confItemsColorTB');
+			if(helpers.isHexcode(confItemsColorTB.value)!=true){
+				jQuery("#image_colorPane", document).attr('src', 'chrome://scraperExtension/skin/images/error_16.png');
+				prefWin.getButton("accept").disabled=true;
+				jQuery("#message_colorPane",document).val(helpers.STR("strings_options",'options.disp.col.error'));
+				jQuery(confItemsColorTB).css("color","red");
+				jQuery(messageBox,document).css("color","red");
+			}else{
+				jQuery(confItemsColorTB).css("color","");
+			}
+		};
+		
+		/**
+		 * Method for the server check animation.
+		 * @param {Object} versionObject Object containing the server information.
+		 */
+		function drawServerCheck(versionObject) {
+						
+			var ip = jQuery("#scraperIp", document);
+			var port = jQuery("#scraperPort", document);
+			var prefWin=document.getElementById("optionsDialog");
+			
+			if (versionObject == null) {
+				jQuery("#message_connectionPane", document).css("color","red");
+				jQuery("#image_connectionPane", document).attr('src', 'chrome://scraperExtension/skin/images/error_16.png');
+				jQuery("#message_connectionPane", document).val(helpers.STR("strings_options","options.connection.error"));
+				ip.css("color","red");
+				port.css("color","red");
+			}else{
+				jQuery("#image_connectionPane", document).attr('src', '');
+				jQuery("#message_connectionPane", document).val('');
+				jQuery("#message_connectionPane", document).css("color","");
+				ip.css("color","");
+				port.css("color","");
+			}	
+		};
+		
+		/**
+		 * Method to validate the endpoint information (ip+port)
+		 */
+		function validateEndpoint() {			
+			jQuery("#message_connectionPane", document).css("color","");			
+			jQuery("#image_connectionPane", document).attr('src', 'chrome://scraperExtension/skin/images/WorkInProgress1.gif');
+			jQuery("#message_connectionPane", document).val(helpers.STR("strings_options","options.connection.info"));
+			Firebug.setPref(Firebug.prefDomain, "scraperExtension.scraperURL", 'http://' + jQuery("#scraperIp", document).val() + ':' + jQuery("#scraperPort", document).val());
+			Firebug.setPref(Firebug.prefDomain, "scraperExtension.usrName", jQuery("#usrName", document).val());
+			Firebug.setPref(Firebug.prefDomain, "scraperExtension.pwd", jQuery("#pwd", document).val());
+			Firebug.setPref(Firebug.prefDomain, "scraperExtension.timeout", parseInt(jQuery("#connectionTimeout", document).val()));
+			communication.requestVersion(drawServerCheck);
+		};
+		
+		/**
+		 * Method to validate the inputs.
+		 */
+		function validate(){
+			var prefWin=document.getElementById("optionsDialog");
+			prefWin.getButton("accept").disabled=false;
+			jQuery("#image_connectionPane", document).attr('src', '');
+			jQuery("#message_connectionPane", document).val('');
+			jQuery("#message_connectionPane", document).css("color","");
+			jQuery("#image_colorPane", document).attr('src', '');
+			jQuery("#message_colorPane", document).css("color","");
+			jQuery("#message_colorPane", document).value="";
+			validateEndpoint();
+			validateColor();
+		};
+		
+		/**
+		 * Method to follow the link of the appropriate help button.
+		 * @param {Integer} val Helper variable to avoid code duplication.
+		 */
+		function onShowHelp(val) {
+			switch (val) {
+				case 0:						
+					helpers.openHelp("help/wand/gui#WandOptionsIP");
+					break;					
+				case 1:						
+					helpers.openHelp("help/wand/gui#WandOptionsPort");
+					break;
+				case 2:						
+					helpers.openHelp("help/wand/gui#WandOptionsTO");
+					break;
+				case 3:						
+					helpers.openHelp("help/wand/gui#WandOptionsStatusTO");
+					break;
+				case 4:						
+					helpers.openHelp("help/wand/gui#WandOptionsMarkOpac");
+					break;
+				case 5:						
+					helpers.openHelp("help/wand/gui#WandOptionsMarkColor");
+					break;
+				case 6:						
+					helpers.openHelp("help/wand/gui#WandOptionsSpacing");
+					break;
+				case 7:						
+					helpers.openHelp("help/wand/gui#WandOptionsStyle");
+					break;
+			}
+		};		
+		
+	</script>
+	<command id="cmd_showPwd" oncommand="encrypt()"/>
+</prefwindow>

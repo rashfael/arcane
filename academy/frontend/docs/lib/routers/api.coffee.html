@@ -1,0 +1,231 @@
+<!DOCTYPE html><html><head><title>api.coffee</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><link rel="stylesheet" media="all" href="../../docco.css"></head><body><div id="container"><div id="background"></div><div id="jump_to">Jump To &hellip;<div id="jump_wrapper"><div id="jump_page"><a href="../../index.html" class="source"><span class="file_name">README</span></a><a href="../../lib/cluster.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">cluster.coffee</span></a><a href="../../lib/job.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">job.coffee</span></a><a href="../../lib/public/js/collection.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">collection.coffee</span></a><a href="../../lib/public/js/extract.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">extract.coffee</span></a><a href="../../lib/public/js/filterEmulator.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">filterEmulator.coffee</span></a><a href="../../lib/public/js/mergePresets.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">mergePresets.coffee</span></a><a href="../../lib/public/js/script.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">script.coffee</span></a><a href="../../lib/public/js/transformPresets.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">transformPresets.coffee</span></a><a href="../../lib/resultTreeNode.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">resultTreeNode.coffee</span></a><a href="../../lib/routers/api.coffee.html" class="source selected"><span class="base_path">lib / routers / </span><span class="file_name">api.coffee</span></a><a href="../../lib/routers/help.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">help.coffee</span></a><a href="../../lib/routers/jobs.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">jobs.coffee</span></a><a href="../../lib/routers/monitor.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">monitor.coffee</span></a><a href="../../lib/routers/projects.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">projects.coffee</span></a><a href="../../lib/routers/submit.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">submit.coffee</span></a><a href="../../lib/schemas/job.coffee.html" class="source "><span class="base_path">lib / schemas / </span><span class="file_name">job.coffee</span></a><a href="../../lib/schemas/project.coffee.html" class="source "><span class="base_path">lib / schemas / </span><span class="file_name">project.coffee</span></a><a href="../../lib/server.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">server.coffee</span></a><a href="../../lib/spawner.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">spawner.coffee</span></a><a href="../../lib/supervisor.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">supervisor.coffee</span></a><a href="../../lib/task.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">task.coffee</span></a><a href="../../lib/transform.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">transform.coffee</span></a><a href="../../lib/worker.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">worker.coffee</span></a></div></div></div><table cellpadding="0" cellspacing="0"><thead><tr><th class="docs"><h1>api.coffee</h1><div class="filepath">lib/routers/</div></th><th class="code"></th></tr></thead><tbody><tr id="section-1"><td class="docs"><div class="pilwrap"><a href="#section-1" class="pilcrow">&#182;</a></div>
+</td><td class="code"><div class="highlight"><pre><span class="nv">jobs = </span><span class="nx">global</span><span class="p">.</span><span class="nx">jobs</span>
+
+<span class="nv">DbJob = </span><span class="nx">global</span><span class="p">.</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span> <span class="s">&#39;Job&#39;</span>
+<span class="nv">Project = </span><span class="nx">global</span><span class="p">.</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">model</span> <span class="s">&#39;Project&#39;</span>
+
+<span class="nv">Job = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;../job&#39;</span><span class="p">).</span><span class="nx">Job</span></pre></div></td></tr><tr id="section-2"><td class="docs"><div class="pilwrap"><a href="#section-2" class="pilcrow">&#182;</a></div><h1>#</h1>
+
+<p>REST APIs</p>
+
+<h1>#</h1>
+</td><td class="code"><div class="highlight"><pre><span class="nv">module.exports.version = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="k">try</span>
+    <span class="nv">pkg = </span><span class="nx">require</span><span class="p">(</span><span class="s">&#39;../../package.json&#39;</span><span class="p">)</span>
+    <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="s">&#39;API Request: Version&#39;</span><span class="p">)</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="p">{</span>
+      <span class="nv">version: </span><span class="nx">pkg</span><span class="p">.</span><span class="nx">version</span><span class="p">,</span>
+      <span class="nv">name: </span><span class="nx">pkg</span><span class="p">.</span><span class="nx">name</span><span class="p">,</span>
+    <span class="p">}</span>
+  <span class="k">catch</span> <span class="nx">error</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="p">{</span>
+      <span class="nv">errorShort: </span><span class="s">&quot;Can&#39;t find package.json!&quot;</span><span class="p">,</span>
+      <span class="nv">errorLong: </span><span class="nx">error</span><span class="p">.</span><span class="nx">message</span>
+    <span class="p">}</span>
+
+<span class="nv">module.exports.list = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nv">wrapJobs = </span><span class="p">[]</span>
+  <span class="k">for</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">job</span> <span class="k">of</span> <span class="nx">jobs</span>
+    <span class="nx">wrapJobs</span><span class="p">.</span><span class="nx">push</span> <span class="p">{</span>
+      <span class="nv">id: </span><span class="nx">job</span><span class="p">.</span><span class="nx">id</span>
+      <span class="nv">name: </span><span class="nx">job</span><span class="p">.</span><span class="nx">name</span>
+      <span class="nv">project: </span><span class="nx">job</span><span class="p">.</span><span class="nx">project</span>
+      <span class="nv">state: </span><span class="nx">job</span><span class="p">.</span><span class="nx">state</span>
+      <span class="nv">archived: </span><span class="kc">false</span>
+    <span class="p">}</span>
+  <span class="nx">DbJob</span><span class="p">.</span><span class="nx">find</span><span class="p">({</span><span class="nv">archived: </span><span class="kc">true</span><span class="p">}).</span><span class="nx">exec</span> <span class="nf">(err, dbJobs) -&gt;</span>
+    <span class="k">if</span> <span class="nx">err</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="p">{</span>
+        <span class="nv">errorShort: </span><span class="s">&quot;Database error!&quot;</span><span class="p">,</span>
+        <span class="nv">errorLong: </span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span>
+      <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="k">for</span> <span class="nx">job</span> <span class="k">in</span> <span class="nx">dbJobs</span>
+        <span class="nx">wrapJobs</span><span class="p">.</span><span class="nx">push</span> <span class="p">{</span>
+          <span class="nv">id: </span><span class="nx">job</span><span class="p">.</span><span class="nx">id</span>
+          <span class="nv">name: </span><span class="nx">job</span><span class="p">.</span><span class="nx">name</span>
+          <span class="nv">project: </span><span class="nx">job</span><span class="p">.</span><span class="nx">project</span>
+          <span class="nv">state: </span><span class="nx">job</span><span class="p">.</span><span class="nx">state</span>
+          <span class="nv">archived: </span><span class="kc">true</span>
+        <span class="p">}</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="nx">wrapJobs</span>
+
+<span class="nv">module.exports.edit = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nv">id = </span><span class="k">new</span> <span class="nx">global</span><span class="p">.</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span>
+  <span class="k">if</span> <span class="o">not</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">name</span><span class="o">?</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="p">{</span>
+      <span class="nv">errorShort: </span><span class="s">&quot;New parameter: &#39;name&#39; not set!&quot;</span><span class="p">,</span>
+      <span class="nv">errorLong: </span><span class="s">&quot;New parameter: &#39;name&#39; not set!&quot;</span>
+    <span class="p">}</span></pre></div></td></tr><tr id="section-3"><td class="docs"><div class="pilwrap"><a href="#section-3" class="pilcrow">&#182;</a></div><p>res.send 'Y U NO NAME', 400</p>
+</td><td class="code"><div class="highlight"><pre>  <span class="nv">name = </span><span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">.</span><span class="nx">name</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span> <span class="s">&quot;check database&quot;</span>
+  <span class="nx">DbJob</span><span class="p">.</span><span class="nx">findById</span> <span class="nx">id</span><span class="p">,</span> <span class="nf">(err, dbJob) -&gt;</span>
+    <span class="k">if</span> <span class="nx">err</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="p">{</span>
+        <span class="nv">errorShort: </span><span class="s">&quot;Database error!&quot;</span><span class="p">,</span>
+        <span class="nv">errorLong: </span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span>
+      <span class="p">}</span></pre></div></td></tr><tr id="section-4"><td class="docs"><div class="pilwrap"><a href="#section-4" class="pilcrow">&#182;</a></div><p>res.send err, 500</p>
+</td><td class="code"><div class="highlight"><pre>    <span class="k">if</span> <span class="o">not</span> <span class="nx">jobs</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span><span class="o">?</span> <span class="o">and</span> <span class="o">not</span> <span class="nx">dbJob</span><span class="o">?</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="p">{</span>
+        <span class="nv">errorShort: </span><span class="s">&quot;Job not found!&quot;</span><span class="p">,</span>
+        <span class="nv">errorLong: </span><span class="s">&quot;Job not found!&quot;</span>
+      <span class="p">}</span>
+    <span class="k">if</span> <span class="nx">jobs</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span><span class="o">?</span>
+      <span class="nv">job = </span><span class="nx">jobs</span><span class="p">[</span><span class="nx">id</span><span class="p">]</span>
+      <span class="nv">job.name = </span><span class="nx">name</span>
+    <span class="nv">dbJob.name = </span><span class="nx">name</span>
+    <span class="nx">dbJob</span><span class="p">.</span><span class="nx">save</span><span class="p">()</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">send</span> <span class="s">&#39;job edited&#39;</span>
+
+<span class="nv">module.exports.newJob = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nv">response = </span><span class="p">{}</span>
+
+  <span class="k">if</span> <span class="nx">req</span><span class="p">.</span><span class="o">is</span><span class="p">(</span><span class="s">&#39;json&#39;</span><span class="p">)</span>
+    <span class="nx">global</span><span class="p">.</span><span class="nx">spawner</span><span class="p">.</span><span class="nx">createJob</span> <span class="nx">req</span><span class="p">.</span><span class="nx">body</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="kc">null</span><span class="p">,</span> <span class="nf">(err, job) -&gt;</span>
+      <span class="k">if</span> <span class="nx">err</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="p">{</span>
+          <span class="nv">errorLong: </span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span>
+        <span class="p">}</span>
+      <span class="k">else</span>
+        <span class="nv">response = </span><span class="p">{</span>
+          <span class="nv">id: </span><span class="nx">job</span><span class="p">.</span><span class="nx">id</span>
+          <span class="nv">debug: </span><span class="s">&#39;Job received!&#39;</span></pre></div></td></tr><tr id="section-5"><td class="docs"><div class="pilwrap"><a href="#section-5" class="pilcrow">&#182;</a></div><p>received: req.body</p>
+</td><td class="code"><div class="highlight"><pre>        <span class="p">}</span>
+
+        <span class="nx">res</span><span class="p">.</span><span class="nx">header</span> <span class="s">&#39;Content-Type&#39;</span><span class="p">,</span><span class="s">&#39;application/json&#39;</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="nx">response</span>
+
+  <span class="k">else</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="p">{</span>
+      <span class="nv">errorShort: </span><span class="s">&quot;File content is not JSON!&quot;</span><span class="p">,</span>
+      <span class="nv">errorLong: </span><span class="s">&quot;Invalid content type. Use application/json.&quot;</span>
+    <span class="p">}</span></pre></div></td></tr><tr id="section-6"><td class="docs"><div class="pilwrap"><a href="#section-6" class="pilcrow">&#182;</a></div><p>throw new Error 'Invalid content type. Use application/json.'</p>
+</td><td class="code"><div class="highlight"><pre><span class="nv">module.exports.details = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="k">try</span>
+    <span class="nv">id = </span><span class="k">new</span> <span class="nx">global</span><span class="p">.</span><span class="nx">mongoose</span><span class="p">.</span><span class="nx">Types</span><span class="p">.</span><span class="nx">ObjectId</span> <span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span>
+  <span class="k">catch</span> <span class="nx">error</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span>
+      <span class="nv">errorShort: </span><span class="s">&quot;Job not found!&quot;</span>
+      <span class="nv">errorLong: </span><span class="s">&quot;Job not found!&quot;</span>
+    <span class="p">,</span> <span class="mi">404</span>
+    <span class="k">return</span>
+  <span class="nx">global</span><span class="p">.</span><span class="nx">spawner</span><span class="p">.</span><span class="nx">getJob</span> <span class="nx">id</span><span class="p">,</span> <span class="nf">(job) -&gt;</span>
+    <span class="k">if</span> <span class="o">not</span> <span class="nx">job</span><span class="o">?</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">json</span>
+        <span class="nv">errorShort: </span><span class="s">&quot;Job not found!&quot;</span>
+        <span class="nv">errorLong: </span><span class="s">&quot;Job not found!&quot;</span>
+      <span class="p">,</span> <span class="mi">404</span>
+      <span class="k">return</span>
+    <span class="nv">status = </span><span class="p">{}</span>
+    <span class="nv">status._id = </span><span class="nx">job</span><span class="p">.</span><span class="nx">id</span>
+    <span class="nv">status.name = </span><span class="nx">job</span><span class="p">.</span><span class="nx">name</span>
+    <span class="nv">status.configuration = </span><span class="nx">job</span><span class="p">.</span><span class="nx">configuration</span>
+    <span class="nv">status.project = </span><span class="nx">job</span><span class="p">.</span><span class="nx">project</span>
+    <span class="nv">status.state = </span><span class="nx">job</span><span class="p">.</span><span class="nx">state</span>
+    <span class="nv">status.archived = </span><span class="nx">job</span><span class="p">.</span><span class="nx">archived</span>
+    <span class="nv">status.submitted = </span><span class="nx">job</span><span class="p">.</span><span class="nx">submitted</span>
+    <span class="nv">status.started = </span><span class="nx">job</span><span class="p">.</span><span class="nx">started</span>
+    <span class="nv">status.stopped = </span><span class="nx">job</span><span class="p">.</span><span class="nx">stopped</span>
+    <span class="nv">status.finished = </span><span class="nx">job</span><span class="p">.</span><span class="nx">finished</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="nx">status</span>
+
+<span class="nv">module.exports.start = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nv">job = </span><span class="nx">jobs</span><span class="p">[</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span>
+  <span class="k">if</span> <span class="nx">job</span>
+    <span class="nx">job</span><span class="p">.</span><span class="nx">start</span><span class="p">()</span>
+    <span class="nv">status = </span><span class="nx">job</span><span class="p">.</span><span class="nx">getStatus</span><span class="p">()</span>
+    <span class="nv">status._id = </span><span class="nx">job</span><span class="p">.</span><span class="nx">id</span>
+    <span class="nv">status.configuration = </span><span class="nx">job</span><span class="p">.</span><span class="nx">configString</span>
+    <span class="nv">response = </span><span class="p">{</span>
+      <span class="nv">status: </span><span class="nx">status</span>
+      <span class="nv">debug: </span><span class="s">&#39;Job started!&#39;</span>
+    <span class="p">}</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="nx">response</span>
+  <span class="k">else</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="p">{</span>
+      <span class="nv">errorShort: </span><span class="s">&quot;Job not found!&quot;</span><span class="p">,</span>
+      <span class="nv">errorLong: </span><span class="s">&quot;Job not found!&quot;</span>
+    <span class="p">}</span>
+
+<span class="nv">module.exports.pause = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nv">job = </span><span class="nx">jobs</span><span class="p">[</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span>
+  <span class="k">if</span> <span class="nx">job</span>
+    <span class="nx">job</span><span class="p">.</span><span class="nx">pause</span><span class="p">()</span>
+    <span class="nv">status = </span><span class="nx">job</span><span class="p">.</span><span class="nx">getStatus</span><span class="p">()</span>
+    <span class="nv">status._id = </span><span class="nx">job</span><span class="p">.</span><span class="nx">id</span>
+    <span class="nv">status.configuration = </span><span class="nx">job</span><span class="p">.</span><span class="nx">configString</span>
+    <span class="nv">response = </span><span class="p">{</span>
+      <span class="nv">status: </span><span class="nx">status</span>
+      <span class="nv">debug: </span><span class="s">&#39;Job paused!&#39;</span>
+    <span class="p">}</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="nx">response</span>
+  <span class="k">else</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="p">{</span>
+      <span class="nv">errorShort: </span><span class="s">&quot;Job not found!&quot;</span><span class="p">,</span>
+      <span class="nv">errorLong: </span><span class="s">&quot;Job not found!&quot;</span>
+    <span class="p">}</span>
+
+<span class="nv">module.exports.abort = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nv">job = </span><span class="nx">jobs</span><span class="p">[</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span>
+  <span class="k">if</span> <span class="nx">job</span>
+    <span class="nx">job</span><span class="p">.</span><span class="nx">abort</span><span class="p">()</span>
+    <span class="nv">status = </span><span class="nx">job</span><span class="p">.</span><span class="nx">getStatus</span><span class="p">()</span>
+    <span class="nv">status._id = </span><span class="nx">job</span><span class="p">.</span><span class="nx">id</span>
+    <span class="nv">status.configuration = </span><span class="nx">job</span><span class="p">.</span><span class="nx">configString</span>
+    <span class="nv">response = </span><span class="p">{</span>
+      <span class="nv">status: </span><span class="nx">status</span>
+      <span class="nv">debug: </span><span class="s">&#39;Job aborted!&#39;</span>
+    <span class="p">}</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="nx">response</span>
+  <span class="k">else</span>
+    <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="p">{</span>
+      <span class="nv">errorShort: </span><span class="s">&quot;Job not found!&quot;</span><span class="p">,</span>
+      <span class="nv">errorLong: </span><span class="s">&quot;Job not found!&quot;</span>
+    <span class="p">}</span>
+
+<span class="nv">module.exports.delete = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nv">job = </span><span class="nx">jobs</span><span class="p">[</span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">]</span>
+  <span class="k">if</span> <span class="nx">job</span>
+    <span class="nx">job</span><span class="p">.</span><span class="k">delete</span> <span class="nf">(err) -&gt;</span>  <span class="c1"># TODO: Remove from db somwhere</span>
+      <span class="k">if</span> <span class="nx">err</span>
+        <span class="nv">error = </span><span class="p">{</span>
+          <span class="nv">error: </span><span class="s">&#39;Job could not be deleted&#39;</span><span class="p">,</span>
+          <span class="nv">debug: </span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span><span class="p">,</span>
+        <span class="p">}</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="nx">error</span>
+        <span class="k">return</span>
+      <span class="k">else</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="p">{</span><span class="nv">debug: </span><span class="s">&#39;Job was deleted!&#39;</span><span class="p">}</span>
+  <span class="k">else</span>
+    <span class="nx">DbJob</span><span class="p">.</span><span class="nx">findOne</span> <span class="p">{</span><span class="nv">_id: </span><span class="nx">req</span><span class="p">.</span><span class="nx">params</span><span class="p">.</span><span class="nx">id</span><span class="p">},</span> <span class="nf">(err, job) -&gt;</span>
+      <span class="k">if</span> <span class="nx">err</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="p">{</span>
+          <span class="nv">errorShort: </span><span class="s">&quot;Job could not be deleted!&quot;</span><span class="p">,</span>
+          <span class="nv">errorLong: </span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span>
+        <span class="p">}</span>
+        <span class="k">return</span>
+      <span class="k">else</span> <span class="k">if</span> <span class="o">not</span> <span class="nx">job</span><span class="o">?</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="p">{</span>
+          <span class="nv">errorShort: </span><span class="s">&quot;Job not found!&quot;</span><span class="p">,</span>
+          <span class="nv">errorLong: </span><span class="s">&quot;Job not found!&quot;</span>
+        <span class="p">}</span>
+      <span class="k">else</span>
+        <span class="nx">job</span><span class="p">.</span><span class="nx">remove</span><span class="p">()</span>
+        <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="p">{</span><span class="nv">debug: </span><span class="s">&#39;deleted&#39;</span><span class="p">}</span></pre></div></td></tr><tr id="section-7"><td class="docs"><div class="pilwrap"><a href="#section-7" class="pilcrow">&#182;</a></div><p>List of projects</p>
+</td><td class="code"><div class="highlight"><pre><span class="nv">module.exports.listProjects = </span><span class="nf">(req, res) -&gt;</span>
+  <span class="nx">Project</span><span class="p">.</span><span class="nx">find</span> <span class="p">{},</span> <span class="nf">(err, projects) -&gt;</span>
+    <span class="k">if</span> <span class="nx">err</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="p">{</span>
+        <span class="nv">errorShort: </span><span class="s">&quot;Database error!&quot;</span><span class="p">,</span>
+        <span class="nv">errorLong: </span><span class="nx">err</span><span class="p">.</span><span class="nx">message</span>
+      <span class="p">}</span>
+    <span class="k">else</span>
+      <span class="nv">wrapProjects = </span><span class="p">[]</span>
+      
+      <span class="k">for</span> <span class="nx">id</span><span class="p">,</span> <span class="nx">project</span> <span class="k">of</span> <span class="nx">projects</span>
+        <span class="nx">wrapProjects</span><span class="p">.</span><span class="nx">push</span> <span class="p">{</span>
+          <span class="nv">name: </span><span class="nx">project</span><span class="p">.</span><span class="nx">id</span>
+        <span class="p">}</span>
+      <span class="nx">res</span><span class="p">.</span><span class="nx">json</span> <span class="nx">wrapProjects</span>
+
+</pre></div></td></tr></tbody></table><div id="generated">generated Sun Apr 22 2012 13:44:49 GMT+0200 (CEST)  </div><div id="projectname"><a href="../../index.html">Arcane Academy Frontend</a></div></div></body></html>

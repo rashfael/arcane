@@ -1,0 +1,8 @@
+extends layout
+
+block content
+	h1 Database Query
+
+	ul
+		- each db in dbs
+			li: a(href='/db/'+db)= db

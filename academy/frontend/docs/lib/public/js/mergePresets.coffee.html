@@ -1,0 +1,93 @@
+<!DOCTYPE html><html><head><title>mergePresets.coffee</title><meta http-equiv="Content-Type" content="text/html" charset="UTF-8"><link rel="stylesheet" media="all" href="../../../docco.css"></head><body><div id="container"><div id="background"></div><div id="jump_to">Jump To &hellip;<div id="jump_wrapper"><div id="jump_page"><a href="../../../index.html" class="source"><span class="file_name">README</span></a><a href="../../../lib/cluster.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">cluster.coffee</span></a><a href="../../../lib/job.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">job.coffee</span></a><a href="../../../lib/public/js/collection.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">collection.coffee</span></a><a href="../../../lib/public/js/extract.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">extract.coffee</span></a><a href="../../../lib/public/js/filterEmulator.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">filterEmulator.coffee</span></a><a href="../../../lib/public/js/mergePresets.coffee.html" class="source selected"><span class="base_path">lib / public / js / </span><span class="file_name">mergePresets.coffee</span></a><a href="../../../lib/public/js/script.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">script.coffee</span></a><a href="../../../lib/public/js/transformPresets.coffee.html" class="source "><span class="base_path">lib / public / js / </span><span class="file_name">transformPresets.coffee</span></a><a href="../../../lib/resultTreeNode.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">resultTreeNode.coffee</span></a><a href="../../../lib/routers/api.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">api.coffee</span></a><a href="../../../lib/routers/help.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">help.coffee</span></a><a href="../../../lib/routers/jobs.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">jobs.coffee</span></a><a href="../../../lib/routers/monitor.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">monitor.coffee</span></a><a href="../../../lib/routers/projects.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">projects.coffee</span></a><a href="../../../lib/routers/submit.coffee.html" class="source "><span class="base_path">lib / routers / </span><span class="file_name">submit.coffee</span></a><a href="../../../lib/schemas/job.coffee.html" class="source "><span class="base_path">lib / schemas / </span><span class="file_name">job.coffee</span></a><a href="../../../lib/schemas/project.coffee.html" class="source "><span class="base_path">lib / schemas / </span><span class="file_name">project.coffee</span></a><a href="../../../lib/server.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">server.coffee</span></a><a href="../../../lib/spawner.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">spawner.coffee</span></a><a href="../../../lib/supervisor.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">supervisor.coffee</span></a><a href="../../../lib/task.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">task.coffee</span></a><a href="../../../lib/transform.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">transform.coffee</span></a><a href="../../../lib/worker.coffee.html" class="source "><span class="base_path">lib / </span><span class="file_name">worker.coffee</span></a></div></div></div><table cellpadding="0" cellspacing="0"><thead><tr><th class="docs"><h1>mergePresets.coffee</h1><div class="filepath">lib/public/js/</div></th><th class="code"></th></tr></thead><tbody><tr id="section-1"><td class="docs"><div class="pilwrap"><a href="#section-1" class="pilcrow">&#182;</a></div><h1>#</h1>
+
+<p>The default map function body.</p>
+
+<h1>#</h1>
+</td><td class="code"><div class="highlight"><pre><span class="nv">mapDefault = </span><span class="s">&quot;&quot;&quot;// &#39;object&#39; is the input parameter and represents one document</span>
+<span class="s">  object;</span>
+
+<span class="s">  // generate a &#39;key&#39; out of the &#39;object&#39;</span>
+<span class="s">  var key = null;</span>
+
+<span class="s">  return key;&quot;&quot;&quot;</span></pre></div></td></tr><tr id="section-2"><td class="docs"><div class="pilwrap"><a href="#section-2" class="pilcrow">&#182;</a></div><h1>#</h1>
+
+<p>The default reduce function body.</p>
+
+<h1>#</h1>
+</td><td class="code"><div class="highlight"><pre><span class="nv">reduceDefault = </span><span class="s">&quot;&quot;&quot;// &#39;key&#39; is the first input parameter</span>
+<span class="s">  key;</span>
+
+<span class="s">  // &#39;values&#39; is the second input parameter</span>
+<span class="s">  values;</span>
+
+<span class="s">  // generate one &#39;value&#39; out of the input parameters</span>
+<span class="s">  var value = null;</span>
+
+<span class="s">  // value needs a property _id with an array of all document _ids, </span>
+<span class="s">  // the first _id will be updated, all others will be deleted</span>
+
+<span class="s">  return value;&quot;&quot;&quot;</span></pre></div></td></tr><tr id="section-3"><td class="docs"><div class="pilwrap"><a href="#section-3" class="pilcrow">&#182;</a></div><h1>#</h1>
+
+<p>Some presets for merge operations.</p>
+
+<h1>#</h1>
+</td><td class="code"><div class="highlight"><pre><span class="nv">presets =</span>
+  <span class="nv">templateMapReduce:</span>
+    <span class="nv">name: </span><span class="s">&#39;General Template (Map &amp; Reduce)&#39;</span>
+    <span class="nv">map: </span><span class="nx">mapDefault</span>
+    <span class="nv">reduce: </span><span class="nx">reduceDefault</span>
+  <span class="nv">templateMap:</span>
+    <span class="nv">name: </span><span class="s">&#39;General Template (Map only)&#39;</span>
+    <span class="nv">map: </span><span class="nx">mapDefault</span>
+    <span class="nv">reduce: </span><span class="s">&#39;\n\n&#39;</span>
+  <span class="nv">mapExamples:</span>
+    <span class="nv">name: </span><span class="s">&#39;Map Examples&#39;</span>
+    <span class="nv">map: </span><span class="s">&quot;&quot;&quot;// &#39;object&#39; is the input parameter and represents one document</span>
+<span class="s">      object;</span>
+
+<span class="s">      // generate a &#39;key&#39; out of the &#39;object&#39;</span>
+<span class="s">      var key = &quot;&quot;;</span>
+
+<span class="s">      // make key case-insensitive</span>
+<span class="s">      key = key.toLowerCase();</span>
+<span class="s">      </span>
+<span class="s">      // ommit whitespace, but do not ommit special chars</span>
+<span class="s">      key = key.replace(/\\s/g,&#39;&#39;);</span>
+<span class="s">      </span>
+<span class="s">      // do not ommit whitespace, but ommit special chars</span>
+<span class="s">      key = key.replace(/[^A-Za-z0-9\\s]/g,&#39;&#39;);</span>
+
+<span class="s">      // ommit whitespace and ommit special chars</span>
+<span class="s">      key = key.replace(/\[^A-Za-z0-9]/g,&#39;&#39;);</span>
+
+<span class="s">      return key;&quot;&quot;&quot;</span>
+    <span class="nv">reduce: </span><span class="s">&#39;\n\n&#39;</span>
+  <span class="nv">removeDups:</span>
+    <span class="nv">name: </span><span class="s">&#39;Remove Duplicates&#39;</span>
+    <span class="nv">map: </span><span class="s">&quot;&quot;&quot;var objectId = &#39;&#39;;</span>
+
+<span class="s">      for(var property in object) {</span>
+<span class="s">        if(object.hasOwnProperty(property))</span>
+<span class="s">          objectId += object[property];</span>
+<span class="s">      }</span>
+
+<span class="s">      return objectId;&quot;&quot;&quot;</span>
+    <span class="nv">reduce: </span><span class="s">&#39;\n&#39;</span>
+
+
+<span class="nv">presetSelection = </span><span class="o">-&gt;</span>
+  <span class="nv">sel = </span><span class="nx">$</span><span class="p">(</span><span class="s">&#39;#presets&#39;</span><span class="p">).</span><span class="nx">val</span><span class="p">()</span>
+
+  <span class="nx">mapEditor</span><span class="p">.</span><span class="nx">setValue</span> <span class="nx">presets</span><span class="p">[</span><span class="nx">sel</span><span class="p">].</span><span class="nx">map</span>
+  <span class="nx">reduceEditor</span><span class="p">.</span><span class="nx">setValue</span> <span class="nx">presets</span><span class="p">[</span><span class="nx">sel</span><span class="p">].</span><span class="nx">reduce</span>
+
+<span class="nx">$</span> <span class="o">-&gt;</span>
+  <span class="nx">mapEditor</span><span class="p">.</span><span class="nx">setValue</span> <span class="nx">mapDefault</span>
+  <span class="nx">reduceEditor</span><span class="p">.</span><span class="nx">setValue</span>  <span class="nx">reduceDefault</span>
+
+  <span class="nx">$</span><span class="p">.</span><span class="nx">each</span> <span class="nx">presets</span><span class="p">,</span> <span class="nf">(id, preset) -&gt;</span>
+    <span class="nx">$</span><span class="p">(</span><span class="s">&#39;#presets&#39;</span><span class="p">).</span><span class="nx">append</span> <span class="s">&#39;&lt;option value=&quot;&#39;</span> <span class="o">+</span> <span class="nx">id</span> <span class="o">+</span> <span class="s">&#39;&quot;&gt;&#39;</span> <span class="o">+</span> <span class="nx">preset</span><span class="p">.</span><span class="nx">name</span> <span class="o">+</span> <span class="s">&#39;&lt;/option&gt;&#39;</span>
+
+  <span class="nx">$</span><span class="p">(</span><span class="s">&#39;#presets&#39;</span><span class="p">).</span><span class="nx">change</span> <span class="nx">presetSelection</span>
+
+</pre></div></td></tr></tbody></table><div id="generated">generated Sun Apr 22 2012 13:44:47 GMT+0200 (CEST)  </div><div id="projectname"><a href="../../../index.html">Arcane Academy Frontend</a></div></div></body></html>

@@ -1,0 +1,20 @@
+extends ../layoutHelp
+
+block help
+	:markdown
+		# Wand Einführung
+
+		*Wand* ist eine Erweiterung für [Firebug](http://getfirebug.com/ "Firebug Homepage"), welche wiederum eine Erweiterung für den Webbrowser [Mozilla Firefox](www.mozilla.org/de/firefox/ "Firefox Homepage") ist. 
+		Innerhalb von *Arcane* stellt *Wand* die clientseitige Komponente zur Modellierung von sogenannten *Jobs* dar. 
+		In *Wand* kann der Benutzer pro Job einen baumartigen Navigationspfad, bestehend aus unterschiedlichen [Knotentypen] (/help/wand/gui#Knotentypen "Knotentypen") aufbauen, 
+		die Knoten entsprechend ihrer Funktionalität konfigurieren, und den entstandenen Job an [*Academy*](/help/academy/intro "Einführung Academy") senden. Zusätzliche bietet *Wand* diverse optische Einstellungsmöglichkeiten 
+		und eine einfache Jobübersicht, welche grundlegende Verwaltungsoperationen je Job beinhaltet.
+		
+		## Vorgehensweise
+		
+		Die grafische Oberfläche von *Wand* besteht aus den Tabs *Navigation*, *Configuration*, *Mappings* und *Jobs*.
+		Im *Navigation*-Tab wird zunächst mithilfe des Navigationsgraphen festgelegt, wie *Arcane* durch die Webseite navigieren soll.
+		An den Knoten des Navigationsgraphen können bzw. müssen Einstellungen getroffen werden, was teilweise im *Navigation*-Tab selbst passiert oder durch eine Konfiguration, die im *Configuration*-Tab angelegt und dann im *Navigation*-Tab dem Knoten zugewiesen wird.
+		Für bestimmte Knoten ist ein Mapping notwendig, das automatisch gefundene Bezeichner für gescrapte Werte den gewünschten Bezeichnern des Benutzers zuweist. Solche Mappings können im *Mapping*-Tab erstellt und im *Navigation*-Tab den Knoten zugewiesen werden.
+		
+		Der *Jobs*-Tab stellt eine Lite-Version der Web-UI von *Arcane* dar. Jobs, die bereits von *Wand* zu *Arcane* abgeschickt wurden, können hier verwaltet und gesteuert werden.

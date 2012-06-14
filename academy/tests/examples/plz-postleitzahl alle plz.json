@@ -1,0 +1,347 @@
+{
+    "mappings": {
+        "1328720647281": {
+            "map": {
+                "plz": ""
+            },
+            "validFor": [
+                "nav1328720647169"
+            ],
+            "name": "Default mapping"
+        }
+    },
+    "navigation": {
+        "base": [
+            {
+                "name": "Entry point",
+                "type": "Start",
+                "config": {
+                    "request": {
+                        "url": "http://www.plz-postleitzahl.de/"
+                    }
+                },
+                "id": "nav1328720647164",
+                "next": [
+                    "nav1328720647165"
+                ]
+            }
+        ],
+        "nav1328720647165": {
+            "name": "Walk through links",
+            "type": "WalkthroughLinks",
+            "config": {
+                "areaSelector": [
+                    "html > body > table:first-child tr:nth-child(3) > td:first-child > table:first-child tr:first-child > td:first-child > table:nth-child(3) tr:nth-child(2) > td:nth-child(2) > ul:nth-child(2)"
+                ]
+            },
+            "next": [
+                "nav1328720647166"
+            ],
+            "id": "nav1328720647165"
+        },
+        "nav1328720647166": {
+            "name": "Walk through links",
+            "type": "WalkthroughLinks",
+            "config": {
+                "areaSelector": [
+                    "html > body > table:first-child tr:nth-child(3) > td:first-child > table:first-child tr:first-child > td:nth-child(2) > table:nth-child(3) tr:nth-child(2) > td:nth-child(2) > table:nth-child(3)"
+                ]
+            },
+            "next": [
+                "nav1328720647167"
+            ],
+            "id": "nav1328720647166"
+        },
+        "nav1328720647167": {
+            "name": "Walk through links",
+            "type": "WalkthroughLinks",
+            "config": {
+                "areaSelector": [
+                    "html > body > table:first-child tr:nth-child(3) > td:first-child > table:first-child tr:first-child > td:nth-child(2) > table:first-child tr:nth-child(2) > td:nth-child(2) > table:nth-child(2)"
+                ]
+            },
+            "next": [
+                "nav1328720647168"
+            ],
+            "id": "nav1328720647167"
+        },
+        "nav1328720647168": {
+            "name": "Magic",
+            "type": "Magic",
+            "config": {
+                "itemSelector": [
+                    "html > body > table:first-child tr:nth-child(3) > td:first-child > table:first-child tr:first-child > td:nth-child(2) > table:first-child tr:nth-child(2) > td:nth-child(2) > table:nth-child(2) tr:nth-child(2) > td:nth-child(2)"
+                ],
+                "customSelector": [
+                    "html > body > table:first-child tr:nth-child(3) > td:first-child > table:first-child tr:first-child > td:nth-child(2) > table:first-child tr:nth-child(2) > td:nth-child(2) > table:nth-child(2)"
+                ],
+                "magic": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "plz",
+                                "selector": "tr:nth-child(2) > td:nth-child(2)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                }
+            },
+            "next": [
+                "nav1328720647169"
+            ],
+            "id": "nav1328720647168",
+            "nodeConfigId": "1328720647164"
+        },
+        "nav1328720647169": {
+            "name": "Collect data",
+            "type": "Collect",
+            "config": {
+                "collection": "plz"
+            },
+            "next": [],
+            "id": "nav1328720647169"
+        }
+    },
+    "config": {
+        "currentConfigID": 1328720647164,
+        "configs": {
+            "1328720647164": {
+                "_name": "Default config",
+                "_id": 1328720647164,
+                "_listConfig": {
+                    "_inspectedNodes": [
+                        {
+                            "__clearClickUnlocked": true,
+                            "nodeIndex": 2
+                        }
+                    ],
+                    "_exceptions": [],
+                    "_selectors": [
+                        "html > body > table:first-child tr:nth-child(3) > td:first-child > table:first-child tr:first-child > td:nth-child(2) > table:first-child tr:nth-child(2) > td:nth-child(2) > table:nth-child(2)"
+                    ],
+                    "_frameSels": []
+                },
+                "_magicConfig": {
+                    "CustomSelectors": {
+                        "selectors": [
+                            {
+                                "key": "plz",
+                                "selector": "tr:nth-child(2) > td:nth-child(2)",
+                                "includeChildren": 2
+                            }
+                        ]
+                    }
+                },
+                "_formfillConfig": {
+                    "_fields": [],
+                    "_datasets": []
+                }
+            }
+        }
+    },
+    "mappingData": [
+        {
+            "id": 1328720647281,
+            "name": "Default mapping",
+            "page": [
+                {
+                    "url": "http://www.google.de/",
+                    "selector": "",
+                    "data": [],
+                    "currentData": []
+                },
+                {
+                    "selector": "",
+                    "data": [],
+                    "currentData": [],
+                    "url": "http://www.plz-postleitzahl.de/"
+                },
+                {
+                    "selector": "html > body > table:first-child tr:nth-child(3) > td:first-child > table:first-child tr:first-child > td:nth-child(2) > table:first-child tr:nth-child(2) > td:nth-child(2) > table:nth-child(2)",
+                    "data": [
+                        {
+                            "key": "Name:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Adelzhausen"
+                            ]
+                        },
+                        {
+                            "key": "Postleitzahl:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "86559"
+                            ]
+                        },
+                        {
+                            "key": "Bundesland:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Bayern"
+                            ]
+                        },
+                        {
+                            "key": "Typ:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Stadt / Gemeinde"
+                            ]
+                        },
+                        {
+                            "key": "Geografische Position:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "48.3500000 / 11.1333300"
+                            ]
+                        },
+                        {
+                            "key": "Regierungsbezirk:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Schwaben"
+                            ]
+                        },
+                        {
+                            "key": "Landkreis:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Aichach-Friedberg"
+                            ]
+                        },
+                        {
+                            "key": "Verwaltung durch:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Verwaltungsgemeinschaft Dasing"
+                            ]
+                        },
+                        {
+                            "key": "Autokennzeichen:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AIC"
+                            ]
+                        },
+                        {
+                            "key": "weitere Postleitzahlen:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "86559"
+                            ]
+                        },
+                        {
+                            "key": "plz",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "86559"
+                            ]
+                        }
+                    ],
+                    "currentData": [
+                        {
+                            "key": "Name:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Adelzhausen"
+                            ]
+                        },
+                        {
+                            "key": "Postleitzahl:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "86559"
+                            ]
+                        },
+                        {
+                            "key": "Bundesland:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Bayern"
+                            ]
+                        },
+                        {
+                            "key": "Typ:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Stadt / Gemeinde"
+                            ]
+                        },
+                        {
+                            "key": "Geografische Position:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "48.3500000 / 11.1333300"
+                            ]
+                        },
+                        {
+                            "key": "Regierungsbezirk:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Schwaben"
+                            ]
+                        },
+                        {
+                            "key": "Landkreis:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Aichach-Friedberg"
+                            ]
+                        },
+                        {
+                            "key": "Verwaltung durch:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "Verwaltungsgemeinschaft Dasing"
+                            ]
+                        },
+                        {
+                            "key": "Autokennzeichen:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "AIC"
+                            ]
+                        },
+                        {
+                            "key": "weitere Postleitzahlen:",
+                            "dbKey": null,
+                            "checked": false,
+                            "values": [
+                                "86559"
+                            ]
+                        },
+                        {
+                            "key": "plz",
+                            "dbKey": null,
+                            "checked": "checked",
+                            "values": [
+                                "86559"
+                            ]
+                        }
+                    ],
+                    "url": "http://www.plz-postleitzahl.de/land.bayern/adelzhausen/index.html"
+                }
+            ]
+        }
+    ]
+}

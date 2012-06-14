@@ -1,0 +1,24 @@
+extends project_details
+
+block context
+	script
+		var rawColl = '!{col}'; 
+		var rawColumns = !{rawColumns};
+	!= js('extract')	
+	.collections
+		//.column-box
+		//h4 Raw
+		//		ul.raw.sortable
+		//			for val, key in structure
+		//				li.ui-state-default.column= key
+		//	.column-box
+		//		h4 Reference 
+		//			i#edit-reference.icon-pencil
+		//		ul.reference.sortable
+		//	.column-box
+		//		h4 Result 
+		//			i#edit-result.icon-pencil
+		//		ul.result.sortable
+		//			li.ui-state-highlight.key reference key
+		//				i.icon-pencil.edit
+	button#submit.btn(data-loading-text='loading...') Submit

@@ -1,0 +1,11 @@
+h1= categoryName
+
+ul.items
+  each item, key in items
+    li
+      h2= item.name
+      p= item.desc
+      a.details(href='/'+categoryName+'/'+key) Details & Price
+    li= '&nbsp;'
+
+a(href='/') Index

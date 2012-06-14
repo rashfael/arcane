@@ -1,0 +1,36 @@
+extends ../layoutHelp
+
+block help
+	:markdown
+		# Projekt-Verwaltung
+
+		Academy verwaltet alle Jobs in Projekten. Dabei kann ein Projekt einen oder mehrere Jobs enthalten. Innerhalb der Academy Web UI wird ein [Überblick über alle Projekte](/projects "Academy Projects") gegeben. Durch Klick auf ein Projekt wird der Benutzer auf die Projekt-Seite weitergeleitet. Dort wird ein Überblick über alle zugehörigen Jobs und Collections gegeben. Damit besteht die Möglichkeit, entweder auf die Job-Seite eines bestimmten Jobs, oder in die Collection View zu springen, um eine ausgewählte Collection zu betrachten bzw. zu bearbeiten.
+
+	div(id='generated-toc')
+
+	:markdown
+		## Collection View
+
+		Die Collection View erreicht man durch Klick auf eine Collection auf der Projekt-Seite. Dort werden tabellarisch alle Datensätze angezeigt, die zur Collection gehören. Eine Toolbar bietet die Möglichkeit unterschiedliche Aktionen bzgl. der Collection durchzuführen. Diese werden im Folgenden behandelt.
+
+		### Merge
+
+		Eine Merge-Operation bietet die Möglichkeit, MapReduce-Operationen auf den Datensätzen einer Collection durchzuführen. Damit ist es bspw. möglich, Duplikate bei den Datensätzen zu erkennen und herauszufiltern. Es werden Presets angeboten, die als Ausgangspunkt für eigene Merge-Operationen verwendet werden können.
+
+		### Transform
+
+		Eine Transform-Operation bietet die Möglichkeit, Modifikationen an den Datensätzen durchzuführen. Auf diese Weise kann bspw. eine Datenbereinigung realisiert werden. Es werden Presets angeboten, die als Ausgangspunkt für eigene Transform-Operationen verwendet werden können.
+
+		### Extract
+
+		Um die Datensätze einer Rohdaten-Collection (Raw Collection) in eine Ergebnisdaten-Collection (Result Collection) zu überführen und dabei ggf. eine Stammdaten-Collection zu generieren (Reference Collection), kann das Werkzeug *Extract* verwendet werden.
+
+		Dazu können einzelne Spalten der Rohdaten-Collection den Ergebnis- oder Stammdaten mittels Drag und Drop zugeteilt werden. Zusätzlich wird automatisch eine Referenzspalte in den Ergebnisdaten generiert, welche auf die jeweiligen Stammdaten linkt.
+
+		### Export
+
+		Die Datensätze einer Collection können entweder als CSV- oder als JSON-Datei exportiert werden.
+
+		### Analyse Structure
+
+		Das Werkzeug *Analyse Structure* bietet dem Benutzer die Möglichkeit, zu überblicken, welche Daten beim Scraping-Vorgang erfasst wurden. Auf diese Weise können auch einzelne Spalten in der Collection View ein- bzw. ausgeblendet werden.

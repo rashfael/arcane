@@ -1,0 +1,150 @@
+extends layout
+
+block content
+	h1= 'Merge: ' + collection + ' (' + project + ')'
+
+	p Merge documents inside the collection. Please note that you define the body of the map and reduce functions only! The function bodies must contain plain JavaScript code only. It is not allowed to use external libraries such as jQuery.
+
+	style(type='text/css')
+		.CodeMirror { border: 1px solid #eee; margin-bottom: 10px; width: 444px; }
+		.CodeMirror-scroll { height: 100%; }
+
+	label(for='presets')
+		strong Presets
+	.input
+		select#presets(name='presets')
+
+	.row
+		.span6
+			form(method='post', enctype='multipart/form-data')
+				fieldset
+					.clearfix
+						label(for='merge[map]')
+							strong Map Function Body
+						.input
+							textarea.xxlarge#map(type='textarea', rows='7', cols='200', name='merge[map]')
+					.clearfix
+						label(for='merge[reduce]')
+							strong Reduce Function Body 
+							span (optional)
+							a
+						.input
+							textarea.xxlarge#reduce(type='textarea', rows='7', cols='200', name='merge[reduce]')
+					.clearfix
+						.actions
+							a.btn(data-toggle='modal', data-target='#jsLintOutput', href='#jsLintOutput', onclick='runJsLint();') Lint
+							!= " "
+							button.btn.primary(type="send", value="Send") Send
+							!= " &nbsp; "
+							a(href="/projects/#{project}/#{collection}") Cancel
+
+		.span6
+			div(style="font-weight: bold; margin-bottom: 4px;") Preview
+			#preview.collection-table-wrap ...
+
+	div.modal.hide.fade#jsLintOutput
+		.modal-header
+			a(class='close', data-dismiss='modal') ×
+			h2 JSLint says
+		.modal-body#jsLintContent ...
+
+	!= js('mergePresets')
+	!= js('filterEmulator')
+
+	script(type='text/javascript')
+		var rawKeys = [];
+		var rawData = [];
+
+		var updatePreview = function() {
+			$.get('/projects/#{project}/#{collection}', function(data) {
+				var keys = [];
+
+				$.each(data, function() {
+					$.each(this, function(key, val) {
+						if (key !== '_id') {
+							keys.push($.trim(key));
+						}
+					});
+				});
+
+				rawKeys = $.unique($.unique(keys)).sort();
+
+				rawData = transformationEmulator.merge(data, mapEditor.getFuncDef(false), reduceEditor.getFuncDef(false));
+
+				$('#preview').text('');
+				$.getScript('/js/collection.js');
+			}, 'json');
+		};
+
+		var jsonToHtml = function(json) {
+			var html = "";
+
+			$.each(json, function() {
+				html += "<p>";
+
+				$.each(this, function(key, value) {
+					if (typeof key !== 'undefined' && typeof value !== 'undefined') {
+						html += "<strong>" + key + ":</strong> " + value + "<br />";	
+					}
+				});
+
+				html += "</p><hr />";
+			});
+
+			return html;
+		};
+
+		var runJsLint = function() {
+			var output = "";
+
+			if (!JSLINT(mapEditor.getFuncDef(true))) {
+				output += "<h4>Map Function Body</h4><hr />"
+				output += jsonToHtml(JSLINT.errors);
+			}
+
+			if (!JSLINT(reduceEditor.getFuncDef(true))) {
+				output += "<h4>Reduce Function Body</h4><hr />"
+				output += jsonToHtml(JSLINT.errors);
+			}
+
+			if (output === "") {
+				$('#jsLintContent').html('Congrats, your code seems to be fine! :)');
+			} else {
+				$('#jsLintContent').html(output);
+			}
+		};
+
+	script(type='text/javascript')
+		var mapTextarea = document.getElementById('map');
+		var mapEditor = CodeMirror.fromTextArea(mapTextarea, {
+			lineNumbers: true,
+			onChange: updatePreview
+		});
+		mapEditor.getFuncDef = function(includeFuncName) {
+			var prefix = "";
+
+			if (includeFuncName) {
+				prefix = "var map = ";
+			}
+
+			return prefix + "function (object) {" + mapEditor.getValue() + "}";
+		};
+
+		var reduceTextarea = document.getElementById('reduce');
+		var reduceEditor = CodeMirror.fromTextArea(reduceTextarea, {
+			lineNumbers: true,
+			onChange: updatePreview
+		});
+		reduceEditor.getFuncDef = function(includeFuncName) {
+			if ($.trim(reduceEditor.getValue()) === "") {
+				return null;
+			}
+
+			var prefix = "";
+
+			if (includeFuncName) {
+				prefix = "var reduce = ";
+			}
+
+			return prefix + "function (key, values) {" + reduceEditor.getValue() + "}";
+		};

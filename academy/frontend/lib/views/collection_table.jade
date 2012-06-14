@@ -1,0 +1,13 @@
+include mixins/pager
+mixin pager(pager)
+
+script
+	var rawData = !{JSON.stringify(data)}
+
+if(locals.structure)
+	script
+		var rawStructure = !{JSON.stringify(locals.structure)}
+	
+!= js('collection')
+.collection-table-wrap
+

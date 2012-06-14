@@ -1,0 +1,117 @@
+!!! 5
+html(lang="en")
+	head
+		title magic test page
+		meta(charset='utf-8')
+		script(src='../template/jquery.js')
+		script(src='../../out/magic.js')
+
+		:coffeescript
+			jQuery(document).ready ->
+				console.log 'Executing the magic!'
+				magicLib = require './magic'
+				magic = new magicLib window
+				config = {
+					SimpleAttributes: {
+						includeChildren: 0
+					},
+					ImageAltTags: {
+						keyGen: 'fancy'
+					},
+					SimpleTable: {
+						wurbl: 'durbl'
+					},
+					CustomSelectors: {
+						selectors: [
+							{
+								key: 'c_my_title'
+								selector: 'title'
+							},
+							{
+								key: 'c_discard_childs'
+								selector: '#leCustomDiv > div'
+							},
+							{
+								key: 'c_with_some_children'
+								selector: '#leCustomDiv'
+								includeChildren: 5
+							},
+							{
+								key: 'c_do_not_die'
+								selector: '#idonotexist'
+								includeChildren: 0
+							}
+						]
+					},
+					SubItems: {
+						groups: [
+							{
+								key: 'reviews'
+								selector: '.review'
+							},
+							{
+								key: 'related-items'
+								selector: 'ul.related li'
+							}
+						]
+					},
+					HurrDurr: 'herp'
+				}
+				attributes = magic.attributes.findAttributes window.document, config
+				
+				console.log '============================\n' +
+										'Magic finished!\n' + 
+										'This is what it could detect:\n' + 
+										'============================\n'
+
+				console.log JSON.stringify magicLib.cleanUp(attributes), null, 2
+
+body
+	h1 Magic test page
+	#container
+		p You are amazing
+
+	#products In this section we describe some stuff.
+
+		h2.name Meat
+		div(title='price') 3€
+		div(title='descr') It is awesome.
+
+		h3 Data
+		table.type-1
+			tr
+				td Age
+				td 23
+			tr
+				td Name
+				td Bernd
+			tr
+				td Size
+				td Huge!
+		
+		table.type-2
+			tr
+				td Professionality
+				td Quality
+				td Awesomeness
+			tr
+				td 99%
+				td good enough
+				td over 9000
+				
+		img(alt='It smeels like cake!', src='http://placekitten.com/125/125')
+		img(alt='Amazing Image is amazing.', src='http://placekitten.com/50/100')
+
+		#leCustomDiv
+			div I should be returned! </br>
+				| And something is lurkin in the dark.
+				div DO NOT RETURN ME
+					div.findMe Ich sollte nur alleine dastehen.
+
+		.reviews
+		.review
+			span.rating 3/5
+			p.desc It was so awesome
+		.review
+			span.rating 1/5
+			p.desc Sucks a bit

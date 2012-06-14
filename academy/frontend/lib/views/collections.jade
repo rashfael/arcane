@@ -1,0 +1,8 @@
+extends layout
+
+block content
+	h1 Database Query
+	h2= db.name
+	ul
+		- each col in collections
+			li: a(href='/db/'+db.name+'/'+col)= col

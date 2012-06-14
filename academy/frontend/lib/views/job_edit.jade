@@ -1,0 +1,12 @@
+extends layout
+
+block content
+	h1= 'Job '+job._id
+
+	form(method='post')
+		fieldset
+			mixin textfield('name', job.name, 'Name')
+			.actions
+				button.btn.primary(type='send', value='save') Save
+				!= " "
+				a.btn(href='.', type='reset') Cancel
