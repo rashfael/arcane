@@ -24,7 +24,7 @@ Arcane Academy is powered by the wonderful nodejs and backed by mongoDB.
 
 (The MIT License)
 
-Copyright (c) 2012 RashFael &lt;rashfael@isobeef.org&gt;
+Copyright (c) 2012 RashFael &lt;rashfael@isobeef.org&gt;, Stefan Bilharz &lt;s.bilharz@web.de&gt;
 
 Permission is hereby granted, free of charge, to any person obtaining
 a copy of this software and associated documentation files (the
